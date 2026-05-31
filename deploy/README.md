@@ -5,9 +5,12 @@ the apps are git submodules (`tanfeeth-frontend`, `tanfeeth-api`).
 
 ## Topology
 
-Single host (`76.13.251.17`, Ubuntu 24.04) running Docker. Cloudflare proxies
-all domains; the origin terminates TLS with a self-signed cert (set Cloudflare
-SSL mode to **Full**). One `nginx` edge proxy fronts two isolated stacks:
+Single host (`76.13.251.17`, Ubuntu 24.04) running Docker. The domains resolve
+to the origin and TLS is terminated there with a **Let's Encrypt** cert
+(`scripts/issue-letsencrypt.sh`, auto-renewed via `/etc/cron.d/tanfeeth-certbot`).
+If you later move the domains behind the Cloudflare proxy, set the Cloudflare SSL
+mode to **Full (strict)** — the LE origin cert is trusted there too.
+One `nginx` edge proxy fronts two isolated stacks:
 
 | Domain | Container | Stack |
 |--------|-----------|-------|
