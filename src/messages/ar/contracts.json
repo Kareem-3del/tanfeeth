@@ -1,0 +1,67 @@
+{
+  "fields": {
+    "name": "اسم العقد",
+    "amendmentOrdersCount": "عدد الأوامر التعديلية",
+    "signingDate": "تاريخ توقيع العقد",
+    "initialDeliveryDate": "تاريخ الاستلام الابتدائي",
+    "amendedContractDuration": "المدة المعدلة للعقد",
+    "responsibleEmployee": "الموظف المسؤول",
+    "tenderCommitteeNumber": "رقم لجنة الترسية",
+    "bankGuaranteeValue": "قيمة الضمان البنكي",
+    "supervisingDepartment": "الإدارة المشرفة على المشروع",
+    "purchaseOrderNumber": "رقم أمر الشراء",
+    "completionPercentage": "نسبة الإنجاز",
+    "projectClassification": "تصنيف المشروع بالخطة",
+    "contractNumber": "رقم العقد",
+    "contractValue": "قيمة العقد",
+    "amendmentOrderDate": "تاريخ إنشاء الأمر التعديلي",
+    "endDate": "تاريخ النهاية",
+    "contractDuration": "مدة العقد",
+    "year": "سنة العقد",
+    "tenderNotificationDate": "تاريخ خطاب الإشعار بالترسية",
+    "tenderDate": "تاريخ الطرح",
+    "bankGuaranteeEndDate": "تاريخ انتهاء الضمان البنكي",
+    "tenderType": "نوع الطرح",
+    "competitionReferenceNumber": "الرقم المرجعي للمنافسة",
+    "spentPercentageFromContract": "نسبة المبلغ المصروف من العقد",
+    "contractStatus": "حالة العقد",
+    "serialNumber": "الرقم التسلسلي للعقد",
+    "contractorName": "اسم المتعاقد",
+    "amendedValue": "القيمة المعدلة",
+    "startDate": "تاريخ البداية",
+    "finalDeliveryDate": "تاريخ الاستلام النهائي",
+    "contractAmendedDurationEndDate": "تاريخ انتهاء المدة المعدلة للعقد",
+    "awardingCommitteeSignatureDate": "تاريخ توقيع محضر الترسية",
+    "tenderOpeningDate": "تاريخ فتح العروض",
+    "bankGuaranteeReferenceNumber": "الرقم المرجعي للضمان البنكي",
+    "projectType": "نوع المشروع",
+    "sapPurchaseRequestNumber": "رقم طلب الشراء SAP",
+    "spentAmount": "قيمة المبلغ المصروف",
+    "projectOwnerName": "اسم مالك المشروع",
+    "approved": "تاشير العقد",
+    "signature": "التوقيع",
+    "sendTo": "إرسال إلى"
+  },
+
+  "sections": {
+    "basicInfo": "بيانات العقد الأساسية",
+    "financial": "البيانات المالية",
+    "dates": "التواريخ والمدد",
+    "additional": "معلومات إضافية",
+    "signSend": "التأشير والتوقيع والإرسال"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "minZero": "يجب أن تكون القيمة 0 أو أكبر",
+    "invalidYear": "السنة يجب أن تتكون من 4 أرقام",
+    "range0to100": "يجب أن تكون النسبة بين 0 و 100",
+    "dates": {
+      "endAfterStart": "تاريخ النهاية يجب أن يكون بعد تاريخ البداية"
+    },
+    "spentExceedsValue": "المبلغ المصروف لا يمكن أن يتجاوز قيمة العقد",
+    "bankGuaranteeExpired": "تاريخ انتهاء الضمان البنكي لا يمكن أن يكون في الماضي"
+  },
+  "actions": {
+    "sign": "تاشير و توقيع "
+  }
+}
