@@ -1,0 +1,49 @@
+name: tanfeeth-prod
+
+# Production stack. Images are pulled from GHCR (tag :prod) by CI on the
+# self-hosted runner. The API/DB talk over the shared tanfeeth-net by the
+# unique container names (see .env.prod -> DB_HOST=tanfeeth-pg-prod).
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: tanfeeth-pg-prod
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - pgdata-prod:/var/lib/postgresql/data
+    networks:
+      - tanfeeth-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    image: ghcr.io/kareem-3del/tanfeeth-api:prod
+    container_name: tanfeeth-api-prod
+    restart: unless-stopped
+    env_file:
+      - .env.prod
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - tanfeeth-net
+
+  web:
+    image: ghcr.io/kareem-3del/tanfeeth-frontend:prod
+    container_name: tanfeeth-web-prod
+    restart: unless-stopped
+    networks:
+      - tanfeeth-net
+
+networks:
+  tanfeeth-net:
+    external: true
+
+volumes:
+  pgdata-prod:

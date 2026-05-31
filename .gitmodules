@@ -1,0 +1,6 @@
+[submodule "backend"]
+	path = backend
+	url = https://github.com/Kareem-3del/tanfeeth-api.git
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/Kareem-3del/tanfeeth-frontend.git

@@ -1,0 +1,21 @@
+name: tanfeeth-proxy
+
+# Edge reverse proxy shared by both environments. Terminates TLS at the origin
+# with a self-signed cert; Cloudflare sits in front (set SSL mode to "Full").
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: tanfeeth-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+    networks:
+      - tanfeeth-net
+
+networks:
+  tanfeeth-net:
+    external: true

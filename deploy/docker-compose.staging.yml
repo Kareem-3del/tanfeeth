@@ -1,0 +1,47 @@
+name: tanfeeth-staging
+
+# Staging stack — mirrors prod with :staging images and an isolated database.
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: tanfeeth-pg-staging
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - pgdata-staging:/var/lib/postgresql/data
+    networks:
+      - tanfeeth-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    image: ghcr.io/kareem-3del/tanfeeth-api:staging
+    container_name: tanfeeth-api-staging
+    restart: unless-stopped
+    env_file:
+      - .env.staging
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - tanfeeth-net
+
+  web:
+    image: ghcr.io/kareem-3del/tanfeeth-frontend:staging
+    container_name: tanfeeth-web-staging
+    restart: unless-stopped
+    networks:
+      - tanfeeth-net
+
+networks:
+  tanfeeth-net:
+    external: true
+
+volumes:
+  pgdata-staging:
