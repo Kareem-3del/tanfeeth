@@ -6,6 +6,7 @@ import { Slide, ToastContainer } from 'react-toastify';
 
 
 
+import { AuthProvider } from "@/features/auth/providers/AuthProvider";
 import { MessagesData } from "@/lib/i18n/messages";
 import { SupportedLocale } from "@/types";
 
@@ -21,20 +22,19 @@ interface ProvidersProps {
 export function AppProvider({ children, locale, messages }: ProvidersProps) {
     return (
         <NextIntlClientProvider timeZone="Africa/Cairo" locale={locale} messages={messages}>
-            {/* <AuthProvider> */}
-            <ReactQueryProvider>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="light"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    <ToastContainer transition={Slide} />
-                    {children}
-                </ThemeProvider>
-            </ReactQueryProvider>
-            {/* </AuthProvider> */}
-
+            <AuthProvider>
+                <ReactQueryProvider>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="light"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <ToastContainer transition={Slide} />
+                        {children}
+                    </ThemeProvider>
+                </ReactQueryProvider>
+            </AuthProvider>
         </NextIntlClientProvider>
     );
 }
