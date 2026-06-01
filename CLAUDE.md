@@ -115,3 +115,7 @@ Secrets (`.env.prod`/`.env.staging`) are generated on the host and never committ
   `frontend/src/messages/{ar,en}/<namespace>.json` and is read via `useAppTranslation` /
   `getAppTranslation` + `t("key")` (ICU interpolation for dynamic values). Applies to portal/admin
   code too. See `frontend/AGENTS.md`.
+- **Frontend feature architecture** — keep `src/features/<name>/` split by concern: `api.ts`,
+  `hooks/` (one React Query hook per file), `components/`, `forms/` (self-contained forms), `schemas/`,
+  `mappers.ts`, `types`. One unit per file; never inline a form/hook/component into a page or a
+  monolithic barrel. `contracts/` is the reference. Pages stay thin. See `frontend/AGENTS.md`.
