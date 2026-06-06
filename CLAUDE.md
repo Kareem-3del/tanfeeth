@@ -2,6 +2,34 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Product & domain (read this first)
+
+**Tanfeeth (تنفيذ)** is an Arabic‑first SaaS platform that runs a Saudi government
+entity's **full competition & procurement lifecycle — order → contract → closeout** —
+on a configurable **workflow + business‑rules engine**, with **RBAC** across ~13 roles,
+an **AI layer under mandatory human‑in‑the‑loop (HITL)**, persona dashboards (end user,
+contracts/procurement dept, higher management, external contractor), and deep
+integration with **Etimad, Nafath, the Ministry of Finance, and GOSI**. Arabic/RTL‑first,
+Vision‑2030 aligned, KSA data‑residency.
+
+The authoritative product & domain documentation lives in **`docs/product/`**:
+- [`docs/product/PRODUCT.en.md`](docs/product/PRODUCT.en.md) / [`PRODUCT.ar.md`](docs/product/PRODUCT.ar.md)
+  — vision, personas, the 10‑stage lifecycle with **scenarios + user stories + options**,
+  exceptional paths, modules, AI layer, integrations, NFRs, glossary.
+- [`docs/product/RULES.md`](docs/product/RULES.md) — **binding product/domain/engineering
+  rules (R‑01 … R‑16)**. Read before building any feature touching the lifecycle, roles,
+  workflow, AI, or integrations.
+
+Key binding rules (see `RULES.md` for the full set): every state change is a **gated,
+audited workflow transition** (R‑01/02); **HITL is mandatory** for any impactful AI
+output, with explainability (R‑03); **RBAC** with the CDM default‑access rule (R‑04);
+**BR‑01** (configurable 5M‑SAR technical/financial doc split) and **BR‑02** (supply vs
+maintenance commencement branch); Etimad/Nafath/MoF are the **source of truth** (R‑08);
+official correspondence needs a **reference number** (R‑09); **KSA data residency** +
+**multi‑tenant isolation** (R‑10/11); **bilingual AR(RTL)/EN** everywhere (R‑12). New
+work ties to a requirement ID `FR-WF/EX/FT/CM/CT/HM/AI/V30` and the single domain model
+(R‑14/15).
+
 ## Repository shape
 
 This is the **`tanfeeth` meta-repo**. It contains almost no code of its own — the two
@@ -94,7 +122,10 @@ changes vs. older docs; consult `node_modules/next/dist/docs/` before writing fr
 - **Auth session** is a persisted Zustand store (`features/auth/store/useAuthStore.ts`, key
   `tanfeeth-auth`), read outside React via `useAuthStore.getState()` inside the API client.
 - **Design system**: Tailwind v4 with `@theme` tokens defined in `src/app/globals.css` (shadcn/ui
-  components in `components/ui`). Use the CSS-var tokens / Tailwind classes, not raw hex.
+  components in `components/ui`). Use the CSS-var tokens / Tailwind classes, not raw hex. Portal
+  dashboards must follow `frontend/design.md`: flagship operating-system feel, Stripe-inspired
+  interaction density, Apple-like restraint, Spotify-like dark command panels, RTL polish, and no
+  generic flat admin-card layouts.
 
 ## Deploy (`deploy/`, details in `deploy/README.md`)
 
@@ -119,3 +150,7 @@ Secrets (`.env.prod`/`.env.staging`) are generated on the host and never committ
   `hooks/` (one React Query hook per file), `components/`, `forms/` (self-contained forms), `schemas/`,
   `mappers.ts`, `types`. One unit per file; never inline a form/hook/component into a page or a
   monolithic barrel. `contracts/` is the reference. Pages stay thin. See `frontend/AGENTS.md`.
+- **Product/domain rules are binding** — any feature touching the procurement lifecycle,
+  roles, workflow, AI, or government integrations must follow `docs/product/RULES.md`
+  (R‑01 … R‑16) and map to the single domain model in `docs/product/PRODUCT.{en,ar}.md`.
+  Don't invent parallel roles/statuses/flows; tie work to an `FR-*` requirement ID.
