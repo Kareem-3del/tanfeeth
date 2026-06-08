@@ -1,0 +1,154 @@
+/* Tajawal faces are provided by the embedded fonts.css (linked in revised.html) */
+:root{
+  --ink:#19222c; --muted:#647079; --faint:#9aa4ac;
+  --line:#d8dfdd; --line2:#edf1f0; --soft:#f6f9f8;
+  --green:#337349; --green-deep:#234f33; --green2:#e9f2ec; --green3:#d2e6d9;
+  --gold:#8a6200; --goldbg:#fff6df; --gold-line:#ecd9a5;
+  --blue:#274690; --bluebg:#e8edf9; --blue-line:#c8d3ef;
+  --teal:#0f6b5e; --red:#a3322c; --redbg:#fbeae7;
+  --c1:#337349; --c2:#2f6f93; --c3:#7a5aa6; --c4:#b1497e; --c5:#5b6b78; --c6:#9a7a18; --c7:#b06a3e; --c8:#3c8c79; --c9:#1f3f63;
+}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;direction:rtl;text-align:right;font-family:Tajawal,Arial,sans-serif;color:var(--ink);font-size:10.5pt;line-height:1.72}
+.page{break-before:page;padding-top:3mm}.page.first{break-before:auto;padding-top:0}
+.avoid{break-inside:avoid}
+p{margin:.35em 0 .65em}ul,ol{margin:.3em 0 .75em;padding-right:1.3em}li{margin:.2em 0}
+.lead{font-size:11.5pt;color:#35434d}
+.small{font-size:8.4pt}.muted{color:var(--muted)}.ltr{direction:ltr;unicode-bidi:isolate}
+.center{text-align:center}
+b,strong{font-weight:700}
+
+/* ---------- COVER ---------- */
+.cover{height:262mm;border:1.5pt solid var(--green);display:flex;flex-direction:column;overflow:hidden;position:relative;background:#fff}
+.cover-band{height:9mm;background:var(--green)}
+.cover-band i{display:block;height:2mm;background:var(--gold)}
+.cover-in{padding:15mm 17mm;display:flex;flex-direction:column;justify-content:space-between;flex:1;position:relative;z-index:2}
+.cover .logo{height:19mm;width:auto}
+.cover-mark{position:absolute;left:-28mm;bottom:-26mm;width:135mm;opacity:.05;z-index:1}
+.cover h1{font-size:26pt;line-height:1.45;margin:10mm 0 4mm;color:var(--ink)}
+.cover .tagline{font-size:12pt;color:#42505b;max-width:158mm;line-height:1.85}
+.cover .hero{margin-top:8mm;background:var(--green2);border-right:4px solid var(--green);border-radius:3px;padding:9px 13px;font-size:11pt;color:var(--green-deep);max-width:160mm}
+.cover .hero b{color:var(--green-deep)}
+.meta{border-top:1px solid var(--line);padding-top:5mm;display:grid;grid-template-columns:repeat(4,1fr);gap:5mm}
+.meta span{display:block;color:var(--muted);font-size:8.5pt}.meta b{display:block;color:var(--green);font-size:10.5pt}
+
+/* ---------- SECTION HEADS ---------- */
+.head{border-bottom:2px solid var(--green);padding-bottom:7px;margin-bottom:13px}
+.head h2{margin:0;color:var(--green);font-size:17pt;position:relative;padding-right:9mm;line-height:1.3}
+.head h2::before{content:"";position:absolute;right:0;top:.5em;transform:translateY(-45%);width:7mm;height:7mm;background:url(logo-mark.svg) center/contain no-repeat}
+.head p{margin:1px 0 0;color:var(--muted);font-size:9pt;padding-right:9mm}
+h3{color:var(--green-deep);font-size:12.5pt;margin:1.05em 0 .4em}
+h3.eyebrow{color:var(--green);font-size:9pt;letter-spacing:.04em;text-transform:none;margin:.2em 0 .4em;font-weight:700}
+
+/* ---------- HIGHLIGHTS / CALLOUTS ---------- */
+.hl{background:linear-gradient(transparent 55%, #fff0b8 55%);padding:0 1px}
+.box{background:var(--soft);border:1px solid var(--line);border-right:3px solid var(--green);padding:8px 12px;margin:.7em 0;break-inside:avoid;border-radius:2px}
+.box.warn{background:var(--goldbg);border-right-color:var(--gold)}
+.box.info{background:var(--bluebg);border-right-color:var(--blue)}
+.box.imp{background:#fff;border:1px solid var(--gold-line);border-right:4px solid var(--gold);box-shadow:0 1px 0 var(--line)}
+.box b:first-child{color:var(--green)}.box.warn b:first-child{color:var(--gold)}.box.info b:first-child{color:var(--blue)}.box.imp b:first-child{color:var(--gold)}
+.box .ic{font-weight:800;margin-left:4px}
+.badge{display:inline-block;font-size:7.6pt;font-weight:700;padding:1px 7px;border-radius:10px;border:1px solid var(--green3);background:var(--green2);color:var(--green-deep);white-space:nowrap}
+.badge.gold{background:var(--goldbg);border-color:var(--gold-line);color:var(--gold)}
+.badge.blue{background:var(--bluebg);border-color:var(--blue-line);color:var(--blue)}
+.badge.red{background:var(--redbg);border-color:#eccac4;color:var(--red)}
+.tag{direction:ltr;unicode-bidi:isolate;font-family:Arial,sans-serif;font-size:.84em;background:#eef2f1;border:1px solid var(--line);padding:0 4px;white-space:nowrap;border-radius:2px}
+
+/* ---------- TABLES ---------- */
+table{width:100%;border-collapse:collapse;margin:.55em 0 1em;font-size:9.2pt;break-inside:auto}
+thead{display:table-header-group}tr{break-inside:avoid}
+th,td{border:1px solid var(--line);padding:6px 8px;vertical-align:top;line-height:1.5}
+th{background:var(--green2);color:var(--green-deep);font-weight:700}.c{text-align:center}
+tbody tr:nth-child(even) td{background:#fafbfb}
+
+/* ---------- TOC ---------- */
+.toc{columns:2;column-gap:12mm;list-style:none;padding:0;counter-reset:toc}
+.toc li{break-inside:avoid;border-bottom:1px dotted var(--line);padding:6px 0;display:flex;gap:8px;align-items:baseline;counter-increment:toc}
+.toc li::before{content:counter(toc);flex:0 0 auto;width:18px;height:18px;background:var(--green2);color:var(--green-deep);border-radius:50%;font-size:8pt;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+
+/* ---------- STAT CARDS ---------- */
+.stats{display:flex;flex-wrap:wrap;gap:6mm;margin:.6em 0 1em}
+.stat{flex:1;min-width:38mm;border:1px solid var(--line);border-top:3px solid var(--green);border-radius:3px;padding:9px 11px;background:#fff}
+.stat b{display:block;color:var(--green);font-size:21pt;line-height:1.05}
+.stat span{display:block;color:var(--muted);font-size:8.6pt;margin-top:2px}
+.stat.g{border-top-color:var(--gold)}.stat.g b{color:var(--gold)}
+.stat.b{border-top-color:var(--blue)}.stat.b b{color:var(--blue)}
+
+/* ---------- CHARTS ---------- */
+.chartcard{border:1px solid var(--line);border-radius:3px;padding:10px 12px;background:#fff;break-inside:avoid}
+.chartcard .ct{font-weight:700;color:var(--green-deep);font-size:10pt;margin-bottom:6px}
+.chrow{display:flex;gap:8mm;flex-wrap:wrap;align-items:center}
+.legend{display:flex;flex-direction:column;gap:3px;font-size:8.5pt;flex:1;min-width:55mm}
+.legend .li{display:flex;align-items:center;gap:6px}
+.legend .sw{width:10px;height:10px;border-radius:2px;flex:0 0 auto}
+.legend .vv{margin-right:auto;color:var(--muted);font-weight:700}
+.bars{display:flex;flex-direction:column;gap:6px;font-size:8.6pt}
+.bar{display:grid;grid-template-columns:42mm 1fr auto;align-items:center;gap:7px}
+.bar .bl{color:var(--ink)}
+.bar .bt{display:block;background:var(--line2);border-radius:3px;overflow:hidden;height:13px}
+.bar .bf{display:block;height:13px;border-radius:3px;min-width:2px}
+.bar .bv{font-weight:700;color:var(--green-deep);font-variant-numeric:tabular-nums}
+
+/* ---------- STEPPER (lifecycle) ---------- */
+.stepper{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:.7em 0;break-inside:avoid}
+.step{border:1px solid var(--line);border-radius:3px;padding:7px 8px;background:var(--soft);position:relative}
+.step .n{width:17px;height:17px;border-radius:50%;background:var(--green);color:#fff;font-size:8pt;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:4px}
+.step .t{font-size:8.4pt;font-weight:700;color:var(--ink);line-height:1.35}
+.step.alt{background:var(--green2);border-color:var(--green3)}
+
+/* ---------- FLOW (scenario) ---------- */
+.flow{display:flex;flex-direction:column;gap:0;margin:.6em 0;break-inside:avoid}
+.fl{display:flex;gap:9px;align-items:flex-start}
+.fl .fn{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:9pt;display:flex;align-items:center;justify-content:center;z-index:2}
+.fl .fb{flex:1;border:1px solid var(--line);border-radius:3px;padding:6px 10px;background:#fff;margin-bottom:7px;font-size:9.3pt}
+.fl .fb b{color:var(--green-deep)}
+.fl.dec .fn{background:var(--gold)}
+.fl.dec .fb{background:var(--goldbg);border-color:var(--gold-line)}
+.fl.end .fn{background:var(--green-deep)}
+.fconn{width:2px;background:var(--green3);height:7px;margin-right:10px;margin-bottom:-1px}
+
+/* ---------- BOUNDARY (Etimad vs Tanfeeth) ---------- */
+.boundary{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:.6em 0;break-inside:avoid}
+.bcol{border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.bcol .bh{padding:6px 10px;font-weight:700;color:#fff;text-align:center;font-size:10pt}
+.bcol.etimad .bh{background:var(--c5)}
+.bcol.tanfeeth .bh{background:var(--green)}
+.bcol ul{margin:0;padding:8px 10px 9px;list-style:none}
+.bcol li{padding-right:14px;position:relative;font-size:9pt;margin:.28em 0}
+.bcol li::before{content:"";position:absolute;right:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--green)}
+.bcol.etimad li::before{background:var(--c5)}
+
+/* ---------- LAYERS (security/architecture) ---------- */
+.layers{display:flex;flex-direction:column;gap:5px;margin:.6em 0;break-inside:avoid}
+.layer{border-radius:3px;padding:7px 12px;color:#fff;font-size:9.2pt;display:flex;justify-content:space-between;align-items:center}
+.layer b{font-weight:700}.layer span{font-size:8.3pt;opacity:.92}
+
+/* ---------- PERSONAS ---------- */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:.6em 0}
+.card{border:1px solid var(--line);border-radius:3px;padding:8px 11px;background:#fff;break-inside:avoid}
+.card .ch{font-weight:700;color:var(--green-deep);font-size:10pt;margin-bottom:2px}
+.card .cs{font-size:8.8pt;color:var(--muted)}
+
+/* ---------- STORY CARDS ---------- */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:.5em 0}
+.story{border:1px solid var(--line);border-right:3px solid var(--green);border-radius:3px;padding:7px 10px;background:#fff;break-inside:avoid;font-size:9.2pt}
+.story .who{display:inline-block;font-size:7.6pt;font-weight:700;color:var(--green-deep);background:var(--green2);border:1px solid var(--green3);border-radius:10px;padding:0 7px;margin-bottom:3px}
+.story .sid{float:left;color:var(--faint);font-size:7.6pt;font-family:Arial;direction:ltr}
+.story em{font-style:normal;color:var(--green-deep);font-weight:700}
+
+/* ---------- FAQ ---------- */
+.faq{margin:.5em 0;break-inside:avoid;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.faq+.faq{margin-top:6px}
+.faq .q{background:var(--green2);color:var(--green-deep);font-weight:700;padding:7px 11px;font-size:9.8pt;display:flex;gap:8px;align-items:flex-start}
+.faq .q::before{content:"؟";flex:0 0 auto;width:17px;height:17px;border-radius:50%;background:var(--green);color:#fff;font-size:9pt;display:flex;align-items:center;justify-content:center}
+.faq .a{padding:7px 11px 8px;font-size:9.3pt;color:#2b3741}
+.faq .a::before{content:"الإجابة: ";font-weight:700;color:var(--green)}
+
+/* ---------- TIMELINE (gantt-ish table) ---------- */
+.timeline td:nth-child(n+3),.timeline th:nth-child(n+3){text-align:center}
+.on{background:#cfe8d8!important;color:var(--green-deep);font-weight:700}
+.gate{background:#fff0c4!important;color:#745100;font-weight:700}
+
+.footer-note{margin-top:9mm;border-top:1px solid var(--line);padding-top:3mm;color:var(--muted);font-size:8.5pt}
+@media print{@page{size:A4;margin:19mm 15mm 16mm}.cover{height:251mm}}

@@ -1,0 +1,1708 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="revised-en.css">
+<title>Tanfeeth — Product & Delivery Plan</title>
+</head>
+<body>
+
+<section class="page first">
+  <div class="cover">
+    <div class="cover-band"><i></i></div>
+    <img class="cover-mark" src="logo-mark.svg" alt="">
+    <div class="cover-in">
+      <img class="logo" src="logo.svg" alt="Tanfeeth">
+      <div>
+        <h1>Product &amp; Delivery Plan</h1>
+        <p class="tagline">An internal platform to manage the lifecycle of government competitions and contracts — from order creation to contract closeout — with follow-up of project and contractor execution, payments and reports.</p>
+        <div class="hero"><b>The internal operating system around Etimad:</b> it turns manual work into an automated, AI-assisted workflow under human oversight, and complies with the Essential Cybersecurity Controls (ECC).</div>
+      </div>
+      <div class="meta">
+        <div><span>Version</span><b>2.0 — Edited</b></div>
+        <div><span>Date</span><b>June 2026</b></div>
+        <div><span>Classification</span><b>Confidential</b></div>
+        <div><span>Prepared by</span><b>Kareem Adel Mohammed</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="head"><h2>At a glance</h2><p>The product and plan headline numbers on one page</p></div>
+  <div class="stats">
+    <div class="stat"><b>10</b><span>competition lifecycle stages</span></div>
+    <div class="stat g"><b>18</b><span>contract lifecycle actions</span></div>
+    <div class="stat b"><b>~13</b><span>roles & permissions (RBAC)</span></div>
+  </div>
+  <div class="stats">
+    <div class="stat b"><b>108</b><span>cybersecurity controls (ECC) across 4 domains</span></div>
+    <div class="stat"><b>145</b><span>delivery tasks in the plan</span></div>
+    <div class="stat g"><b>24</b><span>weeks — reference schedule</span></div>
+  </div>
+  <h3>What does Tanfeeth offer, briefly?</h3>
+  <ul>
+    <li><b>One clear path</b> from order creation to contract closeout, with precise permissions and a complete record of every action.</li>
+    <li><b>Integrates with Etimad</b> (does not replace it) and owns the post-signature world: contractor, payments, warnings, acceptance.</li>
+    <li><b>An AI assistant</b> that suggests and explains, while the final decision always stays with the responsible user.</li>
+    <li><b>Security commitment</b> to the Essential Cybersecurity Controls (ECC) and in-Kingdom data residency.</li>
+  </ul>
+  <div class="box imp"><b><span class="ic">★</span>The core idea:</b> Tanfeeth is not just a dashboard — it is a <span class="hl">complete operating system</span> connecting the entity with the contractor, committees, departments and oversight bodies in one governed, audited system.</div>
+</section>
+
+<section class="page">
+  <div class="head"><h2>Contents</h2><p>A concise, direct version for approval and delivery</p></div>
+  <ol class="toc">
+    <li>Executive summary</li><li>Product scope &amp; boundaries</li><li>Users &amp; permissions</li>
+    <li>Core workflow</li><li>Post-signature contract management</li><li>End-to-end scenario</li>
+    <li>AI, reporting &amp; integrations</li><li>Core rules &amp; requirements</li>
+    <li>Delivery scope &amp; priorities</li><li>Timeline &amp; delivery plan</li>
+    <li>Dependencies &amp; risks</li><li>Decisions required</li><li>Cybersecurity &amp; protection (ECC)</li>
+    <li>User stories</li><li>Scenarios in detail</li><li>FAQ</li>
+  </ol>
+  <div class="box"><b>How to read:</b> Sections 1–8 explain the product and its controls. Sections 9–12 are the delivery and approval plan. The document is followed by <b>Appendix A — the Detailed Task Register</b>, breaking down each task by category (Infrastructure / User Interface / Systems Integration / AI / Deployment &amp; Ops / QA Testing / Design / PM / Security), description, dependencies, status and estimated hours.</div>
+</section>
+
+<section class="page">
+  <div class="head"><h2>1. Executive summary</h2><p>What does Tanfeeth provide?</p></div>
+  <p class="lead">Tanfeeth is an internal platform that helps a government entity manage competitions, contracts and projects in one clear path, with precise permissions and a complete record of every action.</p>
+  <p>It integrates with Etimad and does not replace it. Etimad handles tendering, receiving offers and award, while Tanfeeth manages the entity's internal work, then follows the contract and project after signature.</p>
+  <h3>Key value</h3>
+  <ul>
+    <li><b>Clear governance:</b> an order or contract changes state only through an approved, authorized action.</li>
+    <li><b>Full follow-up:</b> the platform shows project status, delays, letters, payments and contractor obligations.</li>
+    <li><b>Audit trail:</b> the system records who performed an action, when, and the state before and after it.</li>
+    <li><b>AI assistant:</b> the system suggests the right action and explains why, and the final decision stays with the responsible user.</li>
+  </ul>
+  <div class="box warn"><b>Core principle:</b> the AI does not automatically approve any financial, contractual or regulatory decision.</div>
+</section>
+
+<section class="page">
+  <div class="head"><h2>2. Product scope &amp; boundaries</h2><p>The relationship between Tanfeeth and Etimad</p></div>
+  <div class="boundary">
+    <div class="bcol etimad">
+      <div class="bh">Etimad platform</div>
+      <ul>
+        <li>Publishing the competition and receiving offers.</li>
+        <li>Award procedures.</li>
+        <li>May be the signing surface and source of contract data.</li>
+      </ul>
+    </div>
+    <div class="bcol tanfeeth">
+      <div class="bh">Tanfeeth platform</div>
+      <ul>
+        <li>Order &amp; kraasa preparation, internal approvals and committees.</li>
+        <li>Internal offer analysis and reflecting the signed contract.</li>
+        <li><b>After signature:</b> project, contractor, letters, payments, amendments, acceptance.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box info"><b>The gap Tanfeeth fills:</b> everything that comes <span class="hl">after award and signature</span> — which Etimad does not cover.</div>
+  <h3>In scope</h3>
+  <ul>
+    <li>Managing orders, competitions, contracts and projects.</li>
+    <li>Approval workflow, assignment, signing and official correspondence.</li>
+    <li>Contractor portal, progress tracking and contract-action management.</li>
+    <li>Reports, dashboards, audit log and required integrations.</li>
+  </ul>
+  <h3>Out of current scope</h3>
+  <ul>
+    <li>Replacing Etimad or duplicating its official functions.</li>
+    <li>Executing AI decisions without human approval.</li>
+    <li>Blockchain, voice assistant and advanced capabilities before the core is complete.</li>
+  </ul>
+</section>
+
+<section class="page">
+  <div class="head"><h2>3. Users &amp; permissions</h2><p>Who uses the platform?</p></div>
+  <table>
+    <thead><tr><th>User</th><th>Main responsibilities</th><th>Access scope</th></tr></thead>
+    <tbody>
+      <tr><td>Contracts &amp; procurement dept</td><td>Manage the competition, contract, actions and correspondence.</td><td>By department and permission.</td></tr>
+      <tr><td>Requesting / supervising dept</td><td>Create the order, follow execution, verify contractor performance.</td><td>Their projects and orders.</td></tr>
+      <tr><td>Finance dept</td><td>Budget, commitment, payments and guarantees.</td><td>Authorized financial data.</td></tr>
+      <tr><td>Higher management</td><td>Final approval, escalation and signing.</td><td>Decisions and executive dashboards.</td></tr>
+      <tr><td>Contractor</td><td>Review the contract, update progress, submit requests, reply to letters.</td><td>Their contracts only.</td></tr>
+      <tr><td>Oversight</td><td>Review compliance and the audit log.</td><td>Read &amp; audit only.</td></tr>
+      <tr><td>Platform admin</td><td>Manage users, roles and workflow settings.</td><td>System administration without crossing tenant isolation.</td></tr>
+    </tbody>
+  </table>
+  <div class="box"><b>Permissions rule:</b> every user sees and does only what their permissions allow, and every assignment or delegation is recorded in the system.</div>
+</section>
+
+<section class="page">
+  <div class="head"><h2>4. Core workflow</h2><p>From order to project start</p></div>
+  <div class="stepper">
+    <div class="step"><div class="n">1</div><div class="t">Order creation &amp; approval</div></div>
+    <div class="step"><div class="n">2</div><div class="t">Bid-document (kraasa)</div></div>
+    <div class="step"><div class="n">3</div><div class="t">Pre-qualification</div></div>
+    <div class="step"><div class="n">4</div><div class="t">Competition announcement</div></div>
+    <div class="step"><div class="n">5</div><div class="t">Technical bid opening</div></div>
+    <div class="step"><div class="n">6</div><div class="t">Technical evaluation</div></div>
+    <div class="step"><div class="n">7</div><div class="t">Financial bid opening</div></div>
+    <div class="step"><div class="n">8</div><div class="t">Financial evaluation &amp; award</div></div>
+    <div class="step"><div class="n">9</div><div class="t">Contract drafting &amp; signature</div></div>
+    <div class="step alt"><div class="n">10</div><div class="t">Project commencement</div></div>
+  </div>
+  <div class="box"><b>Configurable rule:</b> if the budget exceeds the set threshold, the system splits the technical document from the financial one. Commencement also differs between supply and maintenance projects.</div>
+</section>
+
+<section class="page">
+  <div class="head"><h2>5. Post-signature contract management</h2><p>The product's core focus</p></div>
+  <p>After the contract is signed, actual execution follow-up begins. The system shows milestones, planned-vs-actual, the BOQ, payments, letters and decisions.</p>
+  <h3>Priority actions in the core</h3>
+  <table>
+    <thead><tr><th>Group</th><th>Actions</th><th>Effect</th></tr></thead>
+    <tbody>
+      <tr><td>Start &amp; follow-up</td><td>Commencement, site handover, suspension, resumption.</td><td>Update project status and duration.</td></tr>
+      <tr><td>Default handling</td><td>Warning, final warning, withdrawal of works.</td><td>Document the breach and escalate.</td></tr>
+      <tr><td>Contract amendment</td><td>Variation order, extension.</td><td>Adjust scope, value or duration.</td></tr>
+      <tr><td>Financial rights</td><td>Payments, assignment, guarantees.</td><td>Record financial and guarantee effects.</td></tr>
+      <tr><td>Closeout</td><td>Preliminary acceptance, final acceptance, termination.</td><td>Close the contract and evaluate the contractor.</td></tr>
+    </tbody>
+  </table>
+  <div class="box"><b>Correspondence control:</b> every external letter obtains a reference number and date before it is sent, and is logged with approvals and attachments.</div>
+</section>
+
+<section class="page">
+  <div class="head"><h2>6. End-to-end scenario</h2><p>Delay, warning, withdrawal of works, and the completion contract</p></div>
+  <div class="flow">
+    <div class="fl"><div class="fn">1</div><div class="fb">The <b>project dashboard</b> shows the contractor falling behind schedule.</div></div>
+    <div class="fconn"></div>
+    <div class="fl"><div class="fn">2</div><div class="fb">The <b>AI</b> suggests issuing a warning and explains the reason.</div></div>
+    <div class="fconn"></div>
+    <div class="fl dec"><div class="fn">3</div><div class="fb"><b>Human decision:</b> the supervising department reviews the suggestion and approves, edits or rejects it.</div></div>
+    <div class="fconn"></div>
+    <div class="fl"><div class="fn">4</div><div class="fb">The system generates the <b>warning letter</b>, obtains a reference number, then sends it.</div></div>
+    <div class="fconn"></div>
+    <div class="fl"><div class="fn">5</div><div class="fb">The <b>contractor replies inside the platform</b> within the set window.</div></div>
+    <div class="fconn"></div>
+    <div class="fl dec"><div class="fn">6</div><div class="fb"><b>Check:</b> the department reviews the reply — if unresolved, a <b>final warning</b> is issued.</div></div>
+    <div class="fconn"></div>
+    <div class="fl dec"><div class="fn">7</div><div class="fb">If the breach continues, <b>withdrawal of works</b> is approved per permissions.</div></div>
+    <div class="fconn"></div>
+    <div class="fl end"><div class="fn">8</div><div class="fb">The system creates a <b>completion contract</b> linked to the original and loads the remaining works into it.</div></div>
+    <div class="fconn"></div>
+    <div class="fl end"><div class="fn">9</div><div class="fb">All steps and decisions are recorded in the <b>audit log</b>.</div></div>
+  </div>
+  <div class="box warn"><b>Core acceptance criterion:</b> this scenario runs end-to-end on a test contract, with permissions, correspondence, audit and completion-contract linking.</div>
+</section>
+
+<section class="page">
+  <div class="head"><h2>7. AI, reporting &amp; integrations</h2><p>Capabilities that support operations</p></div>
+  <h3>Artificial intelligence</h3>
+  <ul>
+    <li>Suggest the next action with its reason and sources.</li>
+    <li>Alert the user to delay and compliance risks.</li>
+    <li>Summarize contracts, letters and documents.</li>
+    <li>Every impactful decision requires explicit human review and approval.</li>
+  </ul>
+  <h3>Dashboards &amp; reports</h3>
+  <ul>
+    <li>Contract-manager dashboard: active, defaulting and near-expiry contracts.</li>
+    <li>Higher-management dashboard: commitments, performance, risk and compliance.</li>
+    <li>Contractor dashboard: obligations, updates, requests and letters.</li>
+    <li>Reports exportable as PDF, Excel and CSV.</li>
+  </ul>
+  <h3>Priority integrations</h3>
+  <table>
+    <thead><tr><th>Priority</th><th>Integration</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>Critical</td><td>Etimad, Nafath, Ministry of Finance</td><td>Competitions, identity and budget.</td></tr>
+      <tr><td>High</td><td>E-signature, GOSI</td><td>Document signing and supplier verification.</td></tr>
+      <tr><td>Medium</td><td>ERP/CRM, WhatsApp Business</td><td>Sync and notifications.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="page">
+  <div class="head"><h2>8. Core rules &amp; requirements</h2><p>Controls that must not be bypassed during delivery</p></div>
+  <table class="small">
+    <thead><tr><th>Area</th><th>Rule</th></tr></thead>
+    <tbody>
+      <tr><td>Workflow</td><td>Every state change happens through an approved, authorized transition.</td></tr>
+      <tr><td>Audit</td><td>Every impactful action is recorded with the actor, time and before/after state.</td></tr>
+      <tr><td>AI</td><td>No impactful decision executes without human review and approval.</td></tr>
+      <tr><td>Permissions</td><td>Access is based on role, permission, entity and contract.</td></tr>
+      <tr><td>Correspondence</td><td>No external letter is sent without a reference number and date.</td></tr>
+      <tr><td>Integrations</td><td>The platform stays consistent with official data sources.</td></tr>
+      <tr><td>Security</td><td>In-Kingdom hosting, encryption, tenant isolation and NCA/CST compliance.</td></tr>
+      <tr><td>Localization</td><td>Arabic and English, RTL, Hijri and Gregorian calendars, and SAR.</td></tr>
+      <tr><td>Configuration</td><td>Approval chains, thresholds and rules are set from configuration, not custom code.</td></tr>
+      <tr><td>Definition of done</td><td>A feature is not done until it is tested end-to-end.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="page">
+  <div class="head"><h2>9. Delivery scope &amp; priorities</h2><p>What is delivered first?</p></div>
+  <table>
+    <thead><tr><th>Package</th><th>Scope</th><th>Done criterion</th></tr></thead>
+    <tbody>
+      <tr><td><b>Operational core</b></td><td>Identity &amp; permissions, tenant isolation, workflow, audit, documents, correspondence, contractor onboarding.</td><td>Run a test contract with correct permissions and a complete log.</td></tr>
+      <tr><td><b>Contract execution</b></td><td>Contractor portal, commencement, progress, BOQ, warnings, withdrawal of works.</td><td>The end-to-end scenario passes.</td></tr>
+      <tr><td><b>Full cycle</b></td><td>Committees, evaluation, award, signature, financial actions, closeout, contract linking.</td><td>Manage a full cycle from order to closeout.</td></tr>
+      <tr><td><b>Integration &amp; intelligence</b></td><td>Live integrations, management dashboards, risk, compliance, advanced analytics.</td><td>Integrations and agreed KPIs operating.</td></tr>
+    </tbody>
+  </table>
+  <h3>Epic map at a glance</h3>
+  <p class="small muted"><span class="tag">E01–E07</span> platform foundations, <span class="tag">E08–E12</span> pre-award &amp; signature, <span class="tag">E13–E18</span> contract &amp; contractor execution, <span class="tag">E19–E20</span> intelligence &amp; reporting, <span class="tag">E21–E22</span> integrations &amp; localization.</p>
+</section>
+
+<section class="page">
+  <div class="head"><h2>10. Timeline &amp; delivery plan</h2><p>A reference plan over 24 weeks from start date</p></div>
+  <div class="box warn"><b>Planning assumption:</b> weeks count after scope approval, team availability and integration environments. The schedule is re-baselined after the kickoff workshop.</div>
+  <table class="timeline small">
+    <thead><tr><th>Phase</th><th>Deliverables</th><th>1–4</th><th>5–8</th><th>9–12</th><th>13–16</th><th>17–20</th><th>21–24</th></tr></thead>
+    <tbody>
+      <tr><td>Setup &amp; design</td><td>Scope approval, workflow design, integration plan, acceptance criteria.</td><td class="on">Run</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Platform foundations</td><td>Permissions, tenant isolation, audit, documents, correspondence.</td><td class="on">Start</td><td class="on">Run</td><td class="gate">Approve</td><td></td><td></td><td></td></tr>
+      <tr><td>Operational core</td><td>Contractor onboarding, portal, commencement, progress, warnings.</td><td></td><td class="on">Start</td><td class="on">Run</td><td class="gate">MVP</td><td></td><td></td></tr>
+      <tr><td>Full cycle</td><td>Committees, award, signature, remaining contract actions, closeout.</td><td></td><td></td><td class="on">Start</td><td class="on">Run</td><td class="gate">Approve</td><td></td></tr>
+      <tr><td>Integrations &amp; dashboards</td><td>Live integrations, management reports, risk.</td><td></td><td></td><td></td><td class="on">Start</td><td class="on">Run</td><td class="gate">Launch</td></tr>
+      <tr><td>Testing &amp; launch</td><td>Full testing, pilot migration, training, phased launch.</td><td></td><td></td><td></td><td></td><td class="on">Test</td><td class="on">Launch</td></tr>
+    </tbody>
+  </table>
+  <h3>Key milestones</h3>
+  <table>
+    <thead><tr><th>Milestone</th><th>Reference date</th><th>Approval condition</th></tr></thead>
+    <tbody>
+      <tr><td>M0 — Design approval</td><td>End of week 4</td><td>Scope, workflow and integrations approved.</td></tr>
+      <tr><td>M1 — Foundations ready</td><td>End of week 8</td><td>Permissions, audit, documents and correspondence working.</td></tr>
+      <tr><td>M2 — Operational core (MVP)</td><td>End of week 16</td><td>The delay → completion-contract scenario passes.</td></tr>
+      <tr><td>M3 — Full cycle complete</td><td>End of week 20</td><td>Run the cycle from order to closeout.</td></tr>
+      <tr><td>M4 — Phased launch</td><td>End of week 24</td><td>Testing, training and support plan passed.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="page">
+  <div class="head"><h2>11. Dependencies &amp; risks</h2><p>What could affect the schedule?</p></div>
+  <h3>Critical path</h3>
+  <p class="tag" style="font-size:10pt">E01 → E03 → E05 → E13 → E14 → E15 → E16 → E17</p>
+  <p>The core depends on permissions, the workflow engine and correspondence being ready before building the contractor portal and execution actions.</p>
+  <table>
+    <thead><tr><th>Risk</th><th>Impact</th><th>Proposed action</th></tr></thead>
+    <tbody>
+      <tr><td>Delay of official integration interfaces</td><td>Delays signing, sync and verification.</td><td>Use sandboxes and clear integration contracts until live links are available.</td></tr>
+      <tr><td>Approval chains not approved</td><td>Blocks workflow design.</td><td>Early decision workshop and an approved first configurable version.</td></tr>
+      <tr><td>Scope creep during delivery</td><td>Delays the core and launch.</td><td>Freeze the MVP scope and manage new requests as a later phase.</td></tr>
+      <tr><td>Unclear guarantee/payment data</td><td>Financial and operational risk.</td><td>Approve the data model and policies with finance before phase three.</td></tr>
+      <tr><td>Poor data quality</td><td>Inaccurate reports and recommendations.</td><td>Validation rules, data cleansing and continuous quality metrics.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="page">
+  <div class="head"><h2>12. Decisions required</h2><p>Decisions to settle before approving the final plan</p></div>
+  <ol>
+    <li>Approve the MVP scope boundaries and deferred features.</li>
+    <li>Approve the approval chains for each contractual action.</li>
+    <li>Define the supervising department's role and its relation to the requesting department.</li>
+    <li>Define the permissions of oversight, the platform admin and the entity admin.</li>
+    <li>Define the source of reference numbers for official correspondence.</li>
+    <li>Approve the contractor identity and commercial-registration verification method.</li>
+    <li>Approve the guarantees, payments and retention model.</li>
+    <li>Confirm integration readiness, owners and test environments.</li>
+    <li>Approve the team and the start date of the 24-week plan.</li>
+  </ol>
+  <div class="box"><b>Next step:</b> hold a kickoff workshop to approve the above decisions and convert the reference schedule into a dated plan distributed across teams.</div>
+</section>
+
+<section class="page">
+  <div class="head"><h2>13. Cybersecurity &amp; protection</h2><p>Compliance with the Essential Cybersecurity Controls (ECC-2:2024) of the National Cybersecurity Authority</p></div>
+  <p class="lead">Tanfeeth complies with the Essential Cybersecurity Controls (ECC-2:2024): four main domains, 28 subdomains and 108 controls. Responsibility splits into controls the <b>platform implements</b>, <b>organizational</b> controls owned by the entity (the cybersecurity function), and <b>shared</b> controls with the cloud hosting provider.</p>
+  <div class="box"><b>Shared responsibility principle:</b> Tanfeeth implements the technical controls in the platform and enables the entity to demonstrate compliance, while governance, policies, awareness and audit remain the entity's responsibility, and data-center security is the responsibility of the approved in-Kingdom hosting provider.</div>
+  <table>
+    <thead><tr><th>Domain (ECC)</th><th>What Tanfeeth implements</th><th>Responsibility</th></tr></thead>
+    <tbody>
+      <tr><td>1 — Cybersecurity Governance</td><td>Enabling policies, roles, the risk register and audit inside the platform.</td><td>Entity + Platform</td></tr>
+      <tr><td>2 — Cybersecurity Defense</td><td>Identity &amp; MFA, encryption, network &amp; email security, vulnerability management, monitoring (SIEM), web protection (WAF), data protection.</td><td>Platform</td></tr>
+      <tr><td>3 — Cybersecurity Resilience</td><td>Backup, recovery, continuity plan and RTO/RPO objectives.</td><td>Platform + Hosting</td></tr>
+      <tr><td>4 — Third-Party &amp; Cloud Computing</td><td>Supplier assessment, in-Kingdom data residency and the shared-responsibility model with the cloud provider.</td><td>Platform + Provider</td></tr>
+    </tbody>
+  </table>
+  <div class="layers">
+    <div class="layer" style="background:#234f33"><b>1 · Cybersecurity Governance</b><span>Policies · Roles · Risk · Audit · HR · Awareness</span></div>
+    <div class="layer" style="background:#337349"><b>2 · Cybersecurity Defense</b><span>Identity &amp; MFA · Encryption · Network · Email · Vulnerabilities · SIEM · WAF</span></div>
+    <div class="layer" style="background:#3c8c79"><b>3 · Cybersecurity Resilience</b><span>Backup · Recovery · Continuity · RTO/RPO</span></div>
+    <div class="layer" style="background:#1f3f63"><b>4 · Third-Party &amp; Cloud Computing</b><span>Supplier assessment · Data residency · Shared responsibility</span></div>
+  </div>
+  <h3>What the platform builds (technical controls)</h3>
+  <ul>
+    <li>Data encryption at rest/in transit and key management; multi-factor authentication (MFA); precise permissions, least privilege, segregation of duties and privileged-access management.</li>
+    <li>Tamper-evident audit log and continuous monitoring via SIEM; tenant isolation and in-Kingdom data residency.</li>
+    <li>Web application firewall (WAF), HTTPS and multi-tier architecture; a secure development lifecycle (secure coding, vulnerability scanning, penetration testing).</li>
+    <li>Backup, recovery and continuity plan; cybersecurity incident management, response and reporting to the authority.</li>
+    <li>Email protection (SPF/DKIM/DMARC), network protection (IPS and DDoS protection) and vulnerability/patch management.</li>
+  </ul>
+  <h3>Entity responsibility (organizational controls)</h3>
+  <ul>
+    <li>Cybersecurity strategy and policies, risk management, awareness and training.</li>
+    <li>Cybersecurity in human resources, periodic audit and ECC self-assessment, and physical security.</li>
+  </ul>
+  <div class="box warn"><b>Link to the plan:</b> task-level details for these controls are in <b>Appendix A — Track S (Cybersecurity &amp; Protection)</b>, and the alignment is updated with every release of the controls.</div>
+</section>
+
+<section class="page">
+  <div class="head"><h2>14. User stories</h2><p>What each user wants from the platform — "As a… I want… so that…"</p></div>
+  <h3>Requesting / supervising department</h3>
+  <div class="story-grid">
+    <div class="story"><span class="sid">FR-WF-001</span><span class="who">Requesting dept</span> I create a project order with all fields and attachments and submit it, <em>so the procurement journey can start</em>.</div>
+    <div class="story"><span class="who">Supervising dept</span> I initiate the commencement request after the contract is signed, <em>so execution actually begins</em>.</div>
+    <div class="story"><span class="who">Supervising dept</span> I track the contractor's progress and milestones, <em>so I catch delays early</em>.</div>
+    <div class="story"><span class="who">Supervising dept</span> I verify the contractor's replies to letters, <em>so I decide whether to escalate</em>.</div>
+    <div class="story"><span class="who">Requesting dept</span> I initiate the preliminary and final acceptance certificates, <em>so the contract closes formally</em>.</div>
+    <div class="story"><span class="who">Requesting dept</span> I evaluate the contractor after execution, <em>so the supplier reliability index is fed</em>.</div>
+  </div>
+  <h3>Contracts &amp; procurement</h3>
+  <div class="story-grid">
+    <div class="story"><span class="who">Contract manager</span> I create the kraasa and assign it to staff while keeping oversight, <em>so work distributes without losing control</em>.</div>
+    <div class="story"><span class="who">Contract staff</span> I issue the award letter and letter of intent, <em>so the award is formalized</em>.</div>
+    <div class="story"><span class="who">Contract staff</span> I create the contract data from approved drafts or import it from Etimad, <em>so the contract is reflected in the platform</em>.</div>
+    <div class="story"><span class="who">Contract manager</span> I trigger contract actions through a gated workflow, <em>so every step is documented and audited</em>.</div>
+    <div class="story"><span class="who">Contract manager</span> I link the completion contract to the original on withdrawal, <em>so another contractor finishes the remaining works</em>.</div>
+    <div class="story"><span class="who">Contract staff</span> I invite the contractor to register after signature, <em>so they can be followed inside the platform</em>.</div>
+  </div>
+  <h3>Finance</h3>
+  <div class="story-grid">
+    <div class="story"><span class="who">Budget head</span> I confirm the budget and apply the document-split rule, <em>so the documents are correctly structured</em>.</div>
+    <div class="story"><span class="who">Finance</span> I confirm the final commitment before award approval, <em>so commitments don't exceed the budget</em>.</div>
+    <div class="story"><span class="who">Finance</span> I manage payments against the BOQ and budget availability, <em>so payments are controlled</em>.</div>
+    <div class="story"><span class="who">Finance</span> I manage initial and final guarantees and their renewal, <em>so they stay valid</em>.</div>
+  </div>
+  <h3>Higher management, oversight &amp; platform admin</h3>
+  <div class="story-grid">
+    <div class="story"><span class="who">Higher management</span> I approve, sign and escalate decisions, <em>so transactions proceed with governance</em>.</div>
+    <div class="story"><span class="who">Higher management</span> I view a strategic dashboard of risk, performance and compliance, <em>so I decide based on data</em>.</div>
+    <div class="story"><span class="who">Oversight</span> I view the compliance dashboard and audit log, <em>so I verify compliance</em>.</div>
+    <div class="story"><span class="who">Platform admin</span> I manage users, roles and workflow settings, <em>so the platform matches the entity's structure</em>.</div>
+  </div>
+  <h3>Contractor</h3>
+  <div class="story-grid">
+    <div class="story"><span class="who">Contractor</span> I accept the invitation and register, and my account is linked to my commercial registration and contract, <em>so I can work inside the platform</em>.</div>
+    <div class="story"><span class="who">Contractor</span> I review, sign and download my contract, <em>so contracting is completed electronically</em>.</div>
+    <div class="story"><span class="who">Contractor</span> I initiate a request (extension/value change), <em>so it enters the entity's gated workflow</em>.</div>
+    <div class="story"><span class="who">Contractor</span> I submit progress updates with images and video, <em>so the works are followed in real time</em>.</div>
+    <div class="story"><span class="who">Contractor</span> I reply to warning/dues letters inside the platform, <em>so my reply is recorded before escalation</em>.</div>
+  </div>
+  <h3>Committees &amp; AI</h3>
+  <div class="story-grid">
+    <div class="story"><span class="who">Committee member</span> I enter evaluation scores and sign the reports, <em>so qualification, opening and evaluation results are approved</em>.</div>
+    <div class="story"><span class="who">Technical evaluator</span> I receive AI-suggested scores with explanations, <em>and the committee makes the final decision</em>.</div>
+    <div class="story"><span class="who">Any user</span> I receive a next-action recommendation with its reason, <em>so I decide quickly while the decision stays mine</em>.</div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="head"><h2>15. Scenarios in detail</h2><p>Covering every main and exceptional path</p></div>
+  <div class="cards">
+    <div class="card"><div class="ch">1 · Order creation &amp; approval <span class="badge">BR-01</span></div><div class="cs">Requesting dept creates the order → Head approves → Finance confirms the budget and applies document split above the threshold → Higher management approves. <b>Alternatives:</b> return-with-comment or reject-with-reason.</div></div>
+    <div class="card"><div class="ch">2 · Commencement — supply vs maintenance <span class="badge">BR-02</span></div><div class="cs"><b>Supply:</b> commencement request → confirm → commencement letter → sign → reference number. <b>Maintenance:</b> adds a site-handover minute, the site committee and a cover letter.</div></div>
+    <div class="card"><div class="ch">3 · Default &amp; withdrawal of works <span class="badge red">Critical</span></div><div class="cs">Delay detected → AI suggestion → human approval → warning letter (with reference) → contractor reply → final warning → withdrawal → <b>completion contract</b> linked to the original. (Detail in section 6.)</div></div>
+    <div class="card"><div class="ch">4 · Contract variation</div><div class="cs">Change request (value/duration/terms) → review &amp; approval → bid examination if needed → signing → variation letter with reference → BOQ update.</div></div>
+    <div class="card"><div class="ch">5 · Extension, suspension &amp; resumption</div><div class="cs">Request → approval → letter (extension/suspension/resumption) with reference → update project duration and status, with guarantee-validity check.</div></div>
+    <div class="card"><div class="ch">6 · Payments &amp; dues</div><div class="cs">Payment due against the BOQ and budget availability → approval → dues letter → record the financial effect.</div></div>
+    <div class="card"><div class="ch">7 · Closeout &amp; acceptance</div><div class="cs">Preliminary acceptance (committee + approval) → maintenance period → final acceptance → release of final guarantee → contract closeout.</div></div>
+    <div class="card"><div class="ch">8 · Contractor evaluation</div><div class="cs">Requesting dept evaluates → Head reviews → Higher management approves → the supplier reliability index is fed.</div></div>
+    <div class="card"><div class="ch">9 · Contract signing — two scenarios</div><div class="cs"><b>A:</b> signed in Etimad, then imported and reflected. <b>B:</b> signed outside Etimad by creating contract data from approved drafts with manager confirmation.</div></div>
+    <div class="card"><div class="ch">10 · Contractor onboarding &amp; invitation</div><div class="cs">After signature: single-use invitation → accept &amp; register → bind to commercial registration and contract → Nafath &amp; GOSI verification → access limited to their contracts only.</div></div>
+  </div>
+  <div class="box info"><b>Full coverage:</b> these scenarios cover the main path, execution and exceptional paths, all as <span class="hl">gated and audited transitions</span>.</div>
+</section>
+
+<section class="page">
+  <div class="head"><h2>16. FAQ</h2><p>Short answers to the most frequent questions</p></div>
+  <div class="faq"><div class="q">What is the difference between Tanfeeth and Etimad?</div><div class="a">Etimad handles tendering, receiving offers and award. Tanfeeth manages the entity's internal work and owns the post-signature world: contractor, payments, warnings, amendments and acceptance.</div></div>
+  <div class="faq"><div class="q">Does Tanfeeth replace Etimad?</div><div class="a">No; it complements and integrates with it, and does not duplicate its official functions.</div></div>
+  <div class="faq"><div class="q">Where is the data hosted?</div><div class="a">Inside Saudi Arabia, with encryption and tenant isolation, in compliance with the National Cybersecurity Authority and the Communications Authority.</div></div>
+  <div class="faq"><div class="q">How is cybersecurity ensured?</div><div class="a">By complying with the Essential Cybersecurity Controls (ECC) across their four domains, under a shared responsibility between the platform, the entity and the hosting provider (section 13).</div></div>
+  <div class="faq"><div class="q">Does the AI make automatic decisions?</div><div class="a">No; any financial, contractual or regulatory decision requires explicit human review and approval (the human-in-the-loop principle); the AI only suggests and explains.</div></div>
+  <div class="faq"><div class="q">How does the contractor access the platform?</div><div class="a">After signature, the contracts staff send a single-use invitation; the contractor registers and the account is bound to the commercial registration and contract, with identity verified via Nafath.</div></div>
+  <div class="faq"><div class="q">What happens when a contractor defaults?</div><div class="a">The system detects the delay and suggests a warning, then a final warning, then withdrawal of works if it continues, and creates a completion contract linked to the original carrying the remaining scope.</div></div>
+  <div class="faq"><div class="q">How are permissions managed?</div><div class="a">Role-based access control (RBAC); the contract manager holds permanent default access to the department's orders, and assignment transfers the action permission while the manager retains access.</div></div>
+  <div class="faq"><div class="q">Does it integrate with national platforms?</div><div class="a">Yes: Etimad, Nafath, the Ministry of Finance and GOSI, plus e-signature and notification channels.</div></div>
+  <div class="faq"><div class="q">How are official letters issued?</div><div class="a">From dynamic templates with merged contract data; no external letter is sent before obtaining a reference number and date.</div></div>
+  <div class="faq"><div class="q">What is the difference between a "project" and a "contract"?</div><div class="a">The project is the work to be delivered; the contract is the signed instrument that governs it; project execution begins after the contract is signed.</div></div>
+  <div class="faq"><div class="q">How long does the first phase take?</div><div class="a">The reference schedule is 24 weeks; the operational core (MVP) completes around week 16, and the schedule is re-baselined after the kickoff workshop.</div></div>
+  <div class="faq"><div class="q">Does the system support Arabic and English?</div><div class="a">Yes, with full support for Arabic (RTL) and English, the Hijri and Gregorian calendars, and the Saudi Riyal.</div></div>
+  <div class="faq"><div class="q">Are all actions recorded?</div><div class="a">Yes, in a tamper-evident audit log that keeps the actor, time and state before and after each action.</div></div>
+  <div class="faq"><div class="q">What is needed before starting?</div><div class="a">Settling the decisions required (section 12) and holding a kickoff workshop to approve the scope, approval chains, integration readiness and the team.</div></div>
+  <div class="footer-note">End of the main document. Appendix A — the Detailed Task Register — follows.</div>
+</section>
+
+<!--TASKS:START-->
+<style>
+.cat{font-size:7.4pt;font-weight:700;padding:1px 5px;border:1px solid;border-radius:2px;white-space:nowrap;display:inline-block;line-height:1.3}
+.tasktbl td .cat{white-space:normal}
+.cat.be{color:#0a5b4e;background:#e3f1ee;border-color:#bfe0d8}
+.cat.fe{color:#274690;background:#e8edf9;border-color:#c5d2f0}
+.cat.int{color:#6b3fa0;background:#efe8f8;border-color:#d9c9ef}
+.cat.ai{color:#9a2f6f;background:#fbe9f3;border-color:#f0c8df}
+.cat.ops{color:#46505a;background:#eef1f3;border-color:#d3dadf}
+.cat.qa{color:#8a6200;background:#fff6df;border-color:#ecd9a5}
+.cat.ux{color:#9a3b2f;background:#fbeae6;border-color:#f0cabf}
+.cat.pm{color:#3a4750;background:#eef1f3;border-color:#d3dadf}
+.cat.sec{color:#143a5e;background:#e7eef6;border-color:#c2d3e8}
+.st{font-size:7.4pt;font-weight:700;padding:1px 6px;border-radius:2px;white-space:nowrap}
+.st.todo{color:#46505a;background:#eef1f3;border:1px solid #d3dadf}
+.st.wip{color:#8a6200;background:#fff6df;border:1px solid #ecd9a5}
+.st.done{color:#0a5b32;background:#e7f4ec;border:1px solid #bfe2cd}
+.tasktbl{font-size:8.5pt;table-layout:fixed}
+.tasktbl th,.tasktbl td{padding:5px 6px;line-height:1.4;word-wrap:break-word;overflow-wrap:anywhere}
+.idc{font-size:8.1pt;white-space:nowrap;font-weight:700;color:#084b40}
+.hrs{font-weight:700;color:#084b40;text-align:center;white-space:nowrap}
+.epicrow td{background:#eef4f2;font-weight:700;color:#084b40}
+.kpi{display:flex;gap:6mm;flex-wrap:wrap;margin:.4em 0 .8em}
+.kpi .k{flex:1;min-width:42mm;border:1px solid var(--line);border-radius:2px;padding:7px 11px;background:var(--soft)}
+.kpi .k b{display:block;color:var(--green);font-size:18pt;line-height:1.1}
+.kpi .k span{color:var(--muted);font-size:8.4pt}
+</style>
+
+<section class="page">
+  <div class="head"><h2>Appendix A — Detailed Task Register</h2><p>Every task with its category, description, dependencies, status and estimated hours</p></div>
+  <p class="lead">This appendix breaks down the work required to deliver the platform at task level. Hours are indicative engineering estimates, refined in the kickoff workshop.</p>
+  <div class="kpi">
+    <div class="k"><b>145</b><span>Total tasks</span></div>
+    <div class="k"><b>1,727</b><span>Total estimated hours</span></div>
+    <div class="k"><b>~11</b><span>person-months</span></div>
+  </div>
+  <div class="chartcard"><div class="ct">Effort by category (hours)</div>
+    <div class="chrow"><svg viewBox="0 0 100 100" width="42mm" height="42mm" style="flex:0 0 auto"><circle cx="50" cy="50" r="40" fill="none" stroke="#337349" stroke-width="18" stroke-dasharray="88.34 162.99" stroke-dashoffset="0.00" transform="rotate(-90 50 50)"/><circle cx="50" cy="50" r="40" fill="none" stroke="#2f6f93" stroke-width="18" stroke-dasharray="49.92 201.41" stroke-dashoffset="-88.34" transform="rotate(-90 50 50)"/><circle cx="50" cy="50" r="40" fill="none" stroke="#7a5aa6" stroke-width="18" stroke-dasharray="23.14 228.19" stroke-dashoffset="-138.25" transform="rotate(-90 50 50)"/><circle cx="50" cy="50" r="40" fill="none" stroke="#b1497e" stroke-width="18" stroke-dasharray="19.50 231.83" stroke-dashoffset="-161.39" transform="rotate(-90 50 50)"/><circle cx="50" cy="50" r="40" fill="none" stroke="#5b6b78" stroke-width="18" stroke-dasharray="8.00 243.32" stroke-dashoffset="-180.89" transform="rotate(-90 50 50)"/><circle cx="50" cy="50" r="40" fill="none" stroke="#9a7a18" stroke-width="18" stroke-dasharray="11.21 240.12" stroke-dashoffset="-188.90" transform="rotate(-90 50 50)"/><circle cx="50" cy="50" r="40" fill="none" stroke="#b06a3e" stroke-width="18" stroke-dasharray="3.49 247.83" stroke-dashoffset="-200.10" transform="rotate(-90 50 50)"/><circle cx="50" cy="50" r="40" fill="none" stroke="#3c8c79" stroke-width="18" stroke-dasharray="7.28 244.05" stroke-dashoffset="-203.59" transform="rotate(-90 50 50)"/><circle cx="50" cy="50" r="40" fill="none" stroke="#1f3f63" stroke-width="18" stroke-dasharray="40.46 210.87" stroke-dashoffset="-210.87" transform="rotate(-90 50 50)"/><text x="50" y="49" text-anchor="middle" font-size="15" font-weight="700" fill="#234f33" font-family="Tajawal,Arial">1727</text><text x="50" y="62" text-anchor="middle" font-size="6" fill="#647079" font-family="Tajawal,Arial">hrs</text></svg>
+      <div class="legend"><div class="li"><span class="sw" style="background:#337349"></span><span>Infrastructure</span><span class="vv">607 · 35%</span></div><div class="li"><span class="sw" style="background:#2f6f93"></span><span>User Interface</span><span class="vv">343 · 20%</span></div><div class="li"><span class="sw" style="background:#7a5aa6"></span><span>Systems Integration</span><span class="vv">159 · 9%</span></div><div class="li"><span class="sw" style="background:#b1497e"></span><span>AI</span><span class="vv">134 · 8%</span></div><div class="li"><span class="sw" style="background:#5b6b78"></span><span>Deployment & Ops</span><span class="vv">55 · 3%</span></div><div class="li"><span class="sw" style="background:#9a7a18"></span><span>QA Testing</span><span class="vv">77 · 4%</span></div><div class="li"><span class="sw" style="background:#b06a3e"></span><span>Design</span><span class="vv">24 · 1%</span></div><div class="li"><span class="sw" style="background:#3c8c79"></span><span>PM</span><span class="vv">50 · 3%</span></div><div class="li"><span class="sw" style="background:#1f3f63"></span><span>Security</span><span class="vv">278 · 16%</span></div></div>
+    </div>
+  </div>
+  <div class="chartcard"><div class="ct">Effort by track (hours)</div><div class="bars"><div class="bar"><span class="bl">A — Platform Foundations</span><span class="bt"><span class="bf" style="width:90.8%;background:#337349"></span></span><span class="bv">364</span></div><div class="bar"><span class="bl">B — Pre-award &amp; Signature</span><span class="bt"><span class="bf" style="width:58.9%;background:#2f6f93"></span></span><span class="bv">236</span></div><div class="bar"><span class="bl">C — Contract &amp; Project Execution</span><span class="bt"><span class="bf" style="width:100.0%;background:#b1497e"></span></span><span class="bv">401</span></div><div class="bar"><span class="bl">D — Intelligence &amp; Reporting</span><span class="bt"><span class="bf" style="width:46.6%;background:#9a7a18"></span></span><span class="bv">187</span></div><div class="bar"><span class="bl">E — Integrations &amp; Localization</span><span class="bt"><span class="bf" style="width:32.4%;background:#3c8c79"></span></span><span class="bv">130</span></div><div class="bar"><span class="bl">S — Cybersecurity &amp; Protection (ECC)</span><span class="bt"><span class="bf" style="width:69.3%;background:#1f3f63"></span></span><span class="bv">278</span></div><div class="bar"><span class="bl">Cross-cutting</span><span class="bt"><span class="bf" style="width:32.7%;background:#5b6b78"></span></span><span class="bv">131</span></div></div></div>
+  <div class="chrow" style="gap:6mm;align-items:stretch">
+    <table style="flex:1;min-width:60mm"><thead><tr><th>Status</th><th class="c">Tasks</th><th class="c">Hours</th></tr></thead>
+      <tbody><tr><td><span class="st todo">To do</span></td><td class="c">138</td><td class="hrs">1647</td></tr><tr><td><span class="st wip">In progress</span></td><td class="c">7</td><td class="hrs">80</td></tr><tr><td><span class="st done">Completed</span></td><td class="c">0</td><td class="hrs">0</td></tr></tbody></table>
+    <div class="box" style="flex:1;margin:0"><b>Legend:</b><br><span class="cat be">Infrastructure</span> <span class="cat fe">User Interface</span> <span class="cat int">Systems Integration</span> <span class="cat ai">AI</span> <span class="cat ops">Deployment & Ops</span> <span class="cat qa">QA Testing</span> <span class="cat ux">Design</span> <span class="cat pm">PM</span> <span class="cat sec">Security</span> <span class="st todo">To do</span> <span class="st wip">In progress</span> <span class="st done">Completed</span></div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="head"><h2>Task Register — Track A — Platform Foundations</h2><p>Track total: 364 hrs · 37 tasks</p></div>
+  <table class="tasktbl">
+    <colgroup><col style="width:8%"><col style="width:16%"><col style="width:13%"><col style="width:35%"><col style="width:9%"><col style="width:9%"><col style="width:10%"></colgroup>
+    <thead><tr><th>ID</th><th>Task</th><th>Category</th><th>Detailed description</th><th>Depends on</th><th>Status</th><th>Hours</th></tr></thead>
+    <tbody><tr class="epicrow"><td colspan="7">E01 — Identity, Auth &amp; RBAC — 21 hrs total</td></tr><tr>
+      <td class="idc">E01.T1</td>
+      <td><b>CDM default-access as policy</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Model the contract-manager default access as a permission policy (not bespoke code): permanent access to the department orders, with the ability to act on staff behalf.</td>
+      <td class="idc">E03</td>
+      <td><span class="st wip">In progress</span></td>
+      <td class="hrs">7</td>
+    </tr><tr>
+      <td class="idc">E01.T2</td>
+      <td><b>Oversight &amp; contractor permissions</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Add new permission keys (resource.action) for the oversight (read/audit) and contractor (own-contract only) personas to the seed catalog.</td>
+      <td class="idc">E13</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">5</td>
+    </tr><tr>
+      <td class="idc">E01.T3</td>
+      <td><b>Rotate admin password &amp; policy</b></td>
+      <td><span class="cat ops">Deployment & Ops</span></td>
+      <td>Rotate the seeded admin password on first boot and enforce password-strength and lockout policy.</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">2</td>
+    </tr><tr>
+      <td class="idc">E01.T4</td>
+      <td><b>Auth &amp; token-rotation tests</b></td>
+      <td><span class="cat qa">QA Testing</span></td>
+      <td>Integration tests for login, refresh-token rotation and reuse prevention, and access-token expiry.</td>
+      <td class="idc">—</td>
+      <td><span class="st wip">In progress</span></td>
+      <td class="hrs">7</td>
+    </tr><tr class="epicrow"><td colspan="7">E02 — Multi-tenancy &amp; Data Residency — 39 hrs total</td></tr><tr>
+      <td class="idc">E02.T1</td>
+      <td><b>Tenant context &amp; isolation filter</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Request-scoped tenant context and a base repository filter scoping every query to the entity, rejecting out-of-tenant access.</td>
+      <td class="idc">E01</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E02.T2</td>
+      <td><b>Per-tenant file isolation</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Namespace and isolate file/storage paths per entity so tenants' files never overlap.</td>
+      <td class="idc">E07</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr>
+      <td class="idc">E02.T3</td>
+      <td><b>Cross-tenant access test</b></td>
+      <td><span class="cat qa">QA Testing</span></td>
+      <td>Automated test proving one entity cannot read another's data through any path.</td>
+      <td class="idc">E02.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">5</td>
+    </tr><tr>
+      <td class="idc">E02.T4</td>
+      <td><b>Data-residency &amp; encryption proof</b></td>
+      <td><span class="cat ops">Deployment & Ops</span></td>
+      <td>Document and verify in-Kingdom hosting, encryption at rest/in transit, TLS and backup residency per NCA/CST.</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E02.T5</td>
+      <td><b>Tenant-scope audit &amp; storage</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Scope the audit log and storage keys to the entity within multi-tenant isolation.</td>
+      <td class="idc">E04,E07</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">5</td>
+    </tr><tr class="epicrow"><td colspan="7">E03 — Workflow &amp; Business-Rules Engine — 114 hrs total</td></tr><tr>
+      <td class="idc">E03.T1</td>
+      <td><b>Generalize the workflow engine</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Generalize the contract workflow slice into a reusable engine: state registry and transition definitions reused across all flows.</td>
+      <td class="idc">E01</td>
+      <td><span class="st wip">In progress</span></td>
+      <td class="hrs">24</td>
+    </tr><tr>
+      <td class="idc">E03.T2</td>
+      <td><b>Transition guard pipeline</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Per-transition guard pipeline: permission check, then business rule, then effect, then audit write.</td>
+      <td class="idc">E03.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">18</td>
+    </tr><tr>
+      <td class="idc">E03.T3</td>
+      <td><b>Standard actions &amp; error codes</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Catalog of standard actions (Confirm/Reject/Return-with-comment/Edit/Assign/Comment/Sign) and unified domain error codes.</td>
+      <td class="idc">E03.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E03.T4</td>
+      <td><b>Configurable business-rules store</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Configurable store for the document-split threshold (BR-01) and commencement branch (BR-02) — no hard-coding.</td>
+      <td class="idc">E03.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E03.T5</td>
+      <td><b>Configurable approval chains</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Configurable multi-step approval chains (delegate/escalate) per request and action type.</td>
+      <td class="idc">E03.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E03.T6</td>
+      <td><b>Assignment &amp; delegation</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Transfer action permission to the assignee while the manager retains access; assignment audited.</td>
+      <td class="idc">E01</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E03.T7</td>
+      <td><b>Workflow read API</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Workflow read API and an "available actions for me" resolver by role and state (drives UI buttons).</td>
+      <td class="idc">E03.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr>
+      <td class="idc">E03.T8</td>
+      <td><b>Generic workflow UI</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>State timeline, available-actions bar, return-with-comment modal and assignment picker.</td>
+      <td class="idc">E03.T7</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">E03.T9</td>
+      <td><b>Gated-transition e2e</b></td>
+      <td><span class="cat qa">QA Testing</span></td>
+      <td>End-to-end test of a gated transition combining permission, rule and audit write.</td>
+      <td class="idc">E03.T2</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr class="epicrow"><td colspan="7">E04 — Immutable Audit Log — 32 hrs total</td></tr><tr>
+      <td class="idc">E04.T1</td>
+      <td><b>Append-only audit store</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Audit port and append-only store written from the engine's effect step (actor, time, before/after).</td>
+      <td class="idc">E03.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E04.T2</td>
+      <td><b>Tamper-evidence</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Design and initial build of a hash chain proving the audit log is tamper-evident.</td>
+      <td class="idc">E04.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr>
+      <td class="idc">E04.T3</td>
+      <td><b>Activity timeline</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Per-contract/order activity timeline with filtering by actor, action and date.</td>
+      <td class="idc">E04.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E04.T4</td>
+      <td><b>Audit read/export</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Audit-log read/export API for oversight and reporting.</td>
+      <td class="idc">E04.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">5</td>
+    </tr><tr class="epicrow"><td colspan="7">E05 — Correspondence, Letters &amp; Reference Numbers — 67 hrs total</td></tr><tr>
+      <td class="idc">E05.T1</td>
+      <td><b>Letter templates &amp; clauses</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Dynamic letter templates with a versioned clause library to generate official letters.</td>
+      <td class="idc">E03</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">E05.T2</td>
+      <td><b>Data merge &amp; validation</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Merge contract/project data into templates with validation of required fields.</td>
+      <td class="idc">E05.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr>
+      <td class="idc">E05.T3</td>
+      <td><b>PDF/Word bilingual output</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Render output as PDF and Word in Arabic and English, reusing the report renderer.</td>
+      <td class="idc">E05.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E05.T4</td>
+      <td><b>Reference-number integration</b></td>
+      <td><span class="cat int">Systems Integration</span></td>
+      <td>Integration to issue an official reference number and date via the incoming/outgoing system.</td>
+      <td class="idc">E21</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E05.T5</td>
+      <td><b>Reference-number gate</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Block any transition emitting an external letter from completing without a reference number.</td>
+      <td class="idc">E03,E05.T4</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">5</td>
+    </tr><tr>
+      <td class="idc">E05.T6</td>
+      <td><b>Letter composer</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Edit, preview, route for signature, and show the reference badge.</td>
+      <td class="idc">E05.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E05.T7</td>
+      <td><b>AI letter pre-fill</b></td>
+      <td><span class="cat ai">AI</span></td>
+      <td>AI pre-fills the letter with explanation; a human edits/approves before issuance.</td>
+      <td class="idc">E19</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr class="epicrow"><td colspan="7">E06 — Notifications &amp; Task/Deadline Center — 54 hrs total</td></tr><tr>
+      <td class="idc">E06.T1</td>
+      <td><b>Notification model &amp; fan-out</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Notification model, subscription to engine events, and in-app fan-out.</td>
+      <td class="idc">E03</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E06.T2</td>
+      <td><b>Task &amp; deadline center</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Derive tasks from open/assigned transitions with deadlines and an overdue flag.</td>
+      <td class="idc">E03</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E06.T3</td>
+      <td><b>WhatsApp &amp; email channels</b></td>
+      <td><span class="cat int">Systems Integration</span></td>
+      <td>WhatsApp Business (HSM templates, opt-in/out) and email channel for external notifications.</td>
+      <td class="idc">E21</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E06.T4</td>
+      <td><b>Notification/task UI</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Notification center and task center UI.</td>
+      <td class="idc">E06.T1,E06.T2</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E06.T5</td>
+      <td><b>AI-on-behalf queue</b></td>
+      <td><span class="cat ai">AI</span></td>
+      <td>An "AI acts on my behalf" queue for routine actions, with human approval for impactful ones (later phase).</td>
+      <td class="idc">E19</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr class="epicrow"><td colspan="7">E07 — Documents, Files &amp; E-signature — 37 hrs total</td></tr><tr>
+      <td class="idc">E07.T1</td>
+      <td><b>Project files &amp; status center</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Project files model by stage with a document status center to surface what is missing.</td>
+      <td class="idc">—</td>
+      <td><span class="st wip">In progress</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E07.T2</td>
+      <td><b>E-signature integration</b></td>
+      <td><span class="cat int">Systems Integration</span></td>
+      <td>Provider abstraction, envelope creation, signed webhook, signed-artifact storage and audit.</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">17</td>
+    </tr><tr>
+      <td class="idc">E07.T3</td>
+      <td><b>Document center UI</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Document center UI (status, by stage, upload, versions).</td>
+      <td class="idc">E07.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr></tbody>
+  </table>
+</section>
+
+<section class="page">
+  <div class="head"><h2>Task Register — Track B — Pre-award &amp; Signature</h2><p>Track total: 236 hrs · 22 tasks</p></div>
+  <table class="tasktbl">
+    <colgroup><col style="width:8%"><col style="width:16%"><col style="width:13%"><col style="width:35%"><col style="width:9%"><col style="width:9%"><col style="width:10%"></colgroup>
+    <thead><tr><th>ID</th><th>Task</th><th>Category</th><th>Detailed description</th><th>Depends on</th><th>Status</th><th>Hours</th></tr></thead>
+    <tbody><tr class="epicrow"><td colspan="7">E08 — Order Creation &amp; Approval — 45 hrs total</td></tr><tr>
+      <td class="idc">E08.T1</td>
+      <td><b>Order domain &amp; Stage-1</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Order domain (fields, brief, attachments) and creation/approval transitions on the engine.</td>
+      <td class="idc">E03</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">E08.T2</td>
+      <td><b>BR-01 document-split hook</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Apply BR-01 at budget set to split/merge the technical and financial documents.</td>
+      <td class="idc">E03.T4</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">5</td>
+    </tr><tr>
+      <td class="idc">E08.T3</td>
+      <td><b>Optional approval gates</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Optional PMO, cybersecurity and local-content gates, toggleable by config.</td>
+      <td class="idc">E03</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr>
+      <td class="idc">E08.T4</td>
+      <td><b>Order create/approve UI</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Order create/edit screens and approval/return screens.</td>
+      <td class="idc">E03.T8</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">E08.T5</td>
+      <td><b>Order-path tests</b></td>
+      <td><span class="cat qa">QA Testing</span></td>
+      <td>Tests for the happy path, return-with-comment and reject-with-reason.</td>
+      <td class="idc">E08.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">5</td>
+    </tr><tr class="epicrow"><td colspan="7">E09 — Bid-Document (Kraasa) Preparation — 24 hrs total</td></tr><tr>
+      <td class="idc">E09.T1</td>
+      <td><b>Kraasa transitions &amp; assignment</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Bid-document stage transitions and assignment to staff with action-permission transfer.</td>
+      <td class="idc">E03.T6</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr>
+      <td class="idc">E09.T2</td>
+      <td><b>Kraasa builder</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Bid-document builder, assignment and preview UI.</td>
+      <td class="idc">E07</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E09.T3</td>
+      <td><b>Kraasa output</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Generate the bid-document output (PDF/Word) via the correspondence/document engine.</td>
+      <td class="idc">E05,E07</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">5</td>
+    </tr><tr class="epicrow"><td colspan="7">E10 — Committees: Pre-qual, Opening, Evaluation — 72 hrs total</td></tr><tr>
+      <td class="idc">E10.T1</td>
+      <td><b>Committee models</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Committee models (qualification, opening, technical, examination), members, roles and workflow.</td>
+      <td class="idc">E03</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">17</td>
+    </tr><tr>
+      <td class="idc">E10.T2</td>
+      <td><b>Scoring &amp; committee reports</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Scoring/evaluation forms and committee report generation and signing.</td>
+      <td class="idc">E10.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">E10.T3</td>
+      <td><b>Pull offers from Etimad</b></td>
+      <td><span class="cat int">Systems Integration</span></td>
+      <td>Pull offers and announcement data from Etimad and reflect them in the platform.</td>
+      <td class="idc">E21</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E10.T4</td>
+      <td><b>BOQ price check &amp; comparison</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>BOQ price-check service plus offer comparison and lowest-offer suggestion.</td>
+      <td class="idc">E10.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E10.T5</td>
+      <td><b>Committees tab</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>A dashboard per committee with score entry, reports and tracking.</td>
+      <td class="idc">E10.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">17</td>
+    </tr><tr class="epicrow"><td colspan="7">E11 — Announcement, Award &amp; Letter of Intent — 44 hrs total</td></tr><tr>
+      <td class="idc">E11.T1</td>
+      <td><b>Award &amp; letter of intent</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Announcement and award transitions and generation of the award letter and letter of intent.</td>
+      <td class="idc">E10</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">17</td>
+    </tr><tr>
+      <td class="idc">E11.T2</td>
+      <td><b>Post-qual &amp; final commitment</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Post-qualification and final budget-commitment confirmation before award approval.</td>
+      <td class="idc">E03</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr>
+      <td class="idc">E11.T3</td>
+      <td><b>Publish announcement/award</b></td>
+      <td><span class="cat int">Systems Integration</span></td>
+      <td>Publish the announcement and award data via Etimad.</td>
+      <td class="idc">E21</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E11.T4</td>
+      <td><b>Announcement/award screens</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Announcement, award and letter-of-intent screens.</td>
+      <td class="idc">E11.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr class="epicrow"><td colspan="7">E12 — Contract Drafting &amp; Signature — 51 hrs total</td></tr><tr>
+      <td class="idc">E12.T1</td>
+      <td><b>Signed-in-Etimad scenario</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Import the signed-contract data from Etimad and reflect it in the platform.</td>
+      <td class="idc">E21</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E12.T2</td>
+      <td><b>Signed-outside scenario</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Create contract data from approved drafts with manager confirmation.</td>
+      <td class="idc">E03</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E12.T3</td>
+      <td><b>Legal review &amp; milestones</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Legal review and remarks path, final commitment and the milestones schedule.</td>
+      <td class="idc">E03</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E12.T4</td>
+      <td><b>E-sign the contract</b></td>
+      <td><span class="cat int">Systems Integration</span></td>
+      <td>Electronically sign the contract by higher management and the contractor.</td>
+      <td class="idc">E07.T2</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr>
+      <td class="idc">E12.T5</td>
+      <td><b>Contract drafting screens</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Contract drafting, review and signing screens.</td>
+      <td class="idc">E12.T3</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr></tbody>
+  </table>
+</section>
+
+<section class="page">
+  <div class="head"><h2>Task Register — Track C — Contract &amp; Project Execution</h2><p>Track total: 401 hrs · 33 tasks</p></div>
+  <table class="tasktbl">
+    <colgroup><col style="width:8%"><col style="width:16%"><col style="width:13%"><col style="width:35%"><col style="width:9%"><col style="width:9%"><col style="width:10%"></colgroup>
+    <thead><tr><th>ID</th><th>Task</th><th>Category</th><th>Detailed description</th><th>Depends on</th><th>Status</th><th>Hours</th></tr></thead>
+    <tbody><tr class="epicrow"><td colspan="7">E13 — Contractor Onboarding &amp; Invitation — 72 hrs total</td></tr><tr>
+      <td class="idc">E13.T1</td>
+      <td><b>Contractor account model</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Contractor account bound to the commercial registration and contract, scoped to entity and contract, with de-duplication.</td>
+      <td class="idc">E01,E02,E12</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">17</td>
+    </tr><tr>
+      <td class="idc">E13.T2</td>
+      <td><b>Invitation domain</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Issue (signed-contract gate), single-use expiring token, accept, resend, revoke, audit.</td>
+      <td class="idc">E12,E03</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E13.T3</td>
+      <td><b>Identity &amp; GOSI verification</b></td>
+      <td><span class="cat int">Systems Integration</span></td>
+      <td>Verify contractor identity (Nafath/business identity) and GOSI compliance at onboarding.</td>
+      <td class="idc">E21</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">E13.T4</td>
+      <td><b>Contractor permissions</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Contractor permission bundle scoped to their own contract actions only.</td>
+      <td class="idc">E01</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">5</td>
+    </tr><tr>
+      <td class="idc">E13.T5</td>
+      <td><b>Invite-contractor UI</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Employee "invite contractor" flow with invitation status and resend.</td>
+      <td class="idc">E13.T2</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr>
+      <td class="idc">E13.T6</td>
+      <td><b>Contractor registration UI</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Contractor registration/accept flow and commercial-registration binding.</td>
+      <td class="idc">E13.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E13.T7</td>
+      <td><b>Contractor isolation test</b></td>
+      <td><span class="cat qa">QA Testing</span></td>
+      <td>E2E: invite → accept → sees only their contract; cross-contract/tenant access denied.</td>
+      <td class="idc">E13.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr class="epicrow"><td colspan="7">E14 — Contractor Portal — 72 hrs total</td></tr><tr>
+      <td class="idc">E14.T1</td>
+      <td><b>Contractor dashboard</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Project details, timeline, performance and what is due.</td>
+      <td class="idc">E13</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">E14.T2</td>
+      <td><b>Contract section</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Review, sign, download and share the contract.</td>
+      <td class="idc">E07.T2</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E14.T3</td>
+      <td><b>Contractor requests</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Contractor-initiated requests (extension/value change) entering the entity's gated workflow (BE+FE).</td>
+      <td class="idc">E16</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E14.T4</td>
+      <td><b>Updates window</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Updates window (text + images/video) against milestones and the BOQ (BE+FE).</td>
+      <td class="idc">E15</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E14.T5</td>
+      <td><b>In-platform letter replies</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>In-platform replies to warning/dues/notice letters, recorded before escalation (required by the scenario).</td>
+      <td class="idc">E05,E16</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E14.T6</td>
+      <td><b>Contractor meetings</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Meetings tab with minutes, recording and AI summary (later phase).</td>
+      <td class="idc">E19</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr class="epicrow"><td colspan="7">E15 — Project Execution &amp; Commencement — 93 hrs total</td></tr><tr>
+      <td class="idc">E15.T1</td>
+      <td><b>Commencement transitions (BR-02)</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Commencement transitions branching by project type (supply/maintenance) with letters.</td>
+      <td class="idc">E03.T4,E05</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">E15.T2</td>
+      <td><b>BOQ model</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>BOQ model (item/quantity/unit price/measured/remaining) with import; feeds completion-contract carry-over.</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">17</td>
+    </tr><tr>
+      <td class="idc">E15.T3</td>
+      <td><b>Milestones, progress &amp; delay</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Milestones/progress model, planned-vs-actual and delay computation.</td>
+      <td class="idc">E15.T2</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E15.T4</td>
+      <td><b>Payments (mustakhlasat)</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Payments against the BOQ and MoF budget availability, gated and audited.</td>
+      <td class="idc">E15.T2,E21</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">E15.T5</td>
+      <td><b>Project execution dashboard</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Execution dashboard (timeline, milestones, BOQ progress, delay flags, payments).</td>
+      <td class="idc">E15.T3</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">19</td>
+    </tr><tr>
+      <td class="idc">E15.T6</td>
+      <td><b>Commencement/site-handover UI</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Commencement, site-handover-minute and cover-letter screens.</td>
+      <td class="idc">E15.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E15.T7</td>
+      <td><b>Commencement tests</b></td>
+      <td><span class="cat qa">QA Testing</span></td>
+      <td>Tests for supply and maintenance commencement with the site-handover committee.</td>
+      <td class="idc">E15.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr class="epicrow"><td colspan="7">E16 — Contract Lifecycle Actions (18) — 101 hrs total</td></tr><tr>
+      <td class="idc">E16.T1</td>
+      <td><b>Action framework on the engine</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Trigger + precondition rule + owner role + approval chain + letter template + state/financial/guarantee effect + AI-suggestion hook.</td>
+      <td class="idc">E03.T1,E05</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">24</td>
+    </tr><tr>
+      <td class="idc">E16.T2</td>
+      <td><b>MVP action set</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Eight MVP actions (commence, warning, final warning, withdrawal, variation, extension, suspension, resumption) as config rows.</td>
+      <td class="idc">E16.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">19</td>
+    </tr><tr>
+      <td class="idc">E16.T3</td>
+      <td><b>Phase-2 action set</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Dues, assignment, labor endorsement, preliminary/final acceptance, termination, guarantees, representative delegation.</td>
+      <td class="idc">E16.T1,E18,E13</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">22</td>
+    </tr><tr>
+      <td class="idc">E16.T4</td>
+      <td><b>AI suggestion per action</b></td>
+      <td><span class="cat ai">AI</span></td>
+      <td>AI suggestion and explanation per action under human oversight.</td>
+      <td class="idc">E19</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E16.T5</td>
+      <td><b>Action launcher UI</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Action launcher on the contract/project view with letter preview, approval and signing.</td>
+      <td class="idc">E03.T8,E05.T6</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">E16.T6</td>
+      <td><b>Action e2e tests</b></td>
+      <td><span class="cat qa">QA Testing</span></td>
+      <td>E2E per action group (permission + rule + letter + reference + audit + state).</td>
+      <td class="idc">E16.T2</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr class="epicrow"><td colspan="7">E17 — Contract Linking &amp; Completion Contracts — 34 hrs total</td></tr><tr>
+      <td class="idc">E17.T1</td>
+      <td><b>Contract relationship model</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Typed contract-relationship links shown on both contracts.</td>
+      <td class="idc">E16</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E17.T2</td>
+      <td><b>Completion-contract spawn</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Spawn the completion contract from withdrawal, carrying the remaining BOQ and linking to the original.</td>
+      <td class="idc">E16,E15.T2</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E17.T3</td>
+      <td><b>Linked-contracts UI</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Linked-contracts UI and original↔completion chain view.</td>
+      <td class="idc">E17.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr>
+      <td class="idc">E17.T4</td>
+      <td><b>Completion e2e test</b></td>
+      <td><span class="cat qa">QA Testing</span></td>
+      <td>E2E: withdrawal → linked completion contract with the remaining scope.</td>
+      <td class="idc">E17.T2</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">5</td>
+    </tr><tr class="epicrow"><td colspan="7">E18 — Closeout &amp; Contractor Evaluation — 29 hrs total</td></tr><tr>
+      <td class="idc">E18.T1</td>
+      <td><b>Acceptance transitions</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Preliminary/final acceptance transitions with committee and higher-management approval.</td>
+      <td class="idc">E16</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E18.T2</td>
+      <td><b>Guarantee release &amp; closeout</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Release the final guarantee and close the contract.</td>
+      <td class="idc">E18.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr>
+      <td class="idc">E18.T3</td>
+      <td><b>Contractor evaluation</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Contractor evaluation form feeding the supplier reliability index (BE+FE).</td>
+      <td class="idc">E20</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr></tbody>
+  </table>
+</section>
+
+<section class="page">
+  <div class="head"><h2>Task Register — Track D — Intelligence &amp; Reporting</h2><p>Track total: 187 hrs · 14 tasks</p></div>
+  <table class="tasktbl">
+    <colgroup><col style="width:8%"><col style="width:16%"><col style="width:13%"><col style="width:35%"><col style="width:9%"><col style="width:9%"><col style="width:10%"></colgroup>
+    <thead><tr><th>ID</th><th>Task</th><th>Category</th><th>Detailed description</th><th>Depends on</th><th>Status</th><th>Hours</th></tr></thead>
+    <tbody><tr class="epicrow"><td colspan="7">E19 — AI Layer &amp; HITL — 116 hrs total</td></tr><tr>
+      <td class="idc">E19.T1</td>
+      <td><b>Recommendation &amp; approval domain</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>A recommendation object (recommendation + rationale + confidence + sources) with a human decision recorded in the audit log.</td>
+      <td class="idc">E04</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E19.T2</td>
+      <td><b>Next-Best-Action engine</b></td>
+      <td><span class="cat ai">AI</span></td>
+      <td>Engine recommending the next action over contract/project state with justification.</td>
+      <td class="idc">E03,E15</td>
+      <td><span class="st wip">In progress</span></td>
+      <td class="hrs">17</td>
+    </tr><tr>
+      <td class="idc">E19.T3</td>
+      <td><b>Risk-scoring service</b></td>
+      <td><span class="cat ai">AI</span></td>
+      <td>Risk scoring (delay/financial/compliance) with drivers, feeding the risk heatmap.</td>
+      <td class="idc">E15</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">17</td>
+    </tr><tr>
+      <td class="idc">E19.T4</td>
+      <td><b>Clause/compliance scanner</b></td>
+      <td><span class="cat ai">AI</span></td>
+      <td>Scan contracts/letters for missing mandatory clauses and deviations.</td>
+      <td class="idc">E05,E12</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">E19.T5</td>
+      <td><b>Knowledge assistant</b></td>
+      <td><span class="cat ai">AI</span></td>
+      <td>Assistant and contextual search over rules, the procurement law and each contract.</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">17</td>
+    </tr><tr>
+      <td class="idc">E19.T6</td>
+      <td><b>Fraud/collusion/COI detection</b></td>
+      <td><span class="cat ai">AI</span></td>
+      <td>Bid-collusion, financial-anomaly and conflict-of-interest detection — advisory under oversight (later phase).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">24</td>
+    </tr><tr>
+      <td class="idc">E19.T7</td>
+      <td><b>Rate limit &amp; AI opt-in</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>AI call rate limit and a per-tenant AI enablement flag.</td>
+      <td class="idc">—</td>
+      <td><span class="st wip">In progress</span></td>
+      <td class="hrs">5</td>
+    </tr><tr>
+      <td class="idc">E19.T8</td>
+      <td><b>HITL approval surface</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>UI showing the recommendation and its explanation with approve/edit/reject.</td>
+      <td class="idc">E19.T1</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr class="epicrow"><td colspan="7">E20 — Dashboards &amp; Reporting — 71 hrs total</td></tr><tr>
+      <td class="idc">E20.T1</td>
+      <td><b>CDM dashboard</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Contract-manager dashboard: performance, contracts summary with color-coded alerts, repository and lifecycle tracker.</td>
+      <td class="idc">E15,E16,E04</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">17</td>
+    </tr><tr>
+      <td class="idc">E20.T2</td>
+      <td><b>Executive dashboard</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Higher-management strategic dashboard with the risk heatmap.</td>
+      <td class="idc">E19</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">17</td>
+    </tr><tr>
+      <td class="idc">E20.T3</td>
+      <td><b>End-user dashboard</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>End-user dashboard: projects, pending requests, document status and timeline.</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E20.T4</td>
+      <td><b>Oversight/compliance view</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Compliance and audit-log view for oversight bodies.</td>
+      <td class="idc">E04</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E20.T5</td>
+      <td><b>Report generator extension</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Extend the report generator and executive summary (built on the existing engine).</td>
+      <td class="idc">—</td>
+      <td><span class="st wip">In progress</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E20.T6</td>
+      <td><b>Supplier reliability index</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Aggregate the supplier reliability index from contractor evaluations and performance.</td>
+      <td class="idc">E18</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr></tbody>
+  </table>
+</section>
+
+<section class="page">
+  <div class="head"><h2>Task Register — Track E — Integrations &amp; Localization</h2><p>Track total: 130 hrs · 9 tasks</p></div>
+  <table class="tasktbl">
+    <colgroup><col style="width:8%"><col style="width:16%"><col style="width:13%"><col style="width:35%"><col style="width:9%"><col style="width:9%"><col style="width:10%"></colgroup>
+    <thead><tr><th>ID</th><th>Task</th><th>Category</th><th>Detailed description</th><th>Depends on</th><th>Status</th><th>Hours</th></tr></thead>
+    <tbody><tr class="epicrow"><td colspan="7">E21 — National Integrations — 87 hrs total</td></tr><tr>
+      <td class="idc">E21.T1</td>
+      <td><b>Etimad adapter</b></td>
+      <td><span class="cat int">Systems Integration</span></td>
+      <td>Etimad adapter (publish/offers/payments) behind a domain port with sync/reconciliation jobs.</td>
+      <td class="idc">E02</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">24</td>
+    </tr><tr>
+      <td class="idc">E21.T2</td>
+      <td><b>Nafath adapter</b></td>
+      <td><span class="cat int">Systems Integration</span></td>
+      <td>Nafath adapter for identity and authentication.</td>
+      <td class="idc">E02</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E21.T3</td>
+      <td><b>MoF adapter</b></td>
+      <td><span class="cat int">Systems Integration</span></td>
+      <td>Ministry of Finance adapter (budget, bid examination, payment plans).</td>
+      <td class="idc">E02</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">17</td>
+    </tr><tr>
+      <td class="idc">E21.T4</td>
+      <td><b>GOSI adapter</b></td>
+      <td><span class="cat int">Systems Integration</span></td>
+      <td>GOSI adapter for supplier-compliance verification.</td>
+      <td class="idc">E02</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">E21.T5</td>
+      <td><b>Supporting adapters</b></td>
+      <td><span class="cat int">Systems Integration</span></td>
+      <td>E-signature, ERP/CRM and WhatsApp (sync/notifications).</td>
+      <td class="idc">E02</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">E21.T6</td>
+      <td><b>Integration sandboxes</b></td>
+      <td><span class="cat ops">Deployment & Ops</span></td>
+      <td>Sandboxes and contract tests for integrations during development before live links.</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr class="epicrow"><td colspan="7">E22 — Vision 2030 &amp; Localization — 43 hrs total</td></tr><tr>
+      <td class="idc">E22.T1</td>
+      <td><b>Localization dashboard</b></td>
+      <td><span class="cat fe">User Interface</span></td>
+      <td>Localization dashboard, local-content index and Nitaqat/Saudization.</td>
+      <td class="idc">E20,E21</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">17</td>
+    </tr><tr>
+      <td class="idc">E22.T2</td>
+      <td><b>Zakat &amp; VAT automation</b></td>
+      <td><span class="cat be">Infrastructure</span></td>
+      <td>Zakat and VAT automation in the related accounts.</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">E22.T3</td>
+      <td><b>Mega-project risk &amp; Arabic NLP</b></td>
+      <td><span class="cat ai">AI</span></td>
+      <td>Mega-project risk analysis and Arabic NLP.</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr></tbody>
+  </table>
+</section>
+
+<section class="page">
+  <div class="head"><h2>Task Register — Track S — Cybersecurity &amp; Protection (ECC)</h2><p>Track total: 278 hrs · 24 tasks</p></div>
+  <table class="tasktbl">
+    <colgroup><col style="width:8%"><col style="width:16%"><col style="width:13%"><col style="width:35%"><col style="width:9%"><col style="width:9%"><col style="width:10%"></colgroup>
+    <thead><tr><th>ID</th><th>Task</th><th>Category</th><th>Detailed description</th><th>Depends on</th><th>Status</th><th>Hours</th></tr></thead>
+    <tbody><tr class="epicrow"><td colspan="7">Cybersecurity Governance (ECC-1) — 67 hrs total</td></tr><tr>
+      <td class="idc">S1.T1</td>
+      <td><b>Cybersecurity strategy &amp; policy</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Define, document and approve the platform cybersecurity strategy, policies and procedures and publish to stakeholders (ECC 1-1/1-3).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">17</td>
+    </tr><tr>
+      <td class="idc">S1.T2</td>
+      <td><b>Roles &amp; governance</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Define cybersecurity roles and responsibilities (RACI) and the governance/oversight framework (ECC 1-4).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr>
+      <td class="idc">S1.T3</td>
+      <td><b>Cyber risk management</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Risk methodology and register, with assessment in IT-project phases, before major changes and for third-party services (ECC 1-5/1-6).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">S1.T4</td>
+      <td><b>Compliance &amp; periodic audit</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Compliance with legal/regulatory requirements and periodic self-assessment/audit against the controls (ECC 1-7/1-8).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">S1.T5</td>
+      <td><b>Cybersecurity in HR</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Confidentiality clauses, security screening for sensitive roles, and pre/during/post-employment requirements (ECC 1-9).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">S1.T6</td>
+      <td><b>Awareness &amp; training</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Periodic awareness program (phishing, devices, social media) and specialized training for technical teams (ECC 1-10).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr class="epicrow"><td colspan="7">Cybersecurity Defense (ECC-2) — 177 hrs total</td></tr><tr>
+      <td class="idc">S2.T1</td>
+      <td><b>Identity hardening (MFA/PAM)</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>MFA for sensitive accounts and remote access, privileged-access management, least privilege and segregation of duties (ECC 2-2); extends E01.</td>
+      <td class="idc">E01</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">S2.T2</td>
+      <td><b>Cryptography &amp; key management</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Encryption by classification at rest/in transit and key-lifecycle management per NCA standards (ECC 2-8); extends E02.</td>
+      <td class="idc">E02</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">S2.T3</td>
+      <td><b>Systems &amp; endpoint protection</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Anti-malware, patch management, configuration hardening and clock synchronization (ECC 2-3).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">S2.T4</td>
+      <td><b>Email protection</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Phishing/spam filtering, SPF/DKIM/DMARC and APT protection (ECC 2-4).</td>
+      <td class="idc">E06</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">S2.T5</td>
+      <td><b>Network security (Firewall/IPS/DDoS)</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Segmentation and defense-in-depth, firewalls, IPS, DDoS protection, DNS security and production isolation (ECC 2-5).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">17</td>
+    </tr><tr>
+      <td class="idc">S2.T6</td>
+      <td><b>Mobile &amp; BYOD security</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Separate entity data on personal devices and remote-wipe on loss or end of relationship (ECC 2-6).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr>
+      <td class="idc">S2.T7</td>
+      <td><b>Data protection by classification</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Data classification and DLP/masking controls by sensitivity level (ECC 2-7); extends E02.</td>
+      <td class="idc">E02</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">S2.T8</td>
+      <td><b>Backup &amp; restore testing</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Backup coverage of sensitive assets, fast recovery and periodic restore testing (ECC 2-9).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">7</td>
+    </tr><tr>
+      <td class="idc">S2.T9</td>
+      <td><b>Vulnerability management</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Periodic scanning, classification, remediation, pre-production verification and advisory subscriptions (ECC 2-10).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">S2.T10</td>
+      <td><b>Penetration testing</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Periodic penetration testing of external services, websites, web/mobile apps and remote access (ECC 2-11).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">S2.T11</td>
+      <td><b>Event logs &amp; monitoring (SIEM)</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Event-log collection and continuous monitoring via SIEM, retained ≥12 months (ECC 2-12); builds on E04.</td>
+      <td class="idc">E04</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">17</td>
+    </tr><tr>
+      <td class="idc">S2.T12</td>
+      <td><b>Incident management (IR)</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Response plans, incident classification, reporting to the authority and threat intelligence (ECC 2-13).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">S2.T13</td>
+      <td><b>Physical security</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Access control and CCTV for sensitive areas — largely via the hosting provider (ECC 2-14).</td>
+      <td class="idc">E21</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">5</td>
+    </tr><tr>
+      <td class="idc">S2.T14</td>
+      <td><b>Web application protection (WAF)</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Web application firewall, multi-tier architecture, HTTPS and a secure session policy (ECC 2-15).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr>
+      <td class="idc">S2.T15</td>
+      <td><b>Secure SDLC</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Secure coding standards, trusted libraries, security testing and configuration hardening before release (ECC 1-6).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr class="epicrow"><td colspan="7">Cybersecurity Resilience (ECC-3) — 12 hrs total</td></tr><tr>
+      <td class="idc">S3.T1</td>
+      <td><b>Resilience in BCM</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Embed cybersecurity in business continuity: RTO/RPO objectives, recovery plan and testing (ECC 3-1).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr><tr class="epicrow"><td colspan="7">Third-Party &amp; Cloud Computing (ECC-4) — 22 hrs total</td></tr><tr>
+      <td class="idc">S4.T1</td>
+      <td><b>Third-party security</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>Contractual requirements and cyber assessment of suppliers/third parties before and during engagement (ECC 4-1).</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">10</td>
+    </tr><tr>
+      <td class="idc">S4.T2</td>
+      <td><b>Cloud &amp; hosting security</b></td>
+      <td><span class="cat sec">Security</span></td>
+      <td>In-Kingdom data residency, shared-responsibility model and cloud-configuration hardening (ECC 4-2); extends E02.</td>
+      <td class="idc">E02</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">12</td>
+    </tr></tbody>
+  </table>
+</section>
+
+<section class="page">
+  <div class="head"><h2>Task Register — Cross-cutting (QA, Ops, Design, PM)</h2><p>Track total: 131 hrs · 6 tasks</p></div>
+  <table class="tasktbl">
+    <colgroup><col style="width:8%"><col style="width:16%"><col style="width:13%"><col style="width:35%"><col style="width:9%"><col style="width:9%"><col style="width:10%"></colgroup>
+    <thead><tr><th>ID</th><th>Task</th><th>Category</th><th>Detailed description</th><th>Depends on</th><th>Status</th><th>Hours</th></tr></thead>
+    <tbody><tr class="epicrow"><td colspan="7">Cross-cutting tasks — 131 hrs total</td></tr><tr>
+      <td class="idc">X.QA1</td>
+      <td><b>Automated test framework</b></td>
+      <td><span class="cat qa">QA Testing</span></td>
+      <td>Automated test framework (unit + e2e) across modules covering transitions, permissions and audit.</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">24</td>
+    </tr><tr>
+      <td class="idc">X.OPS1</td>
+      <td><b>CI/CD &amp; environments</b></td>
+      <td><span class="cat ops">Deployment & Ops</span></td>
+      <td>CI/CD pipelines, runtime environments (staging/production) and monitoring.</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">19</td>
+    </tr><tr>
+      <td class="idc">X.OPS2</td>
+      <td><b>Backup &amp; disaster recovery</b></td>
+      <td><span class="cat ops">Deployment & Ops</span></td>
+      <td>Backup, disaster recovery, monitoring and alerting.</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr><tr>
+      <td class="idc">X.UX1</td>
+      <td><b>Design system &amp; i18n</b></td>
+      <td><span class="cat ux">Design</span></td>
+      <td>Design system, RTL components and translation files (Arabic/English) for all modules.</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">24</td>
+    </tr><tr>
+      <td class="idc">X.PM1</td>
+      <td><b>Project management &amp; workshops</b></td>
+      <td><span class="cat pm">PM</span></td>
+      <td>Project management, decision workshops, requirements documentation and traceability throughout delivery.</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">36</td>
+    </tr><tr>
+      <td class="idc">X.DOC1</td>
+      <td><b>Architecture docs &amp; training</b></td>
+      <td><span class="cat pm">PM</span></td>
+      <td>Architecture documentation, user guides and training.</td>
+      <td class="idc">—</td>
+      <td><span class="st todo">To do</span></td>
+      <td class="hrs">14</td>
+    </tr></tbody>
+  </table>
+</section>
+<!--TASKS:END-->
+</body>
+</html>
