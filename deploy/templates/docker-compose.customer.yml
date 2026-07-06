@@ -1,0 +1,106 @@
+name: tanfeeth-${CUSTOMER_SLUG}
+
+# ---------------------------------------------------------------------------
+# Per-customer isolated stack: postgres (own volume) + api + web.
+# ONE of these per customer. Env-substituted from customers/<slug>/.env.
+#
+# Bring up (from the deploy root; scripts/new-customer.sh does this for you):
+#   docker compose \
+#     --project-directory . \
+#     --env-file customers/<slug>/.env \
+#     -f templates/docker-compose.customer.yml \
+#     -p tanfeeth-<slug> up -d
+#
+# Isolation model
+# ---------------
+#   postgres  -> ONLY the per-customer internal net. No other customer's api can
+#               reach it, and it is never on the shared edge net. This is the
+#               real tenant boundary (deploy-layer isolation replacing row scope).
+#   api       -> per-customer internal net (api<->pg, web->api SSR)
+#              + shared edge net  (so the single nginx proxy can route /api)
+#              + shared per-ENVIRONMENT RFP net (to call the internal RFP service).
+#   web       -> per-customer internal net + shared edge net. Never touches RFP.
+#
+# TLS / hostnames are handled by the nginx proxy (templates/nginx-customer.conf.template);
+# these containers expose no host ports.
+#
+# CORRECTION (frontend image): the PROD web image is built with
+#   NEXT_PUBLIC_API_URL=/api  (relative)  so one image serves every customer via
+# same-host `location /api`. SSR still reaches its own api by container name over
+# the internal net (NEXT_SERVER_API_URL below). Staging stays ABSOLUTE — do not
+# reuse this template's /api assumption for staging web (see nginx template note).
+#
+# CORRECTION (migrations): DB schema is created by migrations that run on API
+# boot (DB_SYNCHRONIZE=false -> migrationsRun). Do NOT set DB_SYNCHRONIZE=true to
+# bootstrap a new customer DB.
+# ---------------------------------------------------------------------------
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: tanfeeth-pg-${CUSTOMER_SLUG}
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    image: ${API_IMAGE}
+    container_name: tanfeeth-api-${CUSTOMER_SLUG}
+    restart: unless-stopped
+    # Runtime config (DB_*, JWT_*, RFP_*, seed/admin) is injected from the same
+    # per-customer env file. Compose-substitution vars (CUSTOMER_SLUG, *_IMAGE,
+    # RFP_NETWORK) also live there; harmless if they leak into the container env.
+    env_file:
+      - customers/${CUSTOMER_SLUG}/.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - internal
+      - edge
+      - rfp
+
+  web:
+    image: ${WEB_IMAGE}
+    container_name: tanfeeth-web-${CUSTOMER_SLUG}
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      # SSR/server-side fetches hit this customer's own api directly over the
+      # internal net. Browser fetches use baked NEXT_PUBLIC_API_URL=/api (prod).
+      NEXT_SERVER_API_URL: http://tanfeeth-api-${CUSTOMER_SLUG}:3000/api
+    depends_on:
+      - api
+    networks:
+      - internal
+      - edge
+
+networks:
+  # Per-customer private net — pg + api + web. Created automatically with the stack.
+  internal:
+    name: tanfeeth-${CUSTOMER_SLUG}-internal
+  # Shared edge net the nginx proxy lives on (created by bootstrap-server.sh).
+  edge:
+    name: tanfeeth-net
+    external: true
+  # Shared per-ENVIRONMENT RFP net (created by docker-compose.rfp.yml / bootstrap).
+  # Point RFP_NETWORK at the RFP stack matching this customer's environment.
+  rfp:
+    name: ${RFP_NETWORK}
+    external: true
+
+volumes:
+  pgdata:
+    name: tanfeeth-pgdata-${CUSTOMER_SLUG}

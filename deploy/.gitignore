@@ -1,0 +1,17 @@
+# Per-customer secrets — NEVER commit. Only meta.yml is tracked.
+customers/*/.env
+
+# Shared stack secrets (generated on the host).
+.env.prod
+.env.staging
+.env.rfp
+.env.rfp.prod
+.env.rfp.staging
+
+# Migration CSV dumps (contain tenant data).
+migrations-out/
+
+# TLS material / ACME state (mounted into the proxy).
+nginx/certs/
+nginx/letsencrypt/
+nginx/certbot-www/

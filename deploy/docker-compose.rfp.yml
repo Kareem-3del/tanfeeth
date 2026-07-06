@@ -1,0 +1,66 @@
+name: tanfeeth-rfp-${RFP_ENV}
+
+# ---------------------------------------------------------------------------
+# Shared RFP Intelligence service — ONE per ENVIRONMENT (prod vs staging get
+# SEPARATE DBs, volumes and nets). Internal-only: no host ports, never joined to
+# the public edge net. Every customer api in the same environment reaches it over
+# the shared RFP net (RFP_NETWORK).
+#
+# Bring up (from the deploy root):
+#   docker compose --env-file .env.rfp.prod \
+#     -f docker-compose.rfp.yml -p tanfeeth-rfp-prod up -d
+#   docker compose --env-file .env.rfp.staging \
+#     -f docker-compose.rfp.yml -p tanfeeth-rfp-staging up -d
+#
+# CORRECTIONS:
+#  - pgvector image (pgvector/pgvector:pg16) — the RFP service stores vector(1536)
+#    embeddings + an HNSW index.
+#  - migrations run on service boot (migrationsRun forced true in the service);
+#    do NOT set DB_SYNCHRONIZE=true. The vector extension/columns are not
+#    ORM-describable, so synchronize can never build this schema.
+#  - D1 is shared across TENANTS WITHIN an environment, never across environments.
+# ---------------------------------------------------------------------------
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: tanfeeth-rfp-pg-${RFP_ENV}
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - rfp-pgdata:/var/lib/postgresql/data
+    networks:
+      - rfp
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  rfp:
+    image: ${RFP_IMAGE}
+    container_name: tanfeeth-rfp-${RFP_ENV}
+    restart: unless-stopped
+    # Internal-only: NO ports. Callers are customer api containers on the RFP net.
+    env_file:
+      - ${RFP_ENV_FILE}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - rfp
+
+networks:
+  # Shared per-ENVIRONMENT internal net. Customer stacks join this by name
+  # (RFP_NETWORK in customers/<slug>/.env) to reach the service. External so both
+  # this stack and the customer stacks can attach to the same net.
+  rfp:
+    name: ${RFP_NETWORK}
+    external: true
+
+volumes:
+  rfp-pgdata:
+    name: tanfeeth-rfp-pgdata-${RFP_ENV}

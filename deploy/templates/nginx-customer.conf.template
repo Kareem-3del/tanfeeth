@@ -1,0 +1,50 @@
+# ---------------------------------------------------------------------------
+# nginx server block for ONE customer. Rendered by scripts/render-nginx.sh into
+# nginx/conf.d/customer-__CUSTOMER_SLUG__.conf (auto-included by conf.d/*.conf),
+# then the proxy is reloaded. Placeholders (__…__) are substituted from the
+# customer's meta.yml / .env.
+#
+# Same-host model (CORRECTION): the PROD web image bakes NEXT_PUBLIC_API_URL=/api
+# (relative), so the browser talks to the API at the SAME origin as the web app.
+# This `location /api` proxies that to the customer's OWN api container. One web
+# image therefore serves every customer with no per-customer rebuild.
+#
+#   NOTE — staging is NOT same-host. staging.tanfeeth.io keeps an ABSOLUTE API
+#   URL (https://staging-api.tanfeeth.io/api) and the staging API is a separate
+#   host/block. Do NOT render a staging customer from this template without first
+#   deciding whether staging should adopt the /api block too.
+#
+# TLS (CORRECTION R10): per-customer certificate at
+#   /etc/letsencrypt/live/__WEB_HOST__/ , issued AFTER DNS cutover
+#   (scripts/issue-letsencrypt.sh -d __WEB_HOST__). A single un-pointed customer
+#   domain can NOT take down the fleet — each block has its own cert paths, and
+#   certs are issued one host at a time, not as one shared multi-SAN cert.
+# ---------------------------------------------------------------------------
+
+server {
+    listen 80;
+    listen 443 ssl;
+    server_name __WEB_HOST__;
+
+    # Per-customer LE cert (issued after this host's DNS points here).
+    ssl_certificate     /etc/letsencrypt/live/__WEB_HOST__/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/__WEB_HOST__/privkey.pem;
+
+    # ACME webroot for issuance/renewal of THIS host's cert.
+    location ^~ /.well-known/acme-challenge/ { root /var/www/certbot; }
+
+    # Browser API calls (same-host, prod web image baked with /api). Proxy to
+    # THIS customer's api container — never another customer's.
+    location /api {
+        set $api_upstream http://tanfeeth-api-__CUSTOMER_SLUG__:3000;
+        proxy_pass $api_upstream;
+        client_max_body_size 20m;   # match the API's 15MB upload limit (default 1m -> 413)
+        proxy_read_timeout 120s;    # headroom for AI-backed endpoints (default 60s -> 504)
+    }
+
+    # Everything else -> this customer's web (Next.js) container.
+    location / {
+        set $web_upstream http://tanfeeth-web-__CUSTOMER_SLUG__:3000;
+        proxy_pass $web_upstream;
+    }
+}
