@@ -1,6 +1,9 @@
 name: tanfeeth-staging
 
-# Staging stack — mirrors prod with :staging images and an isolated database.
+# Staging stack — canonical copy lives in this repo AND the meta repo's
+# deploy/; the frontend-v2 CI syncs it to /opt/tanfeeth on deploy.
+# web = frontend-v2 (the new Arabic-only app). The api also joins the shared
+# staging RFP net to reach tanfeeth-rfp-staging.
 services:
   postgres:
     image: postgres:16-alpine
@@ -31,9 +34,10 @@ services:
         condition: service_healthy
     networks:
       - tanfeeth-net
+      - rfp-staging
 
   web:
-    image: ghcr.io/kareem-3del/tanfeeth-frontend:staging
+    image: ghcr.io/kareem-3del/tanfeeth-frontend-v2:staging
     container_name: tanfeeth-web-staging
     restart: unless-stopped
     networks:
@@ -41,6 +45,9 @@ services:
 
 networks:
   tanfeeth-net:
+    external: true
+  rfp-staging:
+    name: tanfeeth-rfp-net-staging
     external: true
 
 volumes:
