@@ -4,3 +4,9 @@
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/Kareem-3del/tanfeeth-frontend.git
+[submodule "frontend-v2"]
+	path = frontend-v2
+	url = https://github.com/Kareem-3del/tanfeeth-frontend-v2.git
+[submodule "tanfeeth-rfp"]
+	path = tanfeeth-rfp
+	url = https://github.com/Kareem-3del/tanfeeth-rfp.git
