@@ -1,0 +1,3840 @@
+{
+ "source": "tenders.etimad.sa — saved wizard pages 2026-07-19 (tender 0010000132, RGA)",
+ "generatedAt": "2026-07-22",
+ "steps": [
+  {
+   "step": "basic",
+   "title": "المعلومات الأساسية",
+   "fields": [
+    {
+     "key": "TenderTypeId",
+     "label": "نوع المنافسة",
+     "control": "select",
+     "options": [
+      {
+       "value": "1",
+       "label": "منافسة عامة"
+      },
+      {
+       "value": "2",
+       "label": "شراء مباشر"
+      },
+      {
+       "value": "4",
+       "label": "منافسة محدودة"
+      },
+      {
+       "value": "5",
+       "label": "المزايدة العكسية الالكترونية"
+      },
+      {
+       "value": "11",
+       "label": "منافسة إتفاقية إطارية"
+      },
+      {
+       "value": "12",
+       "label": "مسابقة"
+      },
+      {
+       "value": "6",
+       "label": "المنافسة على مرحلتين (المرحلة الاولى)"
+      },
+      {
+       "value": "14",
+       "label": "المشاركة فى الدخل"
+      }
+     ]
+    },
+    {
+     "key": "ReasonForLimitedTenderTypeId",
+     "label": "سبب إختيار نوع المنافسة",
+     "control": "select",
+     "options": [
+      {
+       "value": "1",
+       "label": "اعمال مشتريات لا تتوفر إلا لدى عدد محدود من المقاولين أو الموردين أو المتعهدين"
+      },
+      {
+       "value": "2",
+       "label": "أعمال ومشتريات تبلغ قيمتها التقديرية خمسمائة ألف ريال فأقل"
+      },
+      {
+       "value": "3",
+       "label": "الأعمال والمشتريات المطلوبة عاجلا"
+      },
+      {
+       "value": "4",
+       "label": "أعمال ومشتريات تقدم من قبل الكيانات غير الربحية"
+      },
+      {
+       "value": "5",
+       "label": "أخرى"
+      }
+     ]
+    },
+    {
+     "key": "ReasonForPurchaseTenderTypeId",
+     "label": "سبب إختيار نوع المنافسة",
+     "control": "select",
+     "options": [
+      {
+       "value": "1",
+       "label": "أعمال ومشتريات الأسلحة والمعدات العسكرية وقطع غيارها"
+      },
+      {
+       "value": "2",
+       "label": "الأعمال والمشتريات متوافرة لدى متعهد أو مقاول أو مورد واحد، ولم يكن لها بديل مقبول"
+      },
+      {
+       "value": "3",
+       "label": "التكلفة التقديرية للأعمال والمشتريات لا تتجاوز مبلغ مائة ألف ريال"
+      },
+      {
+       "value": "4",
+       "label": "استخدام هذا الأسلوب ضروري لحماية مصالح الأمن الوطني"
+      },
+      {
+       "value": "5",
+       "label": "أعمال ومشتريات متوفرة لدى كيان غير ربحي واحد"
+      },
+      {
+       "value": "6",
+       "label": "حالة طارئة"
+      },
+      {
+       "value": "8",
+       "label": "أعمال ومشتريات لدى ممارسي المهن الحرة"
+      },
+      {
+       "value": "7",
+       "label": "أخرى"
+      }
+     ]
+    },
+    {
+     "key": "EstimatedValueassignedUserId",
+     "label": "مدخل القيمة التقديرية",
+     "control": "select",
+     "options": [
+      {
+       "value": "213085",
+       "label": "زياد محمد بن يوسف السويل"
+      },
+      {
+       "value": "245541",
+       "label": "فهد عبدالحكيم فهد بن رشيد"
+      },
+      {
+       "value": "3281020",
+       "label": "نورة عبدالعزيز محمد الثنيان"
+      }
+     ]
+    },
+    {
+     "key": "TenderName",
+     "label": "اسم المنافسة",
+     "control": "text",
+     "required": true,
+     "requiredMessage": "الرجاء إدخال اسم المنافسة",
+     "maxLength": 500
+    },
+    {
+     "key": "ReferenceNumber",
+     "label": "الرقم المرجعي",
+     "control": "data",
+     "sampleValue": "260439013534"
+    },
+    {
+     "key": "TenderNumber",
+     "label": "رقم المنافسة الخاص بالجهة",
+     "control": "text",
+     "maxLength": 100
+    },
+    {
+     "key": "ConditionsBookletPrice",
+     "label": "قيمة وثائق المنافسة",
+     "control": "number"
+    },
+    {
+     "key": "TenderTypeOtherSelectionReason",
+     "label": "أخرى",
+     "control": "text"
+    },
+    {
+     "key": "TechnicalOrganizationId",
+     "label": "اسم الجهة الفنية",
+     "control": "select",
+     "options": [
+      {
+       "value": "310251",
+       "label": "اللجنة الفنية - المركز الرئيسي"
+      }
+     ]
+    },
+    {
+     "key": "OffersOpeningCommitteeId",
+     "label": "اسم لجنة فتح العروض",
+     "control": "select",
+     "options": [
+      {
+       "value": "310249",
+       "label": "لجنة فتح العروض - المركز الرئيسي"
+      }
+     ]
+    },
+    {
+     "key": "OffersCheckingCommitteeId",
+     "label": "لجنة فحص العروض",
+     "control": "select",
+     "options": [
+      {
+       "value": "310248",
+       "label": "لجنة فحص العروض - المركز الرئيسي"
+      }
+     ]
+    },
+    {
+     "key": "OffersOpenCheckingCommitteeId",
+     "label": "لجنة فتح العروض (المشاركة بالدخل)",
+     "control": "select",
+     "options": []
+    },
+    {
+     "key": "VROCommitteeId",
+     "label": "لجنة فتح وفحص العروض(مكتب تحقيق الرؤية)",
+     "control": "select",
+     "options": []
+    },
+    {
+     "key": "IsExcluedFromUnifiedPurchase",
+     "label": "نعم",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "نعم"
+      },
+      {
+       "value": "false",
+       "label": "لا",
+       "default": true
+      }
+     ]
+    },
+    {
+     "key": "IsUnitApprovedExcludedRequest",
+     "label": "هل يوجد موافقة مسبقة لطلب الاستثناء",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "هل يوجد موافقة مسبقة لطلب الاستثناء"
+      },
+      {
+       "value": "false",
+       "label": "هل يوجد موافقة مسبقة لطلب الاستثناء"
+      }
+     ]
+    },
+    {
+     "key": "IsLinkedToAnnouncement",
+     "label": "مرتبطة بإعلان مسبق لمنافسة",
+     "control": "checkbox",
+     "required": true,
+     "choices": [
+      {
+       "value": "true",
+       "label": "مرتبطة بإعلان مسبق لمنافسة"
+      }
+     ]
+    },
+    {
+     "key": "PreAnnouncementId",
+     "label": "الإعلان المسبق",
+     "control": "select",
+     "options": []
+    },
+    {
+     "key": "AnnouncementTemplateId",
+     "label": "اعلانات قوائم الموردين",
+     "control": "select",
+     "options": [
+      {
+       "value": "592",
+       "label": "تأسيس مكتب إدارة البيانات في الهيئة السعودية للملكية الفكرية"
+      },
+      {
+       "value": "617",
+       "label": "خدمات الاستشارات المالية"
+      },
+      {
+       "value": "618",
+       "label": "الخدمات الاستشارية في مجال التحول والتخصيص للموارد البشرية"
+      },
+      {
+       "value": "625",
+       "label": "الخدمات الاستشارية القانونية"
+      },
+      {
+       "value": "628",
+       "label": "تقديم الخدمات الإستشارية الهندسية ( دراسة - تصميم - إشراف )"
+      },
+      {
+       "value": "629",
+       "label": "تقديم الخدمات الاستشارية الهندسية للطرق (دراسة - تصميم -إشراف)"
+      },
+      {
+       "value": "630",
+       "label": "تقديم الخدمات الإستشارية الهندسية للجسور ( دراسة - تصميم - إشراف )"
+      },
+      {
+       "value": "631",
+       "label": "خدمات المعارض والمؤتمرات"
+      },
+      {
+       "value": "633",
+       "label": "تقديم خدمات استشارية في مجال إدارة الحوكمة والمخاطر والالتزام"
+      },
+      {
+       "value": "716",
+       "label": "خدمات استشارية في مجال الحوكمة والمخاطر والالتزام"
+      },
+      {
+       "value": "738",
+       "label": "اعتماد مكاتب استشارية لتقييم الاثر البيئي"
+      },
+      {
+       "value": "748",
+       "label": "خدمات الطباعة"
+      },
+      {
+       "value": "797",
+       "label": "خدمات اعداد التقرير السنوي"
+      },
+      {
+       "value": "877",
+       "label": "توفير اثاث مكتبي"
+      },
+      {
+       "value": "914",
+       "label": "الخدمات الاستشارية الهندسية للشركات المعتمدة لدى وزارة الشؤون البلدية والقروية والاسكان والدفاع المدني"
+      },
+      {
+       "value": "915",
+       "label": "توفير أجهزة الشبكة والاتصالات"
+      },
+      {
+       "value": "916",
+       "label": "الخدمات الاستشارية لاعداد السياسات والاجراءات وادارة المشاريع الهندسية"
+      },
+      {
+       "value": "925",
+       "label": "الخدمات الاستشارية لتقييم الاثر البيئي"
+      },
+      {
+       "value": "990",
+       "label": "تقديم الخدمات الإلكتروميكانيكية"
+      },
+      {
+       "value": "991",
+       "label": "تقديم الخدمات المدنية والتشطيبات"
+      },
+      {
+       "value": "992",
+       "label": "توفير خدمات استئجار المركبات"
+      },
+      {
+       "value": "1036",
+       "label": "تقديم خدمات الضيافة لمنسوبي الهيئة"
+      },
+      {
+       "value": "1046",
+       "label": "توفير اعلام الدول"
+      },
+      {
+       "value": "1051",
+       "label": "تقديم المطبوعات واللوحات المرئية"
+      },
+      {
+       "value": "1060",
+       "label": "الخدمات الاستشارية لإجراء دراسة لبناء استراتيجية إدارة الأصول والخطة السنوية للأعمال"
+      },
+      {
+       "value": "1072",
+       "label": "توفير الأجهزة الكهربائية و المنزلية."
+      },
+      {
+       "value": "1103",
+       "label": "تقديم الخدمات والاعمال الخاصة بالكاميرات الأمنية."
+      },
+      {
+       "value": "1104",
+       "label": "الدراسة الاكتوارية لمشروع النقل والتسكين لموظفي الهيئة العامة للطرق"
+      },
+      {
+       "value": "1110",
+       "label": "تأمين سترات وكابات"
+      },
+      {
+       "value": "1172",
+       "label": "تحديث وتطوير الأدلة والمواصفات الفنية والمواصفات العامة للطرق والجسور"
+      },
+      {
+       "value": "1198",
+       "label": "مشروع الخدمات المدارة للطباعة المركزية"
+      },
+      {
+       "value": "1205",
+       "label": "تقديم خدمات الاحتفال بالمناسبات الوطنية"
+      },
+      {
+       "value": "1206",
+       "label": "مشروع استدامة الاعمال لمسك الحسابات وإعداد القوائم المالية لعام 2024م"
+      },
+      {
+       "value": "1317",
+       "label": "توفير خدمات وبرامج تقنية"
+      },
+      {
+       "value": "1333",
+       "label": "تنفيذ وتوفير خدمات المشاركة في المعارض والمؤتمرات"
+      },
+      {
+       "value": "1401",
+       "label": "قائمة المكاتب الاستشارية للمحتوى المحلى"
+      },
+      {
+       "value": "1467",
+       "label": "خدمات الرفع المساحي والتقييم العقاري"
+      },
+      {
+       "value": "1578",
+       "label": "خدمات جرد وحصر الاصول العينية والثابتة بالأنظمة المتخصصة"
+      },
+      {
+       "value": "1616",
+       "label": "قائمة الشركات الاستشارية للإشراف على صيانة الطرق بالمملكة المبنية على الاداء"
+      },
+      {
+       "value": "1661",
+       "label": "قائمة خدمات وأعمال البنية التحتية لتقنية المعلومات"
+      },
+      {
+       "value": "1730",
+       "label": "قائمة الشركات الاستشارية للإشراف على تنفيذ الطرق والجسور بالمملكة"
+      },
+      {
+       "value": "1761",
+       "label": "قائمة الخدمات الاستشارية الادارية العامة"
+      }
+     ]
+    },
+    {
+     "key": "QualificationType",
+     "label": "التأهيل المسبق",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "التأهيل المسبق"
+      },
+      {
+       "value": "false",
+       "label": "التأهيل اللاحق"
+      }
+     ]
+    },
+    {
+     "key": "HasQualification",
+     "label": "تتطلب المنافسة إجراء تأهيل مسبق",
+     "control": "checkbox",
+     "required": true,
+     "choices": [
+      {
+       "value": "true",
+       "label": "تتطلب المنافسة إجراء تأهيل مسبق"
+      }
+     ]
+    },
+    {
+     "key": "HasInternalPreQualification",
+     "label": "نعم",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "نعم",
+       "default": true
+      },
+      {
+       "value": "false",
+       "label": "لا"
+      }
+     ]
+    },
+    {
+     "key": "PreQualificationId",
+     "label": "التأهيل المسبق",
+     "control": "select",
+     "options": []
+    },
+    {
+     "key": "ExternalPreQualificationReference",
+     "label": "رقم دعوة التأهيل المسبق التي تمت خارج المنصة",
+     "control": "text",
+     "maxLength": 100
+    },
+    {
+     "key": "OfferPresentationWayId",
+     "label": "طريقة تقديم العروض",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "1",
+       "label": "طريقة تقديم العروض",
+       "default": true
+      },
+      {
+       "value": "2",
+       "label": "طريقة تقديم العروض"
+      }
+     ]
+    },
+    {
+     "key": "InvitationTypeId",
+     "label": "إعلان بالبوابة (جميع الموردين)",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "1",
+       "label": "إعلان بالبوابة (جميع الموردين)"
+      },
+      {
+       "value": "2",
+       "label": "دعوات خاصة",
+       "default": true
+      }
+     ]
+    },
+    {
+     "key": "SupplierNeedSample",
+     "label": "نعم",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "نعم"
+      },
+      {
+       "value": "false",
+       "label": "لا",
+       "default": true
+      }
+     ]
+    },
+    {
+     "key": "SamplesDeliveryAddress",
+     "label": "عنوان تسليم عينات للمورد",
+     "control": "text"
+    },
+    {
+     "key": "AgreementTypeId",
+     "label": "نوع الاتفاقية",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "2",
+       "label": "نوع الاتفاقية",
+       "default": true
+      },
+      {
+       "value": "1",
+       "label": "نوع الاتفاقية",
+       "default": true
+      }
+     ]
+    },
+    {
+     "key": "AgreementDays",
+     "label": "أيام",
+     "control": "number"
+    },
+    {
+     "key": "AgreementMonthes",
+     "label": "شهور",
+     "control": "number"
+    },
+    {
+     "key": "AgreementYears",
+     "label": "سنوات",
+     "control": "number"
+    },
+    {
+     "key": "TenderAgreementAgencyIDs",
+     "label": "الجهات المستفيدة",
+     "control": "select",
+     "multiple": true
+    },
+    {
+     "key": "NumberOfWinners",
+     "label": "عدد الفائزين",
+     "control": "number"
+    },
+    {
+     "key": "BonusValue",
+     "label": "قيمة المكافئة",
+     "control": "number"
+    },
+    {
+     "key": "Purpose",
+     "label": "الغرض من المنافسة",
+     "control": "textarea",
+     "required": true,
+     "requiredMessage": "الرجاء إدخال الغرض من المنافسة",
+     "maxLength": 1024
+    },
+    {
+     "key": "EstimatedValue",
+     "label": "القيمة التقديرية",
+     "control": "number",
+     "maxLength": 15
+    },
+    {
+     "key": "EstimationRequestDuration",
+     "label": "مدة الرد(أيام)",
+     "control": "number",
+     "required": true
+    },
+    {
+     "key": "EstimatedValueRange",
+     "label": "نطاق القيمة التقديرية",
+     "control": "text"
+    },
+    {
+     "key": "IsLowBudgetDirectPurchase",
+     "label": "نوع الاجراء",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "false",
+       "label": "نوع الاجراء",
+       "default": true
+      },
+      {
+       "value": "true",
+       "label": "المسار للقيمه المنخفضه"
+      }
+     ]
+    },
+    {
+     "key": "DirectPurchaseCommitteeId",
+     "label": "إختر لجنة الشراء المباشر",
+     "control": "select",
+     "options": []
+    },
+    {
+     "key": "DirectPurchaseCommitteeMemberId",
+     "label": "إختر عضو لجنة الشراء المباشر",
+     "control": "select",
+     "options": []
+    },
+    {
+     "key": "IsProjectInsurance",
+     "label": "هل التأمين من متطلبات المنافسة",
+     "control": "radio",
+     "required": true,
+     "choices": [
+      {
+       "value": "true",
+       "label": "هل التأمين من متطلبات المنافسة",
+       "default": true
+      },
+      {
+       "value": "false",
+       "label": "هل التأمين من متطلبات المنافسة",
+       "default": true
+      }
+     ]
+    },
+    {
+     "key": "EstimatedIncome",
+     "label": "الدخل المتوقع",
+     "control": "number",
+     "maxLength": 15
+    },
+    {
+     "key": "GovDirectFinancialCosts",
+     "label": "التكاليف المالية المباشرة على الدولة",
+     "control": "number",
+     "maxLength": 15
+    },
+    {
+     "key": "AgencyBudgetProjectNumber",
+     "label": "اسم المنافسة",
+     "control": "data"
+    }
+   ]
+  },
+  {
+   "step": "classification",
+   "title": "مجال التصنيف وموقع التنفيذ والتقديم",
+   "fields": [
+    {
+     "key": "TenderTypeId",
+     "label": "مكان التنفيذ",
+     "control": "data",
+     "required": true,
+     "sampleValue": "4"
+    },
+    {
+     "key": "ReasonForLimitedTenderTypeId",
+     "label": "مكان التنفيذ",
+     "control": "data",
+     "sampleValue": "5"
+    },
+    {
+     "key": "TenderName",
+     "label": "مكان التنفيذ",
+     "control": "data",
+     "sampleValue": "تطوير منظومة إجراءات التراخيص والتصاريح"
+    },
+    {
+     "key": "ReferenceNumber",
+     "label": "مكان التنفيذ",
+     "control": "data",
+     "sampleValue": "260439013534"
+    },
+    {
+     "key": "TenderNumber",
+     "label": "مكان التنفيذ",
+     "control": "data",
+     "sampleValue": "0010000132"
+    },
+    {
+     "key": "IsUnitApprovedExcludedRequest",
+     "label": "مكان التنفيذ",
+     "control": "data"
+    },
+    {
+     "key": "InsideKSA",
+     "label": "داخل المملكة",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "داخل المملكة",
+       "default": true
+      },
+      {
+       "value": "false",
+       "label": "خارج المملكة"
+      }
+     ]
+    },
+    {
+     "key": "TenderAreaIDs",
+     "label": "المناطق",
+     "control": "select",
+     "multiple": true,
+     "options": [
+      {
+       "value": "1",
+       "label": "منطقة الرياض"
+      },
+      {
+       "value": "2",
+       "label": "منطقة مكة المكرمة"
+      },
+      {
+       "value": "3",
+       "label": "منطقة المدينة المنورة"
+      },
+      {
+       "value": "4",
+       "label": "منطقة القصيم"
+      },
+      {
+       "value": "5",
+       "label": "المنطقة الشرقية"
+      },
+      {
+       "value": "6",
+       "label": "منطقة عسير"
+      },
+      {
+       "value": "7",
+       "label": "منطقة تبوك"
+      },
+      {
+       "value": "8",
+       "label": "منطقة حائل"
+      },
+      {
+       "value": "9",
+       "label": "منطقة الحدود الشمالية"
+      },
+      {
+       "value": "10",
+       "label": "منطقة جازان"
+      },
+      {
+       "value": "11",
+       "label": "منطقة نجران"
+      },
+      {
+       "value": "12",
+       "label": "منطقة الباحة"
+      },
+      {
+       "value": "13",
+       "label": "منطقة الجوف"
+      }
+     ]
+    },
+    {
+     "key": "TenderCityIDs",
+     "label": "المدن",
+     "control": "select",
+     "multiple": true,
+     "options": [
+      {
+       "value": "44",
+       "label": "الرين"
+      },
+      {
+       "value": "45",
+       "label": "خريمان"
+      },
+      {
+       "value": "46",
+       "label": "الصحنة"
+      },
+      {
+       "value": "47",
+       "label": "البخرة"
+      },
+      {
+       "value": "48",
+       "label": "اشيقر"
+      },
+      {
+       "value": "49",
+       "label": "الجله"
+      },
+      {
+       "value": "50",
+       "label": "الهياثم"
+      },
+      {
+       "value": "51",
+       "label": "العمارية"
+      },
+      {
+       "value": "52",
+       "label": "الخنيقية"
+      },
+      {
+       "value": "53",
+       "label": "الوصيل"
+      },
+      {
+       "value": "54",
+       "label": "وادي نساح"
+      },
+      {
+       "value": "55",
+       "label": "الرويضة"
+      },
+      {
+       "value": "56",
+       "label": "الوسيع"
+      },
+      {
+       "value": "57",
+       "label": "الفويلق/القويعية"
+      },
+      {
+       "value": "58",
+       "label": "يبرين"
+      },
+      {
+       "value": "59",
+       "label": "تمير"
+      },
+      {
+       "value": "60",
+       "label": "ملهم"
+      },
+      {
+       "value": "61",
+       "label": "حوطة سدير"
+      },
+      {
+       "value": "62",
+       "label": "سدير التويم"
+      },
+      {
+       "value": "63",
+       "label": "الخاصره"
+      },
+      {
+       "value": "64",
+       "label": "القويعية"
+      },
+      {
+       "value": "65",
+       "label": "الدوادمي"
+      },
+      {
+       "value": "66",
+       "label": "السليل"
+      },
+      {
+       "value": "67",
+       "label": "عفيف"
+      },
+      {
+       "value": "68",
+       "label": "تبراك"
+      },
+      {
+       "value": "69",
+       "label": "البجادية"
+      },
+      {
+       "value": "70",
+       "label": "العيينة"
+      },
+      {
+       "value": "71",
+       "label": "الدرعيه"
+      },
+      {
+       "value": "72",
+       "label": "عرقه"
+      },
+      {
+       "value": "73",
+       "label": "الخرج"
+      },
+      {
+       "value": "74",
+       "label": "الدلم"
+      },
+      {
+       "value": "75",
+       "label": "وادي الدواسر"
+      },
+      {
+       "value": "76",
+       "label": "الرياض"
+      },
+      {
+       "value": "77",
+       "label": "الافلاج"
+      },
+      {
+       "value": "78",
+       "label": "الحريق"
+      },
+      {
+       "value": "79",
+       "label": "نفي"
+      },
+      {
+       "value": "80",
+       "label": "ساجر"
+      },
+      {
+       "value": "81",
+       "label": "حوطة بني تميم"
+      },
+      {
+       "value": "82",
+       "label": "الحاير"
+      },
+      {
+       "value": "83",
+       "label": "هيت"
+      },
+      {
+       "value": "84",
+       "label": "المزاحمية"
+      },
+      {
+       "value": "85",
+       "label": "ضرماء"
+      },
+      {
+       "value": "86",
+       "label": "شقراء"
+      },
+      {
+       "value": "87",
+       "label": "الزلفي"
+      },
+      {
+       "value": "88",
+       "label": "مرات"
+      },
+      {
+       "value": "89",
+       "label": "الغاط"
+      },
+      {
+       "value": "90",
+       "label": "المجمعه"
+      },
+      {
+       "value": "91",
+       "label": "ثادق"
+      },
+      {
+       "value": "92",
+       "label": "حريملاء"
+      },
+      {
+       "value": "93",
+       "label": "رماح"
+      },
+      {
+       "value": "94",
+       "label": "بنبان"
+      },
+      {
+       "value": "95",
+       "label": "الارطاويه"
+      },
+      {
+       "value": "96",
+       "label": "روضة سدير"
+      },
+      {
+       "value": "97",
+       "label": "سدوس"
+      },
+      {
+       "value": "98",
+       "label": "الوشم"
+      },
+      {
+       "value": "99",
+       "label": "الحمادة"
+      },
+      {
+       "value": "100",
+       "label": "جلاجل"
+      },
+      {
+       "value": "101",
+       "label": "القصب"
+      },
+      {
+       "value": "102",
+       "label": "السر"
+      }
+     ]
+    },
+    {
+     "key": "TenderCountriesIDs",
+     "label": "الدول",
+     "control": "select",
+     "multiple": true,
+     "options": [
+      {
+       "value": "1",
+       "label": "AW:آروبا"
+      },
+      {
+       "value": "2",
+       "label": "AZ:أذربيجان"
+      },
+      {
+       "value": "3",
+       "label": "AM:أرمينيا"
+      },
+      {
+       "value": "4",
+       "label": "ES:أسبانيا"
+      },
+      {
+       "value": "5",
+       "label": "AU:أستراليا"
+      },
+      {
+       "value": "6",
+       "label": "AF:أفغانستان"
+      },
+      {
+       "value": "7",
+       "label": "AL:ألبانيا"
+      },
+      {
+       "value": "8",
+       "label": "DE:ألمانيا"
+      },
+      {
+       "value": "9",
+       "label": "AG:أنتيجوا وبربودا"
+      },
+      {
+       "value": "10",
+       "label": "AO:أنجولا"
+      },
+      {
+       "value": "11",
+       "label": "AI:أنجويلا"
+      },
+      {
+       "value": "12",
+       "label": "AD:أندورا"
+      },
+      {
+       "value": "13",
+       "label": "UY:أورجواي"
+      },
+      {
+       "value": "14",
+       "label": "UZ:أوزبكستان"
+      },
+      {
+       "value": "15",
+       "label": "UG:أوغندا"
+      },
+      {
+       "value": "16",
+       "label": "UA:أوكرانيا"
+      },
+      {
+       "value": "17",
+       "label": "IE:أيرلندا"
+      },
+      {
+       "value": "18",
+       "label": "IS:أيسلندا"
+      },
+      {
+       "value": "19",
+       "label": "ET:اثيوبيا"
+      },
+      {
+       "value": "20",
+       "label": "ER:اريتريا"
+      },
+      {
+       "value": "21",
+       "label": "EE:استونيا"
+      },
+      {
+       "value": "22",
+       "label": "PN:فلسطين"
+      },
+      {
+       "value": "23",
+       "label": "AR:الأرجنتين"
+      },
+      {
+       "value": "24",
+       "label": "JO:الأردن"
+      },
+      {
+       "value": "25",
+       "label": "EC:الاكوادور"
+      },
+      {
+       "value": "26",
+       "label": "AE:الامارات العربية المتحدة"
+      },
+      {
+       "value": "27",
+       "label": "BS:الباهاما"
+      },
+      {
+       "value": "28",
+       "label": "BH:البحرين"
+      },
+      {
+       "value": "29",
+       "label": "BR:البرازيل"
+      },
+      {
+       "value": "30",
+       "label": "PT:البرتغال"
+      },
+      {
+       "value": "31",
+       "label": "BA:البوسنة والهرسك"
+      },
+      {
+       "value": "32",
+       "label": "GA:الجابون"
+      },
+      {
+       "value": "33",
+       "label": "ME:الجبل الأسود"
+      },
+      {
+       "value": "34",
+       "label": "DZ:الجزائر"
+      },
+      {
+       "value": "35",
+       "label": "DK:الدانمرك"
+      },
+      {
+       "value": "36",
+       "label": "CV:الرأس الأخضر"
+      },
+      {
+       "value": "37",
+       "label": "SV:السلفادور"
+      },
+      {
+       "value": "38",
+       "label": "SN:السنغال"
+      },
+      {
+       "value": "39",
+       "label": "SD:السودان"
+      },
+      {
+       "value": "40",
+       "label": "SE:السويد"
+      },
+      {
+       "value": "41",
+       "label": "EH:الصحراء الغربية"
+      },
+      {
+       "value": "42",
+       "label": "SO:الصومال"
+      },
+      {
+       "value": "43",
+       "label": "CN:الصين"
+      },
+      {
+       "value": "44",
+       "label": "IQ:العراق"
+      },
+      {
+       "value": "45",
+       "label": "VA:الفاتيكان"
+      },
+      {
+       "value": "46",
+       "label": "PH:الفيلبين"
+      },
+      {
+       "value": "47",
+       "label": "AQ:القطب الجنوبي"
+      },
+      {
+       "value": "48",
+       "label": "CM:الكاميرون"
+      },
+      {
+       "value": "49",
+       "label": "CG:الكونغو - برازافيل"
+      },
+      {
+       "value": "50",
+       "label": "KW:الكويت"
+      },
+      {
+       "value": "51",
+       "label": "HU:المجر"
+      },
+      {
+       "value": "52",
+       "label": "IO:المحيط الهندي البريطاني"
+      },
+      {
+       "value": "53",
+       "label": "MA:المغرب"
+      },
+      {
+       "value": "54",
+       "label": "TF:المقاطعات الجنوبية الفرنسية"
+      },
+      {
+       "value": "55",
+       "label": "MX:المكسيك"
+      },
+      {
+       "value": "56",
+       "label": "SA:المملكة العربية السعودية"
+      },
+      {
+       "value": "57",
+       "label": "GB:المملكة المتحدة"
+      },
+      {
+       "value": "58",
+       "label": "NO:النرويج"
+      },
+      {
+       "value": "59",
+       "label": "AT:النمسا"
+      },
+      {
+       "value": "60",
+       "label": "NE:النيجر"
+      },
+      {
+       "value": "61",
+       "label": "IN:الهند"
+      },
+      {
+       "value": "62",
+       "label": "US:الولايات المتحدة الأمريكية"
+      },
+      {
+       "value": "63",
+       "label": "JP:اليابان"
+      },
+      {
+       "value": "64",
+       "label": "YE:اليمن"
+      },
+      {
+       "value": "65",
+       "label": "GR:اليونان"
+      },
+      {
+       "value": "66",
+       "label": "ID:اندونيسيا"
+      },
+      {
+       "value": "67",
+       "label": "IR:ايران"
+      },
+      {
+       "value": "68",
+       "label": "IT:ايطاليا"
+      },
+      {
+       "value": "69",
+       "label": "PG:بابوا غينيا الجديدة"
+      },
+      {
+       "value": "70",
+       "label": "PY:باراجواي"
+      },
+      {
+       "value": "71",
+       "label": "PK:باكستان"
+      },
+      {
+       "value": "72",
+       "label": "PW:بالاو"
+      },
+      {
+       "value": "73",
+       "label": "BW:بتسوانا"
+      },
+      {
+       "value": "74",
+       "label": "PN:بتكايرن"
+      },
+      {
+       "value": "75",
+       "label": "BB:بربادوس"
+      },
+      {
+       "value": "76",
+       "label": "BM:برمودا"
+      },
+      {
+       "value": "77",
+       "label": "BN:بروناي"
+      },
+      {
+       "value": "78",
+       "label": "BE:بلجيكا"
+      },
+      {
+       "value": "79",
+       "label": "BG:بلغاريا"
+      },
+      {
+       "value": "80",
+       "label": "BZ:بليز"
+      },
+      {
+       "value": "81",
+       "label": "BD:بنجلاديش"
+      },
+      {
+       "value": "82",
+       "label": "PA:بنما"
+      },
+      {
+       "value": "83",
+       "label": "BJ:بنين"
+      },
+      {
+       "value": "84",
+       "label": "BT:بوتان"
+      },
+      {
+       "value": "85",
+       "label": "PR:بورتوريكو"
+      },
+      {
+       "value": "86",
+       "label": "BF:بوركينا فاسو"
+      },
+      {
+       "value": "87",
+       "label": "BI:بوروندي"
+      },
+      {
+       "value": "88",
+       "label": "PL:بولندا"
+      },
+      {
+       "value": "89",
+       "label": "BO:بوليفيا"
+      },
+      {
+       "value": "90",
+       "label": "PF:بولينيزيا الفرنسية"
+      },
+      {
+       "value": "91",
+       "label": "PE:بيرو"
+      },
+      {
+       "value": "92",
+       "label": "TZ:تانزانيا"
+      },
+      {
+       "value": "93",
+       "label": "TH:تايلند"
+      },
+      {
+       "value": "94",
+       "label": "TW:تايوان"
+      },
+      {
+       "value": "95",
+       "label": "TM:تركمانستان"
+      },
+      {
+       "value": "96",
+       "label": "TR:تركيا"
+      },
+      {
+       "value": "97",
+       "label": "TT:ترينيداد وتوباغو"
+      },
+      {
+       "value": "98",
+       "label": "TD:تشاد"
+      },
+      {
+       "value": "99",
+       "label": "TG:توجو"
+      },
+      {
+       "value": "100",
+       "label": "TV:توفالو"
+      },
+      {
+       "value": "101",
+       "label": "TK:توكيلو"
+      },
+      {
+       "value": "102",
+       "label": "TO:تونجا"
+      },
+      {
+       "value": "103",
+       "label": "TN:تونس"
+      },
+      {
+       "value": "104",
+       "label": "TL:تيمور الشرقية"
+      },
+      {
+       "value": "105",
+       "label": "JM:جامايكا"
+      },
+      {
+       "value": "106",
+       "label": "GI:جبل طارق"
+      },
+      {
+       "value": "107",
+       "label": "GD:جرينادا"
+      },
+      {
+       "value": "108",
+       "label": "GL:جرينلاند"
+      },
+      {
+       "value": "109",
+       "label": "AX:جزر أولان"
+      },
+      {
+       "value": "110",
+       "label": "AN:جزر الأنتيل الهولندية"
+      },
+      {
+       "value": "111",
+       "label": "TC:جزر الترك وجايكوس"
+      },
+      {
+       "value": "112",
+       "label": "KM:جزر القمر"
+      },
+      {
+       "value": "113",
+       "label": "KY:جزر الكايمن"
+      },
+      {
+       "value": "114",
+       "label": "MH:جزر المارشال"
+      },
+      {
+       "value": "115",
+       "label": "MV:جزر الملديف"
+      },
+      {
+       "value": "116",
+       "label": "UM:جزر الولايات المتحدة البعيدة الصغيرة"
+      },
+      {
+       "value": "117",
+       "label": "SB:جزر سليمان"
+      },
+      {
+       "value": "118",
+       "label": "FO:جزر فارو"
+      },
+      {
+       "value": "119",
+       "label": "VI:جزر فرجين الأمريكية"
+      },
+      {
+       "value": "120",
+       "label": "VG:جزر فرجين البريطانية"
+      },
+      {
+       "value": "121",
+       "label": "FK:جزر فوكلاند"
+      },
+      {
+       "value": "122",
+       "label": "CK:جزر كوك"
+      },
+      {
+       "value": "123",
+       "label": "CC:جزر كوكوس"
+      },
+      {
+       "value": "124",
+       "label": "MP:جزر ماريانا الشمالية"
+      },
+      {
+       "value": "125",
+       "label": "WF:جزر والس وفوتونا"
+      },
+      {
+       "value": "126",
+       "label": "CX:جزيرة الكريسماس"
+      },
+      {
+       "value": "127",
+       "label": "BV:جزيرة بوفيه"
+      },
+      {
+       "value": "128",
+       "label": "IM:جزيرة مان"
+      },
+      {
+       "value": "129",
+       "label": "NF:جزيرة نورفوك"
+      },
+      {
+       "value": "130",
+       "label": "HM:جزيرة هيرد وماكدونالد"
+      },
+      {
+       "value": "131",
+       "label": "CF:جمهورية افريقيا الوسطى"
+      },
+      {
+       "value": "132",
+       "label": "CZ:جمهورية التشيك"
+      },
+      {
+       "value": "133",
+       "label": "DO:جمهورية الدومينيك"
+      },
+      {
+       "value": "134",
+       "label": "CD:جمهورية الكونغو الديمقراطية"
+      },
+      {
+       "value": "135",
+       "label": "ZA:جمهورية جنوب افريقيا"
+      },
+      {
+       "value": "136",
+       "label": "GT:جواتيمالا"
+      },
+      {
+       "value": "137",
+       "label": "GP:جوادلوب"
+      },
+      {
+       "value": "138",
+       "label": "GU:جوام"
+      },
+      {
+       "value": "139",
+       "label": "GE:جورجيا"
+      },
+      {
+       "value": "140",
+       "label": "GS:جورجيا الجنوبية وجزر ساندويتش الجنوبية"
+      },
+      {
+       "value": "141",
+       "label": "DJ:جيبوتي"
+      },
+      {
+       "value": "142",
+       "label": "JE:جيرسي"
+      },
+      {
+       "value": "143",
+       "label": "DM:دومينيكا"
+      },
+      {
+       "value": "144",
+       "label": "RW:رواندا"
+      },
+      {
+       "value": "145",
+       "label": "RU:روسيا"
+      },
+      {
+       "value": "146",
+       "label": "BY:روسيا البيضاء"
+      },
+      {
+       "value": "147",
+       "label": "RO:رومانيا"
+      },
+      {
+       "value": "148",
+       "label": "RE:روينيون"
+      },
+      {
+       "value": "149",
+       "label": "ZM:زامبيا"
+      },
+      {
+       "value": "150",
+       "label": "ZW:زيمبابوي"
+      },
+      {
+       "value": "151",
+       "label": "CI:ساحل العاج"
+      },
+      {
+       "value": "152",
+       "label": "WS:ساموا"
+      },
+      {
+       "value": "153",
+       "label": "AS:ساموا الأمريكية"
+      },
+      {
+       "value": "154",
+       "label": "SM:سان مارينو"
+      },
+      {
+       "value": "155",
+       "label": "PM:سانت بيير وميكولون"
+      },
+      {
+       "value": "156",
+       "label": "VC:سانت فنسنت وغرنادين"
+      },
+      {
+       "value": "157",
+       "label": "KN:سانت كيتس ونيفيس"
+      },
+      {
+       "value": "158",
+       "label": "LC:سانت لوسيا"
+      },
+      {
+       "value": "159",
+       "label": "MF:سانت مارتين"
+      },
+      {
+       "value": "160",
+       "label": "SH:سانت هيلنا"
+      },
+      {
+       "value": "161",
+       "label": "ST:ساو تومي وبرينسيبي"
+      },
+      {
+       "value": "162",
+       "label": "LK:سريلانكا"
+      },
+      {
+       "value": "163",
+       "label": "SJ:سفالبارد وجان مايان"
+      },
+      {
+       "value": "164",
+       "label": "SK:سلوفاكيا"
+      },
+      {
+       "value": "165",
+       "label": "SI:سلوفينيا"
+      },
+      {
+       "value": "166",
+       "label": "SG:سنغافورة"
+      },
+      {
+       "value": "167",
+       "label": "SZ:سوازيلاند"
+      },
+      {
+       "value": "168",
+       "label": "SY:سوريا"
+      },
+      {
+       "value": "169",
+       "label": "SR:سورينام"
+      },
+      {
+       "value": "170",
+       "label": "CH:سويسرا"
+      },
+      {
+       "value": "171",
+       "label": "SL:سيراليون"
+      },
+      {
+       "value": "172",
+       "label": "SC:سيشل"
+      },
+      {
+       "value": "173",
+       "label": "CL:شيلي"
+      },
+      {
+       "value": "174",
+       "label": "RS:صربيا"
+      },
+      {
+       "value": "175",
+       "label": "CS:صربيا والجبل الأسود"
+      },
+      {
+       "value": "176",
+       "label": "TJ:طاجكستان"
+      },
+      {
+       "value": "177",
+       "label": "OM:عمان"
+      },
+      {
+       "value": "178",
+       "label": "GM:غامبيا"
+      },
+      {
+       "value": "179",
+       "label": "GH:غانا"
+      },
+      {
+       "value": "180",
+       "label": "GF:غويانا"
+      },
+      {
+       "value": "181",
+       "label": "GY:غيانا"
+      },
+      {
+       "value": "182",
+       "label": "GN:غينيا"
+      },
+      {
+       "value": "183",
+       "label": "GQ:غينيا الاستوائية"
+      },
+      {
+       "value": "184",
+       "label": "GW:غينيا بيساو"
+      },
+      {
+       "value": "185",
+       "label": "VU:فانواتو"
+      },
+      {
+       "value": "186",
+       "label": "FR:فرنسا"
+      },
+      {
+       "value": "187",
+       "label": "PS:فلسطين"
+      },
+      {
+       "value": "188",
+       "label": "VE:فنزويلا"
+      },
+      {
+       "value": "189",
+       "label": "FI:فنلندا"
+      },
+      {
+       "value": "190",
+       "label": "VN:فيتنام"
+      },
+      {
+       "value": "191",
+       "label": "FJ:فيجي"
+      },
+      {
+       "value": "192",
+       "label": "CY:قبرص"
+      },
+      {
+       "value": "193",
+       "label": "KG:قرغيزستان"
+      },
+      {
+       "value": "194",
+       "label": "QA:قطر"
+      },
+      {
+       "value": "195",
+       "label": "KZ:كازاخستان"
+      },
+      {
+       "value": "196",
+       "label": "NC:كاليدونيا الجديدة"
+      },
+      {
+       "value": "197",
+       "label": "HR:كرواتيا"
+      },
+      {
+       "value": "198",
+       "label": "KH:كمبوديا"
+      },
+      {
+       "value": "199",
+       "label": "CA:كندا"
+      },
+      {
+       "value": "200",
+       "label": "CU:كوبا"
+      },
+      {
+       "value": "201",
+       "label": "KR:كوريا الجنوبية"
+      },
+      {
+       "value": "202",
+       "label": "KP:كوريا الشمالية"
+      },
+      {
+       "value": "203",
+       "label": "CR:كوستاريكا"
+      },
+      {
+       "value": "204",
+       "label": "CO:كولومبيا"
+      },
+      {
+       "value": "205",
+       "label": "KI:كيريباتي"
+      },
+      {
+       "value": "206",
+       "label": "KE:كينيا"
+      },
+      {
+       "value": "207",
+       "label": "LV:لاتفيا"
+      },
+      {
+       "value": "208",
+       "label": "LA:لاوس"
+      },
+      {
+       "value": "209",
+       "label": "LB:لبنان"
+      },
+      {
+       "value": "210",
+       "label": "LU:لوكسمبورج"
+      },
+      {
+       "value": "211",
+       "label": "LY:ليبيا"
+      },
+      {
+       "value": "212",
+       "label": "LR:ليبيريا"
+      },
+      {
+       "value": "213",
+       "label": "LT:ليتوانيا"
+      },
+      {
+       "value": "214",
+       "label": "LI:ليختنشتاين"
+      },
+      {
+       "value": "215",
+       "label": "LS:ليسوتو"
+      },
+      {
+       "value": "216",
+       "label": "MQ:مارتينيك"
+      },
+      {
+       "value": "217",
+       "label": "MO:ماكاو الصينية"
+      },
+      {
+       "value": "218",
+       "label": "MT:مالطا"
+      },
+      {
+       "value": "219",
+       "label": "ML:مالي"
+      },
+      {
+       "value": "220",
+       "label": "MY:ماليزيا"
+      },
+      {
+       "value": "221",
+       "label": "YT:مايوت"
+      },
+      {
+       "value": "222",
+       "label": "MG:مدغشقر"
+      },
+      {
+       "value": "223",
+       "label": "EG:مصر"
+      },
+      {
+       "value": "224",
+       "label": "MK:مقدونيا"
+      },
+      {
+       "value": "225",
+       "label": "MW:ملاوي"
+      },
+      {
+       "value": "226",
+       "label": "ZZ:منطقة غير معرفة"
+      },
+      {
+       "value": "227",
+       "label": "MN:منغوليا"
+      },
+      {
+       "value": "228",
+       "label": "MR:موريتانيا"
+      },
+      {
+       "value": "229",
+       "label": "MU:موريشيوس"
+      },
+      {
+       "value": "230",
+       "label": "MZ:موزمبيق"
+      },
+      {
+       "value": "231",
+       "label": "MD:مولدافيا"
+      },
+      {
+       "value": "232",
+       "label": "MC:موناكو"
+      },
+      {
+       "value": "233",
+       "label": "MS:مونتسرات"
+      },
+      {
+       "value": "234",
+       "label": "MM:ميانمار"
+      },
+      {
+       "value": "235",
+       "label": "FM:ميكرونيزيا"
+      },
+      {
+       "value": "236",
+       "label": "NA:ناميبيا"
+      },
+      {
+       "value": "237",
+       "label": "NR:نورو"
+      },
+      {
+       "value": "238",
+       "label": "NP:نيبال"
+      },
+      {
+       "value": "239",
+       "label": "NG:نيجيريا"
+      },
+      {
+       "value": "240",
+       "label": "NI:نيكاراجوا"
+      },
+      {
+       "value": "241",
+       "label": "NZ:نيوزيلاندا"
+      },
+      {
+       "value": "242",
+       "label": "NU:نيوي"
+      },
+      {
+       "value": "243",
+       "label": "HT:هايتي"
+      },
+      {
+       "value": "244",
+       "label": "HN:هندوراس"
+      },
+      {
+       "value": "245",
+       "label": "NL:هولندا"
+      },
+      {
+       "value": "246",
+       "label": "HK:هونج كونج الصينية"
+      }
+     ]
+    },
+    {
+     "key": "NeedFinalGuarantee",
+     "label": "الضمان النهائي",
+     "control": "radio",
+     "required": true,
+     "choices": [
+      {
+       "value": "true",
+       "label": "الضمان النهائي",
+       "default": true
+      },
+      {
+       "value": "false",
+       "label": "لا يوجد ضمان"
+      }
+     ]
+    },
+    {
+     "key": "FinalGuaranteePercentage",
+     "label": "نسبة الضمان النهائي (لاتقل عن 5 % ولاتزيد عن 100%)",
+     "control": "number"
+    },
+    {
+     "key": "AwardingStoppingPeriod",
+     "label": "فترة التوقف",
+     "control": "number"
+    },
+    {
+     "key": "NeedInitialGuarantee",
+     "label": "ضمان إبتدائى",
+     "control": "radio",
+     "required": true,
+     "choices": [
+      {
+       "value": "true",
+       "label": "ضمان إبتدائى",
+       "default": true
+      },
+      {
+       "value": "false",
+       "label": "لا يوجد ضمان"
+      }
+     ]
+    },
+    {
+     "key": "InitialGuaranteePercentage",
+     "label": "نسبة الضمان الإبتدائي (أكبر من أو يساوى 1% و اقل من أو يساوي 2% .)",
+     "control": "number"
+    },
+    {
+     "key": "InitialGuaranteeAddress",
+     "label": "عنوان تقديم الضمان الإبتدائى",
+     "control": "text",
+     "maxLength": 1024
+    },
+    {
+     "key": "GuaranteeApprovalReferenceId",
+     "label": "موافقة وزارة المالية لنسبة الضمان النهائي",
+     "control": "text"
+    },
+    {
+     "key": "Details",
+     "label": "التفاصيل",
+     "control": "textarea",
+     "maxLength": 1024
+    },
+    {
+     "key": "TenderConstructionWorkIDs",
+     "label": "أعمال الإنشاء",
+     "control": "select",
+     "multiple": true,
+     "options": [
+      {
+       "value": "14",
+       "label": "آبار أنبوبية"
+      },
+      {
+       "value": "15",
+       "label": "حفر الآبار"
+      },
+      {
+       "value": "16",
+       "label": "آبار يدوية"
+      },
+      {
+       "value": "17",
+       "label": "الحـــدائق"
+      },
+      {
+       "value": "18",
+       "label": "تنظيــم المواقــع"
+      },
+      {
+       "value": "19",
+       "label": "شبكات الري للحدائق"
+      },
+      {
+       "value": "20",
+       "label": "تشجيــر الحدائق وتنظيم المواقـع"
+      },
+      {
+       "value": "21",
+       "label": "المنتزهـات العـامة"
+      },
+      {
+       "value": "22",
+       "label": "تشجير الشــوارع"
+      },
+      {
+       "value": "23",
+       "label": "توريد وتركيب أجهزة ومعدات الحاسب الآلي (حاسبات وشبكات وملحقات)"
+      },
+      {
+       "value": "24",
+       "label": "المعدات الإلكترونية الطبية / المختبرية"
+      },
+      {
+       "value": "25",
+       "label": "نظام التحكم بسير الإنتاج"
+      },
+      {
+       "value": "26",
+       "label": "نظام الرسائل المرئي والصوتي"
+      },
+      {
+       "value": "27",
+       "label": "الأعمال الالكترونية"
+      },
+      {
+       "value": "28",
+       "label": "معدات استوديوهات المرئيات والسمعيات"
+      },
+      {
+       "value": "29",
+       "label": "نظام المراقبة والأمن والسلامة"
+      },
+      {
+       "value": "30",
+       "label": "الســـــدود"
+      },
+      {
+       "value": "31",
+       "label": "الســــدود الخرسانية"
+      },
+      {
+       "value": "32",
+       "label": "الســــدود الترابية"
+      },
+      {
+       "value": "33",
+       "label": "المسالخ"
+      },
+      {
+       "value": "34",
+       "label": "مســالخ عـاديـة"
+      },
+      {
+       "value": "35",
+       "label": "مســالخ آليـة"
+      },
+      {
+       "value": "36",
+       "label": "حفر ودق الركائز"
+      },
+      {
+       "value": "37",
+       "label": "الحواجـز / الجسور / الطرق البحرية"
+      },
+      {
+       "value": "38",
+       "label": "أحواض إصالح السفن"
+      },
+      {
+       "value": "39",
+       "label": "الأعمال البحــريـة"
+      },
+      {
+       "value": "41",
+       "label": "الرصفة البحرية"
+      },
+      {
+       "value": "43",
+       "label": "المـراسي"
+      },
+      {
+       "value": "44",
+       "label": "أعمال التعميق والتنظيف"
+      },
+      {
+       "value": "45",
+       "label": "الطــــرق"
+      },
+      {
+       "value": "46",
+       "label": "السكك الحديدية"
+      },
+      {
+       "value": "47",
+       "label": "السفلته"
+      },
+      {
+       "value": "48",
+       "label": "إنشاء الطرق وتشمل (الأعمال الترابية الردم والتسوية والدك)"
+      },
+      {
+       "value": "49",
+       "label": "مدارج الطائرات"
+      },
+      {
+       "value": "50",
+       "label": "الجسور"
+      },
+      {
+       "value": "51",
+       "label": "الأنفاق"
+      },
+      {
+       "value": "52",
+       "label": "صوامع الغلال"
+      },
+      {
+       "value": "53",
+       "label": "نظـام التسخين الميكانيكي"
+      },
+      {
+       "value": "54",
+       "label": "محطات تنقية المياه / محطات تنقية الصرف الصحي"
+      },
+      {
+       "value": "55",
+       "label": "التوربينات / الغاليات البخـارية"
+      },
+      {
+       "value": "56",
+       "label": "محطات ضخ المياه والصرف الصحي"
+      },
+      {
+       "value": "57",
+       "label": "الأعمال الميكانيكية"
+      },
+      {
+       "value": "58",
+       "label": "محطـات توليد الطاقـة"
+      },
+      {
+       "value": "59",
+       "label": "نظــام التهـوية"
+      },
+      {
+       "value": "60",
+       "label": "نظام التكييف المركزي"
+      },
+      {
+       "value": "62",
+       "label": "شبكات مداولة الشحنات السـائبة"
+      },
+      {
+       "value": "63",
+       "label": "المصـاعد / السلالم المتحركة"
+      },
+      {
+       "value": "64",
+       "label": "أرصفة الحاويات"
+      },
+      {
+       "value": "65",
+       "label": "أنظمة مكافحة الحرائق"
+      },
+      {
+       "value": "66",
+       "label": "نظام السيور الناقلــة"
+      },
+      {
+       "value": "67",
+       "label": "نظام التــبريد"
+      },
+      {
+       "value": "69",
+       "label": "حاويات الغاز"
+      },
+      {
+       "value": "70",
+       "label": "بناء وإصالح السفن"
+      },
+      {
+       "value": "71",
+       "label": "الصوامع"
+      },
+      {
+       "value": "72",
+       "label": "المصانع"
+      },
+      {
+       "value": "73",
+       "label": "محارق النفايات"
+      },
+      {
+       "value": "74",
+       "label": "الأعمال الصنــاعية"
+      },
+      {
+       "value": "75",
+       "label": "مطاحن الدقيق"
+      },
+      {
+       "value": "76",
+       "label": "شبكات أنابيب البترول والغاز"
+      },
+      {
+       "value": "77",
+       "label": "المناجم والصناعات التعدينية"
+      },
+      {
+       "value": "78",
+       "label": "محطات تحلية المياه"
+      },
+      {
+       "value": "79",
+       "label": "المباني الفولاذية (الحديدية)"
+      },
+      {
+       "value": "80",
+       "label": "المباني سابقة الصب"
+      },
+      {
+       "value": "81",
+       "label": "المباني الخرسانية"
+      },
+      {
+       "value": "82",
+       "label": "المبـــاني"
+      },
+      {
+       "value": "83",
+       "label": "محطات توليد الطــاقة"
+      },
+      {
+       "value": "84",
+       "label": "إدارة الشوارع"
+      },
+      {
+       "value": "85",
+       "label": "محطات الطاقة الشمسية"
+      },
+      {
+       "value": "86",
+       "label": "الحماية الكاثودية"
+      },
+      {
+       "value": "87",
+       "label": "وحدات الطاقة غير المنقطعة"
+      },
+      {
+       "value": "88",
+       "label": "نقل وتوزيع الطاقة"
+      },
+      {
+       "value": "89",
+       "label": "محطات تحويل الطاقة"
+      },
+      {
+       "value": "92",
+       "label": "إشارات المرور الضوئية"
+      },
+      {
+       "value": "93",
+       "label": "محطات ضخ المياه والصرف الصحي"
+      },
+      {
+       "value": "94",
+       "label": "محطات تنقية الميـاه والصرف الصحي"
+      },
+      {
+       "value": "95",
+       "label": "خزانات المياه"
+      },
+      {
+       "value": "96",
+       "label": "أعمال المياه والصرف الصحي"
+      },
+      {
+       "value": "97",
+       "label": "شبكات تصريف السيول"
+      },
+      {
+       "value": "98",
+       "label": "شبكات المياه والصرف الصحي"
+      },
+      {
+       "value": "99",
+       "label": "مشاريع الري والصرف"
+      },
+      {
+       "value": "100",
+       "label": "تقنية الاتصالات"
+      },
+      {
+       "value": "101",
+       "label": "قدرات الشبكة الأساسية"
+      },
+      {
+       "value": "102",
+       "label": "خدمات اتصالات معززة"
+      },
+      {
+       "value": "103",
+       "label": "خدمات الإنترنت"
+      },
+      {
+       "value": "104",
+       "label": "اتصالات هاتفية محلية وبعيدة"
+      },
+      {
+       "value": "105",
+       "label": "خدمات اتصالات باستخدام الألياف"
+      },
+      {
+       "value": "106",
+       "label": "تطوير النظم والتطبيقات وقواعد البيانات"
+      },
+      {
+       "value": "107",
+       "label": "خدمات وصول العملاء"
+      },
+      {
+       "value": "108",
+       "label": "خدمات اتصالات باستخدام دوائر الطلب الهاتفي والخطوط المخصصة"
+      },
+      {
+       "value": "109",
+       "label": "خدمات اتصالات خلوية"
+      }
+     ]
+    },
+    {
+     "key": "TenderMentainanceRunnigWorkIDs",
+     "label": "أعمال الصيانة والتشغيل",
+     "control": "select",
+     "multiple": true,
+     "options": [
+      {
+       "value": "1",
+       "label": "صيانة وتشغيل المسالخ"
+      },
+      {
+       "value": "2",
+       "label": "تقنية الاتصالات"
+      },
+      {
+       "value": "3",
+       "label": "صيانة وتشغيل أعمال المياه والصرف الصحي"
+      },
+      {
+       "value": "4",
+       "label": "حفر الأبار"
+      },
+      {
+       "value": "5",
+       "label": "صيانة وتشغيل الأعمال الصناعية"
+      },
+      {
+       "value": "6",
+       "label": "تخديم وتأمين التغذية للمراكز الطبية"
+      },
+      {
+       "value": "7",
+       "label": "نظافة المدن والتخلص من مقالب النفايات وردمها"
+      },
+      {
+       "value": "8",
+       "label": "صيانة السدود"
+      },
+      {
+       "value": "9",
+       "label": "صيانة وتشغيل الأعمال البحرية"
+      },
+      {
+       "value": "10",
+       "label": "صيانة تقنية الاتصالات"
+      },
+      {
+       "value": "11",
+       "label": "صيــانة الحدائق والمنتزهـات"
+      },
+      {
+       "value": "12",
+       "label": "صيانة الطرق"
+      },
+      {
+       "value": "13",
+       "label": "صيانة وتشغيل الأعمال الميكانيكيـة"
+      },
+      {
+       "value": "14",
+       "label": "صيانة المباني"
+      },
+      {
+       "value": "15",
+       "label": "تخديم و تأمين الإعاشة للأفراد"
+      },
+      {
+       "value": "16",
+       "label": "صيانة المـراكـز الطبيــة"
+      },
+      {
+       "value": "17",
+       "label": "صيانة وتشغيل الأعمال الاكترونية"
+      },
+      {
+       "value": "18",
+       "label": "صيانة وتشغيل الأعمال الكهربائية"
+      },
+      {
+       "value": "19",
+       "label": "صيانة وتشغيل تقنية الاتصالات"
+      }
+     ]
+    },
+    {
+     "key": "TenderActivitieIDs",
+     "label": "الأنشطة",
+     "control": "select",
+     "multiple": true,
+     "options": [
+      {
+       "value": "101",
+       "label": "تجارة المواد الغذائية"
+      },
+      {
+       "value": "102",
+       "label": "تجارة الحاصلات الزراعية"
+      },
+      {
+       "value": "103",
+       "label": "تجارة المواشي والدواجن والأسماك ومنتجاتها"
+      },
+      {
+       "value": "104",
+       "label": "تجارة الملابس والأقمشة والعطور والساعات وأدوات التجميل والنظارات"
+      },
+      {
+       "value": "105",
+       "label": "تجارة الكماليات"
+      },
+      {
+       "value": "106",
+       "label": "تجارة الأثاث المنزلي والمفروشات والستائر والسجاد"
+      },
+      {
+       "value": "107",
+       "label": "تجارة الأواني والأدوات المنزلية"
+      },
+      {
+       "value": "108",
+       "label": "تجارة الأدوات والآلات والأجهزة"
+      },
+      {
+       "value": "109",
+       "label": "تجارة مواد البناء والأدوات الكهربائية والصحية"
+      },
+      {
+       "value": "110",
+       "label": "تجارة السيارات والمعدات والماكينات"
+      },
+      {
+       "value": "111",
+       "label": "تجارة قطع الغيار الجديدة"
+      },
+      {
+       "value": "112",
+       "label": "تجارة قطع الغيار المستعملة والسكراب"
+      },
+      {
+       "value": "113",
+       "label": "تجارة الفحم والحطب"
+      },
+      {
+       "value": "114",
+       "label": "تجارة المواد الكيماوية"
+      },
+      {
+       "value": "115",
+       "label": "تجارة الدراجات بأنواعها والألعاب"
+      },
+      {
+       "value": "117",
+       "label": "تجارة المعادن الثمينة والأحجار الكريمة"
+      },
+      {
+       "value": "118",
+       "label": "مستودعات الادوية والصيدليات - الأدوية"
+      },
+      {
+       "value": "119",
+       "label": "مستودعات الادوية والصيدليات - المستلزمات الطبية"
+      },
+      {
+       "value": "202",
+       "label": "مقاولات عامة للمباني (الانشاء، الإصلاح، الهدم، الترميم)"
+      },
+      {
+       "value": "204",
+       "label": "مقاولات الإنشاءات العامة (التشييد و بناء المرافق العامة) - إنشاء الطرق"
+      },
+      {
+       "value": "205",
+       "label": "مقاولات الإنشاءات العامة (التشييد و بناء المرافق العامة)- إنشاءات عامة"
+      },
+      {
+       "value": "206",
+       "label": "مقاولات فرعية تخصصية (أنشطة التشييد المتخصصة)-إنشاء الطرق"
+      },
+      {
+       "value": "207",
+       "label": "مقاولات فرعية تخصصية (أنشطة التشييد المتخصصة)- إنشاءات عامة"
+      },
+      {
+       "value": "401",
+       "label": "بيع وشراء الأراضي والعقارات"
+      },
+      {
+       "value": "501",
+       "label": "صُنع المنتجات الغذائية"
+      },
+      {
+       "value": "502",
+       "label": "صُنع المشروبات"
+      },
+      {
+       "value": "503",
+       "label": "صُنع منتجات التبغ"
+      },
+      {
+       "value": "504",
+       "label": "صُنع المنسوجات"
+      },
+      {
+       "value": "505",
+       "label": "صُنع الملبوسات"
+      },
+      {
+       "value": "506",
+       "label": "صُنع المنتجات الجلدية والمنتجات ذات الصلة"
+      },
+      {
+       "value": "507",
+       "label": "صُنع الخشب ومنتجاته والفلين ، باستثناء الأثاث"
+      },
+      {
+       "value": "508",
+       "label": "صُنع الورق ومنتجاته"
+      },
+      {
+       "value": "509",
+       "label": "صُنع فحم الكوك والمنتجات النفطية المكررة"
+      },
+      {
+       "value": "510",
+       "label": "صُنع المواد الكيميائية والمنتجات الكيميائية"
+      },
+      {
+       "value": "511",
+       "label": "صُنع المنتجات الصيدلانية الأساسية والمستحضرات الصيدلانية"
+      },
+      {
+       "value": "512",
+       "label": "صُنع منتجات المطاط واللدائن"
+      },
+      {
+       "value": "513",
+       "label": "صُنع منتجات المعادن اللافلزية الأخرى"
+      },
+      {
+       "value": "514",
+       "label": "صُنع الفلّزات القاعدية"
+      },
+      {
+       "value": "515",
+       "label": "صُنع منتجات المعادن المشكّلة ، باستثناء الآلات والمعدات"
+      },
+      {
+       "value": "516",
+       "label": "صُنع الحواسيب والمنتجات الإلكترونية والبصرية"
+      },
+      {
+       "value": "517",
+       "label": "صُنع المعدات الكهربائية"
+      },
+      {
+       "value": "518",
+       "label": "صُنع الآلات والمعدات غير المصنّفة في موضع آخر"
+      },
+      {
+       "value": "519",
+       "label": "صُنع المركبات ذات المحرّكات والمركبات المقطورة ونصف المقطورة"
+      },
+      {
+       "value": "520",
+       "label": "صُنع معدات النقل الأخرى"
+      },
+      {
+       "value": "521",
+       "label": "صُنع الأثاث"
+      },
+      {
+       "value": "522",
+       "label": "الصناعة التحويلية الأخرى"
+      },
+      {
+       "value": "523",
+       "label": "أنشطة التدوير وجمع النفايات ومعالجتها وتصريفها واسترجاع المواد"
+      },
+      {
+       "value": "524",
+       "label": "التعدين"
+      },
+      {
+       "value": "601",
+       "label": "إمدادات الكهرباء والغاز والمياه والبخار وتكييف الهواء"
+      },
+      {
+       "value": "701",
+       "label": "المناجم والمحاجر"
+      },
+      {
+       "value": "702",
+       "label": "البترول"
+      },
+      {
+       "value": "801",
+       "label": "خدمات النشر والطباعة والدعاية والاعلان والإنتاج الفني"
+      },
+      {
+       "value": "901",
+       "label": "الإتصالات"
+      },
+      {
+       "value": "902",
+       "label": "تقنية المعلومات"
+      },
+      {
+       "value": "1001",
+       "label": "أنشطة زراعية"
+      },
+      {
+       "value": "1002",
+       "label": "الصيد"
+      },
+      {
+       "value": "1003",
+       "label": "أنشطة بيطرية"
+      },
+      {
+       "value": "1101",
+       "label": "الأنشطة الطبية"
+      },
+      {
+       "value": "1102",
+       "label": "أنشطة النقاهة"
+      },
+      {
+       "value": "1201",
+       "label": "أنشطة التعليم"
+      },
+      {
+       "value": "1202",
+       "label": "أنشطة التدريب"
+      },
+      {
+       "value": "1301",
+       "label": "التوظيف"
+      },
+      {
+       "value": "1302",
+       "label": "الاستقدام"
+      },
+      {
+       "value": "1401",
+       "label": "أنشطة الأمن و السلامة"
+      },
+      {
+       "value": "1501",
+       "label": "انشطة النقل والتخزين"
+      },
+      {
+       "value": "1502",
+       "label": "أنشطة البريد"
+      },
+      {
+       "value": "1601",
+       "label": "انشطة الاستشارات القانونية"
+      },
+      {
+       "value": "1602",
+       "label": "انشطة الاستشارات المالية"
+      },
+      {
+       "value": "1603",
+       "label": "انشطة الاستشارات الادارية"
+      },
+      {
+       "value": "1605",
+       "label": "انشطة الاستشارات و الترجمة"
+      },
+      {
+       "value": "1607",
+       "label": "انشطة الاستشارات الأمنية"
+      },
+      {
+       "value": "1609",
+       "label": "الأنشطة الاستشارية الأخرى"
+      },
+      {
+       "value": "1610",
+       "label": "انشطة الاستشارات الهندسية - تصميم"
+      },
+      {
+       "value": "1611",
+       "label": "انشطة الاستشارات الهندسية- اشراف"
+      },
+      {
+       "value": "1701",
+       "label": "أنشطة المعارض والمؤتمرات"
+      },
+      {
+       "value": "1702",
+       "label": "أنشطة الايواء"
+      },
+      {
+       "value": "1703",
+       "label": "أنشطة المطاعم وخدمات التموين"
+      },
+      {
+       "value": "1704",
+       "label": "أنشطة سياحية"
+      },
+      {
+       "value": "1801",
+       "label": "المالية والتمويل"
+      },
+      {
+       "value": "1802",
+       "label": "انشطة التأمين"
+      },
+      {
+       "value": "1901",
+       "label": "خدمات صيانة وإصلاح الطائرات"
+      },
+      {
+       "value": "1902",
+       "label": "خدمات التأجير"
+      },
+      {
+       "value": "1903",
+       "label": "خدمات عامة (تعقيب المعاملات)"
+      },
+      {
+       "value": "1904",
+       "label": "خدمات الحلاقة للرجال والأطفال"
+      },
+      {
+       "value": "1906",
+       "label": "خدمات غسيل الملابس والمفروشات والمنسوجات ومستلزماتها"
+      },
+      {
+       "value": "1907",
+       "label": "خدمات التخليص الجمركي"
+      },
+      {
+       "value": "1908",
+       "label": "الخدمات التجارية و الإدارية"
+      },
+      {
+       "value": "1909",
+       "label": "خدمات الخياطة و صالونات العناية الشخصية و التزيين"
+      },
+      {
+       "value": "1910",
+       "label": "خدمات صيانة وإصلاح المركبات"
+      },
+      {
+       "value": "1911",
+       "label": "خدمات صيانة واصلاح الأجهزة والمعدات والآلات"
+      },
+      {
+       "value": "1912",
+       "label": "خدمات تنجيد الأثاث"
+      },
+      {
+       "value": "1913",
+       "label": "خدمات صيانة واصلاح المنتجات المعدنية والحاويات والصهاريج"
+      },
+      {
+       "value": "1914",
+       "label": "الخدمات الاجتماعية"
+      },
+      {
+       "value": "1915",
+       "label": "الخدمات الرياضية"
+      },
+      {
+       "value": "1916",
+       "label": "الخدمات البيئية"
+      },
+      {
+       "value": "1918",
+       "label": "خدمات محطات الوقود وخدمات المركبات الأخرى"
+      },
+      {
+       "value": "1919",
+       "label": "خدمات الموانئ"
+      },
+      {
+       "value": "208",
+       "label": "التشغيل والصيانة والنظافة للمنشآت - التشغيل والصيانة"
+      },
+      {
+       "value": "302",
+       "label": "التشغيل والصيانة والنظافة للمنشآت - التشغيل وصيانة الطرق"
+      }
+     ]
+    },
+    {
+     "key": "IsTawreed",
+     "label": "تشمل المنافسة على بنود توريد",
+     "control": "checkbox",
+     "required": true,
+     "choices": [
+      {
+       "value": "true",
+       "label": "تشمل المنافسة على بنود توريد"
+      }
+     ]
+    },
+    {
+     "key": "TemplateYears",
+     "label": "عدد السنوات",
+     "control": "select",
+     "options": [
+      {
+       "value": "1",
+       "label": "سنة أو أقل"
+      },
+      {
+       "value": "2",
+       "label": "سنتين"
+      },
+      {
+       "value": "3",
+       "label": "ثلاث سنوات"
+      },
+      {
+       "value": "4",
+       "label": "أربع سنوات"
+      },
+      {
+       "value": "5",
+       "label": "خمس سنوات"
+      }
+     ]
+    },
+    {
+     "key": "ActivityDescription",
+     "label": "وصف النشاط",
+     "control": "textarea",
+     "maxLength": 1024
+    }
+   ]
+  },
+  {
+   "step": "datesAddresses",
+   "title": "العناوين والمواعيد المتعلقة بالمنافسة",
+   "fields": [
+    {
+     "key": "TenderTypeId",
+     "label": "العناوين والمواعيد المتعلقة بالمنافسة",
+     "control": "data",
+     "required": true,
+     "sampleValue": "4"
+    },
+    {
+     "key": "IsDivisible",
+     "label": "العناوين والمواعيد المتعلقة بالمنافسة",
+     "control": "data",
+     "sampleValue": "False"
+    },
+    {
+     "key": "IsTawreed",
+     "label": "العناوين والمواعيد المتعلقة بالمنافسة",
+     "control": "data",
+     "required": true,
+     "sampleValue": "False"
+    },
+    {
+     "key": "TenderName",
+     "label": "العناوين والمواعيد المتعلقة بالمنافسة",
+     "control": "data",
+     "sampleValue": "تطوير منظومة إجراءات التراخيص والتصاريح"
+    },
+    {
+     "key": "TenderNumber",
+     "label": "العناوين والمواعيد المتعلقة بالمنافسة",
+     "control": "data",
+     "sampleValue": "0010000132"
+    },
+    {
+     "key": "ReferenceNumber",
+     "label": "العناوين والمواعيد المتعلقة بالمنافسة",
+     "control": "data",
+     "sampleValue": "260439013534"
+    },
+    {
+     "key": "OffersOpeningAddressId",
+     "label": "مكان فتح العروض",
+     "control": "select",
+     "options": [
+      {
+       "value": "4180",
+       "label": "الهيئة العامة للطرق"
+      },
+      {
+       "value": "4738",
+       "label": "إلكترونياً على منصة اعتماد"
+      }
+     ]
+    },
+    {
+     "key": "OffersOpeningAddress",
+     "label": "مكان فتح العروض",
+     "control": "text"
+    },
+    {
+     "key": "SupplierNeedSample",
+     "label": "نعم",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "نعم"
+      },
+      {
+       "value": "false",
+       "label": "لا",
+       "default": true
+      }
+     ]
+    },
+    {
+     "key": "SamplesDeliveryAddress",
+     "label": "عنوان تسليم عينات للمورد",
+     "control": "text"
+    },
+    {
+     "key": "BuildingName",
+     "label": "المبنى",
+     "control": "text",
+     "required": true,
+     "requiredMessage": "الرجاء ادخال اسم المبنى"
+    },
+    {
+     "key": "FloarNumber",
+     "label": "الطابق",
+     "control": "text",
+     "required": true,
+     "requiredMessage": "الرجاء ادخال اسم الطابق"
+    },
+    {
+     "key": "DepartmentName",
+     "label": "الغرفة / اسم الادارة",
+     "control": "text",
+     "required": true,
+     "requiredMessage": "الرجاء ادخال الغرفة / اسم الادارة"
+    },
+    {
+     "key": "DeliveryDate",
+     "label": "تاريخ التسليم",
+     "control": "text",
+     "required": true,
+     "requiredMessage": "الرجاء ادخال تاريخ التسليم"
+    },
+    {
+     "key": "DeliveryTime",
+     "label": "وقت التسليم",
+     "control": "text",
+     "required": true,
+     "requiredMessage": "الرجاء ادخال وقت التسليم"
+    },
+    {
+     "key": "IsSampleAddresSameOffersAddress",
+     "label": "مكان تسليم العروض بنفس عنوان تسليم العينات",
+     "control": "checkbox",
+     "required": true,
+     "choices": [
+      {
+       "value": "true",
+       "label": "مكان تسليم العروض بنفس عنوان تسليم العينات"
+      }
+     ]
+    },
+    {
+     "key": "OfferDeliveryAddress",
+     "label": "عنوان تسليم العروض",
+     "control": "text",
+     "required": true,
+     "requiredMessage": "الرجاء ادخال عنوان تسليم العروض",
+     "maxLength": 100
+    },
+    {
+     "key": "OfferBuildingName",
+     "label": "المبنى",
+     "control": "text",
+     "required": true,
+     "requiredMessage": "الرجاء ادخال اسم المبنى",
+     "maxLength": 100
+    },
+    {
+     "key": "OfferFloarNumber",
+     "label": "الطابق",
+     "control": "text",
+     "required": true,
+     "requiredMessage": "الرجاء ادخال اسم الطابق",
+     "maxLength": 100
+    },
+    {
+     "key": "OfferDepartmentName",
+     "label": "الغرفة / اسم الادارة",
+     "control": "text",
+     "required": true,
+     "requiredMessage": "الرجاء ادخال الغرفة / اسم الادارة",
+     "maxLength": 100
+    },
+    {
+     "key": "OffersDeliveryDate",
+     "label": "تاريخ تسليم العروض",
+     "control": "text",
+     "required": true,
+     "requiredMessage": "الرجاء ادخال تاريخ التسليم"
+    },
+    {
+     "key": "OffersDeliveryTime",
+     "label": "وقت تسليم العروض",
+     "control": "text",
+     "required": true,
+     "requiredMessage": "الرجاء ادخال وقت التسليم"
+    },
+    {
+     "key": "NumberOfDaysForReceivingInquiries",
+     "label": "عدد ايام استلام الاستفسارات",
+     "control": "number",
+     "required": true,
+     "requiredMessage": "يجب إدخال قيمة لحقل عدد أيام استلام الاستفسارات"
+    },
+    {
+     "key": "NumberOfDaysForOfferPresentation",
+     "label": "عدد أيام استلام العرض",
+     "control": "number",
+     "required": true,
+     "requiredMessage": "يجب إدخال قيمة لحقل عدد أيام استلام العرض"
+    },
+    {
+     "key": "AwardingExpectedDate",
+     "label": "التاريخ المتوقع للترسية",
+     "control": "text",
+     "required": true,
+     "requiredMessage": "الرجاء إدخال التاريخ المتوقع للترسية"
+    },
+    {
+     "key": "StartingBusinessOrServicesDate",
+     "label": "تاريخ بدء الأعمال / الخدمات",
+     "control": "text",
+     "required": true,
+     "requiredMessage": "الرجاء إدخال تاريخ بدء الأعمال / الخدمات"
+    },
+    {
+     "key": "ContractDurationType",
+     "label": "نوع مدة العقد",
+     "control": "select",
+     "options": [
+      {
+       "value": "1",
+       "label": "يوم"
+      },
+      {
+       "value": "2",
+       "label": "أسبوع"
+      },
+      {
+       "value": "3",
+       "label": "شهر"
+      },
+      {
+       "value": "4",
+       "label": "سنة"
+      }
+     ]
+    },
+    {
+     "key": "contractDuration",
+     "label": "مدة العقد",
+     "control": "number"
+    }
+   ]
+  },
+  {
+   "step": "fragmentation",
+   "title": "تجزئة المنافسة",
+   "fields": [
+    {
+     "key": "groupName",
+     "label": "اسم الحزمة",
+     "control": "text"
+    },
+    {
+     "key": "groupDescription",
+     "label": "وصف الحزمة",
+     "control": "textarea",
+     "maxLength": 2000
+    },
+    {
+     "key": "IsDivisible",
+     "label": "تجزئة المنافسة",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "تجزئة المنافسة"
+      },
+      {
+       "value": "false",
+       "label": "تجزئة المنافسة",
+       "default": true
+      }
+     ]
+    },
+    {
+     "key": "DivisionReason",
+     "label": "الغرض من تجزئة المنافسة",
+     "control": "textarea",
+     "maxLength": 2000
+    },
+    {
+     "key": "ClassificationFieldId",
+     "label": "مجال التصنيف",
+     "control": "select",
+     "options": [
+      {
+       "value": "1",
+       "label": "قطاع التشييد والبناء"
+      },
+      {
+       "value": "2",
+       "label": "قطاع الاتصالات وتقنية المعلومات"
+      },
+      {
+       "value": "3",
+       "label": "قطاع التشغيل والصيانة والخدمات"
+      },
+      {
+       "value": "4",
+       "label": "قطاع التطوير العقاري"
+      },
+      {
+       "value": "5",
+       "label": "قطاع التغذية والإعاشة"
+      },
+      {
+       "value": "6",
+       "label": "إدارة المعارض والمؤتمرات"
+      },
+      {
+       "value": "7",
+       "label": "قطاع الشركات والمكاتب الاستشارية الهندسية"
+      },
+      {
+       "value": "8",
+       "label": "غير مطلوب"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "step": "spendingEfficiency",
+   "title": "مراجعة هيئة كفاءة الإنفاق",
+   "fields": [
+    {
+     "key": "IsUnitApprovedExcludedRequest",
+     "label": "مراجعة هيئة كفاءة الإنفاق",
+     "control": "data"
+    },
+    {
+     "key": "IsDivisible",
+     "label": "مراجعة هيئة كفاءة الإنفاق",
+     "control": "data",
+     "sampleValue": "False"
+    },
+    {
+     "key": "TenderTypeId",
+     "label": "مراجعة هيئة كفاءة الإنفاق",
+     "control": "data",
+     "required": true,
+     "sampleValue": "4"
+    },
+    {
+     "key": "SpendingEfficiencyAuthorityApprovalFileNetId",
+     "label": null,
+     "control": "text"
+    },
+    {
+     "key": "IsIncludeSymmetricItems",
+     "label": "تشمل بنود جداول الكميات على بنود متماثلة؟",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "تشمل بنود جداول الكميات على بنود متماثلة؟"
+      },
+      {
+       "value": "false",
+       "label": "تشمل بنود جداول الكميات على بنود متماثلة؟"
+      }
+     ]
+    },
+    {
+     "key": "IsUnitApprovedSymmetricItems",
+     "label": "يوجد موافقة مسبقة من هيئة كفاءة الإنفاق والمشروعات الحكومية؟",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "يوجد موافقة مسبقة من هيئة كفاءة الإنفاق والمشروعات الحكومية؟"
+      },
+      {
+       "value": "false",
+       "label": "يوجد موافقة مسبقة من هيئة كفاءة الإنفاق والمشروعات الحكومية؟"
+      }
+     ]
+    },
+    {
+     "key": "SymmetricItemsUnitApprovalFileNetId",
+     "label": null,
+     "control": "text"
+    },
+    {
+     "key": "IsIncludeTradeMark",
+     "label": "تشمل بنود جداول الكميات على ذكر لعلامة تجارية؟",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "تشمل بنود جداول الكميات على ذكر لعلامة تجارية؟"
+      },
+      {
+       "value": "false",
+       "label": "تشمل بنود جداول الكميات على ذكر لعلامة تجارية؟",
+       "default": true
+      }
+     ]
+    },
+    {
+     "key": "IsUnitApprovedTradeMark",
+     "label": "يوجد موافقة مسبقة من هيئة كفاءة الإنفاق والمشروعات الحكومية؟",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "يوجد موافقة مسبقة من هيئة كفاءة الإنفاق والمشروعات الحكومية؟"
+      },
+      {
+       "value": "false",
+       "label": "يوجد موافقة مسبقة من هيئة كفاءة الإنفاق والمشروعات الحكومية؟"
+      }
+     ]
+    },
+    {
+     "key": "TradeMarkUnitApprovalFileNetId",
+     "label": null,
+     "control": "text"
+    }
+   ]
+  },
+  {
+   "step": "quantityTables",
+   "title": "جداول الكميات",
+   "fields": [
+    {
+     "key": "HasAlternativeOffer",
+     "label": "نعم",
+     "control": "radio",
+     "required": true,
+     "choices": [
+      {
+       "value": "true",
+       "label": "نعم"
+      },
+      {
+       "value": "false",
+       "label": "لا",
+       "default": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "step": "bookletFiles",
+   "title": "ملفات المنافسة (الكراسة)",
+   "fields": [
+    {
+     "key": "Description",
+     "label": "تعريف عن المنافسة",
+     "control": "textarea",
+     "maxLength": 500
+    },
+    {
+     "key": "HideCerificatesIDs",
+     "label": "اخفاء قسم السجلات والتراخيص النظامية",
+     "control": "checkbox",
+     "required": true,
+     "choices": [
+      {
+       "value": "true",
+       "label": "اخفاء قسم السجلات والتراخيص النظامية"
+      }
+     ]
+    },
+    {
+     "key": "CerificatesIDs",
+     "label": "السجلات والتراخيص النظامية",
+     "control": "select",
+     "multiple": true,
+     "options": [
+      {
+       "value": "1",
+       "label": "السجل التجاري"
+      },
+      {
+       "value": "2",
+       "label": "تصنيف المقاولين"
+      },
+      {
+       "value": "3",
+       "label": "شهادة الزكاة"
+      },
+      {
+       "value": "4",
+       "label": "شهادة الضريبة"
+      },
+      {
+       "value": "5",
+       "label": "التأمينات الاجتماعية"
+      },
+      {
+       "value": "6",
+       "label": "شهادة اشتراك الغرفة التجارية"
+      },
+      {
+       "value": "7",
+       "label": "رخصة الاستثمار"
+      },
+      {
+       "value": "8",
+       "label": "شهادة السعودة"
+      },
+      {
+       "value": "9",
+       "label": "رخصة البلدية"
+      }
+     ]
+    },
+    {
+     "key": "AgentName",
+     "label": "الإسم",
+     "control": "text",
+     "maxLength": 2000
+    },
+    {
+     "key": "AgentPhone",
+     "label": "رقم الهاتف 1",
+     "control": "text",
+     "maxLength": 15
+    },
+    {
+     "key": "AgentFax",
+     "label": "رقم الفاكس",
+     "control": "text",
+     "maxLength": 15
+    },
+    {
+     "key": "AgentJob",
+     "label": "الوظيفة",
+     "control": "text",
+     "maxLength": 1000
+    },
+    {
+     "key": "AgentEmail",
+     "label": "البريد الالكتروني",
+     "control": "text",
+     "maxLength": 500
+    },
+    {
+     "key": "AgencyDecalration",
+     "label": "تعريف الجهة",
+     "control": "text",
+     "maxLength": 2000
+    },
+    {
+     "key": "LocalContentMechanismIDs",
+     "label": "تحديد آلية الأفضلية المستخدمة",
+     "control": "select",
+     "multiple": true,
+     "options": [
+      {
+       "value": "1",
+       "label": "آلية وزن المحتوى المحلي في التقييم المالي"
+      },
+      {
+       "value": "2",
+       "label": "آلية الحد الأدنى المطلوب للمحتوى المحلي"
+      },
+      {
+       "value": "3",
+       "label": "آلية التفضيل السعري للمنتج الوطني"
+      },
+      {
+       "value": "4",
+       "label": "تفضيل المنشآت الصغيرة والمتوسطة"
+      }
+     ]
+    },
+    {
+     "key": "IsApplyProvisionsMandatoryList",
+     "label": "تطبيق البنود الخاصة بالقائمة الالزامية",
+     "control": "checkbox",
+     "required": true,
+     "choices": [
+      {
+       "value": "true",
+       "label": "تطبيق البنود الخاصة بالقائمة الالزامية",
+       "default": true
+      }
+     ]
+    },
+    {
+     "key": "MinimumBaseline",
+     "label": "الحد الادنى لخط الأساس",
+     "control": "text"
+    },
+    {
+     "key": "MinimumPercentageLocalContentTarget",
+     "label": "الحد الادنى لنسبة المحتوى المحلي المستهدفة",
+     "control": "text"
+    },
+    {
+     "key": "StudyMinimumTargetFileNetReferenceId",
+     "label": "دراسة الحد الأدنى للمحتوى المحلي المستهدفة",
+     "control": "text"
+    },
+    {
+     "key": "LocalContentAgreementFileNetReferenceId",
+     "label": "موافقة هيئة المحتوى المحلي والمشتريات الحكومية على تطبيق آليات المحتوى المحلي للمنافسة بشكل استثنائي",
+     "control": "text"
+    },
+    {
+     "key": "IsSolidarity",
+     "label": "يمكن تقديم العروض بالتضامن؟",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "يمكن تقديم العروض بالتضامن؟",
+       "default": true
+      },
+      {
+       "value": "false",
+       "label": "يمكن تقديم العروض بالتضامن؟"
+      }
+     ]
+    },
+    {
+     "key": "RequiresSpecializedTechCapabilities",
+     "label": "نعم",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "نعم"
+      },
+      {
+       "value": "false",
+       "label": "لا"
+      }
+     ]
+    },
+    {
+     "key": "MaxTimeToAnswerQuestions",
+     "label": "اقصى مدة للاجابة على الاستفسارات",
+     "control": "number",
+     "required": true,
+     "requiredMessage": "يرجى إدخال أقصى مدة للإجابة على الإستفسارات"
+    },
+    {
+     "key": "AlternativeEmailForCommuncation",
+     "label": "البريد الالكتروني البديل للتواصل",
+     "control": "text",
+     "maxLength": 500
+    },
+    {
+     "key": "TechnicalOfferDocuments",
+     "label": "قائمة الوثائق الفنية",
+     "control": "data",
+     "sampleValue": "[\"الشهادات والتراخيص النظامية\",\"الخبرات السابقة\",\"خطاب تقديم العرض الفني\"]"
+    },
+    {
+     "key": "FinancialOfferDocuments",
+     "label": "قائمة الوثائق المالية",
+     "control": "data",
+     "sampleValue": "[\"الضمان الابتدائي\",\"خطاب تقديم العرض المالي\"]"
+    },
+    {
+     "key": "DocumentStyle",
+     "label": "متطلبات تنسيق العروض",
+     "control": "textarea"
+    },
+    {
+     "key": "AllowancePeriodToAddOffersIfNotAddedBeofre",
+     "label": "مدة السماح لاستكمال الشهادات إذا لم يقدم صاحب العرض مع عرضه أيا من الشهادات المطلوبة، أو أن الشهادة المقدمة منتهية الصلاحية ( لا تزيد عن 10 أيام)",
+     "control": "text",
+     "maxLength": 2
+    },
+    {
+     "key": "OffersEvaluationCriteria",
+     "label": "معايير تقييم العروض",
+     "control": "text",
+     "maxLength": 2000
+    },
+    {
+     "key": "OffersChecking",
+     "label": "فحص العروض",
+     "control": "text",
+     "maxLength": 2000
+    },
+    {
+     "key": "AllowedOfferSiningDays",
+     "label": "الفترة المسموحة لتوقيع العقود",
+     "control": "text",
+     "maxLength": 9
+    },
+    {
+     "key": "WritePrice",
+     "label": "كتابة الأسعار",
+     "control": "textarea"
+    },
+    {
+     "key": "PenaltiesText",
+     "label": "الغرامات",
+     "control": "textarea"
+    },
+    {
+     "key": "LateWorkPenaltiesRulesText",
+     "label": "صيغة واسلوب احتساب غرامات التأخير",
+     "control": "textarea"
+    },
+    {
+     "key": "PenaltiesOfLateValue",
+     "label": "إجمالي نسبة غرامات التأخير",
+     "control": "text"
+    },
+    {
+     "key": "technicalPassingMechanismWay",
+     "label": "على جميع المعايير",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "على جميع المعايير",
+       "default": true
+      },
+      {
+       "value": "false",
+       "label": "على كل معيار"
+      }
+     ]
+    },
+    {
+     "key": "isLevelTwo",
+     "label": "المستوى الثاني",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "المستوى الثاني",
+       "default": true
+      },
+      {
+       "value": "false",
+       "label": "المستوى الثالث"
+      }
+     ]
+    },
+    {
+     "key": "ProjectsScope",
+     "label": "نطاق عمل المشروع",
+     "control": "textarea"
+    },
+    {
+     "key": "WorksProgram",
+     "label": "برنامج العمل",
+     "control": "textarea"
+    },
+    {
+     "key": "WorkLocationDetails",
+     "label": "مكان تنفيذ الأعمال والخدمات",
+     "control": "textarea"
+    },
+    {
+     "key": "ServicesAndWorkImplementationsMethod",
+     "label": "كيفية تنفيذ الأعمال والخدمات",
+     "control": "textarea",
+     "maxLength": 2000
+    },
+    {
+     "key": "YearsNumberOfProfessionalExperienceForSaudis",
+     "label": "عدد سنوات الخبرة المهنية المطلوب حصرها على السعوديين",
+     "control": "number",
+     "required": true,
+     "requiredMessage": "يرجى إدخال أقصى مدة للإجابة على الإستفسارات",
+     "maxLength": 2
+    },
+    {
+     "key": "WorkforceSpecifications",
+     "label": "الشروط الخاصة بفريق العمل",
+     "control": "textarea",
+     "maxLength": 2500
+    },
+    {
+     "key": "QualitySpecifications",
+     "label": "مواصفات الجودة",
+     "control": "textarea",
+     "maxLength": 2000
+    },
+    {
+     "key": "SafetySpecifications",
+     "label": "مواصفات السلامة",
+     "control": "textarea",
+     "maxLength": 2000
+    },
+    {
+     "key": "IsIncludeTrainingAndknowledge",
+     "label": "هل تشمل المنافسة على بند التدريب ونقل المعرفة؟",
+     "control": "radio",
+     "choices": [
+      {
+       "value": "true",
+       "label": "هل تشمل المنافسة على بند التدريب ونقل المعرفة؟",
+       "default": true
+      },
+      {
+       "value": "false",
+       "label": "هل تشمل المنافسة على بند التدريب ونقل المعرفة؟",
+       "default": true
+      }
+     ]
+    },
+    {
+     "key": "IsProjectInsurance",
+     "label": "هل التأمين من متطلبات المنافسة",
+     "control": "radio",
+     "required": true,
+     "choices": [
+      {
+       "value": "true",
+       "label": "هل التأمين من متطلبات المنافسة",
+       "default": true
+      },
+      {
+       "value": "false",
+       "label": "هل التأمين من متطلبات المنافسة",
+       "default": true
+      }
+     ]
+    },
+    {
+     "key": "InsuranceRequirements",
+     "label": "اشتراطات التأمين",
+     "control": "textarea",
+     "maxLength": 4000
+    },
+    {
+     "key": "SpecialConditions",
+     "label": "الشروط الخاصة بحسب نطاق العمل:",
+     "control": "textarea",
+     "maxLength": 2500
+    },
+    {
+     "key": "QualificationCriteriaAttachmentNumber",
+     "label": "رقم الملحق لمرفق معايير التأهيل",
+     "control": "number"
+    },
+    {
+     "key": "Attachments",
+     "label": "الملحقات",
+     "control": "textarea",
+     "required": true,
+     "requiredMessage": "يجب ادخال البيانات الخاصة بالملحقات",
+     "maxLength": 2000
+    }
+   ]
+  }
+ ]
+}
