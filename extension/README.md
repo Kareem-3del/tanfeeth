@@ -137,9 +137,10 @@ extension/
 
 ## ملاحظات أمان
 
-- لا صلاحيات مضيف إضافية: سكربتات المحتوى محصورة في `localhost:3002` و
-  `tenders.etimad.sa` فقط، والصلاحية `storage` فقط.
+- لا صلاحيات مضيف إضافية: سكربتات المحتوى محصورة في نطاقات تنفيذ
+  (`localhost:3002` للتطوير، و`staging.tanfeeth.io` و`tanfeeth.io` /
+  `www.tanfeeth.io` للنشر) و`tenders.etimad.sa` فقط، والصلاحية `storage` فقط.
 - لا يُقبل `postMessage` إلا إذا كان مصدره نفس النافذة (`event.source === window`)
   وبنية الرسالة مطابقة للعقد.
-- عند اعتماد نطاقات staging لاحقًا، أضِفها إلى `content_scripts[0].matches`
-  في `manifest.json` (مثال: `https://*.tanfeeth.example/*`).
+- عند إضافة نطاق تنفيذ جديد، أضِفه إلى `content_scripts[0].matches` في
+  `manifest.json` ثم أعد تحميل الإضافة من `chrome://extensions`.

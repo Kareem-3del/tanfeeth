@@ -17,7 +17,10 @@
   "content_scripts": [
     {
       "matches": [
-        "http://localhost:3002/*"
+        "http://localhost:3002/*",
+        "https://staging.tanfeeth.io/*",
+        "https://tanfeeth.io/*",
+        "https://www.tanfeeth.io/*"
       ],
       "js": [
         "src/tanfeeth-capture.js"
