@@ -35,7 +35,7 @@ services:
       - tanfeeth-net
 
   web:
-    image: ghcr.io/kareem-3del/tanfeeth-frontend:prod
+    image: ghcr.io/kareem-3del/tanfeeth-frontend-v2:prod
     container_name: tanfeeth-web-prod
     restart: unless-stopped
     networks:
