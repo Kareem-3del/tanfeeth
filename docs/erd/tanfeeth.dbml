@@ -1,0 +1,600 @@
+// ─────────────────────────────────────────────────────────────
+// Tanfeeth — تنفيذ
+// Database ERD (DBML) — generated from the TypeORM entities of
+// tanfeeth-api. Paste into https://dbdiagram.io to explore.
+// 33 tables · 373 columns · 48 relations
+// ─────────────────────────────────────────────────────────────
+
+Project tanfeeth {
+  database_type: 'PostgreSQL'
+  Note: 'تنفيذ — منصة إدارة دورة حياة المنافسات والعقود الحكومية (single-organization deployment)'
+}
+
+Table users {
+  id uuid [pk]
+  email varchar(320) [not null]
+  password_hash varchar [not null]
+  full_name varchar(200)
+  title varchar(150)
+  phone varchar(40)
+  fax varchar(40)
+  is_active boolean [not null]
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'المستخدمون'
+}
+
+Table password_reset_tokens {
+  id uuid [pk]
+  user_id varchar [not null]
+  token_hash varchar(64) [not null]
+  expires_at timestamptz [not null]
+  used_at timestamptz
+  created_at timestamptz [not null]
+  Note: 'المصادقة'
+}
+
+Table refresh_tokens {
+  id uuid [pk]
+  user_id varchar [not null]
+  token_hash varchar(64) [not null]
+  expires_at timestamptz [not null]
+  revoked_at timestamptz
+  created_at timestamptz [not null]
+  Note: 'المصادقة'
+}
+
+Table permissions {
+  id uuid [pk]
+  key varchar(100) [not null]
+  description varchar(255)
+  Note: 'الأدوار والصلاحيات'
+}
+
+Table role_permissions {
+  role_id uuid [pk]
+  permission_id uuid [pk]
+  Note: 'الأدوار والصلاحيات'
+}
+
+Table roles {
+  id uuid [pk]
+  name varchar(100) [not null]
+  description varchar(255)
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'الأدوار والصلاحيات'
+}
+
+Table user_roles {
+  user_id uuid [pk]
+  role_id uuid [pk]
+  Note: 'الأدوار والصلاحيات'
+}
+
+Table organization_invitations {
+  id uuid [pk]
+  organization_id uuid [not null]
+  email varchar(320) [not null]
+  token_hash varchar(128) [not null]
+  status varchar(20) [not null]
+  expires_at timestamptz [not null]
+  invited_by uuid
+  accepted_at timestamptz
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'الجهة'
+}
+
+Table organization_memberships {
+  id uuid [pk]
+  organization_id uuid [not null]
+  user_id uuid [not null]
+  is_owner boolean [not null]
+  created_at timestamptz [not null]
+  Note: 'الجهة'
+}
+
+Table organizations {
+  id uuid [pk]
+  name varchar(300) [not null]
+  type varchar(20) [not null]
+  commercial_registration varchar(50) [not null]
+  status varchar(20) [not null]
+  approval_status varchar(20)
+  rejection_reason text
+  owner_id uuid [not null]
+  logo_file_id uuid
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'الجهة'
+}
+
+Table bid_documents {
+  id uuid [pk]
+  competition_id uuid [not null]
+  status varchar(20) [not null]
+  assigned_to uuid
+  assigned_by uuid
+  combined_document_ref varchar(200)
+  technical_document_ref varchar(200)
+  financial_document_ref varchar(200)
+  notes text
+  generated_from_rfp_draft_id uuid
+  generated_at timestamptz
+  submitted_at timestamptz
+  approved_at timestamptz
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'المنافسات'
+}
+
+Table competition_tender_data {
+  competition_id uuid [pk]
+  updated_at timestamptz [not null]
+  Note: 'المنافسات'
+}
+
+Table competitions {
+  id uuid [pk]
+  organization_id uuid
+  request_number varchar(100) [not null]
+  reference_number varchar(100)
+  title varchar(500) [not null]
+  description text
+  stage varchar(30) [not null]
+  status varchar(20) [not null]
+  requester_id uuid
+  requesting_department varchar(300)
+  supervising_department varchar(300)
+  plan_classification varchar(20)
+  plan_item_id uuid
+  deviation_reason varchar(40)
+  deviation_note text
+  procurement_type varchar(20)
+  tender_type varchar(100)
+  year int
+  estimated_value numeric
+  budget_amount numeric
+  budget_set_by uuid
+  requires_document_split boolean [not null]
+  requires_pmo_gate boolean [not null]
+  requires_cyber_gate boolean [not null]
+  requires_local_content_gate boolean [not null]
+  announcement_reference varchar(100)
+  published_at timestamptz
+  final_budget_commitment numeric
+  awarded_offer_id uuid
+  awarding_letter_reference varchar(100)
+  letter_of_intent_reference varchar(100)
+  awarded_at timestamptz
+  contract_scenario varchar(20)
+  contract_document_reference varchar(200)
+  contracted_at timestamptz
+  contract_id uuid
+  submitted_at timestamptz
+  approved_at timestamptz
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'المنافسات'
+}
+
+Table offers {
+  id uuid [pk]
+  competition_id uuid [not null]
+  contractor_name varchar(300) [not null]
+  contractor_cr varchar(50)
+  source varchar(10) [not null]
+  status varchar(25) [not null]
+  prequalified boolean
+  prequalification_note text
+  consolidated_technical_score numeric
+  ai_suggested_score numeric
+  ai_suggestion_rationale text
+  financial_amount numeric
+  on_mandatory_list boolean [not null]
+  meets_local_content boolean [not null]
+  is_sme boolean [not null]
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'المنافسات'
+}
+
+Table rfp_references {
+  id uuid [pk]
+  competition_id uuid [not null]
+  bid_document_id uuid
+  external_rfp_draft_id varchar(200) [not null]
+  status varchar(20) [not null]
+  last_export_file_id varchar(200)
+  technical_export_file_id varchar(200)
+  financial_export_file_id varchar(200)
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'المنافسات'
+}
+
+Table acceptance_certificates {
+  id uuid [pk]
+  contract_id uuid [not null]
+  type varchar(20) [not null]
+  reference_number varchar(100)
+  status varchar(20) [not null]
+  notes text
+  file_id uuid
+  drafted_by varchar(200)
+  issued_at timestamptz
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'العقود'
+}
+
+Table contract_line_items {
+  id uuid [pk]
+  contract_id uuid [not null]
+  item_number varchar(50) [not null]
+  description varchar(1000) [not null]
+  unit varchar(50)
+  quantity numeric
+  unit_price numeric
+  phase varchar(200)
+  contractor_completion numeric [not null]
+  proof_note text
+  proof_file_id uuid
+  confirmed boolean [not null]
+  confirmed_at timestamptz
+  confirmed_by varchar(200)
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'العقود'
+}
+
+Table contract_payments {
+  id uuid [pk]
+  contract_id uuid [not null]
+  payment_number int [not null]
+  amount numeric [not null]
+  period_from timestamptz
+  period_to timestamptz
+  boq_progress_snapshot numeric
+  status varchar(20) [not null]
+  mof_availability_confirmed boolean [not null]
+  notes text
+  created_by varchar(200)
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'العقود'
+}
+
+Table contract_reminders {
+  id uuid [pk]
+  contract_id uuid [not null]
+  type varchar(30) [not null]
+  title varchar(300) [not null]
+  message text
+  recipient_email varchar(320)
+  due_at timestamptz [not null]
+  status varchar(20) [not null]
+  sent_at timestamptz
+  created_by varchar(200)
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'العقود'
+}
+
+Table contract_workflow_states {
+  contract_id uuid [pk]
+  works_confirmed boolean [not null]
+  final_acceptance_requested boolean [not null]
+  supervising_department_notified boolean [not null]
+  certificate_prepared boolean [not null]
+  sent_to_committee boolean [not null]
+  signatures_collected boolean [not null]
+  certificate_distributed boolean [not null]
+  supervising_department_email varchar(320)
+  follow_up_at timestamptz
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'العقود'
+}
+
+Table contracts {
+  id uuid [pk]
+  organization_id uuid
+  contract_number varchar(100) [not null]
+  etimad_reference_number varchar(100)
+  bidding_number varchar(100)
+  competition_reference_number varchar(100)
+  purchase_order_number varchar(100)
+  sap_requisition_number varchar(100)
+  committee_memo_number varchar(100)
+  name varchar(500) [not null]
+  contractor_name varchar(300)
+  category varchar(150)
+  tender_type varchar(150)
+  status varchar(20) [not null]
+  plan_classification varchar(20)
+  year int
+  owner_name varchar(300)
+  supervising_department varchar(300)
+  responsible_employee varchar(200)
+  value numeric
+  revised_value numeric
+  change_orders_count int [not null]
+  completion_percentage numeric
+  disbursed_amount numeric
+  duration varchar(100)
+  revised_duration varchar(100)
+  sign_date date
+  start_date date
+  end_date date
+  end_of_warranty date
+  preliminary_acceptance_date date
+  final_acceptance_date date
+  awarding_report_date date
+  letter_of_intent_date date
+  envelopes_opening_date date
+  publishing_date date
+  bank_guarantee_value numeric
+  bank_guarantee_reference varchar(100)
+  bank_guarantee_expiry date
+  notes text
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'العقود'
+}
+
+Table project_commencements {
+  id uuid [pk]
+  contract_id uuid [not null]
+  type varchar(20) [not null]
+  status varchar(20) [not null]
+  initiated_by varchar(200)
+  confirmed_by varchar(200)
+  letter_reference varchar(100)
+  letter_issued_at timestamptz
+  commencement_date timestamptz
+  site_handover jsonb
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'العقود'
+}
+
+Table contractor_accounts {
+  id uuid [pk]
+  user_id uuid
+  commercial_registration varchar(50) [not null]
+  name varchar(300) [not null]
+  status varchar(20) [not null]
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'المتعاقدون'
+}
+
+Table contractor_contract_links {
+  id uuid [pk]
+  contractor_id uuid [not null]
+  contract_id uuid [not null]
+  created_at timestamptz [not null]
+  Note: 'المتعاقدون'
+}
+
+Table contractor_invitations {
+  id uuid [pk]
+  contract_id uuid [not null]
+  contractor_name varchar(300) [not null]
+  commercial_registration varchar(50) [not null]
+  email varchar(320) [not null]
+  token_hash varchar(128) [not null]
+  status varchar(20) [not null]
+  expires_at timestamptz [not null]
+  invited_by uuid
+  accepted_at timestamptz
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'المتعاقدون'
+}
+
+Table annual_plan_items {
+  id uuid [pk]
+  plan_id uuid [not null]
+  title varchar(500) [not null]
+  description text
+  department varchar(300)
+  estimated_budget numeric
+  expected_quarter int
+  status varchar(20) [not null]
+  linked_type varchar(20)
+  linked_id uuid
+  notes text
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'الخطة السنوية'
+}
+
+Table annual_plans {
+  id uuid [pk]
+  organization_id uuid
+  year int [not null]
+  title varchar(500) [not null]
+  status varchar(20) [not null]
+  approved_by uuid
+  approved_at timestamptz
+  notes text
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'الخطة السنوية'
+}
+
+Table out_of_plan_requests {
+  id uuid [pk]
+  organization_id uuid
+  year int [not null]
+  title varchar(500) [not null]
+  department varchar(300)
+  estimated_budget numeric
+  reason text [not null]
+  requested_by uuid
+  status varchar(20) [not null]
+  decided_by uuid
+  decision_comment text
+  decided_at timestamptz
+  linked_competition_id uuid
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'الخطة السنوية'
+}
+
+Table plan_amendments {
+  id uuid [pk]
+  plan_id uuid [not null]
+  item_id uuid
+  type varchar(20) [not null]
+  reason text [not null]
+  status varchar(20) [not null]
+  requested_by uuid
+  decided_by uuid
+  decided_at timestamptz
+  decision_comment text
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  Note: 'الخطة السنوية'
+}
+
+Table generated_reports {
+  id uuid [pk]
+  type varchar(40) [not null]
+  locale varchar(2) [not null]
+  format varchar(8) [not null]
+  title varchar(300) [not null]
+  status varchar(16) [not null]
+  file_id uuid
+  size int [not null]
+  requested_by uuid
+  filters jsonb
+  error text
+  created_at timestamptz [not null]
+  completed_at timestamptz
+  Note: 'التقارير'
+}
+
+Table stored_files {
+  id uuid [pk]
+  original_name varchar(400) [not null]
+  mime_type varchar(150) [not null]
+  size int [not null]
+  owner_id uuid
+  category varchar(40) [not null]
+  source varchar(40) [not null]
+  reference_id uuid
+  data bytea [not null]
+  created_at timestamptz [not null]
+  Note: 'الملفات'
+}
+
+Table audit_logs {
+  id uuid [pk]
+  actor_id uuid
+  actor_email varchar
+  organization_id uuid
+  method varchar [not null]
+  path text [not null]
+  resource varchar [not null]
+  action varchar [not null]
+  status_code int [not null]
+  summary jsonb
+  ip varchar
+  at timestamptz [not null]
+  Note: 'سجل التدقيق'
+}
+
+Table nav_settings {
+  id varchar(32) [pk]
+  hidden_keys simple-json [not null]
+  updated_at timestamptz [not null]
+  Note: 'الإعدادات'
+}
+
+// ── العلاقات / Relations ──
+Ref: organization_invitations.organization_id > organizations.id
+Ref: organizations.owner_id > users.id
+Ref: organizations.logo_file_id > stored_files.id
+Ref: user_roles.user_id > users.id
+Ref: user_roles.role_id > roles.id
+Ref: password_reset_tokens.user_id > users.id
+Ref: refresh_tokens.user_id > users.id
+Ref: acceptance_certificates.contract_id > contracts.id
+Ref: acceptance_certificates.file_id > stored_files.id
+Ref: contract_line_items.contract_id > contracts.id
+Ref: contract_reminders.contract_id > contracts.id
+Ref: contract_reminders.created_by > users.id
+Ref: contract_workflow_states.contract_id > contracts.id
+Ref: contracts.organization_id > organizations.id
+Ref: contract_payments.contract_id > contracts.id
+Ref: contract_payments.created_by > users.id
+Ref: project_commencements.contract_id > contracts.id
+Ref: annual_plan_items.plan_id > annual_plans.id
+Ref: annual_plans.organization_id > organizations.id
+Ref: annual_plans.approved_by > users.id
+Ref: out_of_plan_requests.organization_id > organizations.id
+Ref: out_of_plan_requests.requested_by > users.id
+Ref: out_of_plan_requests.decided_by > users.id
+Ref: plan_amendments.plan_id > annual_plans.id
+Ref: plan_amendments.item_id > contract_line_items.id
+Ref: plan_amendments.requested_by > users.id
+Ref: plan_amendments.decided_by > users.id
+Ref: bid_documents.competition_id > competitions.id
+Ref: bid_documents.assigned_to > users.id
+Ref: competitions.organization_id > organizations.id
+Ref: competitions.plan_item_id > annual_plan_items.id
+Ref: competitions.contract_id > contracts.id
+Ref: offers.competition_id > competitions.id
+Ref: rfp_references.competition_id > competitions.id
+Ref: rfp_references.bid_document_id > bid_documents.id
+Ref: competition_tender_data.competition_id > competitions.id
+Ref: stored_files.owner_id > users.id
+Ref: audit_logs.actor_id > users.id
+Ref: audit_logs.organization_id > organizations.id
+Ref: contractor_invitations.contract_id > contracts.id
+Ref: contractor_accounts.user_id > users.id
+Ref: generated_reports.file_id > stored_files.id
+Ref: generated_reports.requested_by > users.id
+Ref: contractor_contract_links.contract_id > contracts.id
+Ref: organization_memberships.organization_id > organizations.id
+Ref: organization_memberships.user_id > users.id
+Ref: role_permissions.role_id > roles.id
+Ref: role_permissions.permission_id > permissions.id
+
+TableGroup "المستخدمون والصلاحيات" { users
+  roles
+  permissions
+  role_permissions
+  user_roles
+  refresh_tokens
+  password_reset_tokens }
+TableGroup "الجهة" { organizations
+  organization_memberships
+  organization_invitations }
+TableGroup "المنافسات" { competitions
+  tender_data
+  bid_documents
+  offers
+  rfp_references }
+TableGroup "العقود" { contracts
+  contract_line_items
+  contract_workflow_states
+  acceptance_certificates
+  payments
+  project_commencements
+  contract_reminders }
+TableGroup "المتعاقدون" { contractors
+  contractor_contract_links
+  contractor_invitations }
+TableGroup "التخطيط" { annual_plans
+  annual_plan_items
+  plan_amendments
+  out_of_plan_requests }
+TableGroup "الحوكمة والملفات" { audit_logs
+  stored_files
+  generated_reports
+  nav_settings }
