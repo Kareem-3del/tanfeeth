@@ -19,6 +19,7 @@ It is derived directly from:
 | [`PRODUCT.ar.md`](./PRODUCT.ar.md) | العربية | النسخة العربية الكاملة (المرجع الأساسي للفريق): الرؤية، الشخصيات، الأدوار، دورة الحياة بسيناريوهاتها وقصص المستخدمين والخيارات، المسارات الاستثنائية، الوحدات، الذكاء الاصطناعي، التكاملات. |
 | [`RULES.md`](./RULES.md) | Bilingual | **Binding product, domain, and engineering rules** (R‑01 … R‑16). Referenced from the root `CLAUDE.md`. Read before building any feature. |
 | [`BACKLOG.md`](./BACKLOG.md) | English | **Delivery view** of the product: epics → stories → tasks → subtasks, dependencies, the contract‑execution action set, the delay→withdrawal→completion scenario, phasing, and a dependency graph. Traces every item to `FR-*` and `R-*`. Not a domain source of truth — defers to `PRODUCT`/`RULES`. |
+| [`DEPARTMENTS-COMMITTEES-PLAN.md`](./DEPARTMENTS-COMMITTEES-PLAN.md) | العربية | **خطة تنفيذ الإدارات واللجان** — الوضع الحالي بالأدلة، النموذج المقترح (إدارات/عتبات/لجان/محاضر/سرية)، ٣٧ قرارًا مطلوبًا من المختصين، وست مراحل تنفيذ بمعايير قبول. مسودة بانتظار القرارات. |
 
 ## What is Tanfeeth, in one paragraph
 
