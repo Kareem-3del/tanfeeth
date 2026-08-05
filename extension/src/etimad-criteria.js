@@ -135,6 +135,62 @@ const TNF_CRITERIA = (function () {
     return true;
   }
 
+  // ───────────────────────────────────────────── نافذة الإضافة (إن وُجدت) ──
+  //
+  // بعض إصدارات شاشة معايير التقييم لا تُضيف من الصف مباشرة: الضغط على
+  // «إضافة» يفتح نافذة تُملأ ثم يُضغط «تم». الـHTML الذي بُني عليه هذا الملف
+  // يُظهر الإضافة المباشرة، لذا نتعامل مع الحالتين بدل افتراض واحدة:
+  // نضغط «إضافة»، فإن ظهرت نافذة **نتيجةً لضغطتنا** أكملناها وضغطنا «تم»،
+  // وإلا فالإضافة تمت مباشرة.
+  //
+  // زر التأكيد يُطابَق مطابقة تامّة على ألفاظ قصيرة (تم/حفظ/تأكيد…) حتى لا
+  // يُلتقط «حفظ ومتابعة» — الإضافة لا تحفظ الخطوة أبدًا.
+
+  const CONFIRM_LABELS = ["تم", "حفظ", "إضافة", "اضافة", "موافق", "تأكيد", "اعتماد", "ok", "done", "save"];
+
+  function openDialogs() {
+    const nodes = document.querySelectorAll(
+      '.modal, [role="dialog"], .swal2-popup, .ui-dialog, .v-dialog, .el-dialog'
+    );
+    return Array.prototype.slice.call(nodes).filter(isVisible);
+  }
+
+  /** يُكمل نافذة الإضافة إن فُتحت بعد الضغط. @returns {used, confirmed} */
+  async function completeDialogIfAny(name, parentTitle, jquerySync, before) {
+    await sleep(500); // النافذة قد تُركَّب ديناميكيًا
+    const fresh = openDialogs().filter(function (d) {
+      return before.indexOf(d) === -1;
+    });
+    if (!fresh.length) return { used: false, confirmed: false };
+
+    const dlg = fresh[fresh.length - 1];
+
+    if (name) {
+      const input = Array.prototype.slice
+        .call(dlg.querySelectorAll('input[type="text"], input:not([type]), textarea'))
+        .filter(isVisible)[0];
+      if (input) setText(input, name);
+    }
+    if (parentTitle) {
+      const sel = Array.prototype.slice.call(dlg.querySelectorAll("select")).filter(isVisible)[0];
+      if (sel) selectParent(sel, parentTitle, jquerySync);
+    }
+    await sleep(180);
+
+    const buttons = Array.prototype.slice
+      .call(dlg.querySelectorAll('button, .btn, input[type="button"], input[type="submit"]'))
+      .filter(isVisible);
+    const confirm = buttons.find(function (b) {
+      const label = norm(b.textContent || b.value || "").toLowerCase();
+      return CONFIRM_LABELS.indexOf(label) !== -1;
+    });
+    if (!confirm) return { used: true, confirmed: false };
+
+    confirm.click();
+    await sleep(SETTLE_MS);
+    return { used: true, confirmed: true };
+  }
+
   // ──────────────────────────────────────────────────── DOM: جدول المعايير ──
 
   /**
@@ -282,14 +338,20 @@ const TNF_CRITERIA = (function () {
         const form = addRowFor("المستوى الثاني") || levelTwoForm;
         setText(form.input, title);
         await sleep(120);
+        const before = openDialogs();
         form.button.click();
-        await sleep(SETTLE_MS);
+        const dlg = await completeDialogIfAny(title, null, jquerySync, before);
+        if (!dlg.used) await sleep(SETTLE_MS);
         grid = table ? buildGrid(table) : [];
         const ok = existingLevelTwo(grid).has(title);
         out.rows.push({
           key: "معيار: " + title,
           status: ok ? "filled" : "failed",
-          detail: ok ? "أُضيف كمستوى ثانٍ" : "لم يظهر في الجدول بعد الإضافة",
+          detail: ok
+            ? "أُضيف كمستوى ثانٍ" + (dlg.used ? " (عبر نافذة الإضافة)" : "")
+            : dlg.used && !dlg.confirmed
+              ? "فُتحت نافذة الإضافة ولم يُعثر على زر التأكيد"
+              : "لم يظهر في الجدول بعد الإضافة",
         });
         if (ok) out.added += 1;
       }
@@ -325,13 +387,19 @@ const TNF_CRITERIA = (function () {
         await sleep(150);
         setText(form3.input, childTitle);
         await sleep(120);
+        const before3 = openDialogs();
         form3.button.click();
-        await sleep(SETTLE_MS);
+        const dlg3 = await completeDialogIfAny(childTitle, title, jquerySync, before3);
+        if (!dlg3.used) await sleep(SETTLE_MS);
         const ok3 = table ? existingPaths(buildGrid(table)).has(title + "›" + childTitle) : false;
         out.rows.push({
           key: "فرع: " + title + " › " + childTitle,
           status: ok3 ? "filled" : "failed",
-          detail: ok3 ? "أُضيف كمستوى ثالث" : "لم يظهر في الجدول بعد الإضافة",
+          detail: ok3
+            ? "أُضيف كمستوى ثالث" + (dlg3.used ? " (عبر نافذة الإضافة)" : "")
+            : dlg3.used && !dlg3.confirmed
+              ? "فُتحت نافذة الإضافة ولم يُعثر على زر التأكيد"
+              : "لم يظهر في الجدول بعد الإضافة",
         });
         if (ok3) out.added += 1;
       }
