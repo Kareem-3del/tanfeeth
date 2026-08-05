@@ -29,13 +29,26 @@ const TNF_CRITERIA = (function () {
     });
   }
 
+  // اعتماد يرفض الأرقام العربية‑الهندية، وبدون التحويل كان num("٣٠") ينتج 0
+  // (تُحذف الأرقام غير اللاتينية فيتبقى نص فارغ) — أي وزن صفر بلا خطأ ظاهر.
+  function toLatinDigits(s) {
+    return String(s).replace(/[٠-٩۰-۹]/g, function (d) {
+      const code = d.charCodeAt(0);
+      return String(code - (code <= 0x0669 ? 0x0660 : 0x06f0));
+    });
+  }
+
   function norm(v) {
-    return String(v == null ? "" : v).replace(/\s+/g, " ").trim();
+    return toLatinDigits(String(v == null ? "" : v))
+      .replace(/\s+/g, " ")
+      .trim();
   }
 
   function num(v) {
     if (v == null || v === "") return null;
-    const n = Number(String(v).replace(/[^\d.-]/g, ""));
+    const digits = toLatinDigits(v).replace(/[^\d.-]/g, "");
+    if (!digits || !/\d/.test(digits)) return null;
+    const n = Number(digits);
     return Number.isFinite(n) ? n : null;
   }
 

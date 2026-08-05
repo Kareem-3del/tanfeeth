@@ -57,8 +57,19 @@
     return location.pathname + location.search;
   }
 
+  // اعتماد يرفض الأرقام العربية‑الهندية (٠١٢) في حقول التاريخ والأرقام،
+  // ولوحة المفاتيح العربية تكتبها افتراضيًا. خط الدفاع الأخير قبل الكتابة
+  // في أي حقل: كل رقم يصل اعتماد لاتيني. (نظائره في المنصة: backend
+  // shared/domain/arabic-digits.ts و frontend-v2 lib/text/digits.ts)
+  function toLatinDigits(s) {
+    return String(s).replace(/[٠-٩۰-۹]/g, function (d) {
+      const code = d.charCodeAt(0);
+      return String(code - (code <= 0x0669 ? 0x0660 : 0x06f0));
+    });
+  }
+
   function normText(v) {
-    return String(v == null ? "" : v).trim();
+    return toLatinDigits(String(v == null ? "" : v)).trim();
   }
 
   // true / false / null (not boolean-ish)
