@@ -8,13 +8,18 @@
 (function () {
   const STORAGE_KEY = "tanfeethEtimadFill";
   const LOG_KEY = "tanfeethFillLog";
+  const SETTINGS_KEY = "tanfeethSettings";
   const MAX_AGE_MS = 2 * 60 * 60 * 1000; // ساعتان
   const AUTO_FILL_DELAY_MS = 1200; // let Etimad's own JS / select2 boot first
+
+  // الافتراضات لازم تطابق popup.js — المستخدم يغيّرها من واجهة الإضافة.
+  const DEFAULT_SETTINGS = { enabled: true, autoFill: true, showOverlay: true, fillCriteria: true };
 
   let bridgeInjected = false;
   let bridgeIdCounter = 0;
   let ui = null; // { frame, badge, textEl, fillBtn }
   let running = false;
+  let settings = DEFAULT_SETTINGS;
 
   // ────────────────────────────────────────────────────────── utilities ──
 
@@ -391,28 +396,37 @@
 
     // معايير التقييم — واجهة إضافة متكررة، تُنفَّذ بعد الحقول المسطّحة لأن
     // «آلية الاجتياز الفني» تُضبط ضمنها.
-    try {
-      setBadgeText("جارٍ إضافة معايير التقييم...");
-      const criteria = await TNF_CRITERIA.fill(rawPayload, jquerySync);
-      if (criteria.applicable) {
-        criteria.rows.forEach(function (r) {
-          if (r.status === "filled") filled += 1;
-          else if (r.status === "failed") failed += 1;
-          else skipped += 1;
-          rows.push({ key: r.key, step: "معايير التقييم", status: r.status, detail: r.detail });
-        });
-        criteria.notes.forEach(function (note) {
-          rows.push({ key: "ملاحظة", step: "معايير التقييم", status: "note", detail: note });
-        });
-      }
-    } catch (err) {
-      failed += 1;
+    if (!settings.fillCriteria) {
       rows.push({
         key: "معايير التقييم",
         step: "معايير التقييم",
-        status: "failed",
-        detail: String(err && err.message ? err.message : err).slice(0, 120),
+        status: "note",
+        detail: "متوقفة من إعدادات الإضافة",
       });
+    } else {
+      try {
+        setBadgeText("جارٍ إضافة معايير التقييم...");
+        const criteria = await TNF_CRITERIA.fill(rawPayload, jquerySync);
+        if (criteria.applicable) {
+          criteria.rows.forEach(function (r) {
+            if (r.status === "filled") filled += 1;
+            else if (r.status === "failed") failed += 1;
+            else skipped += 1;
+            rows.push({ key: r.key, step: "معايير التقييم", status: r.status, detail: r.detail });
+          });
+          criteria.notes.forEach(function (note) {
+            rows.push({ key: "ملاحظة", step: "معايير التقييم", status: "note", detail: note });
+          });
+        }
+      } catch (err) {
+        failed += 1;
+        rows.push({
+          key: "معايير التقييم",
+          step: "معايير التقييم",
+          status: "failed",
+          detail: String(err && err.message ? err.message : err).slice(0, 120),
+        });
+      }
     }
 
     try {
@@ -428,7 +442,16 @@
     // per-page fill log so reloads of the same step don't re-run automatically
     const items = await storageGet([LOG_KEY]);
     const log = items[LOG_KEY] || {};
-    log[pageKey()] = { filled: filled, skipped: skipped, failed: failed, at: Date.now() };
+    // تُحفَظ التفاصيل أيضًا لأن واجهة الإضافة (popup) تعرض «آخر تعبئة» منها.
+    log[pageKey()] = {
+      filled: filled,
+      skipped: skipped,
+      failed: failed,
+      at: Date.now(),
+      rows: rows.map(function (r) {
+        return { key: r.key, status: r.status, detail: String(r.detail || "").slice(0, 120) };
+      }),
+    };
     const patch = {};
     patch[LOG_KEY] = log;
     await storageSet(patch);
@@ -528,7 +551,10 @@
   // ──────────────────────────────────────────────────────────────── boot ──
 
   async function init() {
-    const items = await storageGet([STORAGE_KEY, LOG_KEY]);
+    const items = await storageGet([STORAGE_KEY, LOG_KEY, SETTINGS_KEY]);
+    settings = Object.assign({}, DEFAULT_SETTINGS, items[SETTINGS_KEY] || {});
+    if (!settings.enabled) return; // موقوفة من واجهة الإضافة → لا إطار ولا تعبئة
+
     const record = items[STORAGE_KEY];
     if (!record || !record.savedAt) return; // nothing captured → stay silent
 
@@ -552,21 +578,47 @@
       setFillButtonLabel("إعادة التعبئة");
     };
 
-    buildOverlay(doFill);
+    // إخفاء الشريط لا يعني إيقاف التعبئة — «التعبئة التلقائية» هي التي تقرر.
+    if (settings.showOverlay) buildOverlay(doFill);
 
     const title = record.meta && record.meta.title ? " (" + record.meta.title + ")" : "";
     if (alreadyFilled) {
       const prev = log[pageKey()];
       setBadgeText("سبق تعبئة هذه الصفحة (" + prev.filled + " حقلًا)" + title + " — يمكنك إعادة التعبئة");
       setFillButtonLabel("إعادة التعبئة");
-    } else {
-      setBadgeText("هذه الصفحة تحت تحكم إضافة تنفيذ — البيانات جاهزة للتعبئة" + title);
-      setTimeout(function () {
-        doFill().catch(function (err) {
-          console.warn("[Tanfeeth] auto-fill error:", err);
-        });
-      }, AUTO_FILL_DELAY_MS);
+      return;
     }
+
+    setBadgeText("هذه الصفحة تحت تحكم إضافة تنفيذ — البيانات جاهزة للتعبئة" + title);
+    if (!settings.autoFill) {
+      if (!ui) return; // بلا شريط وبلا تعبئة تلقائية → لا شيء يُفعَل
+      setBadgeText("البيانات جاهزة — اضغط «تعبئة الحقول»" + title);
+      return;
+    }
+    setTimeout(function () {
+      doFill().catch(function (err) {
+        console.warn("[Tanfeeth] auto-fill error:", err);
+      });
+    }, AUTO_FILL_DELAY_MS);
+  }
+
+  // تغيير الإعدادات من واجهة الإضافة ينعكس فورًا على الصفحة المفتوحة.
+  try {
+    chrome.storage.onChanged.addListener(function (changes, area) {
+      if (area !== "local" || !changes[SETTINGS_KEY]) return;
+      const next = Object.assign({}, DEFAULT_SETTINGS, changes[SETTINGS_KEY].newValue || {});
+      const wasVisible = settings.enabled && settings.showOverlay;
+      settings = next;
+      const isVisible = next.enabled && next.showOverlay;
+      if (wasVisible && !isVisible) removeOverlay();
+      else if (!wasVisible && isVisible && !running) {
+        init().catch(function () {
+          /* ignore */
+        });
+      }
+    });
+  } catch (_e) {
+    /* ignore */
   }
 
   try {

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <title>تنفيذ — التعبئة في اعتماد</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="hd">
+    <div class="hd-id">
+      <span class="hd-mark">تنفيذ</span>
+      <span class="hd-sub">التعبئة في اعتماد</span>
+    </div>
+    <label class="sw" title="تشغيل/إيقاف الإضافة">
+      <input type="checkbox" id="enabled">
+      <span class="sw-track"><span class="sw-thumb"></span></span>
+    </label>
+  </header>
+
+  <div id="state" class="state">
+    <span class="dot" id="dot"></span>
+    <span id="stateText">جارٍ القراءة…</span>
+  </div>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab is-on" data-tab="data" role="tab">البيانات</button>
+    <button class="tab" data-tab="log" role="tab">آخر تعبئة</button>
+    <button class="tab" data-tab="settings" role="tab">الإعدادات</button>
+  </nav>
+
+  <main>
+    <!-- ── البيانات ── -->
+    <section id="pane-data" class="pane is-on">
+      <div id="meta" class="meta"></div>
+
+      <div class="grp">
+        <div class="grp-hd">
+          <span>معايير التقييم</span><span class="count" id="critCount">—</span>
+        </div>
+        <div id="criteria" class="body"></div>
+      </div>
+
+      <div class="grp">
+        <div class="grp-hd">
+          <span>الحقول</span><span class="count" id="fieldCount">—</span>
+        </div>
+        <input type="search" id="search" class="search" placeholder="ابحث في الحقول…">
+        <div id="fields" class="body list"></div>
+      </div>
+    </section>
+
+    <!-- ── آخر تعبئة ── -->
+    <section id="pane-log" class="pane">
+      <div id="logSummary" class="meta"></div>
+      <div id="logRows" class="body list"></div>
+    </section>
+
+    <!-- ── الإعدادات ── -->
+    <section id="pane-settings" class="pane">
+      <label class="row-sw">
+        <span>
+          <b>التعبئة التلقائية</b>
+          <i>تملأ الصفحة فور فتحها. عند الإيقاف تملأ بالضغط على «تعبئة الحقول».</i>
+        </span>
+        <span class="sw sm"><input type="checkbox" id="autoFill"><span class="sw-track"><span class="sw-thumb"></span></span></span>
+      </label>
+
+      <label class="row-sw">
+        <span>
+          <b>شريط التحكم على الصفحة</b>
+          <i>الإطار والشريط العلوي داخل اعتماد.</i>
+        </span>
+        <span class="sw sm"><input type="checkbox" id="showOverlay"><span class="sw-track"><span class="sw-thumb"></span></span></span>
+      </label>
+
+      <label class="row-sw">
+        <span>
+          <b>إضافة معايير التقييم</b>
+          <i>إضافة الشجرة وأوزانها. أوقفها لتعبئة الحقول فقط.</i>
+        </span>
+        <span class="sw sm"><input type="checkbox" id="fillCriteria"><span class="sw-track"><span class="sw-thumb"></span></span></span>
+      </label>
+
+      <div class="note">
+        الإضافة لا تضغط «حفظ ومتابعة» أبدًا — المراجعة والحفظ عليك دائمًا.
+      </div>
+
+      <div class="acts">
+        <button id="clear" class="btn danger" type="button">مسح البيانات المحفوظة</button>
+      </div>
+      <div class="ver" id="ver"></div>
+    </section>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>

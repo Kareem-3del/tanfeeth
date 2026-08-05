@@ -15,6 +15,7 @@
 (function () {
   const STORAGE_KEY = "tanfeethEtimadFill";
   const LOG_KEY = "tanfeethFillLog";
+  const SETTINGS_KEY = "tanfeethSettings";
 
   // إعلان الوجود: التطبيق يفحص هذه السمة قبل «املأ في اعتماد» ليعرض إرشادات
   // التثبيت عند غيابها. تُضبط عند document_idle فور تحميل الصفحة.
@@ -49,32 +50,44 @@
       toStore[STORAGE_KEY] = record;
       toStore[LOG_KEY] = {}; // new capture → reset the per-page fill log
 
-      chrome.storage.local.set(toStore, function () {
-        if (chrome.runtime.lastError) {
-          console.warn("[Tanfeeth] storage.set failed:", chrome.runtime.lastError.message);
+      // «إيقاف الإضافة» من واجهتها = لا التقاط ولا فتح اعتماد.
+      chrome.storage.local.get([SETTINGS_KEY], function (items) {
+        const settings = (items && items[SETTINGS_KEY]) || {};
+        if (settings.enabled === false) {
+          console.warn("[Tanfeeth] الإضافة موقوفة من إعداداتها — تم تجاهل طلب التعبئة.");
           return;
         }
-
-        // Let the app know the extension picked the payload up.
-        try {
-          window.postMessage(
-            {
-              source: "tanfeeth-extension",
-              type: "TANFEETH_ETIMAD_FILL_ACK",
-              meta: record.meta,
-              savedAt: record.savedAt,
-            },
-            window.location.origin
-          );
-        } catch (_ackErr) {
-          /* non-fatal */
-        }
-
-        chrome.runtime.sendMessage({ type: "TANFEETH_OPEN_ETIMAD" }, function () {
-          // Swallow "receiving end does not exist" style errors.
-          void chrome.runtime.lastError;
-        });
+        capture();
       });
+
+      function capture() {
+        chrome.storage.local.set(toStore, function () {
+          if (chrome.runtime.lastError) {
+            console.warn("[Tanfeeth] storage.set failed:", chrome.runtime.lastError.message);
+            return;
+          }
+
+          // Let the app know the extension picked the payload up.
+          try {
+            window.postMessage(
+              {
+                source: "tanfeeth-extension",
+                type: "TANFEETH_ETIMAD_FILL_ACK",
+                meta: record.meta,
+                savedAt: record.savedAt,
+              },
+              window.location.origin
+            );
+          } catch (_ackErr) {
+            /* non-fatal */
+          }
+
+          chrome.runtime.sendMessage({ type: "TANFEETH_OPEN_ETIMAD" }, function () {
+            // Swallow "receiving end does not exist" style errors.
+            void chrome.runtime.lastError;
+          });
+        });
+      }
     } catch (err) {
       console.warn("[Tanfeeth] capture error:", err);
     }
