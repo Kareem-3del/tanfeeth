@@ -76,23 +76,39 @@ const TNF_CRITERIA = (function () {
 
   // ───────────────────────────────────────────────── DOM: نموذج الإضافة ──
 
-  /** صف الإضافة المطابق لمستوى معيّن، معرَّفًا بنص التسمية داخله. */
+  /**
+   * صف الإضافة المطابق لمستوى معيّن.
+   *
+   * تحذير من فخ حقيقي في DOM اعتماد: **صف المستوى الثالث يحوي تسمية «المستوى
+   * الثاني» أيضًا** — فوق قائمة اختيار المعيار الأب. البحث عن التسمية على
+   * مستوى الصف يجعل «المستوى الثاني» يطابق صف الثالث (نجا الأمر صدفةً لأن صف
+   * الثاني أسبق في DOM). لذلك نبحث داخل مجموعة الحقل نفسها ونشترط وجود
+   * input نصي فيها: مجموعة «المستوى الثاني» في صف الثالث تحوي select لا input،
+   * فتُستبعد قطعًا. والصف الظاهر له الأولوية.
+   */
   function addRowFor(levelLabel) {
-    const rows = Array.prototype.slice.call(document.querySelectorAll("div.row"));
-    for (const row of rows) {
-      if (!row.querySelector('button[onclick*="addCriteria"]')) continue;
-      const labels = Array.prototype.slice.call(row.querySelectorAll("label"));
+    const groups = Array.prototype.slice.call(document.querySelectorAll(".form-group"));
+    const found = [];
+    for (const group of groups) {
+      const labels = Array.prototype.slice.call(group.querySelectorAll("label"));
       const own = labels.find(function (l) {
         return norm(l.textContent) === levelLabel;
       });
       if (!own) continue;
-      const input = row.querySelector('input[type="text"].form-control');
+      const input = group.querySelector('input[type="text"]');
+      if (!input) continue; // مجموعة القائمة (select) — ليست حقل الاسم
+      const row = group.closest("div.row");
+      if (!row) continue;
       const button = row.querySelector('button[onclick*="addCriteria"]');
-      if (input && button) {
-        return { row: row, input: input, button: button, select: row.querySelector("select.selectpicker") };
-      }
+      if (!button) continue;
+      found.push({ row: row, input: input, button: button, select: row.querySelector("select.selectpicker") });
     }
-    return null;
+    if (!found.length) return null;
+    return (
+      found.find(function (f) {
+        return isVisible(f.input);
+      }) || found[0]
+    );
   }
 
   /** تبديل «إضافة معيار فني» بين المستوى الثاني/الثالث (يُظهر صف الإضافة). */
@@ -437,7 +453,23 @@ const TNF_CRITERIA = (function () {
         const input = weightInputFor(grid, leaf.two, leaf.three);
         const label = "وزن: " + leaf.two + (leaf.three ? " › " + leaf.three : "");
         if (!input) {
-          out.rows.push({ key: label, status: "skipped", detail: "لم يُعثر على سطر مطابق في الجدول" });
+          // اعتماد يرندر حقل الوزن على **صف المستوى الثالث فقط**؛ المعيار
+          // الثاني بلا أبناء يظهر بخلايا فارغة بلا حقل وزن إطلاقًا. فالوزن
+          // هنا غير قابل للإدخال أصلًا — لا خلل في المطابقة.
+          out.rows.push({
+            key: label,
+            status: "skipped",
+            detail: leaf.three
+              ? "لم يُعثر على سطر مطابق في الجدول"
+              : "اعتماد لا يوفّر حقل وزن لمعيار بلا مستوى ثالث — أضف معيارًا فرعيًا تحته",
+          });
+          if (!leaf.three) {
+            out.notes.push(
+              "«" + leaf.two + "» بلا معيار فرعي، واعتماد يضع الوزن على المستوى الثالث فقط — وزنه (" +
+                leaf.weight +
+                "%) لم يُدخَل"
+            );
+          }
           return;
         }
         const value = Math.round(leaf.weight * scale * 100) / 100;
