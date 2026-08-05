@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>دراسة تكلفة منصة تنفيذ — مصر مقابل السعودية</title>
+<style>
+  @page { size: A4; margin: 16mm 14mm 18mm 14mm; }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: "SF Arabic", "Geeza Pro", "Al Nile", "Arial", sans-serif;
+    font-size: 10.5pt; line-height: 1.75; color: #1c2523; margin: 0;
+  }
+  .latin { font-family: "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+           font-variant-numeric: tabular-nums; direction: ltr; unicode-bidi: embed; }
+  h1,h2,h3 { color: #02594d; margin: 0 0 8px; line-height: 1.45; }
+  h1 { font-size: 24pt; }
+  h2 { font-size: 15pt; margin-top: 26px; padding-bottom: 6px;
+       border-bottom: 2px solid #02594d; }
+  h3 { font-size: 12pt; margin-top: 18px; color: #0a6a5c; }
+  p { margin: 0 0 10px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 16px; font-size: 9.5pt; }
+  th { background: #02594d; color: #fff; text-align: right; padding: 8px 9px;
+       font-weight: 600; border: 1px solid #02594d; }
+  td { padding: 7px 9px; border: 1px solid #d7e2df; vertical-align: top; }
+  tbody tr:nth-child(even) td { background: #f4f8f7; }
+  td.num, th.num { text-align: center; font-variant-numeric: tabular-nums; }
+  tr.total td { background: #e4efec !important; font-weight: 700; color: #02594d; }
+  .cover { text-align: center; padding: 46mm 0 0; page-break-after: always; }
+  .cover .mark { font-size: 34pt; font-weight: 700; color: #02594d; letter-spacing: -1px; }
+  .cover .rule { width: 64px; height: 3px; background: #02594d; margin: 12px auto 30px; }
+  .cover h1 { font-size: 27pt; margin-bottom: 14px; }
+  .cover .sub { font-size: 13pt; color: #48605b; max-width: 460px; margin: 0 auto 40px; }
+  .cover .meta { display: inline-block; text-align: right; font-size: 10pt;
+                 color: #48605b; border-top: 1px solid #d7e2df; padding-top: 16px; }
+  .cover .meta b { color: #1c2523; }
+  .callout { background: #f4f8f7; border-inline-start: 4px solid #02594d;
+             padding: 12px 14px; margin: 14px 0; border-radius: 0 4px 4px 0; }
+  .warn { background: #fdf6ec; border-inline-start-color: #b8860b; }
+  .warn strong { color: #8a6508; }
+  .kpis { display: flex; gap: 10px; margin: 16px 0 20px; }
+  .kpi { flex: 1; border: 1px solid #d7e2df; border-radius: 4px; padding: 12px 10px;
+         text-align: center; background: #fff; }
+  .kpi .v { font-size: 17pt; font-weight: 700; color: #02594d; display: block;
+            font-variant-numeric: tabular-nums; }
+  .kpi .l { font-size: 8pt; color: #5c716c; display: block; margin-top: 3px; }
+  .kpi.hero { background: #02594d; border-color: #02594d; }
+  .kpi.hero .v, .kpi.hero .l { color: #fff; }
+  .bar { height: 20px; background: #02594d; border-radius: 2px; display: inline-block;
+         vertical-align: middle; }
+  .bar.eg { background: #0a6a5c; }
+  .bar.sa { background: #8a6508; }
+  .bar.hy { background: #02594d; }
+  ul { margin: 0 0 10px; padding-inline-start: 18px; }
+  li { margin-bottom: 5px; }
+  .pb { page-break-before: always; }
+  .avoid { page-break-inside: avoid; }
+  .src { font-size: 8.5pt; color: #5c716c; }
+  .src td { padding: 5px 8px; }
+  footer { position: fixed; bottom: -12mm; inset-inline: 0; text-align: center;
+           font-size: 8pt; color: #8a9a96; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="cover">
+  <div class="mark">تنفيذ</div>
+  <div class="rule"></div>
+  <h1>دراسة تكلفة بناء وتشغيل منصة تنفيذ</h1>
+  <div class="sub">مقارنة بين التنفيذ عبر شركة مصرية وشركة سعودية —<br>مبنية على نطاق العمل الرسمي ومعدّلات السوق لعام ٢٠٢٦</div>
+  <div class="meta">
+    <div><b>المرجع:</b> نطاق العمل — رخصة منصة تنفيذ (٢١ صفحة)</div>
+    <div><b>تاريخ الإعداد:</b> ٤ أغسطس ٢٠٢٦</div>
+    <div><b>العملة:</b> دولار أمريكي (USD)</div>
+    <div><b>أسعار الصرف:</b> <span class="latin">1 USD = 50.25 EGP</span> · <span class="latin">1 USD = 3.75 SAR</span> (مربوط)</div>
+    <div><b>الحالة:</b> تقدير تخطيطي — غير ملزم تعاقديًا</div>
+  </div>
+</div>
+
+<!-- ================= 1. EXEC SUMMARY ================= -->
+<h2>١. الملخص التنفيذي</h2>
+
+<div class="callout warn">
+  <strong>تنبيه جوهري قبل أي رقم:</strong> نطاق العمل ينص صراحةً على أنه
+  <b>«لا يشمل تطوير نظام من الصفر؛ فالمنصة منتج قائم ومكتمل الوظائف»</b> (ص ١٦).
+  لذلك هناك <b>سؤالان ماليان مختلفان تمامًا</b>، وخلطهما هو أكثر خطأ يقع فيه المسعّرون:
+  <br>• <b>سؤال البناء:</b> كم يكلّف بناء هذا المنتج من الصفر؟ (استثمار البحث والتطوير)
+  <br>• <b>سؤال العرض:</b> بكم تُسعَّر رخصة ثلاث سنوات + تهيئة ٢٨ أسبوعًا؟ (الإيراد)
+  <br>هذه الدراسة تجيب على الاثنين منفصلين.
+</div>
+
+<h3>أولًا: تكلفة البناء من الصفر</h3>
+<div class="kpis">
+  <div class="kpi"><span class="v latin">$529K</span><span class="l">شركة مصرية<br>(سعر السوق)</span></div>
+  <div class="kpi"><span class="v latin">$2.27M</span><span class="l">شركة سعودية<br>(وكالة محلية)</span></div>
+  <div class="kpi hero"><span class="v latin">$789K</span><span class="l">النموذج الهجين<br>(سعودي واجهة + مصري تنفيذ)</span></div>
+  <div class="kpi"><span class="v latin">4.3×</span><span class="l">فارق السعودي<br>عن المصري</span></div>
+</div>
+
+<h3>ثانيًا: سعر العرض المقترح (رخصة ٣ سنوات + تهيئة)</h3>
+<div class="kpis">
+  <div class="kpi"><span class="v latin">$968K</span><span class="l">تنافسي<br>(هامش ١٥٪)</span></div>
+  <div class="kpi hero"><span class="v latin">$1.18M</span><span class="l">الأساسي المُوصى به<br>(هامش ٣٠٪)</span></div>
+  <div class="kpi"><span class="v latin">$1.36M</span><span class="l">مرتفع<br>(هامش ٤٠٪)</span></div>
+  <div class="kpi"><span class="v latin">$2.80M</span><span class="l">ما يحتاجه منافس<br>سعودي بالكامل</span></div>
+</div>
+
+<p><b>الخلاصة الاستراتيجية:</b> بنموذج التنفيذ الهجين يمكن تقديم عرض عند
+<span class="latin">$1.18M</span> (≈ <span class="latin">SAR 4.43M</span>) بهامش ربح صحي ٣٠٪،
+بينما يحتاج منافس يبني ويشغّل بالكامل داخل المملكة إلى
+<span class="latin">$2.80M</span> لتحقيق الهامش نفسه — أي
+<b>ميزة سعرية تقارب ٢.٤ ضعف</b> مع الحفاظ على الواجهة السعودية التي تتطلبها
+شروط التأهيل (سجل تجاري، تسجيل CST، خبرة سعودية ٥ سنوات).</p>
+
+<!-- ================= 2. WHAT IS BEING PRICED ================= -->
+<h2 class="pb">٢. ما الذي نُسعّره بالضبط؟</h2>
+
+<p>خلاصة نطاق العمل المُسعَّر — ١٥ وحدة وظيفية داخلية + بوابة مقاولين خارجية،
+مع ٨ تكاملات حكومية وامتثال أمني كامل، على مدى ثلاث سنوات:</p>
+
+<table class="avoid">
+  <thead><tr><th style="width:26%">المحور</th><th>المحتوى المُلزِم</th></tr></thead>
+  <tbody>
+    <tr><td><b>الوحدات الوظيفية</b></td><td>١٥ وحدة: التخطيط السنوي · طلبات الشراء · كراسة الشروط (+جداول كميات +مساعد ذكي) · الموردون والتأهيل · الطرح والعروض · الفحص الآلي والتقييم والتوقيع الإلكتروني · الترسية · تنفيذ العقود (S01–S11) · المستخلصات · إدارة المشاريع · تقييم المتعاقدين · اللجان · الصلاحيات وفصل المهام · التقارير · <b>منصة المقاولين</b></td></tr>
+    <tr><td><b>التكاملات</b></td><td>٨ جهات: اعتماد · نفاذ · النظام المالي/ERP · وزارة التجارة · زاتكا · التأمينات الاجتماعية · التصنيف البلدي · إدارة الوثائق — إضافة إلى بريد/رسائل نصية/واتساب أعمال (<b>إلزامي</b>)</td></tr>
+    <tr><td><b>الأمن والامتثال</b></td><td>NCA-ECC · NCA-CSCC · PDPL · إقامة البيانات داخل المملكة · تشفير TLS 1.2+/AES-256 · مصادقة متعددة العوامل · <b>اختبار اختراق سنوي من جهة مرخّصة</b> · BCP/DRP · خطة خروج ٣٠ يومًا</td></tr>
+    <tr><td><b>غير الوظيفي</b></td><td>استجابة ≤ ٣ ثوانٍ لـ٩٥٪ من العمليات · توافرية ≥ ٩٩.٥٪ · <span class="latin">RPO ≤ 1h / RTO ≤ 4h</span> · عربي RTL كامل + إنجليزي · ٣ بيئات (إنتاج/اختبار/تطوير)</td></tr>
+    <tr><td><b>الترحيل</b></td><td>الموردون والعقود والمشاريع والمستخلصات والوثائق — بتدقيق مطابقة <b>١٠٠٪</b></td></tr>
+    <tr><td><b>التدريب</b></td><td>٥ فئات متدربين · أدلة عربية · مقاطع مسجّلة · بيئة تدريب دائمة · ورش تدريب المدربين</td></tr>
+    <tr><td><b>الدعم</b></td><td>مركز خدمة ثلاثي المستويات · <b>Sev 1: استجابة ٣٠ دقيقة وحل ٤ ساعات</b> · تقرير شهري · تحديثات نظامية مجانية خلال ٦٠ يومًا من أي تعديل تشريعي</td></tr>
+    <tr><td><b>المدة</b></td><td>٢٨ أسبوعًا حتى التشغيل الفعلي · رخصة ٣ سنوات قابلة للتجديد</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <b>ثلاث نقاط ترفع التكلفة أكثر مما تبدو عليه:</b>
+  <br>١. <b>اختبار الاختراق السنوي من جهة مرخّصة</b> — بند متكرر لا مرة واحدة، ومعالجة نتائجه تستهلك جهدًا هندسيًا حقيقيًا.
+  <br>٢. <b>«تحديثات نظامية مجانية خلال ٦٠ يومًا»</b> — التزام مفتوح غير محدود الحجم؛ أي تعديل في نظام المنافسات يصبح عبئًا تطويريًا بلا مقابل. يجب تسعيره كاحتياطي.
+  <br>٣. <b>«دون رسوم إضافية مقابل عدد المقاولين المسجلين»</b> — يعني أن تكلفة الاستضافة تنمو مع الاستخدام بينما الإيراد ثابت.
+</div>
+
+<!-- ================= 3. METHOD ================= -->
+<h2>٣. منهجية التقدير</h2>
+<p>لم نبدأ برقم إجمالي ثم نبرّره؛ بدأنا بالجهد الهندسي المشتق من بنود نطاق العمل
+(أكثر من ١٧٠ متطلبًا)، ثم ضربناه في معدّلات السوق المنشورة لعام ٢٠٢٦ لكل سوق.
+هذا يجعل كل رقم قابلًا للتتبّع والمراجعة والتعديل ببند واحد.</p>
+<table class="avoid">
+  <thead><tr><th style="width:34%">المُدخل</th><th>القيمة المستخدمة</th></tr></thead>
+  <tbody>
+    <tr><td>الشهر العملي (person-month)</td><td class="latin">160 ساعة إنتاجية</td></tr>
+    <tr><td>احتياطي المخاطر</td><td>مدمج في نطاق «منخفض/أساسي/مرتفع» (‎−١٥٪ إلى ‎+٢٣٪)</td></tr>
+    <tr><td>ضريبة القيمة المضافة السعودية</td><td>١٥٪ — <b>مستثناة</b> من كل الأرقام وتُضاف في الختام</td></tr>
+    <tr><td>سعر صرف الجنيه</td><td class="latin">50.25 EGP/USD</td> </tr>
+    <tr><td>سعر صرف الريال</td><td class="latin">3.75 SAR/USD</td> </tr>
+  </tbody>
+</table>
+
+<!-- ================= 4. EFFORT MODEL ================= -->
+<h2 class="pb">٤. نموذج الجهد الهندسي</h2>
+
+<h3>٤‑١ الوحدات الوظيفية</h3>
+<table>
+  <thead><tr><th style="width:52%">الوحدة</th><th class="num" style="width:22%">التعقيد</th><th class="num">شهر عمل</th></tr></thead>
+  <tbody>
+    <tr><td>١. التخطيط السنوي للمشتريات</td><td class="num">متوسط</td><td class="num latin">3.0</td></tr>
+    <tr><td>٢. إدارة طلبات الشراء</td><td class="num">متوسط</td><td class="num latin">3.0</td></tr>
+    <tr><td>٣. إعداد كراسة الشروط (+ جداول الكميات + المساعد الذكي)</td><td class="num">عالٍ</td><td class="num latin">6.0</td></tr>
+    <tr><td>٤. إدارة الموردين والتأهيل</td><td class="num">متوسط</td><td class="num latin">3.5</td></tr>
+    <tr><td>٥. إدارة الطرح واستقبال العروض</td><td class="num">متوسط</td><td class="num latin">3.0</td></tr>
+    <tr><td>٦. رفع العروض والفحص الآلي والتقييم والتوقيع الإلكتروني</td><td class="num">عالٍ جدًا</td><td class="num latin">8.5</td></tr>
+    <tr><td>٧. الترسية والتعاقد</td><td class="num">متوسط</td><td class="num latin">3.0</td></tr>
+    <tr><td>٨. إدارة تنفيذ العقود (S01–S11)</td><td class="num">عالٍ</td><td class="num latin">5.5</td></tr>
+    <tr><td>٩. المستخلصات والمدفوعات</td><td class="num">عالٍ</td><td class="num latin">4.5</td></tr>
+    <tr><td>١٠. إدارة المشاريع</td><td class="num">متوسط</td><td class="num latin">3.5</td></tr>
+    <tr><td>١١. تقييم أداء المتعاقدين</td><td class="num">بسيط</td><td class="num latin">2.0</td></tr>
+    <tr><td>١٢. إدارة اللجان</td><td class="num">عالٍ</td><td class="num latin">5.5</td></tr>
+    <tr><td>١٣. الصلاحيات وفصل المهام ومحرك سير العمل</td><td class="num">عالٍ جدًا</td><td class="num latin">6.5</td></tr>
+    <tr><td>١٤. التقارير ولوحات المعلومات</td><td class="num">عالٍ</td><td class="num latin">5.0</td></tr>
+    <tr><td>١٥. منصة المقاولين والموردين</td><td class="num">عالٍ</td><td class="num latin">6.5</td></tr>
+    <tr class="total"><td>مجموع الوحدات الوظيفية</td><td class="num">—</td><td class="num latin">69.0</td></tr>
+  </tbody>
+</table>
+
+<h3>٤‑٢ الأعمال العَرْضية (لا ترتبط بوحدة بعينها)</h3>
+<table class="avoid">
+  <thead><tr><th style="width:78%">البند</th><th class="num">شهر عمل</th></tr></thead>
+  <tbody>
+    <tr><td>النواة والبنية: الهوية، الأثر التدقيقي غير القابل للتعديل، الإشعارات، الملفات، عربي/إنجليزي RTL</td><td class="num latin">6.0</td></tr>
+    <tr><td>التكاملات الثمانية (اعتماد، نفاذ، ERP، التجارة، زاتكا، التأمينات، التصنيف، الوثائق)</td><td class="num latin">8.0</td></tr>
+    <tr><td>الأمن السيبراني والامتثال (ECC / CSCC / PDPL) ومعالجة نتائج اختبار الاختراق</td><td class="num latin">4.0</td></tr>
+    <tr><td>البنية التشغيلية: ٣ بيئات، CI/CD، نسخ احتياطي <span class="latin">RPO≤1h/RTO≤4h</span>، مراقبة</td><td class="num latin">4.0</td></tr>
+    <tr><td>ضمان الجودة (آلي ويدوي ودعم اختبار القبول)</td><td class="num latin">10.0</td></tr>
+    <tr><td>تصميم تجربة وواجهة المستخدم</td><td class="num latin">6.0</td></tr>
+    <tr><td>تحليل الأعمال والتوثيق العربي الكامل</td><td class="num latin">5.0</td></tr>
+    <tr><td>إدارة المشروع</td><td class="num latin">6.0</td></tr>
+    <tr class="total"><td>مجموع الأعمال العَرْضية</td><td class="num latin">49.0</td></tr>
+  </tbody>
+</table>
+
+<table class="avoid">
+  <thead><tr><th style="width:34%">السيناريو</th><th class="num">شهر عمل</th><th class="num">ساعة</th><th>الافتراض</th></tr></thead>
+  <tbody>
+    <tr><td>منخفض</td><td class="num latin">100</td><td class="num latin">16,000</td><td>فريق مُحكم، إعادة استخدام واسعة لمكوّنات جاهزة</td></tr>
+    <tr class="total"><td>أساسي</td><td class="num latin">118</td><td class="num latin">18,880</td><td>التقدير المرجعي المستخدم في كل الجداول التالية</td></tr>
+    <tr><td>مرتفع</td><td class="num latin">145</td><td class="num latin">23,200</td><td>صرامة امتثال كاملة وإعادة عمل بعد اختبار الاختراق</td></tr>
+  </tbody>
+</table>
+<p class="src">للمعايرة: ١١٨ شهر عمل ≈ فريق من ١٠ أشخاص لمدة ١٢ شهرًا. هذا تقدير
+<b>مُحكم لا متحفّظ</b> لمنصة بـ١٥ وحدة و٨ تكاملات وامتثال حكومي.</p>
+
+<!-- ================= 5. RATE CARDS ================= -->
+<h2 class="pb">٥. معدّلات السوق المرجعية (٢٠٢٦)</h2>
+
+<h3>٥‑١ السوق المصري</h3>
+<table class="avoid">
+  <thead><tr><th style="width:44%">الفئة</th><th class="num">دولار/ساعة</th><th>ملاحظة</th></tr></thead>
+  <tbody>
+    <tr><td>مطوّر مبتدئ</td><td class="num latin">15 – 20</td><td>—</td></tr>
+    <tr><td><b>معدّل الفريق المدمج لدى وكالة</b></td><td class="num latin">20 – 35</td><td>يشمل التطوير والتصميم والجودة وإدارة المشروع</td></tr>
+    <tr><td>مهندس أول / قائد تقني</td><td class="num latin">40 – 50</td><td>—</td></tr>
+    <tr><td>الوسيط عبر الشركات المصرية</td><td class="num latin">37</td><td>يعكس تباينًا واسعًا — الفحص أهم من السعر</td></tr>
+  </tbody>
+</table>
+<p>الرواتب الشهرية (جنيه مصري): مبتدئ <span class="latin">10K–22K</span> ·
+متوسط <span class="latin">18K–42K</span> · أول <span class="latin">35K–70K</span>
+(حتى <span class="latin">105K</span> في الشركات متعددة الجنسيات).
+عبء صاحب العمل ≈ <b>٣٦٪</b> فوق الراتب، والتأمينات <b>مسقوفة عند
+<span class="latin">3,131</span> جنيهًا شهريًا</b> مهما ارتفع الراتب — وهي ميزة
+هيكلية تجعل توظيف الكوادر العليا في مصر رخيصًا نسبيًا.</p>
+
+<h3>٥‑٢ السوق السعودي</h3>
+<table class="avoid">
+  <thead><tr><th style="width:44%">الفئة</th><th class="num">ريال/ساعة</th><th class="num">دولار/ساعة</th></tr></thead>
+  <tbody>
+    <tr><td>مستقل (freelancer)</td><td class="num latin">80 – 180</td><td class="num latin">21 – 48</td></tr>
+    <tr><td>فريق خارجي/قريب</td><td class="num latin">83 – 150</td><td class="num latin">22 – 40</td></tr>
+    <tr><td>معدّل خليجي مدمج</td><td class="num latin">225 – 356</td><td class="num latin">60 – 95</td></tr>
+    <tr><td><b>وكالة سعودية محلية / استشارية مؤسسية</b></td><td class="num latin">350 – 600+</td><td class="num latin">93 – 160</td></tr>
+  </tbody>
+</table>
+<p>التكلفة الشهرية لمهندس برمجيات على صاحب العمل:
+<span class="latin">SAR 20,700</span> (راتب <span class="latin">18,000</span> +
+مساهمات <span class="latin">2,700</span>) ≈ <span class="latin">$5,520</span> شهريًا —
+أي <b>نحو ٧ أضعاف</b> نظيره المصري المحمّل بالكامل
+(<span class="latin">$759</span>). التأمينات الاجتماعية ١٢٪ للسعوديين،
+والنطاقات ترفع أجور الكوادر الوطنية.</p>
+
+<!-- ================= 6. SCENARIOS ================= -->
+<h2 class="pb">٦. تكلفة البناء من الصفر — السيناريوهات</h2>
+
+<h3>السيناريو (أ): شركة مصرية</h3>
+<table class="avoid">
+  <thead><tr><th style="width:40%">الطريقة</th><th class="num">الأساس</th><th class="num">التكلفة (دولار)</th></tr></thead>
+  <tbody>
+    <tr><td>أرضية التكلفة الداخلية (فريق مملوك)</td><td class="num latin">118 PM × $759 × 1.9</td><td class="num latin">170,000</td></tr>
+    <tr><td>سعر السوق — منخفض</td><td class="num latin">16,000 h × $20</td><td class="num latin">320,000</td></tr>
+    <tr class="total"><td>سعر السوق — أساسي</td><td class="num latin">18,880 h × $28</td><td class="num latin">528,640</td></tr>
+    <tr><td>سعر السوق — مرتفع</td><td class="num latin">23,200 h × $35</td><td class="num latin">812,000</td></tr>
+    <tr><td>شركة مصرية من الطبقة الأولى بخبرة خليجية</td><td class="num latin">18,880 h × $40</td><td class="num latin">755,200</td></tr>
+  </tbody>
+</table>
+<p class="src">الفارق بين أرضية التكلفة (<span class="latin">$170K</span>) وسعر السوق
+(<span class="latin">$529K</span>) هو هامش الوكالة المصرية المعتاد — وهو ما يجب
+التفاوض عليه إن كان التنفيذ عبر طرف ثالث، أو ما يُوفَّر إن كان الفريق مملوكًا.</p>
+
+<h3>السيناريو (ب): شركة سعودية</h3>
+<table class="avoid">
+  <thead><tr><th style="width:40%">الطريقة</th><th class="num">الأساس</th><th class="num">التكلفة (دولار)</th></tr></thead>
+  <tbody>
+    <tr><td>أرضية التكلفة الداخلية (فريق داخل المملكة)</td><td class="num latin">118 PM × $4,800 × 1.75</td><td class="num latin">991,200</td></tr>
+    <tr><td>وكالة محلية — منخفض</td><td class="num latin">16,000 h × $93</td><td class="num latin">1,488,000</td></tr>
+    <tr><td>معدّل خليجي مدمج (فريق مختلط)</td><td class="num latin">18,880 h × $75</td><td class="num latin">1,416,000</td></tr>
+    <tr class="total"><td>وكالة محلية — أساسي</td><td class="num latin">18,880 h × $120</td><td class="num latin">2,265,600</td></tr>
+    <tr><td>وكالة محلية — مرتفع</td><td class="num latin">23,200 h × $160</td><td class="num latin">3,712,000</td></tr>
+  </tbody>
+</table>
+
+<div class="callout warn">
+  <strong>تحذير من رقم شائع ومضلِّل:</strong> تنشر بعض المصادر السعودية أن
+  «المنصة المؤسسية المعقّدة تكلّف <span class="latin">SAR 400,000 – 900,000</span>»
+  (≈ <span class="latin">$107K – $240K</span>). هذا الرقم <b>لا ينطبق على هذا النطاق</b>؛
+  فهو موجّه لتطبيقات أعمال متوسطة بـ٢–٣ تكاملات ومدة ٨–١٤ شهرًا، لا لمنصة
+  بـ١٥ وحدة و٨ تكاملات حكومية وامتثال <span class="latin">NCA-ECC/PDPL</span>
+  وبوابة خارجية ودعم ثلاث سنوات. الاستشهاد به في مفاوضة سيؤدي إلى تسعير أقل من
+  التكلفة بمقدار الضعف على الأقل.
+</div>
+
+<h3>السيناريو (ج): النموذج الهجين — المُوصى به</h3>
+<p>واجهة سعودية (مدير مشروع، خبير مشتريات حكومية، امتثال، حضور ميداني، إدارة حساب)
+فوق فريق تنفيذ مصري. هذا ما يلبّي شروط التأهيل في نطاق العمل — التي تفرض
+سجلًا تجاريًا سعوديًا وتسجيل CST وعضو فريق بخبرة ٥ سنوات في المشتريات الحكومية
+السعودية — بأقل تكلفة ممكنة.</p>
+<table class="avoid">
+  <thead><tr><th style="width:40%">المكوّن</th><th class="num">الحصة</th><th class="num">الأساس</th><th class="num">دولار</th></tr></thead>
+  <tbody>
+    <tr><td>الواجهة السعودية</td><td class="num">١٥٪</td><td class="num latin">2,832 h × $120</td><td class="num latin">339,840</td></tr>
+    <tr><td>فريق التنفيذ المصري</td><td class="num">٨٥٪</td><td class="num latin">16,048 h × $28</td><td class="num latin">449,344</td></tr>
+    <tr class="total"><td>الإجمالي</td><td class="num">١٠٠٪</td><td class="num">—</td><td class="num latin">789,184</td></tr>
+  </tbody>
+</table>
+
+<h3>المقارنة البصرية</h3>
+<table class="avoid">
+  <thead><tr><th style="width:26%">السيناريو</th><th style="width:56%">التكلفة النسبية</th><th class="num">دولار</th></tr></thead>
+  <tbody>
+    <tr><td>مصرية</td><td><span class="bar eg" style="width:14%"></span></td><td class="num latin">529K</td></tr>
+    <tr><td>هجينة</td><td><span class="bar hy" style="width:21%"></span></td><td class="num latin">789K</td></tr>
+    <tr><td>سعودية (خليجي مدمج)</td><td><span class="bar sa" style="width:38%"></span></td><td class="num latin">1.42M</td></tr>
+    <tr><td>سعودية (وكالة محلية)</td><td><span class="bar sa" style="width:61%"></span></td><td class="num latin">2.27M</td></tr>
+    <tr><td>سعودية (استشارية مؤسسية)</td><td><span class="bar sa" style="width:100%"></span></td><td class="num latin">3.71M</td></tr>
+  </tbody>
+</table>
+
+<!-- ================= 7. THE ACTUAL BID ================= -->
+<h2 class="pb">٧. التكلفة الحقيقية للعقد (رخصة ٣ سنوات)</h2>
+
+<p>هذا هو الرقم الذي يهمّ تجاريًا. المنصة قائمة بالفعل، لذا لا يشمل العرض بناءً من
+الصفر بل: <b>تهيئة ٢٨ أسبوعًا</b> + <b>رخصة واستضافة ودعم ٣ سنوات</b>.</p>
+
+<h3>٧‑١ جهد التهيئة (٢٨ أسبوعًا)</h3>
+<table class="avoid">
+  <thead><tr><th style="width:44%">المرحلة</th><th class="num">المدة</th><th class="num">شهر عمل</th><th class="num">الدفعة</th></tr></thead>
+  <tbody>
+    <tr><td>م١: التأسيس وتحليل الفجوة</td><td class="num">٤ أسابيع</td><td class="num latin">2</td><td class="num">١٠٪</td></tr>
+    <tr><td>م٢: تهيئة المنصة</td><td class="num">٨ أسابيع</td><td class="num latin">8</td><td class="num">٢٥٪</td></tr>
+    <tr><td>م٣: التكامل وترحيل البيانات</td><td class="num">٦ أسابيع</td><td class="num latin">7.5</td><td class="num">١٥٪</td></tr>
+    <tr><td>م٤: الاختبار والقبول</td><td class="num">٤ أسابيع</td><td class="num latin">4</td><td class="num">١٥٪</td></tr>
+    <tr><td>م٥: التشغيل التجريبي والتدريب</td><td class="num">٤ أسابيع</td><td class="num latin">4</td><td class="num">١٥٪</td></tr>
+    <tr><td>م٦: التشغيل الفعلي</td><td class="num">أسبوعان</td><td class="num latin">1.5</td><td class="num">١٠٪</td></tr>
+    <tr><td>م٧: الدعم والتشغيل</td><td class="num">٣ سنوات</td><td class="num">منفصل</td><td class="num">١٠٪</td></tr>
+    <tr class="total"><td>مجموع التهيئة</td><td class="num">٢٨ أسبوعًا</td><td class="num latin">≈ 30</td><td class="num">٩٠٪</td></tr>
+  </tbody>
+</table>
+<table class="avoid">
+  <thead><tr><th style="width:52%">تكلفة التهيئة حسب نموذج التنفيذ</th><th class="num">دولار</th></tr></thead>
+  <tbody>
+    <tr><td>مصري بالكامل (<span class="latin">4,800 h × $28</span>)</td><td class="num latin">134,400</td></tr>
+    <tr class="total"><td>هجين ١٥/٨٥</td><td class="num latin">200,640</td></tr>
+    <tr><td>سعودي بالكامل (<span class="latin">4,800 h × $120</span>)</td><td class="num latin">576,000</td></tr>
+  </tbody>
+</table>
+
+<h3>٧‑٢ تكاليف التشغيل الثلاثية</h3>
+<table class="avoid">
+  <thead><tr><th style="width:40%">البند</th><th class="num">مصري</th><th class="num">هجين</th><th class="num">سعودي</th></tr></thead>
+  <tbody>
+    <tr><td>التهيئة (٢٨ أسبوعًا)</td><td class="num latin">134,400</td><td class="num latin">200,640</td><td class="num latin">576,000</td></tr>
+    <tr><td>الاستضافة — ٣ بيئات داخل المملكة، ٣٦ شهرًا</td><td class="num latin">134,400</td><td class="num latin">134,400</td><td class="num latin">134,400</td></tr>
+    <tr><td>الدعم الثلاثي المستويات (Sev1 ٣٠ دقيقة)</td><td class="num latin">129,759</td><td class="num latin">255,007</td><td class="num latin">756,000</td></tr>
+    <tr><td>اختبار الاختراق × ٣ سنوات</td><td class="num latin">60,000</td><td class="num latin">60,000</td><td class="num latin">60,000</td></tr>
+    <tr><td>احتياطي التحديثات النظامية</td><td class="num latin">60,000</td><td class="num latin">60,000</td><td class="num latin">60,000</td></tr>
+    <tr class="total"><td>التكلفة المباشرة (٣ سنوات)</td><td class="num latin">518,559</td><td class="num latin">710,047</td><td class="num latin">1,586,400</td></tr>
+    <tr><td>إطفاء البحث والتطوير (على ٤ عملاء)</td><td class="num latin">132,160</td><td class="num latin">197,296</td><td class="num latin">566,400</td></tr>
+    <tr class="total"><td>قاعدة التكلفة الكاملة</td><td class="num latin">650,719</td><td class="num latin">907,343</td><td class="num latin">2,152,800</td></tr>
+  </tbody>
+</table>
+<p class="src">ملاحظة: الاستضافة موحّدة في الأعمدة الثلاثة لأن نطاق العمل يفرض
+الاستضافة <b>داخل المملكة لدى مزود مرخّص من CST</b> — لا يمكن تخفيضها بنقل التنفيذ.</p>
+
+<h3>٧‑٣ سعر العرض المقترح</h3>
+<table class="avoid">
+  <thead><tr><th style="width:30%">الوضع</th><th class="num">قاعدة التكلفة</th><th class="num">الهامش</th><th class="num">السعر (دولار)</th><th class="num">ريال سعودي</th></tr></thead>
+  <tbody>
+    <tr><td>تنافسي</td><td class="num latin">842,000</td><td class="num">١٥٪</td><td class="num latin">968,000</td><td class="num latin">3,630,000</td></tr>
+    <tr class="total"><td>أساسي — مُوصى به</td><td class="num latin">907,343</td><td class="num">٣٠٪</td><td class="num latin">1,180,000</td><td class="num latin">4,425,000</td></tr>
+    <tr><td>مرتفع</td><td class="num latin">973,000</td><td class="num">٤٠٪</td><td class="num latin">1,362,000</td><td class="num latin">5,108,000</td></tr>
+    <tr><td>منافس سعودي بالكامل (للمقارنة)</td><td class="num latin">2,152,800</td><td class="num">٣٠٪</td><td class="num latin">2,799,000</td><td class="num latin">10,496,000</td></tr>
+  </tbody>
+</table>
+<p><b>مع ضريبة القيمة المضافة ١٥٪:</b> السعر الأساسي يصبح
+<span class="latin">$1,357,000</span> (≈ <span class="latin">SAR 5,089,000</span>).
+بتقسيمه على المدة: <span class="latin">≈ $393K</span> سنويًا — وهو ما يقع ضمن
+النطاق العالمي المنشور لمنصات إدارة العقود المؤسسية
+(<span class="latin">$150K – $500K+</span> سنويًا)، ما يؤكد أن التسعير
+<b>واقعي لا مبالغ فيه ولا مُفرِّط</b>.</p>
+
+<!-- ================= 8. RISKS ================= -->
+<h2 class="pb">٨. ما لم يُسعَّر — وحدود هذه الدراسة</h2>
+<table class="avoid">
+  <thead><tr><th style="width:36%">البند</th><th>الأثر ومعالجته</th></tr></thead>
+  <tbody>
+    <tr><td><b>قيم الترسيات الفعلية على اعتماد</b></td><td>لم يتيسّر الوصول إلى قيم عقود مماثلة منشورة علنًا للمعايرة. المعايرة تمّت بدلًا من ذلك مقابل النطاقات العالمية المنشورة لمنصات إدارة العقود المؤسسية. <b>يُنصح بشدة</b> بمراجعة ترسيات مشابهة على بوابة اعتماد قبل تثبيت السعر.</td></tr>
+    <tr><td><b>عدد المستخدمين</b></td><td>نطاق العمل تركه فارغًا (<span class="latin">«دعم (…) مستخدم متزامن»</span>). التكلفة أعلاه تفترض جهة متوسطة (٢٠٠–٥٠٠ مستخدم). تجاوز ذلك يرفع الاستضافة والدعم.</td></tr>
+    <tr><td><b>عدد المتدربين</b></td><td>متروك فارغًا في نطاق العمل — كل خانات «عدد المتدربين» غير معبأة. التقدير يفترض ٥٠–٨٠ متدربًا إجمالًا.</td></tr>
+    <tr><td><b>حجم البيانات المُرحَّلة</b></td><td>غير محدد. شرط «تدقيق مطابقة ١٠٠٪» يجعل الترحيل بندًا عالي المخاطر؛ يجب تسعيره بعد جرد فعلي.</td></tr>
+    <tr><td><b>تكاملات «متى ما أمكن»</b></td><td>٧ من ٨ تكاملات مشروطة بإتاحة الجهة للأذونات. إن تعذّرت، يصبح البديل إدخالًا يدويًا — وهو <b>يخفض تكلفة التطوير ويرفع تكلفة الدعم</b>.</td></tr>
+    <tr><td><b>الضريبة والكيان القانوني</b></td><td>التوريد من كيان مصري إلى جهة حكومية سعودية يثير مسائل المنشأة الدائمة والاستقطاع. النموذج الهجين (تعاقد عبر كيان سعودي) يعالج ذلك — وتكلفته مدرجة أعلاه.</td></tr>
+    <tr><td><b>غرامة التأخير</b></td><td>نطاق العمل ترك النسبة فارغة بحد أقصى ٦٪. يجب حجز احتياطي بعد تثبيتها.</td></tr>
+    <tr><td><b>تقلّب سعر الجنيه</b></td><td>تراوح الدولار بين <span class="latin">48.71</span> و<span class="latin">51.50</span> جنيهًا خلال شهر واحد. عقد بالدولار مع تكاليف بالجنيه = مكسب محتمل ومخاطرة في آن؛ يُنصح بتثبيت سعر الصرف في عقود المناولة.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <b>حدود المنهجية:</b> هذه الدراسة مبنية على معدّلات سوق منشورة وتقدير جهد
+  مشتق من نطاق العمل — لا على عروض أسعار فعلية من موردين. دقتها المتوقعة
+  <b>±٢٥٪</b>، وهي كافية لقرار «هل ندخل المنافسة وبأي نموذج تنفيذ؟» لكنها
+  <b>ليست كافية</b> لتوقيع عقد مناولة. قبل ذلك: اطلب ٣ عروض فعلية من شركات
+  مصرية، وثبّت عدد المستخدمين والمتدربين وحجم البيانات مع الجهة.
+</div>
+
+<!-- ================= 9. SOURCES ================= -->
+<h2>٩. المصادر</h2>
+<table class="src">
+  <thead><tr><th style="width:30%">المصدر</th><th>ما استُخدم منه</th></tr></thead>
+  <tbody>
+    <tr><td>Matrix Minds — Egypt Software Development Rates 2026</td><td>معدّلات مصر بالساعة حسب الأقدمية، ومقارنة الخليج</td></tr>
+    <tr><td>Neologix — Software Development Cost in Saudi Arabia 2026</td><td>معدّلات السعودية بالساعة حسب نوع المزود، ونطاقات المشاريع</td></tr>
+    <tr><td>Mohamed Ashamallah — KSA vs Egypt Cost Comparison</td><td>الفارق النسبي بين السوقين (٥٠–١٠٠٪)</td></tr>
+    <tr><td>Playroll — Cost of Hiring in Saudi Arabia 2026</td><td>تكلفة صاحب العمل الشهرية ومساهمات التأمينات</td></tr>
+    <tr><td>WEM — Egypt Employment Costs Breakdown 2026</td><td>عبء صاحب العمل ٣٦٪ وسقف التأمينات <span class="latin">3,131</span> جنيهًا</td></tr>
+    <tr><td>Sirion / Ironclad / Zefort — CLM Pricing 2026</td><td>معايرة سعر الرخصة السنوية عالميًا</td></tr>
+    <tr><td>ClearTax / ZATCA — Saudi VAT 2026</td><td>ضريبة القيمة المضافة ١٥٪</td></tr>
+    <tr><td>Exchange-Rates.org — <span class="latin">EGP/USD</span> أغسطس ٢٠٢٦</td><td>سعر الصرف <span class="latin">50.25</span> ونطاق التقلّب الشهري</td></tr>
+    <tr><td>Skyline / Expandway — KSA Cloud Hosting &amp; CST 2026</td><td>تكلفة الاستضافة داخل المملكة ومتطلبات الترخيص</td></tr>
+    <tr><td>نطاق العمل — رخصة منصة تنفيذ (٢١ صفحة)</td><td>كل بنود النطاق والمراحل والالتزامات</td></tr>
+  </tbody>
+</table>
+<p class="src">تاريخ التحقق من كل الأسعار: ٤ أغسطس ٢٠٢٦. أسعار السوق البرمجي
+تتغيّر كل ٦–١٢ شهرًا؛ يُعاد التحقق قبل أي استخدام تعاقدي.</p>
+
+</body>
+</html>

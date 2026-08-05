@@ -33,6 +33,7 @@
       ],
       "js": [
         "src/field-meta.js",
+        "src/etimad-criteria.js",
         "src/etimad-fill.js"
       ],
       "css": [

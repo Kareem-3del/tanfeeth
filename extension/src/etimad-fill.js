@@ -358,6 +358,9 @@
     setBadgeText("جارٍ تعبئة الحقول...");
 
     const etimadFields = (record.payload && record.payload.etimadFields) || {};
+    // الحمولة الخام: المركّبات المتكررة (معايير التقييم) ليست حقولًا مسطّحة
+    // لها `name`، فمحرك name→value لا يراها — تُقرأ من هنا.
+    const rawPayload = (record.payload && record.payload.raw) || {};
     const rows = [];
     let filled = 0;
     let skipped = 0;
@@ -384,6 +387,32 @@
         detail: result.detail || "",
       });
       await sleep(60); // let Etimad's cascading handlers breathe
+    }
+
+    // معايير التقييم — واجهة إضافة متكررة، تُنفَّذ بعد الحقول المسطّحة لأن
+    // «آلية الاجتياز الفني» تُضبط ضمنها.
+    try {
+      setBadgeText("جارٍ إضافة معايير التقييم...");
+      const criteria = await TNF_CRITERIA.fill(rawPayload, jquerySync);
+      if (criteria.applicable) {
+        criteria.rows.forEach(function (r) {
+          if (r.status === "filled") filled += 1;
+          else if (r.status === "failed") failed += 1;
+          else skipped += 1;
+          rows.push({ key: r.key, step: "معايير التقييم", status: r.status, detail: r.detail });
+        });
+        criteria.notes.forEach(function (note) {
+          rows.push({ key: "ملاحظة", step: "معايير التقييم", status: "note", detail: note });
+        });
+      }
+    } catch (err) {
+      failed += 1;
+      rows.push({
+        key: "معايير التقييم",
+        step: "معايير التقييم",
+        status: "failed",
+        detail: String(err && err.message ? err.message : err).slice(0, 120),
+      });
     }
 
     try {

@@ -152,7 +152,13 @@ const ETIMAD_FIELD_META = {
   LateWorkPenaltiesRulesText: { control: "textarea", step: "bookletFiles" },
   PenaltiesOfLateValue: { control: "text", step: "bookletFiles" },
   technicalPassingMechanismWay: { control: "radio", step: "bookletFiles" },
-  isLevelTwo: { control: "radio", step: "bookletFiles" },
+  // `isLevelTwo` ليس بيانات — هو مبدّل وضع في نموذج إضافة المعيار
+  // (ثانٍ/ثالث)، يقوده etimad-criteria.js أثناء الإضافة. إدراجه كحقل قابل
+  // للتعبئة يجعل المحرك المسطّح يزاحم المُضيف على نفس الزر.
+  //
+  // كذلك حقول معايير التقييم الرقمية (txtTechnicalPassingRate،
+  // technicalEvaluationWeight، financialEvaluationWeight) لها id بلا name،
+  // وحقول الوزن النهائي معرّفاتها مُولَّدة — كلها في etimad-criteria.js.
   ProjectsScope: { control: "textarea", step: "bookletFiles" },
   WorksProgram: { control: "textarea", step: "bookletFiles" },
   WorkLocationDetails: { control: "textarea", step: "bookletFiles" },
