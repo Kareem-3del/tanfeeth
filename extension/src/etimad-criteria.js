@@ -44,6 +44,25 @@ const TNF_CRITERIA = (function () {
   }
 
   /**
+   * أبناء المعيار كما يجب أن يظهروا في اعتماد.
+   *
+   * اعتماد يرندر حقل «الوزن النهائي» على **صف المستوى الثالث فقط**؛ المعيار
+   * الثاني بلا أبناء يخرج بخلايا فارغة بلا حقل وزن (مؤكَّد من لقطتَي DOM
+   * حقيقيتين)، فيصبح غير قابل للتسعير. ونموذج تنفيذ يسمح بمعيار بلا فروع.
+   *
+   * لجسر النموذجين نُنشئ مستوًى ثالثًا واحدًا بنفس اسم المعيار ووزنه، فيظهر
+   * حقل الوزن ويُدخَل. القرار يُسجَّل في الملاحظات لا يُطبَّق بصمت.
+   */
+  function effectiveChildren(parent) {
+    const children = Array.isArray(parent && parent.children) ? parent.children : [];
+    const real = children.filter(function (c) {
+      return norm(c && c.title);
+    });
+    if (real.length) return real;
+    return [{ title: norm(parent && parent.title), weight: parent && parent.weight, synthetic: true }];
+  }
+
+  /**
    * معيار أساسي يمثّل الشق المالي في اعتماد (جدوله ثابت وغير قابل للتحرير).
    *
    * المطابقة **تامّة** لا احتواء: البحث عن «سعر/تكلفة» كجزء من النص يبتلع
@@ -372,7 +391,12 @@ const TNF_CRITERIA = (function () {
         if (ok) out.added += 1;
       }
 
-      const children = Array.isArray(parent.children) ? parent.children : [];
+      const children = effectiveChildren(parent);
+      if (children.length === 1 && children[0].synthetic) {
+        out.notes.push(
+          "«" + title + "» بلا معيار فرعي — أُنشئ له مستوى ثالث بنفس الاسم لأن اعتماد يضع حقل الوزن على المستوى الثالث فقط"
+        );
+      }
       for (const child of children) {
         const childTitle = norm(child && child.title);
         if (!childTitle) continue;
@@ -425,16 +449,13 @@ const TNF_CRITERIA = (function () {
     //    اعتماد يوزّع الوزن داخل كل شق على ١٠٠ (جدول المالي = التكلفة ١٠٠)،
     //    فلو استُبعد معيار السعر لن يجمع الباقي ١٠٠. التطبيع يُذكر صراحةً.
     if (table && technical.length) {
+      // نفس اشتقاق الأبناء المستخدم في الإضافة — وإلا بحثنا عن أسطر بمسارات
+      // لم تُضَف (الوزن يُكتب على المستوى الثالث الذي أنشأناه).
       const leaves = [];
       technical.forEach(function (parent) {
-        const children = Array.isArray(parent.children) ? parent.children : [];
-        if (children.length) {
-          children.forEach(function (child) {
-            leaves.push({ two: norm(parent.title), three: norm(child.title), weight: num(child.weight) });
-          });
-        } else {
-          leaves.push({ two: norm(parent.title), three: "", weight: num(parent.weight) });
-        }
+        effectiveChildren(parent).forEach(function (child) {
+          leaves.push({ two: norm(parent.title), three: norm(child.title), weight: num(child.weight) });
+        });
       });
 
       const total = leaves.reduce(function (s, l) {
