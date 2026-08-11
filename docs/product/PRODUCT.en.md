@@ -1,9 +1,15 @@
 # Tanfeeth — Product & Domain Specification (EN)
 
-> Status: living document, v1.0 (June 2026). Derived from `Tanfeeth_FRD.docx` and
+> Status: living document, **v2.0 (August 2026)**. Derived from `Tanfeeth_FRD.docx` and
 > the `Flow & Functions` workbook. The Arabic master is [`PRODUCT.ar.md`](./PRODUCT.ar.md);
 > the binding rules are in [`RULES.md`](./RULES.md). Requirement IDs use the
 > convention **`FR-<module>-<n>`** (e.g. `FR-WF-012`).
+>
+> **New in 2.0:** §11 “Annual plan — announcement & submission cycle”
+> (`FR-PL-001…014`), the notifications module (in‑app + email), a fixed
+> permission catalog (no runtime permission creation), immediate session
+> enforcement for deactivated/deleted accounts, and Arabic‑only error messages —
+> see also rules R‑17 and R‑18 in `RULES.md`.
 
 ---
 
@@ -90,6 +96,23 @@ canonical set extracted from the process flow.
 - **Assignment transfer** — when a task is assigned to a specific staff member,
   the *action* permission moves to that member while CDM access remains.
 - Every transition is written to the **audit log** (actor, timestamp, before/after).
+
+**v2.0 RBAC updates (binding):**
+- **Fixed permission catalog** — permissions are seeded with the system
+  (operational `resource.action` keys + the Etimad permission matrix v6);
+  **no runtime permission creation** — no page, no API. Administration composes
+  roles from the catalog only (R‑17).
+- **Seeded annual‑plan roles** — Plan Announcer, Department Plan Coordinator,
+  Department Plan Approver, Plan Reviewer (budget/preparation team), and Plan
+  Approver — each carries exactly its own key plus read (see §11).
+- **Session enforcement** — deactivating or deleting an account terminates its
+  session immediately: every request re‑checks the account, and refresh/login
+  are refused with a clear Arabic message.
+- **Permission‑gated UI** — every page and action button sits behind its
+  permission key (deep links show a “no permission” state); the sidebar mirrors
+  granted permissions and refreshes periodically without re‑login.
+- **Arabic error messages everywhere** — domain, HTTP, and validation errors
+  reach the user in Arabic with stable machine codes (`USER.NOT_FOUND`, …).
 
 ---
 
@@ -366,7 +389,76 @@ alignment, government‑platform sync, **Arabic NLP**, and blockchain transparen
 
 ---
 
-## 11. Glossary
+## 11. Annual plan — announcement & submission cycle (`FR-PL-001…014`) — new in 2.0
+
+The annual procurement plan is not built centrally; it runs on an
+**announce → department submissions → department‑manager approval → review →
+final approval** cycle, with a server‑enforced submission window.
+
+### 11‑1 Roles (seeded by default)
+
+| Role | Key | Sole capability |
+|---|---|---|
+| Plan Announcer (procurement dept) | `planning.announce` | Name the plan, set the submission window, announce it. |
+| Department Plan Coordinator (dept employee) | `planning.submit` | Add & submit their own department’s items while the window is open. |
+| Department Plan Approver (dept manager) | `planning.approve_department` | Approve/reject their department’s submitted items. |
+| Plan Reviewer (budget / preparation team) | `planning.review` | Review the plan after the window closes. |
+| Plan Approver | `planning.approve` | Final approval after review. |
+
+### 11‑2 Cycle & requirements
+
+- **`FR-PL-001` Announce** — the announcer creates + announces in one step: year,
+  title, window open time, window close time (draft → announced). Window times
+  are editable only before the window opens.
+- **`FR-PL-002` Year constraint** — plans may target the **current year up to
+  five years ahead only**; never a past year (R‑18).
+- **`FR-PL-003` Server‑time window** — the window state (scheduled/open/closed)
+  is **derived from server time on every request** — never stored, no scheduler;
+  opening and closing take effect exactly at the boundary (R‑18).
+- **`FR-PL-004` Announcement broadcast** — announcing delivers an **in‑app
+  notification + email** to every active user with the plan name and window
+  times (via the notifications module).
+- **`FR-PL-005` Department submissions** — during the window a department
+  employee adds items **for their own department exclusively** (the department
+  is inferred from membership, never chosen); items start as drafts.
+- **`FR-PL-006` Item lifecycle** — draft → submitted → dept‑approved / rejected
+  (reason mandatory); rejected items can be edited and resubmitted; only
+  draft/rejected items are editable or deletable, by their submitter only.
+- **`FR-PL-007` Department‑manager decision** — the manager registered in the
+  department register decides on **their own department’s items only**;
+  deciding stays available while the plan is announced (including after the
+  window closes, before review).
+- **`FR-PL-008` Operational separation of duties** — a manager never decides an
+  item **they submitted themselves**, even when holding both keys.
+- **`FR-PL-009` Visibility** — all departments’ items are **visible** to any
+  `planning.read` holder (product decision: mutual visibility is legitimate);
+  only actions are restricted by ownership and stewardship.
+- **`FR-PL-010` Review** — reviewing (announced → reviewed) is available **only
+  after the window closes**, to the budget/preparation team.
+- **`FR-PL-011` Final approval** — an announced plan is approvable **only after
+  review** (reviewed → approved); activation and closing follow as in 1.0.
+  Non‑announced plans keep the 1.0 path (draft → approved) for backward
+  compatibility.
+- **`FR-PL-012` Window guards every submission operation** — create/edit/delete/
+  submit outside the window are refused with a clear Arabic message.
+- **`FR-PL-013` Real‑time UI** — a live countdown to open/close flips the screen
+  state at the boundaries, driven by the server‑derived state, not the browser
+  clock.
+- **`FR-PL-014` Notifications module** — in‑app notifications (bell with unread
+  badge, mark‑read single/all) + email via SMTP when configured (log‑only in
+  development); any producer publishes through the `NOTIFICATION_INBOX` port.
+
+### 11‑3 State map
+
+```
+draft ──announce──▶ announced ──(window: scheduled → open → closed)──▶ reviewed ──▶ approved ──▶ active ──▶ closed
+                        │
+                        └─ department items: draft → submitted → dept_approved / rejected (↺ resubmit)
+```
+
+---
+
+## 12. Glossary
 
 | Term | Meaning |
 |---|---|
@@ -384,7 +476,7 @@ alignment, government‑platform sync, **Arabic NLP**, and blockchain transparen
 
 ---
 
-## 12. Requirement modules & traceability
+## 13. Requirement modules & traceability
 
 | Module prefix | Source | Description |
 |---|---|---|
@@ -394,6 +486,7 @@ alignment, government‑platform sync, **Arabic NLP**, and blockchain transparen
 | `FR-HM-001…010` | Sheet 3 — Higher Management | Strategic/executive module. |
 | `FR-AI-001…016` | Sheet 4 — AI Upgrade | AI & automation layer. |
 | `FR-V30-001…010` | Vision 2030 | Localization & Vision 2030. |
+| `FR-PL-001…014` | v2.0 — product decisions (August 2026) | Annual plan: announcement, window, department submissions, review, approval + notifications. |
 
 **Next steps (from the FRD):** per‑requirement traceability matrix, prototype
 specs, architecture document, security assessment, and **MVP vs later‑phase

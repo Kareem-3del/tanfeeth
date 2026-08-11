@@ -17,7 +17,7 @@ The authoritative product & domain documentation lives in **`docs/product/`**:
   — vision, personas, the 10‑stage lifecycle with **scenarios + user stories + options**,
   exceptional paths, modules, AI layer, integrations, NFRs, glossary.
 - [`docs/product/RULES.md`](docs/product/RULES.md) — **binding product/domain/engineering
-  rules (R‑01 … R‑16)**. Read before building any feature touching the lifecycle, roles,
+  rules (R‑01 … R‑18)**. Read before building any feature touching the lifecycle, roles,
   workflow, AI, or integrations.
 
 Key binding rules (see `RULES.md` for the full set): every state change is a **gated,
@@ -152,5 +152,5 @@ Secrets (`.env.prod`/`.env.staging`) are generated on the host and never committ
   monolithic barrel. `contracts/` is the reference. Pages stay thin. See `frontend/AGENTS.md`.
 - **Product/domain rules are binding** — any feature touching the procurement lifecycle,
   roles, workflow, AI, or government integrations must follow `docs/product/RULES.md`
-  (R‑01 … R‑16) and map to the single domain model in `docs/product/PRODUCT.{en,ar}.md`.
+  (R‑01 … R‑18) and map to the single domain model in `docs/product/PRODUCT.{en,ar}.md`.
   Don't invent parallel roles/statuses/flows; tie work to an `FR-*` requirement ID.

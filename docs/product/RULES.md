@@ -129,3 +129,26 @@ Especially for impactful actions, demonstrate the gated path end‑to‑end.
 **AR:** لا تُعدّ ميزة سير عمل/تكامل/ذكاء اصطناعي «منجزة» إلا بعد تشغيل ومعاينة
 انتقالاتها وصلاحياتها وسجلات تدقيقها — لا بمجرّد نجاح البناء. وبخاصة للإجراءات ذات
 الأثر، أثبت المسار المحكوم من طرف إلى طرف.
+
+### R‑17 — Fixed permission catalog / كتالوج الصلاحيات ثابت (v2)
+**EN:** Permissions are a seeded, closed catalog (operational `resource.action`
+keys + the Etimad permission matrix v6). There is **no runtime permission
+creation** — no page, no API. Administration composes roles from the catalog
+only; new keys enter through the seed catalog in code review.
+**AR:** الصلاحيات كتالوج مُغلق يُزرع مع النظام (المفاتيح التشغيلية
+`resource.action` + مصفوفة صلاحيات اعتماد v6). **لا إنشاء صلاحيات وقت التشغيل**
+— لا صفحة ولا API. الإدارة تكون بتركيب الأدوار من الكتالوج فقط، والمفاتيح
+الجديدة تدخل عبر كتالوج الزرع بمراجعة كود.
+
+### R‑18 — Annual plan runs on the announcement cycle / الخطة السنوية بدورة الإعلان (v2)
+**EN:** The annual plan is assembled through announce → department submissions →
+department‑manager approval → review → final approval. The submission window
+state is **derived from server time on every request** (never stored, no
+scheduler). Plans may target the current year up to five years ahead — never a
+past year. A manager never decides an item they submitted themselves. Announcing
+notifies every active user (in‑app + email). See `FR‑PL‑001…014`.
+**AR:** تُبنى الخطة السنوية بدورة: إعلان → تقديم الإدارات → اعتماد مدير الإدارة
+→ مراجعة → اعتماد نهائي. حالة نافذة التقديم **تُشتق من وقت الخادم عند كل طلب**
+(لا تُخزَّن ولا مجدول). تُنشأ الخطة للسنة الحالية وحتى خمس سنوات قادمة فقط — لا
+سنة ماضية. ولا يبت مدير في بند قدّمه بنفسه. الإعلان يبلّغ كل مستخدم نشط
+(إشعار + بريد). انظر `FR‑PL‑001…014`.
