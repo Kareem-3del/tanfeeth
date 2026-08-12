@@ -5,6 +5,13 @@
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="styles.css">
 <title>تنفيذ — وثيقة المنتج وخطة التسليم</title>
+<style>
+/* ملحق اللقطات (الإصدار 2.0) */
+.shot { break-inside: avoid; margin: 0 0 22px; }
+.shot img { width: 100%; border: 1px solid #d8dfdd; border-radius: 8px; display: block; }
+.shot .cap { margin-top: 7px; font-size: 9.2pt; color: #55606a; line-height: 1.7; }
+.shot .cap b { color: #234f33; }
+</style>
 </head>
 <body>
 
@@ -923,6 +930,48 @@
   <p class="note">انتهت الوثيقة. المرجع المُلزِم للمجال: <span class="tag">docs/product/PRODUCT.ar.md</span> ·
   <span class="tag">PRODUCT.en.md</span> · <span class="tag">RULES.md</span>. هذه الوثيقة هي صورة
   التسليم المشتقّة منها، وتُحدَّث بتحديثها.</p>
+</section>
+
+
+<!-- ============ ملحق — لقطات من المنصة (v2) ============ -->
+<section class="section">
+  <div class="sec-head">
+    <div class="sec-no">م</div>
+    <div class="sec-titles"><div class="sec-title">ملحق — لقطات من المنصة (الإصدار 2.0)</div>
+    <div class="sec-sub">دورة إعلان الخطة السنوية كما تعمل فعليًا — لقطات حقيقية من بيئة التشغيل بأدوار مختلفة</div></div>
+  </div>
+  <div class="shot">
+    <img src="screens-v2/01-plans-list.png" alt="قائمة الخطط السنوية">
+    <div class="cap"><b>قائمة الخطط السنوية.</b> كل خطة ببطاقة تحمل حالتها («معلنة») وحالة نافذتها («النافذة مفتوحة»)، مع زر «إعلان الخطة» لحامل صلاحية الإعلان فقط.</div>
+  </div>
+  <div class="shot">
+    <img src="screens-v2/02-announce-modal.png" alt="نموذج إعلان الخطة">
+    <div class="cap"><b>نموذج إعلان الخطة.</b> المعلن يحدد السنة (من قائمة السنوات الخمس القادمة فقط — R‑18) والعنوان ووقتَي فتح النافذة وقفلها، ويُعلن في خطوة واحدة.</div>
+  </div>
+  <div class="shot">
+    <img src="screens-v2/03-window-countdown.png" alt="بطاقة نافذة التقديم والعدّاد الحي">
+    <div class="cap"><b>بطاقة نافذة التقديم والعدّاد الحي.</b> مواعيد الفتح والقفل والإعلان، وعدّاد تنازلي («تُقفل النافذة بعد…») بشريط تقدّم — الحالة تُشتق من وقت الخادم عند كل طلب.</div>
+  </div>
+  <div class="shot">
+    <img src="screens-v2/04-employee-board.png" alt="بورد «بنود إدارتي» — موظف الإدارة">
+    <div class="cap"><b>بورد «بنود إدارتي» — موظف الإدارة.</b> بنود إدارته بحالاتها (معتمد من الإدارة / مقدَّم / مسودة) مع أزرار التصرف على بنوده هو فقط وزر «إضافة بند»؛ الإدارة تُستنتج من عضويته.</div>
+  </div>
+  <div class="shot">
+    <img src="screens-v2/05-notifications.png" alt="جرس الإشعارات">
+    <div class="cap"><b>جرس الإشعارات.</b> لحظة الإعلان يصل إشعار لكل مستخدم نشط (مع بريد إلكتروني) — عداد غير المقروء و«تعليم الكل كمقروء».</div>
+  </div>
+  <div class="shot">
+    <img src="screens-v2/06-manager-queue.png" alt="«طابور اعتماد الإدارة» — مدير الإدارة">
+    <div class="cap"><b>«طابور اعتماد الإدارة» — مدير الإدارة.</b> المدير المسجَّل يعتمد أو يرفض (بسبب إلزامي) البنود المقدَّمة من إدارته فقط، ولا يبتّ في بندٍ قدّمه بنفسه.</div>
+  </div>
+  <div class="shot">
+    <img src="screens-v2/07-review.png" alt="المراجعة بعد قفل النافذة">
+    <div class="cap"><b>المراجعة بعد قفل النافذة.</b> بعد القفل («أُغلقت نافذة التقديم») يظهر زر «مراجعة الخطة» لفريق الإعداد/الميزانية — ولا يتاح قبل ذلك.</div>
+  </div>
+  <div class="shot">
+    <img src="screens-v2/08-approve.png" alt="الاعتماد النهائي">
+    <div class="cap"><b>الاعتماد النهائي.</b> بعد المراجعة («تمت المراجعة») يظهر زر «اعتماد» لمعتمد الخطة — ثم التفعيل والإقفال كما في السابق.</div>
+  </div>
 </section>
 
 </body>
