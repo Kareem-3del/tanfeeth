@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../fonts.css">
+<title>تنفيذ — عقد (نموذج تصميم)</title>
+<style>
+:root{
+  --ink:#19222c; --muted:#647079; --faint:#9aa4ac;
+  --line:#d8dfdd; --line2:#edf1f0; --soft:#f6f9f8;
+  --green:#02594d; --green-mid:#337349; --green-deep:#023f37; --green2:#e9f2ec; --green3:#d2e6d9;
+  --gold:#8a6200; --goldbg:#fff6df;
+  --red:#a3322c;
+}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;direction:rtl;text-align:right;font-family:Tajawal,Arial,sans-serif;color:var(--ink);font-size:10.2pt;line-height:1.7}
+.page{break-before:page;padding-top:2mm}.page.first{break-before:auto;padding-top:0}
+.avoid{break-inside:avoid}
+.ltr{direction:ltr;unicode-bidi:isolate}
+.small{font-size:8.2pt}.muted{color:var(--muted)}
+
+/* ===== ترويسة العقد ===== */
+.head-band{background:linear-gradient(135deg,var(--green-deep),var(--green));color:#fff;border-radius:12px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center}
+.head-band .brand{display:flex;align-items:center;gap:12px}
+.head-band .brand img{height:34px;filter:brightness(0) invert(1)}
+.head-band .doc-type{font-size:8.6pt;letter-spacing:.06em;opacity:.85}
+.head-band h1{margin:2px 0 0;font-size:16pt;font-weight:800}
+.head-band .no{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:7px 14px;text-align:center}
+.head-band .no b{display:block;font-size:12pt;letter-spacing:.04em}
+.head-band .no span{font-size:7.6pt;opacity:.85}
+
+.status-row{display:flex;gap:8px;margin:10px 2px 0;align-items:center}
+.chip{border-radius:999px;padding:2px 12px;font-size:8.2pt;font-weight:700}
+.chip.g{background:var(--green2);color:var(--green-deep);border:1px solid var(--green3)}
+.chip.o{background:var(--goldbg);color:var(--gold);border:1px solid #ecd9a5}
+
+/* ===== بطاقتا الطرفين ===== */
+.parties{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.party{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff}
+.party .tag{font-size:8pt;font-weight:700;color:var(--green-deep);background:var(--green2);border-radius:6px;padding:1px 10px;display:inline-block}
+.party h3{margin:8px 0 2px;font-size:12pt}
+.party table{width:100%;border-collapse:collapse;margin-top:6px}
+.party td{padding:2.5px 0;font-size:8.8pt;vertical-align:top}
+.party td:first-child{color:var(--muted);width:34%}
+
+/* ===== إحصائيات إنفوجرافيك ===== */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.stat{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;position:relative;overflow:hidden}
+.stat::before{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:4px;background:var(--green)}
+.stat .v{font-size:14pt;font-weight:800;color:var(--green-deep)}
+.stat .v small{font-size:8.4pt;font-weight:700;color:var(--muted)}
+.stat .l{font-size:8.4pt;color:var(--muted)}
+
+/* دونات الإنجاز + الدفعات */
+.progress-wrap{display:grid;grid-template-columns:220px 1fr;gap:14px;margin-top:12px}
+.card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff}
+.card h4{margin:0 0 10px;font-size:10.5pt;color:var(--green-deep)}
+.donut{display:flex;align-items:center;gap:12px}
+.legend{font-size:8.4pt;color:var(--muted)}
+.legend b{color:var(--ink)}
+.pay-bar{display:flex;height:26px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.pay-bar div{display:flex;align-items:center;justify-content:center;color:#fff;font-size:8pt;font-weight:700}
+.pb1{background:var(--green-deep)}.pb2{background:var(--green-mid)}.pb3{background:#7fb391}.pb4{background:#d8e8de;color:var(--green-deep)!important}
+.pay-legend{display:flex;gap:14px;margin-top:8px;font-size:8.2pt;color:var(--muted);flex-wrap:wrap}
+.dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-inline-end:4px;vertical-align:middle}
+
+/* ===== الأقسام ===== */
+.sec{margin-top:16px}
+.sec-title{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.sec-title .n{background:var(--green);color:#fff;border-radius:8px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10pt}
+.sec-title h2{margin:0;font-size:12.5pt;color:var(--green-deep)}
+
+table.data{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+table.data th{background:var(--soft);color:var(--green-deep);font-size:8.6pt;padding:8px 12px;text-align:right;border-bottom:1px solid var(--line)}
+table.data td{padding:7px 12px;font-size:9pt;border-bottom:1px solid var(--line2)}
+table.data tr:last-child td{border-bottom:none}
+.mini-bar{background:var(--line2);border-radius:4px;height:8px;overflow:hidden;min-width:80px}
+.mini-bar i{display:block;height:100%;background:var(--green);border-radius:4px}
+
+/* الجدول الزمني */
+.timeline{margin:16px 6px 4px}
+.scope{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.scope .item{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff}
+.scope .item b{color:var(--green-deep);font-size:9.4pt;display:block;margin-bottom:3px}
+.scope .item span{font-size:8.4pt;color:var(--muted)}
+
+/* التوقيعات */
+.signs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.sign{border:1px dashed var(--line);border-radius:12px;padding:16px;background:var(--soft);text-align:center}
+.sign .who{font-weight:800;color:var(--green-deep)}
+.sign .line{border-bottom:1.5px solid var(--faint);height:44px;margin:12px 24px 6px}
+.sign .cap{font-size:8pt;color:var(--muted)}
+
+.note-band{background:var(--goldbg);border:1px solid #ecd9a5;border-radius:10px;padding:9px 14px;font-size:8.6pt;color:#6b4e00;margin-top:12px}
+.footer-meta{display:flex;justify-content:space-between;margin-top:10px;font-size:7.8pt;color:var(--faint)}
+</style>
+</head>
+<body>
+
+<!-- ============ صفحة 1 — الغلاف والملخص الإنفوجرافيك ============ -->
+<section class="page first">
+  <div class="head-band">
+    <div class="brand">
+      <img src="../logo.svg" alt="تنفيذ">
+      <div>
+        <div class="doc-type">وثيقة عقد — منصة تنفيذ</div>
+        <h1>عقد صيانة وتشغيل مركز البيانات الرئيسي</h1>
+      </div>
+    </div>
+    <div class="no"><span>رقم العقد</span><b class="ltr">CT-2026-0147</b><span>هـ١٤٤٨/٠٢/١٤</span></div>
+  </div>
+
+  <div class="status-row">
+    <span class="chip g">ساري — قيد التنفيذ</span>
+    <span class="chip o">ضمن الخطة السنوية ١٤٤٨/١٤٤٩هـ</span>
+    <span class="small muted">آخر تحديث: 2026-08-12 · مصدر البيانات: منصة تنفيذ</span>
+  </div>
+
+  <div class="parties">
+    <div class="party">
+      <span class="tag">الطرف الأول — الجهة</span>
+      <h3>المنصة الوطنية لمشروعات البنية التحتية</h3>
+      <table>
+        <tr><td>الإدارة المشرفة</td><td>إدارة تقنية المعلومات</td></tr>
+        <tr><td>ممثل الجهة</td><td>م. نورة القحطاني — مديرة إدارة تقنية المعلومات</td></tr>
+        <tr><td>البريد الرسمي</td><td class="ltr">it@entity.gov.sa</td></tr>
+        <tr><td>المرجع في اعتماد</td><td class="ltr">ETMD-TN-88412</td></tr>
+      </table>
+    </div>
+    <div class="party">
+      <span class="tag">الطرف الثاني — المقاول</span>
+      <h3>شركة الحلول التقنية المتقدمة المحدودة</h3>
+      <table>
+        <tr><td>السجل التجاري</td><td class="ltr">1010456789</td></tr>
+        <tr><td>ممثل المقاول</td><td>م. سالم الزهراني — مدير المشاريع</td></tr>
+        <tr><td>تصنيف المقاول</td><td>تشغيل وصيانة — درجة أولى</td></tr>
+        <tr><td>حالة التحقق</td><td>موثق عبر اعتماد والتأمينات ✓</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="v ltr">4,250,000 <small>ريال</small></div><div class="l">قيمة العقد (شاملة الضريبة)</div></div>
+    <div class="stat"><div class="v ltr">18 <small>شهرًا</small></div><div class="l">مدة العقد</div></div>
+    <div class="stat"><div class="v ltr">2026-03-01</div><div class="l">تاريخ المباشرة (خطاب رقم TN-5521)</div></div>
+    <div class="stat"><div class="v ltr">2027-08-31</div><div class="l">تاريخ الانتهاء التعاقدي</div></div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="card avoid">
+      <h4>نسبة الإنجاز</h4>
+      <div class="donut">
+        <svg width="110" height="110" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#edf1f0" stroke-width="16"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#02594d" stroke-width="16"
+                  stroke-dasharray="187 302" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+          <text x="60" y="66" text-anchor="middle" font-size="24" font-weight="800" fill="#023f37" font-family="Tajawal">62%</text>
+        </svg>
+        <div class="legend">
+          إنجاز فعلي <b>62%</b><br>
+          مخطط له <b>58%</b><br>
+          <span style="color:#337349;font-weight:700">+4% متقدم عن الخطة</span>
+        </div>
+      </div>
+    </div>
+    <div class="card avoid">
+      <h4>الموقف المالي — المستخلصات</h4>
+      <div class="pay-bar">
+        <div class="pb1" style="width:38%">1,615,000</div>
+        <div class="pb2" style="width:17%">722,500</div>
+        <div class="pb3" style="width:10%">425,000</div>
+        <div class="pb4" style="width:35%">1,487,500</div>
+      </div>
+      <div class="pay-legend">
+        <span><i class="dot" style="background:#023f37"></i>مصروف (38%)</span>
+        <span><i class="dot" style="background:#337349"></i>معتمد بانتظار الصرف (17%)</span>
+        <span><i class="dot" style="background:#7fb391"></i>مقدَّم قيد الاعتماد (10%)</span>
+        <span><i class="dot" style="background:#d8e8de"></i>متبقٍ (35%)</span>
+      </div>
+      <div class="small muted" style="margin-top:8px">محتجز ضمان حسن التنفيذ: <b class="ltr">212,500</b> ريال (5%) · الضمان البنكي النهائي ساري حتى <span class="ltr">2027-10-31</span></div>
+    </div>
+  </div>
+
+  <div class="note-band">هذه نسخة توضيحية لتصميم وثيقة العقد المولَّدة من منصة تنفيذ — البيانات أعلاه افتراضية لأغراض العرض فقط.</div>
+</section>
+
+<!-- ============ صفحة 2 — الجدول الزمني والدفعات ============ -->
+<section class="page">
+  <div class="sec">
+    <div class="sec-title"><span class="n">1</span><h2>الجدول الزمني ومعالم التنفيذ</h2></div>
+    <div class="timeline avoid">
+      <svg width="100%" height="150" viewBox="0 0 720 150" preserveAspectRatio="xMidYMid meet">
+        <line x1="30" y1="60" x2="690" y2="60" stroke="#d8dfdd" stroke-width="4" stroke-linecap="round"/>
+        <line x1="690" y1="60" x2="285" y2="60" stroke="#02594d" stroke-width="4" stroke-linecap="round"/>
+        <!-- المعالم (RTL: تبدأ من اليمين) -->
+        <g font-family="Tajawal" text-anchor="middle">
+          <circle cx="690" cy="60" r="10" fill="#02594d"/>
+          <text x="690" y="34" font-size="11" font-weight="700" fill="#023f37">المباشرة</text>
+          <text x="690" y="92" font-size="9" fill="#647079" direction="ltr">2026-03</text>
+
+          <circle cx="555" cy="60" r="10" fill="#02594d"/>
+          <text x="555" y="34" font-size="11" font-weight="700" fill="#023f37">تسليم الموقع</text>
+          <text x="555" y="92" font-size="9" fill="#647079" direction="ltr">2026-04</text>
+
+          <circle cx="420" cy="60" r="10" fill="#02594d"/>
+          <text x="420" y="34" font-size="11" font-weight="700" fill="#023f37">المرحلة الأولى</text>
+          <text x="420" y="92" font-size="9" fill="#647079" direction="ltr">2026-09</text>
+
+          <circle cx="285" cy="60" r="12" fill="#fff" stroke="#02594d" stroke-width="4"/>
+          <text x="285" y="30" font-size="11" font-weight="800" fill="#8a6200">أنت هنا</text>
+          <text x="285" y="92" font-size="9" fill="#647079" direction="ltr">2026-08</text>
+
+          <circle cx="160" cy="60" r="10" fill="#c9d6d0"/>
+          <text x="160" y="34" font-size="11" font-weight="700" fill="#647079">الاستلام الابتدائي</text>
+          <text x="160" y="92" font-size="9" fill="#9aa4ac" direction="ltr">2027-05</text>
+
+          <circle cx="40" cy="60" r="10" fill="#c9d6d0"/>
+          <text x="40" y="34" font-size="11" font-weight="700" fill="#647079">الاستلام النهائي</text>
+          <text x="40" y="92" font-size="9" fill="#9aa4ac" direction="ltr">2027-08</text>
+        </g>
+        <g font-family="Tajawal" font-size="9.5">
+          <rect x="238" y="108" width="96" height="26" rx="6" fill="#e9f2ec" stroke="#d2e6d9"/>
+          <text x="285" y="125" text-anchor="middle" fill="#023f37" font-weight="700">62% من المدة انقضى</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="sec avoid">
+    <div class="sec-title"><span class="n">2</span><h2>جدول الدفعات والمستخلصات</h2></div>
+    <table class="data">
+      <thead><tr><th>المستخلص</th><th>الفترة</th><th>القيمة (ريال)</th><th>الحالة</th><th style="width:20%">نسبة من العقد</th></tr></thead>
+      <tbody>
+        <tr><td>الدفعة المقدمة</td><td class="ltr">2026-03</td><td class="ltr">425,000</td><td><span class="chip g">مصروفة</span></td><td><div class="mini-bar"><i style="width:10%"></i></div></td></tr>
+        <tr><td>المستخلص الأول</td><td class="ltr">2026-03 → 2026-06</td><td class="ltr">637,500</td><td><span class="chip g">مصروف</span></td><td><div class="mini-bar"><i style="width:15%"></i></div></td></tr>
+        <tr><td>المستخلص الثاني</td><td class="ltr">2026-06 → 2026-09</td><td class="ltr">552,500</td><td><span class="chip g">مصروف</span></td><td><div class="mini-bar"><i style="width:13%"></i></div></td></tr>
+        <tr><td>المستخلص الثالث</td><td class="ltr">2026-09 → 2026-12</td><td class="ltr">722,500</td><td><span class="chip o">معتمد — بانتظار الصرف</span></td><td><div class="mini-bar"><i style="width:17%"></i></div></td></tr>
+        <tr><td>المستخلص الرابع</td><td class="ltr">2027-01 → 2027-03</td><td class="ltr">425,000</td><td><span class="chip o">مقدَّم قيد الاعتماد</span></td><td><div class="mini-bar"><i style="width:10%"></i></div></td></tr>
+        <tr><td>الدفعة الختامية + رد المحتجز</td><td class="ltr">2027-08</td><td class="ltr">1,487,500</td><td><span class="chip" style="background:#eef1f0;color:#647079;border:1px solid #d8dfdd">مستقبلي</span></td><td><div class="mini-bar"><i style="width:35%;background:#c9d6d0"></i></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec avoid">
+    <div class="sec-title"><span class="n">3</span><h2>مؤشرات الأداء التشغيلية</h2></div>
+    <div class="stats" style="grid-template-columns:repeat(4,1fr)">
+      <div class="stat"><div class="v ltr">99.7%</div><div class="l">التوافر الفعلي (SLA ≥ 99.5%)</div></div>
+      <div class="stat"><div class="v ltr">3</div><div class="l">أوامر تغيير معتمدة</div></div>
+      <div class="stat"><div class="v ltr">0</div><div class="l">غرامات تأخير مطبقة</div></div>
+      <div class="stat"><div class="v ltr">14</div><div class="l">تقرير تقدم شهري مستلم</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ صفحة 3 — النطاق والالتزامات والتوقيعات ============ -->
+<section class="page">
+  <div class="sec">
+    <div class="sec-title"><span class="n">4</span><h2>نطاق الأعمال</h2></div>
+    <div class="scope avoid">
+      <div class="item"><b>الصيانة الوقائية</b><span>جولات شهرية على أنظمة التبريد والطاقة وأنظمة الإطفاء مع تقارير موثقة.</span></div>
+      <div class="item"><b>التشغيل على مدار الساعة</b><span>فريق مقيم 24/7 مع نوبات موثقة ومؤشرات استجابة ≤ 15 دقيقة.</span></div>
+      <div class="item"><b>الصيانة العلاجية</b><span>إصلاح الأعطال وقطع الغيار الأصلية ضمن قيمة العقد.</span></div>
+      <div class="item"><b>المراقبة والإنذار</b><span>ربط أنظمة المراقبة بمركز التحكم وتصعيد تلقائي للأحداث الحرجة.</span></div>
+      <div class="item"><b>التقارير الدورية</b><span>تقرير شهري بالمؤشرات وسجل الأعمال وخطة الشهر التالي.</span></div>
+      <div class="item"><b>نقل المعرفة</b><span>تدريب فريق الجهة (40 ساعة) قبل الاستلام النهائي.</span></div>
+    </div>
+  </div>
+
+  <div class="sec avoid">
+    <div class="sec-title"><span class="n">5</span><h2>الضمانات والالتزامات الجوهرية</h2></div>
+    <table class="data">
+      <tbody>
+        <tr><td style="width:30%"><b>الضمان البنكي النهائي</b></td><td>5% من قيمة العقد — ساري حتى <span class="ltr">2027-10-31</span> (بنك الرياض، خطاب <span class="ltr">GB-77812</span>)</td></tr>
+        <tr><td><b>غرامة التأخير</b></td><td>وفق نظام المنافسات والمشتريات الحكومية — بحد أقصى 6% من قيمة العقد</td></tr>
+        <tr><td><b>المحتوى المحلي</b></td><td>نسبة ملتزم بها 42% — تُقاس سنويًا وفق منهجية هيئة المحتوى المحلي</td></tr>
+        <tr><td><b>السرية وحماية البيانات</b></td><td>التزام كامل بضوابط الأمن السيبراني (ECC) وعدم نقل أي بيانات خارج المملكة</td></tr>
+        <tr><td><b>التأمينات الاجتماعية</b></td><td>شهادة سعودة وتأمينات سارية طوال مدة العقد — تُتحقق آليًا عبر تنفيذ</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec avoid">
+    <div class="sec-title"><span class="n">6</span><h2>التوقيعات</h2></div>
+    <div class="signs">
+      <div class="sign">
+        <div class="who">الطرف الأول — الجهة</div>
+        <div class="small muted">م. نورة القحطاني · مديرة إدارة تقنية المعلومات</div>
+        <div class="line"></div>
+        <div class="cap">التوقيع والتاريخ — عبر التوقيع الإلكتروني الموثق</div>
+      </div>
+      <div class="sign">
+        <div class="who">الطرف الثاني — المقاول</div>
+        <div class="small muted">م. سالم الزهراني · شركة الحلول التقنية المتقدمة</div>
+        <div class="line"></div>
+        <div class="cap">التوقيع والتاريخ — عبر التوقيع الإلكتروني الموثق</div>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>وُلدت هذه الوثيقة آليًا من منصة تنفيذ · رقم مرجعي <span class="ltr">TNF-DOC-2026-08841</span></span>
+      <span>التحقق من صحة الوثيقة: امسح الرمز في النسخة الرسمية أو راجع سجل العقد في المنصة</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
