@@ -1,0 +1,24 @@
+{
+  "$comment": "تطبيق «تنفيذ» للجوال — غلاف WebView حول تطبيق الويب المنشور. يفتح بيئة staging (قاعدة staging أولًا)؛ عند اعتماد الإنتاج بدّل server.url إلى https://tanfeeth.io وأعد البناء.",
+  "appId": "io.tanfeeth.app",
+  "appName": "تنفيذ",
+  "webDir": "www",
+  "server": {
+    "url": "https://staging.tanfeeth.io",
+    "allowNavigation": ["tanfeeth.io", "*.tanfeeth.io"]
+  },
+  "android": {
+    "allowMixedContent": false
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 800,
+      "backgroundColor": "#02594d",
+      "showSpinner": false
+    },
+    "StatusBar": {
+      "style": "LIGHT",
+      "backgroundColor": "#02594d"
+    }
+  }
+}
