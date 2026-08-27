@@ -26,8 +26,18 @@ JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home" \
 
 ## iOS
 
-لم تُضف منصة iOS بعد — `npx cap add ios` ثم افتح المشروع في Xcode
-(يتطلب حساب Apple Developer للتوقيع).
+المنصة مضافة في `ios/` (Swift Package Manager، لا CocoaPods). بناء المحاكي بلا توقيع:
+
+```bash
+npx cap sync ios
+xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Debug \
+  -destination 'platform=iOS Simulator,name=iPhone 17 Pro' \
+  -derivedDataPath ios/App/build CODE_SIGNING_ALLOWED=NO build
+xcrun simctl install "iPhone 17 Pro" ios/App/build/Build/Products/Debug-iphonesimulator/App.app
+xcrun simctl launch "iPhone 17 Pro" io.tanfeeth.app
+```
+
+جهاز حقيقي أو App Store يتطلب حساب Apple Developer للتوقيع.
 
 ## ملاحظة على حجم الحزمة
 
