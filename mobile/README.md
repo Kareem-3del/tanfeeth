@@ -28,3 +28,9 @@ JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home" \
 
 لم تُضف منصة iOS بعد — `npx cap add ios` ثم افتح المشروع في Xcode
 (يتطلب حساب Apple Developer للتوقيع).
+
+## ملاحظة على حجم الحزمة
+
+`android/app/src/main/assets/brand/splash-hd.png` صورة هوية عالية الدقة أُضيفت
+**بطلبٍ صريح لرفع حجم الـAPK إلى ~20MB**؛ لا يقرأها كود التطبيق. هي وزنٌ زائد
+على التنزيل فقط — احذف المجلد وأعد البناء ليعود الحجم إلى ~4MB.
