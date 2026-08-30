@@ -251,7 +251,7 @@ signs → Contractor (external) reviews/edits and signs.
 
 ---
 
-## 5. Exceptional paths (`FR-EX-001…011`)
+## 5. Exceptional paths (`FR-EX-001…013`)
 
 Secondary flows beyond the main path.
 
@@ -273,6 +273,33 @@ rejects with comment.
 ### 5.3 Contractor evaluation (`FR-EX-010…011`)
 Requester evaluates the contractor → Head reviews & confirms/edits → Higher
 Management approves or rejects with comment. Feeds the supplier reliability index.
+
+### 5.4 Subcontracting (`FR-EX-012…013`)
+The main contractor assigns part of the contract works to a **subcontractor**; the
+entity approves and tracks it. Statutory basis: **Article 71** of the Law and the
+tender document's subcontracting clause; procedure **24** in the RGA manual.
+
+**When it is declared:** the bidder submits the list of subcontractors **with the
+offer** for approval (clause a), so anything declared in the offer is implicitly
+approved on award; anything added after signature goes to the **manager of the
+contract's supervising department** (then the deputy, then escalated to the parent
+department), and the requester may never decide their own request (separation of
+duties).
+
+**Statutory caps:** subcontracted works must not exceed **30%** of the contract value
+(clause d); from 30% and **below 50%** is allowed only with **prior approval from the
+Expenditure Efficiency Authority** and assignment to **more than one subcontractor**
+(clause j). The main contractor remains liable to the entity (clause f), and a
+subcontractor may not sub-subcontract (clause g).
+
+**Scope:** the works are identified as BOQ line items with a percentage each
+(clause b); the sum allocated from one item across all subcontracts never exceeds 100%.
+
+- **`FR-EX-012`** — register a subcontract (subcontractor from the contractor registry,
+  allocated BOQ items with percentages, value, dates, licence, classification, contract
+  file) with automatic statutory-limit checks.
+- **`FR-EX-013`** — end a subcontract through a reasoned request approved by the
+  department manager; the subcontractor does not leave until the exit is approved.
 
 ---
 
@@ -481,7 +508,7 @@ draft ──announce──▶ announced ──(window: scheduled → open → cl
 | Module prefix | Source | Description |
 |---|---|---|
 | `FR-WF-001…039` | Sheet 1 — Project Journey | Competition lifecycle (main path). |
-| `FR-EX-001…011` | Sheet 2 — Other Project Cases | Change orders, closeout, contractor evaluation. |
+| `FR-EX-001…013` | Sheet 2 — Other Project Cases | Change orders, closeout, contractor evaluation, subcontracting. |
 | `FR-FT / CT / CM` | Sheet 3 — Other Required Features | General modules, contractor & CDM screens. |
 | `FR-HM-001…010` | Sheet 3 — Higher Management | Strategic/executive module. |
 | `FR-AI-001…016` | Sheet 4 — AI Upgrade | AI & automation layer. |
