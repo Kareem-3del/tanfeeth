@@ -381,9 +381,13 @@ and the system must provide **explainability** for every automated recommendatio
   plan. Before a lesson starts the server *prepares* its prerequisites (a plan
   line to tender from, a contractor, a supervising department, a free plan
   year): existing records are preferred and only missing ones are created,
-  tagged “(تدريب)”, so a lesson never stalls on an empty organization. Training
-  records are deletable per type; lessons never press an approval action (HITL
-  preserved).
+  tagged “(تدريب)”, so a lesson never stalls on an empty organization. Every step
+  is tied to its **legal basis** in the Government Tenders and Procurement Law and
+  its Implementing Regulations (edition 04, April 2024): article number, page in
+  the document and the article text are spoken in the narration, shown in the
+  autopilot dock and cited under Ask‑the‑trainer answers (the AI may cite only
+  articles from the curated catalog). Training records are deletable per type;
+  lessons never press an approval action (HITL preserved).
 
 ---
 
