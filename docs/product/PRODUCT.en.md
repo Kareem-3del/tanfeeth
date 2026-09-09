@@ -378,8 +378,12 @@ and the system must provide **explainability** for every automated recommendatio
   ElevenLabs TTS, cached). **Ask the trainer** answers free‑text questions about
   the platform, or jumps to the exact lesson step, streaming its reasoning and
   reply. Lessons: tender a competition, register a contract, announce the annual
-  plan. Training records are tagged “(تدريب)” and deletable per type; lessons
-  never press an approval action (HITL preserved).
+  plan. Before a lesson starts the server *prepares* its prerequisites (a plan
+  line to tender from, a contractor, a supervising department, a free plan
+  year): existing records are preferred and only missing ones are created,
+  tagged “(تدريب)”, so a lesson never stalls on an empty organization. Training
+  records are deletable per type; lessons never press an approval action (HITL
+  preserved).
 
 ---
 
