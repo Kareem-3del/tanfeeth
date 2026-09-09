@@ -120,3 +120,24 @@ docker compose -f docker-compose.staging.yml up -d
 bash scripts/setup-runners.sh https://github.com/Kareem-3del/tanfeeth-api    "$TOKEN" 2 api
 bash scripts/setup-runners.sh https://github.com/Kareem-3del/tanfeeth-frontend "$TOKEN" 2 web
 ```
+
+## Training center (trainer voice + Ask-the-trainer)
+
+The API's `training` module keeps a small on-disk cache — narration scripts,
+ElevenLabs MP3s and the Q&A answer records — under `/app/storage/training`
+(the image pre-creates it owned by `node`). Every stack mounts a named volume
+there (`training-staging`, `tanfeeth-training-<slug>`) so redeploys don't
+re-bill the TTS/LLM providers or forget answered questions. Optional env in
+`.env.staging` / the customer env file (see `backend/.env.example`):
+
+```bash
+ELEVENLABS_API_KEY=            # empty → lessons run silent, everything else works
+ELEVENLABS_VOICE_ID=           # or ELEVENLABS_VOICE_NAME=Soltan to resolve by name
+# ELEVENLABS_MODEL_ID=eleven_v3
+# TRAINING_SCRIPT_MODEL=gpt-5  TRAINING_INTENT_MODEL=gpt-4o   (reuse OPENAI_API_KEY)
+# TRAINING_NARRATION_CACHE_DIR=/app/storage/training           (default; must match the mount)
+```
+
+`POST /training/ask` streams SSE for up to a couple of minutes — the nginx
+`location /api/` already carries the long inference read-timeout used by the
+other AI endpoints; keep it if you split locations.

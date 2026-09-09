@@ -351,7 +351,7 @@ sustainability & local‑content indicators).
 
 ---
 
-## 7. AI layer (`FR-AI-001…016`) — under mandatory HITL
+## 7. AI layer (`FR-AI-001…017`) — under mandatory HITL
 
 A cross‑cutting layer (in collaboration with **Monafasat AI**). **Binding control —
 HITL:** no AI recommendation or decision with **financial, contractual, or
@@ -371,6 +371,15 @@ and the system must provide **explainability** for every automated recommendatio
 - **Knowledge & assistant:** generative hub / chatbot for internal rules and the
   government tenders & procurement law; per‑contract analysis & summary; smart
   document summarization & contextual search; voice assistant.
+- **Training Center (`FR-AI-017`):** an AI‑driven *autopilot* that teaches the
+  platform on the platform itself — a lesson is a data script (no user input) the
+  engine plays against the real UI (navigate, type, pick, click, wait for Smart
+  Fill), narrated by a trainer voice (LLM‑written Riyadh‑dialect script →
+  ElevenLabs TTS, cached). **Ask the trainer** answers free‑text questions about
+  the platform, or jumps to the exact lesson step, streaming its reasoning and
+  reply. Lessons: tender a competition, register a contract, announce the annual
+  plan. Training records are tagged “(تدريب)” and deletable per type; lessons
+  never press an approval action (HITL preserved).
 
 ---
 
@@ -512,6 +521,7 @@ draft ──announce──▶ announced ──(window: scheduled → open → cl
 | `FR-FT / CT / CM` | Sheet 3 — Other Required Features | General modules, contractor & CDM screens. |
 | `FR-HM-001…010` | Sheet 3 — Higher Management | Strategic/executive module. |
 | `FR-AI-001…016` | Sheet 4 — AI Upgrade | AI & automation layer. |
+| `FR-AI-017` | Tanfeeth addition (Sept 2026) | Training Center: autopilot lessons + Ask‑the‑trainer + trainer voice. |
 | `FR-V30-001…010` | Vision 2030 | Localization & Vision 2030. |
 | `FR-PL-001…014` | v2.0 — product decisions (August 2026) | Annual plan: announcement, window, department submissions, review, approval + notifications. |
 

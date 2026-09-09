@@ -66,6 +66,9 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    volumes:
+      # Training-center cache (trainer voice + Q&A records) survives redeploys.
+      - training:/app/storage/training
     networks:
       - internal
       - edge
@@ -104,3 +107,5 @@ networks:
 volumes:
   pgdata:
     name: tanfeeth-pgdata-${CUSTOMER_SLUG}
+  training:
+    name: tanfeeth-training-${CUSTOMER_SLUG}

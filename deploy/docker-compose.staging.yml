@@ -32,6 +32,9 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    volumes:
+      # مركز التدريب: سكربتات الصوت ومقاطعه وسجلّ الأسئلة — تبقى عبر إعادة النشر
+      - training-staging:/app/storage/training
     networks:
       - tanfeeth-net
       - rfp-staging
@@ -52,3 +55,4 @@ networks:
 
 volumes:
   pgdata-staging:
+  training-staging:
