@@ -1,6 +1,7 @@
 // تنفيذ — التعبئة في اعتماد | Etimad content script
-// Draws the "controlled by Tanfeeth" frame + badge, and fills the current
-// wizard page's fields from the payload captured on the Tanfeeth origin.
+// Draws the Tanfeeth bar at the top of Etimad pages (sign in → choose a project →
+// fill), and fills the current wizard page's fields from the stored payload.
+// Everything is gated on being signed in to the extension.
 // The extension NEVER clicks save/submit — the user always does that.
 
 "use strict";
@@ -17,7 +18,6 @@
 
   let bridgeInjected = false;
   let bridgeIdCounter = 0;
-  let ui = null; // { frame, badge, textEl, fillBtn }
   let running = false;
   let settings = DEFAULT_SETTINGS;
 
@@ -141,7 +141,7 @@
     bridgeInjected = true;
     try {
       const script = document.createElement("script");
-      script.src = chrome.runtime.getURL("src/page-bridge.js");
+      script.src = chrome.runtime.getURL("src/content/page-bridge.js");
       script.onload = function () {
         script.remove();
       };
@@ -368,10 +368,18 @@
     return { status: "skipped", detail: "عنصر غير مدعوم <" + tag + ">" };
   }
 
-  async function runFill(record) {
+  // onProgress(done, total, label) — يغذي شريط التقدم في شريط تنفيذ.
+  async function runFill(record, onProgress) {
     if (running) return null;
     running = true;
-    setBadgeText("جارٍ تعبئة الحقول...");
+    try {
+      return await runFillUnsafe(record, onProgress || function () {});
+    } finally {
+      running = false;
+    }
+  }
+
+  async function runFillUnsafe(record, onProgress) {
 
     const etimadFields = (record.payload && record.payload.etimadFields) || {};
     // الحمولة الخام: المركّبات المتكررة (معايير التقييم) ليست حقولًا مسطّحة
@@ -386,7 +394,10 @@
       return !k.endsWith("__calendar");
     });
 
+    const total = keys.length + (settings.fillCriteria ? 1 : 0);
+    let done = 0;
     for (const key of keys) {
+      onProgress(done++, total, "الحقول");
       let result;
       try {
         result = await fillField(key, etimadFields[key], etimadFields);
@@ -416,7 +427,7 @@
       });
     } else {
       try {
-        setBadgeText("جارٍ إضافة معايير التقييم...");
+        onProgress(done, total, "معايير التقييم");
         const criteria = await TNF_CRITERIA.fill(rawPayload, jquerySync);
         if (criteria.applicable) {
           criteria.rows.forEach(function (r) {
@@ -467,170 +478,345 @@
     patch[LOG_KEY] = log;
     await storageSet(patch);
 
-    running = false;
+    onProgress(total, total, "");
     return { filled: filled, skipped: skipped, failed: failed };
   }
 
-  // ───────────────────────────────────────────────────────────── overlay ──
 
-  function svgIcon(pathD, size) {
-    const ns = "http://www.w3.org/2000/svg";
-    const svg = document.createElementNS(ns, "svg");
-    svg.setAttribute("viewBox", "0 0 24 24");
-    svg.setAttribute("width", String(size || 16));
-    svg.setAttribute("height", String(size || 16));
-    svg.setAttribute("fill", "none");
-    svg.setAttribute("stroke", "currentColor");
-    svg.setAttribute("stroke-width", "2.2");
-    svg.setAttribute("stroke-linecap", "round");
-    svg.setAttribute("stroke-linejoin", "round");
-    svg.setAttribute("aria-hidden", "true");
-    const path = document.createElementNS(ns, "path");
-    path.setAttribute("d", pathD);
-    svg.appendChild(path);
-    return svg;
+  // ────────────────────────────────────────────────────── شريط تنفيذ ──
+  // شريط عائم أعلى الصفحة داخل Shadow DOM: حال الدخول، والمشروع الجاهز،
+  // وزر «تعبئة الحقول»، وفتح المساعد. يُصغَّر إلى زر دائري في الزاوية.
+
+  const UI = TNF_UI;
+
+  const BAR_CSS = [
+    ".frame{position:fixed;inset:0;border:2px solid var(--green);pointer-events:none;z-index:2147483646}",
+    ".bar{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:2147483647;display:flex;align-items:center;gap:10px;width:max-content;max-width:min(94vw,760px);padding:7px 8px 7px 8px;padding-inline-start:8px;background:var(--paper);border:1px solid var(--line);border-radius:999px;box-shadow:0 10px 30px -14px rgba(15,21,20,.22);animation:tnf-drop 260ms cubic-bezier(.22,1,.36,1);overflow:hidden}",
+    "@keyframes tnf-drop{from{opacity:0;transform:translate(-50%,-8px)}to{opacity:1;transform:translate(-50%,0)}}",
+    ".disc{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:999px;background:var(--green)}",
+    ".txt{min-width:0;display:flex;flex-direction:column;line-height:1.35;padding-inline-end:4px}",
+    ".t{font-family:'TNF Display','TNF Body',system-ui,sans-serif;font-weight:700;font-size:13px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:360px}",
+    ".s{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:380px}",
+    ".s.ok{color:var(--success)}",
+    ".s.warn{color:var(--warning)}",
+    ".acts{display:flex;align-items:center;gap:2px;flex:none}",
+    ".acts .btn{margin-inline-end:4px}",
+    ".sep{width:1px;height:20px;background:var(--line);margin:0 4px}",
+    ".progress{position:absolute;inset-inline:0;bottom:0;height:2px;background:transparent}",
+    ".progress>i{display:block;height:100%;background:var(--leaf);transition:width 200ms ease;width:0}",
+    ".fab{position:fixed;bottom:20px;inset-inline-start:20px;z-index:2147483647;display:grid;place-items:center;width:52px;height:52px;border-radius:999px;background:var(--green);box-shadow:0 10px 30px -14px rgba(15,21,20,.35);border:1px solid rgba(255,255,255,.12)}",
+    ".fab:hover{background:var(--green-deep)}",
+    ".fab .dot{position:absolute;top:4px;inset-inline-end:4px;width:11px;height:11px;border-radius:999px;background:var(--leaf);border:2px solid var(--paper)}",
+    "@media (max-width:640px){.t,.s{max-width:150px}.btn span{display:none}.btn{padding:0 10px}}",
+  ].join("\n");
+
+  const view = {
+    auth: { signedIn: false },
+    record: null, // حمولة صالحة (أحدث من ساعتين) أو null
+    log: {},
+    phase: "idle", // idle | filling | done
+    progress: 0,
+    progressLabel: "",
+    summary: null,
+    collapsed: false,
+    hint: "",
+  };
+  let host = null; // { host, root }
+  let pendingAutoFill = false;
+  let lastSavedAt = null;
+
+  function validRecord(record) {
+    if (!record || !record.savedAt) return null;
+    return Date.now() - record.savedAt > MAX_AGE_MS ? null : record;
   }
 
-  function setBadgeText(text) {
-    if (ui && ui.textEl) ui.textEl.textContent = text;
+  function alreadyFilled() {
+    return view.log && view.log[pageKey()] ? view.log[pageKey()] : null;
   }
 
-  function setFillButtonLabel(label) {
-    if (ui && ui.fillBtnLabel) ui.fillBtnLabel.textContent = label;
+  function barVisible() {
+    return settings.enabled && settings.showOverlay;
   }
 
-  function removeOverlay() {
-    if (!ui) return;
-    try {
-      ui.frame.remove();
-      ui.badge.remove();
-    } catch (_e) {
-      /* ignore */
+  function destroyHost() {
+    if (host) host.host.remove();
+    host = null;
+  }
+
+  function button(cls, iconName, label, onClick, opts) {
+    const b = UI.el("button", cls);
+    b.type = "button";
+    const ic = UI.icon(iconName, cls.indexOf("icon-btn") !== -1 ? 17 : 15);
+    if (opts && opts.spin) ic.classList.add("spin");
+    b.appendChild(ic);
+    if (label && cls.indexOf("icon-btn") === -1) b.appendChild(UI.el("span", null, label));
+    if (label) {
+      b.setAttribute("aria-label", label);
+      b.title = label;
     }
-    ui = null;
+    if (opts && opts.disabled) b.disabled = true;
+    b.addEventListener("click", onClick);
+    return b;
   }
 
-  function buildOverlay(onFill) {
-    if (ui) return;
+  async function openPanel(target) {
+    const ok = await UI.openPanel(target);
+    if (!ok) {
+      view.hint = "اضغط أيقونة تنفيذ في شريط أدوات المتصفح لفتح المساعد";
+      render();
+    }
+  }
 
-    const frame = document.createElement("div");
-    frame.className = "tnf-frame";
-    frame.setAttribute("aria-hidden", "true");
+  async function setCollapsed(value) {
+    view.collapsed = value;
+    const items = await storageGet([UI.KEYS.prefs]);
+    const prefs = Object.assign({}, items[UI.KEYS.prefs] || {}, { launcherCollapsed: value });
+    await storageSet({ [UI.KEYS.prefs]: prefs });
+    render();
+  }
 
-    const badge = document.createElement("div");
-    badge.className = "tnf-badge";
-    badge.setAttribute("dir", "rtl");
-    badge.setAttribute("role", "status");
-
-    // shield-check mark
-    const logo = svgIcon("M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z M9 12l2 2 4-4", 18);
-    logo.classList.add("tnf-badge-logo");
-    badge.appendChild(logo);
-
-    const textEl = document.createElement("span");
-    textEl.className = "tnf-badge-text";
-    textEl.textContent = "هذه الصفحة تحت تحكم إضافة تنفيذ — البيانات جاهزة للتعبئة";
-    badge.appendChild(textEl);
-
-    const fillBtn = document.createElement("button");
-    fillBtn.type = "button";
-    fillBtn.className = "tnf-btn";
-    const fillIcon = svgIcon("M12 5v14 M5 12h14", 14); // plus → "fill"
-    fillBtn.appendChild(fillIcon);
-    const fillBtnLabel = document.createElement("span");
-    fillBtnLabel.textContent = "تعبئة الحقول";
-    fillBtn.appendChild(fillBtnLabel);
-    fillBtn.addEventListener("click", function () {
-      onFill();
+  function render() {
+    if (!barVisible()) {
+      destroyHost();
+      return;
+    }
+    if (!host) host = UI.createHost("bar", BAR_CSS);
+    const root = host.root;
+    Array.prototype.slice.call(root.childNodes).forEach(function (n) {
+      if (n.tagName !== "STYLE") n.remove();
     });
-    badge.appendChild(fillBtn);
 
-    const closeBtn = document.createElement("button");
-    closeBtn.type = "button";
-    closeBtn.className = "tnf-close";
-    closeBtn.setAttribute("aria-label", "إخفاء شريط تنفيذ");
-    closeBtn.appendChild(svgIcon("M6 6l12 12 M18 6L6 18", 14));
-    closeBtn.addEventListener("click", removeOverlay);
-    badge.appendChild(closeBtn);
+    const wrap = UI.el("div", "tnf");
+    root.appendChild(wrap);
+    const controlled = view.auth.signedIn && view.record;
+    if (controlled) wrap.appendChild(UI.el("div", "frame"));
 
-    (document.body || document.documentElement).appendChild(frame);
-    (document.body || document.documentElement).appendChild(badge);
+    if (view.collapsed) {
+      const fab = UI.el("button", "fab");
+      fab.type = "button";
+      fab.setAttribute("aria-label", "إظهار شريط تنفيذ");
+      fab.title = "تنفيذ";
+      fab.appendChild(UI.mark(18, "mono"));
+      if (controlled && view.phase !== "done") fab.appendChild(UI.el("span", "dot"));
+      fab.addEventListener("click", function () {
+        setCollapsed(false);
+      });
+      wrap.appendChild(fab);
+      return;
+    }
 
-    ui = { frame: frame, badge: badge, textEl: textEl, fillBtn: fillBtn, fillBtnLabel: fillBtnLabel };
+    const bar = UI.el("div", "bar");
+    bar.setAttribute("role", "region");
+    bar.setAttribute("aria-label", "شريط تنفيذ");
+    const disc = UI.el("span", "disc");
+    disc.appendChild(UI.mark(15, "mono"));
+    bar.appendChild(disc);
+
+    const txt = UI.el("div", "txt");
+    const acts = UI.el("div", "acts");
+    let title = "تنفيذ";
+    let sub = "";
+    let subTone = "";
+
+    if (!view.auth.signedIn) {
+      title = "تنفيذ — التعبئة في اعتماد";
+      sub = "سجل الدخول بحساب تنفيذ لتفعيل التعبئة والمساعد";
+      acts.appendChild(button("btn btn-primary", "login", "تسجيل الدخول", function () { openPanel("login"); }));
+    } else if (!view.record) {
+      title = "لا يوجد مشروع جاهز للتعبئة";
+      sub = "اختر مشروعا من تنفيذ وسنملأ صفحات اعتماد عنك";
+      acts.appendChild(button("btn btn-primary", "folder", "اختيار مشروع", function () { openPanel("projects"); }));
+      acts.appendChild(button("icon-btn", "sparkles", "المساعد", function () { openPanel("chat"); }));
+    } else {
+      title = (view.record.meta && view.record.meta.title) || "مشروع من تنفيذ";
+      const prev = alreadyFilled();
+      if (view.phase === "filling") {
+        sub = (view.progressLabel ? "جار تعبئة " + view.progressLabel : "جار التعبئة") + "…";
+        acts.appendChild(button("btn btn-primary", "loader", "جار التعبئة", function () {}, { spin: true, disabled: true }));
+      } else {
+        if (view.phase === "done" && view.summary) {
+          if (view.summary.filled > 0) {
+            sub = "تمت تعبئة " + view.summary.filled + " حقلا" + (view.summary.failed ? " وتعذر " + view.summary.failed : "") + " — راجع ثم اضغط «حفظ ومتابعة»";
+            subTone = view.summary.failed ? "warn" : "ok";
+          } else {
+            sub = "لا توجد حقول مطابقة في هذه الصفحة — انتقل إلى خطوة أخرى";
+            subTone = "warn";
+          }
+        } else if (prev) {
+          sub = "سبق تعبئة هذه الصفحة (" + prev.filled + " حقلا) — يمكنك إعادة التعبئة";
+        } else {
+          sub = settings.autoFill ? "جاهز — تبدأ التعبئة تلقائيا" : "جاهز للتعبئة — راجع ثم احفظ بنفسك";
+        }
+        const again = view.phase === "done" || Boolean(prev);
+        acts.appendChild(button("btn btn-primary", again ? "refresh" : "fill", again ? "إعادة التعبئة" : "تعبئة الحقول", function () { fillNow(); }));
+      }
+      acts.appendChild(button("icon-btn", "list", "تفاصيل التعبئة", function () { openPanel("fill"); }));
+      acts.appendChild(button("icon-btn", "folder", "تغيير المشروع", function () { openPanel("projects"); }));
+      acts.appendChild(button("icon-btn", "sparkles", "المساعد", function () { openPanel("chat"); }));
+    }
+
+    if (view.hint) {
+      sub = view.hint;
+      subTone = "warn";
+    }
+
+    txt.appendChild(UI.el("span", "t", title));
+    txt.appendChild(UI.el("span", "s" + (subTone ? " " + subTone : ""), sub));
+    bar.appendChild(txt);
+    acts.appendChild(UI.el("span", "sep"));
+    acts.appendChild(button("icon-btn", "minus", "تصغير", function () { setCollapsed(true); }));
+    bar.appendChild(acts);
+
+    if (view.phase === "filling") {
+      const track = UI.el("div", "progress");
+      const fillEl = document.createElement("i");
+      fillEl.style.width = Math.round(view.progress * 100) + "%";
+      track.appendChild(fillEl);
+      bar.appendChild(track);
+    }
+    wrap.appendChild(bar);
   }
 
-  // ──────────────────────────────────────────────────────────────── boot ──
-
-  async function init() {
-    const items = await storageGet([STORAGE_KEY, LOG_KEY, SETTINGS_KEY]);
-    settings = Object.assign({}, DEFAULT_SETTINGS, items[SETTINGS_KEY] || {});
-    if (!settings.enabled) return; // موقوفة من واجهة الإضافة → لا إطار ولا تعبئة
-
-    const record = items[STORAGE_KEY];
-    if (!record || !record.savedAt) return; // nothing captured → stay silent
-
-    const age = Date.now() - record.savedAt;
-    if (age > MAX_AGE_MS) {
-      // stale payload (> ساعتين) → ignore it entirely
-      return;
+  async function fillNow() {
+    if (!view.auth.signedIn) return { ok: false, reason: "AUTH_REQUIRED" };
+    if (!view.record) return { ok: false, reason: "NO_RECORD" };
+    if (running) return { ok: false, reason: "BUSY" };
+    pendingAutoFill = false;
+    view.phase = "filling";
+    view.progress = 0;
+    view.hint = "";
+    render();
+    let summary = null;
+    try {
+      summary = await runFill(view.record, function (done, total, label) {
+        view.progress = total ? done / total : 1;
+        view.progressLabel = label;
+        render();
+      });
+    } catch (err) {
+      console.warn("[Tanfeeth] fill error:", err);
     }
+    const items = await storageGet([LOG_KEY]);
+    view.log = items[LOG_KEY] || {};
+    view.summary = summary;
+    view.phase = summary ? "done" : "idle";
+    render();
+    return { ok: Boolean(summary), summary: summary };
+  }
 
-    const log = items[LOG_KEY] || {};
-    const alreadyFilled = Boolean(log[pageKey()]);
-
-    const doFill = async function () {
-      const summary = await runFill(record);
-      if (!summary) return;
-      if (summary.filled > 0) {
-        setBadgeText("تم تعبئة " + summary.filled + " حقلًا — راجع واضغط حفظ ومتابعة");
-      } else {
-        setBadgeText("لا توجد حقول مطابقة في هذه الصفحة — انتقل لخطوة أخرى من المعالج");
-      }
-      setFillButtonLabel("إعادة التعبئة");
-    };
-
-    // إخفاء الشريط لا يعني إيقاف التعبئة — «التعبئة التلقائية» هي التي تقرر.
-    if (settings.showOverlay) buildOverlay(doFill);
-
-    const title = record.meta && record.meta.title ? " (" + record.meta.title + ")" : "";
-    if (alreadyFilled) {
-      const prev = log[pageKey()];
-      setBadgeText("سبق تعبئة هذه الصفحة (" + prev.filled + " حقلًا)" + title + " — يمكنك إعادة التعبئة");
-      setFillButtonLabel("إعادة التعبئة");
-      return;
-    }
-
-    setBadgeText("هذه الصفحة تحت تحكم إضافة تنفيذ — البيانات جاهزة للتعبئة" + title);
-    if (!settings.autoFill) {
-      if (!ui) return; // بلا شريط وبلا تعبئة تلقائية → لا شيء يُفعَل
-      setBadgeText("البيانات جاهزة — اضغط «تعبئة الحقول»" + title);
+  function maybeAutoFill() {
+    if (!settings.enabled || !settings.autoFill) return;
+    if (!view.auth.signedIn || !view.record || alreadyFilled()) return;
+    if (document.visibilityState !== "visible") {
+      pendingAutoFill = true; // تبويبات اعتماد الخلفية تملأ حين يفتحها المستخدم
       return;
     }
     setTimeout(function () {
-      doFill().catch(function (err) {
+      fillNow().catch(function (err) {
         console.warn("[Tanfeeth] auto-fill error:", err);
       });
     }, AUTO_FILL_DELAY_MS);
   }
 
-  // تغيير الإعدادات من واجهة الإضافة ينعكس فورًا على الصفحة المفتوحة.
-  try {
-    chrome.storage.onChanged.addListener(function (changes, area) {
-      if (area !== "local" || !changes[SETTINGS_KEY]) return;
-      const next = Object.assign({}, DEFAULT_SETTINGS, changes[SETTINGS_KEY].newValue || {});
-      const wasVisible = settings.enabled && settings.showOverlay;
-      settings = next;
-      const isVisible = next.enabled && next.showOverlay;
-      if (wasVisible && !isVisible) removeOverlay();
-      else if (!wasVisible && isVisible && !running) {
-        init().catch(function () {
-          /* ignore */
-        });
-      }
-    });
-  } catch (_e) {
-    /* ignore */
+  /** ملخص الصفحة للمساعد: العنوان والخطوة والحقول الظاهرة. */
+  function pageContext() {
+    const visible = function (n) {
+      return n && n.getClientRects().length > 0;
+    };
+    const texts = function (selector, limit) {
+      const out = [];
+      document.querySelectorAll(selector).forEach(function (n) {
+        if (out.length >= limit || !visible(n)) return;
+        const t = normText(n.textContent).replace(/\s+/g, " ").replace(/\*/g, "").trim();
+        if (t && t.length <= 80 && out.indexOf(t) === -1) out.push(t);
+      });
+      return out;
+    };
+    return {
+      url: location.origin + location.pathname,
+      title: document.title,
+      headings: texts("h1, h2, h3, h4, .active .step-title, li.active", 6),
+      labels: texts("label", 45),
+      record: view.record && view.record.meta ? { title: view.record.meta.title || "" } : null,
+      lastFill: alreadyFilled(),
+    };
   }
+
+  async function loadState() {
+    const items = await storageGet([STORAGE_KEY, LOG_KEY, SETTINGS_KEY, UI.KEYS.prefs]);
+    settings = Object.assign({}, DEFAULT_SETTINGS, items[SETTINGS_KEY] || {});
+    view.record = validRecord(items[STORAGE_KEY]);
+    view.log = items[LOG_KEY] || {};
+    view.collapsed = Boolean((items[UI.KEYS.prefs] || {}).launcherCollapsed);
+    view.auth = await UI.authState();
+    lastSavedAt = view.record ? view.record.savedAt : null;
+  }
+
+  async function init() {
+    await loadState();
+    render();
+    maybeAutoFill();
+  }
+
+  // ─────────────────────────────────────────────────────── الرسائل ──
+
+  chrome.runtime.onMessage.addListener(function (message, _sender, sendResponse) {
+    if (!message) return false;
+    if (message.type === "TNF_FILL_NOW") {
+      fillNow().then(sendResponse, function () {
+        sendResponse({ ok: false });
+      });
+      return true;
+    }
+    if (message.type === "TNF_PAGE_CONTEXT") {
+      sendResponse(pageContext());
+      return false;
+    }
+    return false;
+  });
+
+  chrome.storage.onChanged.addListener(function (changes, area) {
+    if (area !== "local") return;
+    (async function () {
+      if (changes[SETTINGS_KEY]) {
+        settings = Object.assign({}, DEFAULT_SETTINGS, changes[SETTINGS_KEY].newValue || {});
+      }
+      let signedInNow = false;
+      if (changes[UI.KEYS.session]) {
+        const wasSignedIn = view.auth.signedIn;
+        view.auth = await UI.authState();
+        signedInNow = !wasSignedIn && view.auth.signedIn;
+        if (!view.auth.signedIn) view.phase = "idle";
+      }
+      if (changes[LOG_KEY]) view.log = changes[LOG_KEY].newValue || {};
+      if (changes[UI.KEYS.prefs]) {
+        view.collapsed = Boolean((changes[UI.KEYS.prefs].newValue || {}).launcherCollapsed);
+      }
+      let newRecord = false;
+      if (changes[STORAGE_KEY]) {
+        view.record = validRecord(changes[STORAGE_KEY].newValue);
+        const savedAt = view.record ? view.record.savedAt : null;
+        newRecord = Boolean(savedAt) && savedAt !== lastSavedAt;
+        lastSavedAt = savedAt;
+        if (newRecord || !view.record) {
+          view.phase = "idle";
+          view.summary = null;
+        }
+      }
+      view.hint = "";
+      render();
+      if (newRecord || signedInNow) maybeAutoFill();
+    })().catch(function (err) {
+      console.warn("[Tanfeeth] state sync error:", err);
+    });
+  });
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible" && pendingAutoFill) {
+      pendingAutoFill = false;
+      maybeAutoFill();
+    }
+  });
 
   try {
     if (document.readyState === "loading") {

@@ -1,63 +1,81 @@
 {
   "manifest_version": 3,
-  "name": "تنفيذ — التعبئة في اعتماد",
-  "description": "جسر التعبئة التلقائية من منصة تنفيذ إلى نموذج إنشاء المنافسة في منصة اعتماد. لا يقوم بأي إرسال أو حفظ نيابةً عن المستخدم.",
-  "version": "0.1.0",
+  "name": "تنفيذ — المساعد والتعبئة في اعتماد",
+  "short_name": "تنفيذ",
+  "description": "مساعد تنفيذ الذكي في لوحة جانبية، وتعبئة نموذج المنافسة في اعتماد من بيانات مشروعك. يتطلب تسجيل الدخول بحساب تنفيذ، ولا يرسل أو يحفظ شيئا نيابة عنك.",
+  "version": "0.2.0",
+  "minimum_chrome_version": "116",
   "icons": {
     "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
   "action": {
-    "default_title": "تنفيذ — التعبئة في اعتماد",
-    "default_popup": "src/popup.html",
+    "default_title": "تنفيذ — افتح المساعد",
     "default_icon": {
       "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     }
   },
-  "permissions": [
-    "storage"
+  "side_panel": {
+    "default_path": "src/panel/panel.html"
+  },
+  "permissions": ["storage", "sidePanel"],
+  "host_permissions": [
+    "https://tenders.etimad.sa/*",
+    "https://staging-api.tanfeeth.io/*",
+    "https://api.tanfeeth.io/*",
+    "http://localhost:3000/*",
+    "https://staging.tanfeeth.io/*",
+    "https://tanfeeth.io/*",
+    "https://www.tanfeeth.io/*",
+    "http://localhost:3002/*",
+    "http://localhost:3010/*"
   ],
   "background": {
-    "service_worker": "src/background.js"
+    "service_worker": "src/background.js",
+    "type": "module"
   },
   "content_scripts": [
     {
       "matches": [
         "http://localhost:3002/*",
+        "http://localhost:3010/*",
         "https://staging.tanfeeth.io/*",
         "https://tanfeeth.io/*",
         "https://www.tanfeeth.io/*"
       ],
-      "js": [
-        "src/tanfeeth-capture.js"
-      ],
+      "js": ["src/content/ui-kit.js", "src/content/tanfeeth-capture.js"],
       "run_at": "document_idle"
     },
     {
-      "matches": [
-        "https://tenders.etimad.sa/*"
-      ],
+      "matches": ["https://tenders.etimad.sa/*"],
       "js": [
-        "src/field-meta.js",
-        "src/etimad-criteria.js",
-        "src/etimad-fill.js"
-      ],
-      "css": [
-        "src/overlay.css"
+        "src/content/ui-kit.js",
+        "src/content/field-meta.js",
+        "src/content/etimad-criteria.js",
+        "src/content/etimad-fill.js"
       ],
       "run_at": "document_idle"
     }
   ],
   "web_accessible_resources": [
     {
-      "resources": [
-        "src/page-bridge.js"
-      ],
+      "resources": ["src/content/page-bridge.js"],
+      "matches": ["https://tenders.etimad.sa/*"]
+    },
+    {
+      "resources": ["fonts/*.woff2"],
       "matches": [
-        "https://tenders.etimad.sa/*"
+        "https://tenders.etimad.sa/*",
+        "http://localhost:3002/*",
+        "http://localhost:3010/*",
+        "https://staging.tanfeeth.io/*",
+        "https://tanfeeth.io/*",
+        "https://www.tanfeeth.io/*"
       ]
     }
   ]
