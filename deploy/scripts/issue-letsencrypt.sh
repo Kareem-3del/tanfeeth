@@ -43,7 +43,8 @@ docker run --rm \
   certbot/certbot certonly --webroot -w /var/www/certbot \
   --non-interactive --agree-tos -m "$EMAIL" --no-eff-email \
   -d tanfeeth.io -d www.tanfeeth.io -d api.tanfeeth.io \
-  -d staging.tanfeeth.io -d staging-api.tanfeeth.io
+  -d staging.tanfeeth.io -d staging-api.tanfeeth.io \
+  -d demo.tanfeeth.io -d project-management.tanfeeth.io
 
 # Point nginx at the LE cert and reload.
 sed -i \
