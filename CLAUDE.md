@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Product & domain (read this first)
 
-**Tanfeeth (تنفيذ)** is an Arabic‑first SaaS platform that runs a Saudi government
+**Tanfeeth (تنفيذ)** is an Arabic‑first platform, sold and deployed **per entity** (one isolated deployment per government entity — not SaaS, not multi‑tenant), that runs a Saudi government
 entity's **full competition & procurement lifecycle — order → contract → closeout** —
 on a configurable **workflow + business‑rules engine**, with **RBAC** across ~13 roles,
 an **AI layer under mandatory human‑in‑the‑loop (HITL)**, persona dashboards (end user,
@@ -26,7 +26,7 @@ output, with explainability (R‑03); **RBAC** with the CDM default‑access rul
 **BR‑01** (configurable 5M‑SAR technical/financial doc split) and **BR‑02** (supply vs
 maintenance commencement branch); Etimad/Nafath/MoF are the **source of truth** (R‑08);
 official correspondence needs a **reference number** (R‑09); **KSA data residency** +
-**multi‑tenant isolation** (R‑10/11); **bilingual AR(RTL)/EN** everywhere (R‑12). New
+**one entity per deployment — no orgs/tenancy** (R‑10/11); **bilingual AR(RTL)/EN** everywhere (R‑12). New
 work ties to a requirement ID `FR-WF/EX/FT/CM/CT/HM/AI/V30` and the single domain model
 (R‑14/15).
 
@@ -85,7 +85,7 @@ cycle live in `src/shared/` (e.g. `PermissionChecker` port: `rbac` implements it
 consumes it). Repositories return **domain entities**, never ORM rows (mapped via `*.mapper.ts`).
 Domain code never throws HTTP exceptions — throw a `DomainError` with a stable `code`, which
 `shared/infrastructure/http/domain-exception.filter.ts` maps to an HTTP status (register new codes there).
-Current modules: `users`, `rbac`, `auth`, `contracts`, `access-control`, `seed`.
+Current modules: see `backend/AGENTS.md` §2 (the single entity's identity is the entity profile in `settings`; there is no organizations module).
 
 When adding a feature, follow the checklist in `backend/AGENTS.md` §7 (model domain → use cases
 → adapters → wire tokens in the module → DTOs + `@Auth(...)` + new permission keys → new error codes).

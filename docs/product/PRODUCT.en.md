@@ -426,7 +426,7 @@ alignment, government‑platform sync, **Arabic NLP**, and blockchain transparen
   residency.
 - **Performance** — acceptable response under expected load; horizontal scaling.
 - **Availability** — high availability + business continuity & disaster recovery.
-- **Tenancy** — **multi‑tenant** with per‑entity data isolation.
+- **Tenancy** — **single entity per deployment**; each government entity runs its own isolated stack (no multi‑tenancy).
 - **Localization** — full Arabic (RTL) + English, Hijri + Gregorian calendars, SAR.
 - **Auditability** — comprehensive audit log per action (actor, time, before/after).
 - **Accessibility** — accessible & responsive across devices.

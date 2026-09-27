@@ -86,11 +86,15 @@ financial credentials.
 **AR:** الاستضافة **داخل المملكة**؛ تشفير البيانات الحسّاسة عند التخزين/النقل؛ التوافق
 مع **NCA/CST**. لا تُسجّل أو تكشف الأسرار أو الهويات الوطنية أو بيانات مالية كاملة.
 
-### R‑11 — Multi‑tenant isolation / عزل متعدّد المستأجرين
-**EN:** The platform is **multi‑tenant**; every query, file, and audit entry is
-scoped to its entity (tenant). Cross‑tenant data access is a defect, not a feature.
-**AR:** المنصة **متعدّدة المستأجرين**؛ كل استعلام وملف وسجل تدقيق مقيّد بجهته. الوصول
-عبر المستأجرين خلل لا ميزة.
+### R‑11 — One entity per deployment / جهة واحدة لكل نشر
+**EN:** Tanfeeth is **not SaaS and not multi‑tenant**. Each government entity gets its
+own isolated deployment (API + frontend + database). Inside a deployment there is
+exactly one entity; its identity lives in the **entity profile** (`/settings/entity-profile`).
+Do not add organizations, memberships, tenant scoping, `organization_id` columns or
+subscription concepts.
+**AR:** تنفيذ **ليست SaaS ولا متعدّدة المستأجرين**. لكل جهة حكومية نشرٌ مستقلّ (خادم
+وواجهة وقاعدة بيانات). داخل النشر جهةٌ واحدة، وهويّتها في **ملف الجهة**. لا تُضِف
+منظّماتٍ ولا عضوياتٍ ولا عزلَ مستأجرين ولا أعمدة `organization_id` ولا اشتراكات.
 
 ### R‑12 — Bilingual, RTL‑first, localized / ثنائية اللغة وRTL والتوطين
 **EN:** Arabic (RTL) + English are first‑class everywhere; no hard‑coded user‑facing

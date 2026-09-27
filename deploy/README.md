@@ -99,10 +99,16 @@ out of the shared DB into a fresh per-customer DB. The order is load-bearing:
 
 1. **Export while `organization_id` still exists** on the shared DB — i.e. before
    the M6 de-tenant cleanup drops the org columns/tables (and before M0 neutralize
-   touches the key). Once `DropTenancy` runs, the filter key is gone and the
-   export is impossible.
+   touches the key). Once `DropTenancy` runs (or a synchronize boot of an API
+   built without the org columns), the filter key is gone and the export is
+   impossible. As a guard, both the boot pre-sync step and the
+   `DropTenancy1783740000000` migration **refuse to start** while rows still
+   belong to more than one organization, unless the stack sets
+   `DETENANT_ALLOW_MULTI_ORG=true` (then every org's rows become the one
+   entity's — acceptable only for demo/test data).
 2. **Import into a migrated-but-UN-SEEDED** customer DB (`SEED_ON_BOOTSTRAP=false`)
-   so seed rows (admin, Default Org, base perms) don't collide with imported rows.
+   so seed rows (admin, base perms, the entity profile) don't collide with
+   imported rows.
 3. Keep the shared stack authoritative until the customer's DNS/TLS cutover is
    verified.
 
