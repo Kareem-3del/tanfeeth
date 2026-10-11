@@ -62,7 +62,8 @@ const call = async (method, path, body) => {
  */
 const CUSTOM_ROLES = [
   { name: 'تخطيط الخطة — تجريبي', description: 'إعداد بنود الخطة السنوية.', permissionKeys: ['planning.read', 'planning.manage'] },
-  { name: 'إدخال المنافسة — تجريبي', description: 'إنشاء المشروع وإعداد الكراسة وتقديمه للاعتماد.', permissionKeys: ['competitions.read', 'competitions.create', 'competitions.update', 'competitions.bid', 'competitions.submit'] },
+  /* `planning.read`: المشروعُ يُنشأ من بند الخطة، ونموذجُ الإنشاء يقرأ الخطط ليختار منها — بدونها تقول الشاشة «لا توجد خطط». */
+  { name: 'إدخال المنافسة — تجريبي', description: 'إنشاء المشروع من بند الخطة وإعداد الكراسة وتقديمه للاعتماد.', permissionKeys: ['competitions.read', 'competitions.create', 'competitions.update', 'competitions.bid', 'competitions.submit', 'planning.read'] },
   { name: 'تدقيق المنافسة — تجريبي', description: 'البت في خطوات سلسلة الاعتماد وجلسة التقييم الفني.', permissionKeys: ['competitions.read', 'competitions.approve'] },
   /* الحفظُ محروسٌ بـ`competitions.update` على مسار بيانات الطرح نفسِه، والقيمةُ لا يكتبها إلا المُسمّى عليها. */
   { name: 'قراءة المنافسات — تجريبي', description: 'الوصول إلى المشروع وحفظ القيمة التقديرية المختومة (مسار بيانات الطرح).', permissionKeys: ['competitions.read', 'competitions.update'] },
