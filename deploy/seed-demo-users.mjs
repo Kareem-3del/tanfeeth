@@ -64,18 +64,23 @@ const CUSTOM_ROLES = [
   { name: 'تخطيط الخطة — تجريبي', description: 'إعداد بنود الخطة السنوية.', permissionKeys: ['planning.read', 'planning.manage'] },
   { name: 'إدخال المنافسة — تجريبي', description: 'إنشاء المشروع وإعداد الكراسة وتقديمه للاعتماد.', permissionKeys: ['competitions.read', 'competitions.create', 'competitions.update', 'competitions.bid', 'competitions.submit'] },
   { name: 'تدقيق المنافسة — تجريبي', description: 'البت في خطوات سلسلة الاعتماد وجلسة التقييم الفني.', permissionKeys: ['competitions.read', 'competitions.approve'] },
-  { name: 'قراءة المنافسات — تجريبي', description: 'الوصول إلى المشروع لإدخال القيمة التقديرية المختومة.', permissionKeys: ['competitions.read'] },
+  /* الحفظُ محروسٌ بـ`competitions.update` على مسار بيانات الطرح نفسِه، والقيمةُ لا يكتبها إلا المُسمّى عليها. */
+  { name: 'قراءة المنافسات — تجريبي', description: 'الوصول إلى المشروع وحفظ القيمة التقديرية المختومة (مسار بيانات الطرح).', permissionKeys: ['competitions.read', 'competitions.update'] },
+  /* مقعدُ اللجنة يمنح مفتاح عملها وحده؛ وأعضاؤها يحتاجون فتح المشروع ليروا ما يوقّعون عليه. */
+  { name: 'اطلاع اللجان — تجريبي', description: 'فتح المشروع ولجانه لأعضاء اللجان.', permissionKeys: ['competitions.read', 'committees.read'] },
+  /* أعمالُ اللجنة الإجرائية: تسجيل العروض، جلسة الفتح وقائمة تحققها، رصد الأسعار، نقل المراحل. */
+  { name: 'أمانة اللجان — تجريبي', description: 'أعمال أمين لجنة فتح العروض الإجرائية.', permissionKeys: ['competitions.read', 'committees.read', 'competitions.committee'] },
   { name: 'الترسية — تجريبي', description: 'اعتماد الترسية وتأكيدها.', permissionKeys: ['competitions.read', 'competitions.award'] },
   { name: 'توقيع العقد — تجريبي', description: 'توقيع العقد باسم الجهة.', permissionKeys: ['contracts.read', 'competitions.read', 'competitions.contract'] },
   {
     name: 'طلبات تنفيذ العقد — تجريبي',
-    description: 'تسجيل العقد وجانب الطلب في تنفيذه: الدفعات، أوامر التغيير والإيقاف، شهادة الإنجاز، تقييم المتعاقد، المحتوى المحلي، التعاقد من الباطن.',
-    permissionKeys: ['contracts.read', 'contracts.create', 'contracts.update', 'contracts.changeorder.request', 'contracts.suspend.request', 'contracts.certificate.request', 'contracts.certificate.upload', 'contracts.evaluate', 'contracts.localcontent.submit', 'contracts.subcontract.request'],
+    description: 'تسجيل العقد وجانب الطلب في تنفيذه: الدفعات، أوامر التغيير والإيقاف، شهادة الإنجاز، تقييم المتعاقد، المحتوى المحلي، التعاقد من الباطن، الضمانات البنكية (تسجيل وطلبات).',
+    permissionKeys: ['contracts.read', 'contracts.create', 'contracts.update', 'contracts.changeorder.request', 'contracts.suspend.request', 'contracts.certificate.request', 'contracts.certificate.upload', 'contracts.evaluate', 'contracts.localcontent.submit', 'contracts.subcontract.request', 'contracts.guarantee.read', 'contracts.guarantee.manage', 'contracts.guarantee.request', 'files.upload', 'files.read'],
   },
   {
     name: 'اعتمادات تنفيذ العقد — تجريبي',
     description: 'جانب الاعتماد المقابل: سير العقد (المباشرة، الدفعات، الاستلام، الضمان)، الإيقاف وأوامر التغيير، تقييم المتعاقد، المحتوى المحلي، التعاقد من الباطن.',
-    permissionKeys: ['contracts.read', 'contracts.workflow', 'contracts.suspend.approve', 'contracts.changeorder.approve', 'contracts.evaluate.approve', 'contracts.localcontent.verify', 'contracts.subcontract.approve'],
+    permissionKeys: ['contracts.read', 'contracts.workflow', 'contracts.suspend.approve', 'contracts.changeorder.approve', 'contracts.evaluate.approve', 'contracts.localcontent.verify', 'contracts.subcontract.approve', 'contracts.guarantee.read', 'contracts.guarantee.decide', 'contracts.guarantee.correspondence', 'files.read'],
   },
 ];
 
@@ -97,17 +102,17 @@ const USERS = [
   { email: 'estimate.entry@example.com', fullName: 'راشد مدخل القيمة', title: 'محلل تكاليف', roles: ['مدخل القيمة التقديرية', 'قراءة المنافسات — تجريبي'] },
 
   /* ٣ — اللجان: فتح العروض وفحصها */
-  { email: 'open.chair@example.com', fullName: 'سعد رئيس لجنة الفحص', title: 'رئيس لجنة فتح العروض وفحصها', roles: [], seat: ['open', 'chair'] },
-  { email: 'open.deputy@example.com', fullName: 'مشاعل نائبة لجنة الفحص', title: 'نائبة رئيس لجنة الفحص', roles: [], seat: ['open', 'deputy_chair'] },
-  { email: 'open.secretary@example.com', fullName: 'وليد أمين لجنة الفحص', title: 'أمين لجنة الفحص', roles: [], seat: ['open', 'secretary'] },
-  { email: 'open.expert@example.com', fullName: 'نواف الخبير الفني', title: 'خبير فني', roles: [], seat: ['open', 'technical_expert'] },
-  { email: 'open.member@example.com', fullName: 'أمل عضو لجنة الفحص', title: 'عضو لجنة الفحص', roles: [], seat: ['open', 'member'] },
+  { email: 'open.chair@example.com', fullName: 'سعد رئيس لجنة الفحص', title: 'رئيس لجنة فتح العروض وفحصها', roles: ['اطلاع اللجان — تجريبي'], seat: ['open', 'chair'] },
+  { email: 'open.deputy@example.com', fullName: 'مشاعل نائبة لجنة الفحص', title: 'نائبة رئيس لجنة الفحص', roles: ['اطلاع اللجان — تجريبي'], seat: ['open', 'deputy_chair'] },
+  { email: 'open.secretary@example.com', fullName: 'وليد أمين لجنة الفحص', title: 'أمين لجنة الفحص', roles: ['اطلاع اللجان — تجريبي', 'أمانة اللجان — تجريبي'], seat: ['open', 'secretary'] },
+  { email: 'open.expert@example.com', fullName: 'نواف الخبير الفني', title: 'خبير فني', roles: ['اطلاع اللجان — تجريبي'], seat: ['open', 'technical_expert'] },
+  { email: 'open.member@example.com', fullName: 'أمل عضو لجنة الفحص', title: 'عضو لجنة الفحص', roles: ['اطلاع اللجان — تجريبي'], seat: ['open', 'member'] },
 
   /* ٣ — اللجان: التقييم الفني */
-  { email: 'tech.chair@example.com', fullName: 'ماجد رئيس التقييم الفني', title: 'رئيس لجنة التقييم الفني', roles: [], seat: ['tech', 'chair'] },
-  { email: 'tech.deputy@example.com', fullName: 'غادة نائبة التقييم الفني', title: 'نائبة رئيس لجنة التقييم الفني', roles: [], seat: ['tech', 'deputy_chair'] },
-  { email: 'tech.secretary@example.com', fullName: 'حسن أمين التقييم الفني', title: 'أمين لجنة التقييم الفني', roles: [], seat: ['tech', 'secretary'] },
-  { email: 'tech.member@example.com', fullName: 'دانة عضو التقييم الفني', title: 'عضو لجنة التقييم الفني', roles: [], seat: ['tech', 'member'] },
+  { email: 'tech.chair@example.com', fullName: 'ماجد رئيس التقييم الفني', title: 'رئيس لجنة التقييم الفني', roles: ['اطلاع اللجان — تجريبي'], seat: ['tech', 'chair'] },
+  { email: 'tech.deputy@example.com', fullName: 'غادة نائبة التقييم الفني', title: 'نائبة رئيس لجنة التقييم الفني', roles: ['اطلاع اللجان — تجريبي'], seat: ['tech', 'deputy_chair'] },
+  { email: 'tech.secretary@example.com', fullName: 'حسن أمين التقييم الفني', title: 'أمين لجنة التقييم الفني', roles: ['اطلاع اللجان — تجريبي'], seat: ['tech', 'secretary'] },
+  { email: 'tech.member@example.com', fullName: 'دانة عضو التقييم الفني', title: 'عضو لجنة التقييم الفني', roles: ['اطلاع اللجان — تجريبي'], seat: ['tech', 'member'] },
 
   /* ٤ — الترسية والتعاقد */
   { email: 'award.approver@example.com', fullName: 'خالد صاحب الصلاحية', title: 'صاحب صلاحية الترسية', roles: ['اعتماد ترسية المنافسة لصاحب الصلاحية', 'الترسية — تجريبي'] },
