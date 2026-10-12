@@ -72,7 +72,13 @@ const CUSTOM_ROLES = [
   /* أعمالُ اللجنة الإجرائية: تسجيل العروض، جلسة الفتح وقائمة تحققها، رصد الأسعار، نقل المراحل. */
   { name: 'أمانة اللجان — تجريبي', description: 'أعمال أمين لجنة فتح العروض الإجرائية.', permissionKeys: ['competitions.read', 'committees.read', 'competitions.committee'] },
   { name: 'الترسية — تجريبي', description: 'اعتماد الترسية وتأكيدها.', permissionKeys: ['competitions.read', 'competitions.award'] },
-  { name: 'توقيع العقد — تجريبي', description: 'توقيع العقد باسم الجهة.', permissionKeys: ['contracts.read', 'competitions.read', 'competitions.contract'] },
+  { name: 'توقيع العقد — تجريبي', description: 'إعداد مسودة العقد وتسجيله في اعتماد وتوقيعه باسم الجهة.', permissionKeys: ['contracts.read', 'competitions.read', 'competitions.contract', 'files.upload'] },
+  /* إعداد العقد (FR-SP-009): المراجعة القانونية ثم المراقب المالي ثم إدارة العقود — ومراجعُ المسودة غيرُ مُعدّها. */
+  { name: 'مراجعة مسودة العقد — تجريبي', description: 'المراجعة القانونية، والمراقب المالي، واعتماد إدارة العقود لمسودة العقد قبل التوقيع.', permissionKeys: ['competitions.read', 'contracts.review.legal', 'contracts.review.financial', 'contracts.review.cdm'] },
+  /* الإلغاء النظامي (FR-SP-012): الطلبُ من غير المعتمِد. واعتمادُ ردود الاستفسارات (FR-SP-001) لغير كاتبها. */
+  { name: 'طلب إلغاء المنافسة — تجريبي', description: 'رفع طلب إلغاء المنافسة بسببٍ نظامي ومبرّر.', permissionKeys: ['competitions.read', 'competitions.cancel.request'] },
+  { name: 'اعتماد إلغاء المنافسة — تجريبي', description: 'البت في طلب إلغاء المنافسة بصفة صاحب الصلاحية.', permissionKeys: ['competitions.read', 'competitions.cancel.approve'] },
+  { name: 'اعتماد ردود الاستفسارات — تجريبي', description: 'مراجعة ردود استفسارات المتنافسين واعتمادها والملاحق.', permissionKeys: ['competitions.read', 'competitions.inquiries.approve'] },
   {
     name: 'طلبات تنفيذ العقد — تجريبي',
     description: 'تسجيل العقد وجانب الطلب في تنفيذه: الدفعات، أوامر التغيير والإيقاف، شهادة الإنجاز، تقييم المتعاقد، المحتوى المحلي، التعاقد من الباطن، الضمانات البنكية (تسجيل وطلبات).',
@@ -98,8 +104,8 @@ const USERS = [
   { email: 'plan.approver@example.com', fullName: 'عبدالله معتمد الخطة', title: 'وكيل الشؤون المالية', roles: ['معتمد الخطة السنوية'] },
 
   /* ٢ — المشروع (الطرح) */
-  { email: 'tender.entry@example.com', fullName: 'ياسر مدخل المنافسة', title: 'أخصائي مشتريات', roles: ['مدخل بيانات المنافسة', 'إدخال المنافسة — تجريبي'] },
-  { email: 'tender.auditor@example.com', fullName: 'منيرة مدققة المنافسة', title: 'مدققة المشتريات', roles: ['مدقق بيانات المنافسة', 'تدقيق المنافسة — تجريبي'] },
+  { email: 'tender.entry@example.com', fullName: 'ياسر مدخل المنافسة', title: 'أخصائي مشتريات', roles: ['مدخل بيانات المنافسة', 'إدخال المنافسة — تجريبي', 'طلب إلغاء المنافسة — تجريبي'] },
+  { email: 'tender.auditor@example.com', fullName: 'منيرة مدققة المنافسة', title: 'مدققة المشتريات', roles: ['مدقق بيانات المنافسة', 'تدقيق المنافسة — تجريبي', 'اعتماد ردود الاستفسارات — تجريبي'] },
   { email: 'estimate.entry@example.com', fullName: 'راشد مدخل القيمة', title: 'محلل تكاليف', roles: ['مدخل القيمة التقديرية', 'قراءة المنافسات — تجريبي'] },
 
   /* ٣ — اللجان: فتح العروض وفحصها */
@@ -116,12 +122,12 @@ const USERS = [
   { email: 'tech.member@example.com', fullName: 'دانة عضو التقييم الفني', title: 'عضو لجنة التقييم الفني', roles: ['اطلاع اللجان — تجريبي'], seat: ['tech', 'member'] },
 
   /* ٤ — الترسية والتعاقد */
-  { email: 'award.approver@example.com', fullName: 'خالد صاحب الصلاحية', title: 'صاحب صلاحية الترسية', roles: ['اعتماد ترسية المنافسة لصاحب الصلاحية', 'الترسية — تجريبي'] },
+  { email: 'award.approver@example.com', fullName: 'خالد صاحب الصلاحية', title: 'صاحب صلاحية الترسية', roles: ['اعتماد ترسية المنافسة لصاحب الصلاحية', 'الترسية — تجريبي', 'اعتماد إلغاء المنافسة — تجريبي'] },
   { email: 'contract.signer@example.com', fullName: 'فهد مفوض التوقيع', title: 'مفوض توقيع العقود', roles: ['توقيع مفوض الجهة الحكومية للعقود والتعميدات', 'توقيع العقد — تجريبي'] },
 
   /* ٥ — تنفيذ العقد */
   { email: 'contract.officer@example.com', fullName: 'ريم مسؤولة العقود', title: 'أخصائية عقود', roles: ['تسجيل وتعديل العقد/التعميد', 'اجراءات العقود (تعديل-انهاء-عقد بديل)', 'طلبات تنفيذ العقد — تجريبي'] },
-  { email: 'contract.approver@example.com', fullName: 'بدر معتمد العقود', title: 'مدير إدارة العقود', roles: ['الموافقات الالكترونية للعقود', 'اعتمادات تنفيذ العقد — تجريبي'] },
+  { email: 'contract.approver@example.com', fullName: 'بدر معتمد العقود', title: 'مدير إدارة العقود', roles: ['الموافقات الالكترونية للعقود', 'اعتمادات تنفيذ العقد — تجريبي', 'مراجعة مسودة العقد — تجريبي'] },
 ];
 
 const DEPARTMENT = { code: 'DEMO-IT', name: 'إدارة تقنية المعلومات (تجريبية)', type: 'requesting', email: 'it@example.com' };

@@ -49,7 +49,7 @@ const screen = (id, query = '') => `/portal/contracts/${id}${query ? `?${query}`
 const sar = (n) => `${Math.round(n).toLocaleString('en-US')} ريال`;
 
 /** PDF صغيرٌ صالح (صفحة واحدة) يُولَّد في الذاكرة — بديلُ الملف الممسوح ضوئيًّا. */
-function demoPdf(title) {
+export function demoPdf(title) {
   const text = title.replace(/[^\x20-\x7E]/g, '?').replace(/[()\\]/g, '');
   const stream = `BT /F1 18 Tf 72 720 Td (${text}) Tj ET`;
   const objects = [
@@ -73,7 +73,7 @@ function demoPdf(title) {
 }
 
 /** رفع ملف (multipart، الحقل `file`) بجلسة الحساب — `lib` يرسل JSON فقط. */
-async function uploadFile(who, name, bytes, type = 'application/pdf') {
+export async function uploadFile(who, name, bytes, type = 'application/pdf') {
   const { token } = await session(who);
   const form = new FormData();
   form.append('file', new Blob([bytes], { type }), name);

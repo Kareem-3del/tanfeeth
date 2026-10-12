@@ -17,7 +17,8 @@
  * النشر على اعتماد مُحاكى: يُقيَّد رقم الإعلان فقط.
  */
 
-import { API, AUTO, RUN, as, daysFromNow, done, step, userId } from './lib.mjs';
+import { demoPdf, uploadFile } from './contract.mjs';
+import { API, AUTO, RUN, as, daysFromNow, done, iso, step, userId } from './lib.mjs';
 
 /* ── أدوات صغيرة ─────────────────────────────────────────────────────────── */
 
@@ -662,10 +663,14 @@ async function award(c, ctx) {
     note(`الترسية على: ${winner?.contractorName ?? current.awardedOfferId} (${winner?.financialAmount?.toLocaleString('en') ?? '—'} ريال) · فترة التوقف تنتهي ${current.standstillEndsAt}`);
   }
   if (current.status !== 'awarded') {
-    await step(
-      { who: 'award.approver', title: 'يدوّن إشعار المتنافسين بقرار الترسية', screen: `/portal/competitions/${id}?phase=award` },
-      () => as('award.approver').post(`/competitions/${id}/award-notice`, {}),
-    ).catch((error) => warn(`إشعار الترسية: ${error.message}`));
+    const procedure = await as('award.approver').get(`/competitions/${id}/award-procedure`);
+    if ((procedure.pendingRecipients ?? []).length > 0) {
+      await step(
+        { who: 'award.approver', title: 'يُصدر إشعار الترسية للفائز وإشعار بقية المتنافسين برقم صادر (عبر منصة اعتماد) — منه تُحسب فترة التوقف ومهلة الضمان النهائي', screen: scr },
+        () => as('award.approver').post(`/competitions/${id}/award-procedure/notices`, { channel: 'etimad' }),
+      );
+    }
+    current = await as('award.approver').get(`/competitions/${id}`);
     if (current.standstillEndsAt && new Date(current.standstillEndsAt) > new Date()) {
       await step(
         { who: 'award.approver', title: 'فترة التوقف (التظلّم) خمسة أيام عمل — تُنهى لأجل العرض (خاصية تجريبية على staging)', screen: scr },
@@ -682,33 +687,90 @@ async function award(c, ctx) {
 async function contract(c) {
   const id = c.id;
   const scr = screen(id, 'contract');
+  const award = screen(id, 'award');
   let current = await as('contract.signer').get(`/competitions/${id}`);
+
+  /* الضمان النهائي (م61): يُقدَّم خلال ١٥ يوم عمل من إشعار الترسية، ويتحقّق منه غيرُ مسجِّله. */
+  const procedure = await as('contract.signer').get(`/competitions/${id}/award-procedure`);
+  const guarantee = procedure.round?.guarantee;
+  if (guarantee && procedure.round.guaranteeStatus !== 'verified' && procedure.round.guaranteeStatus !== 'exempt') {
+    if (!guarantee.submission) {
+      await step(
+        { who: 'contract.signer', title: `يسجّل خطاب الضمان النهائي الوارد من البنك (${guarantee.requiredAmount?.toLocaleString('en') ?? '—'} ريال، ${guarantee.pct}٪)`, screen: award },
+        () => as('contract.signer').post(`/competitions/${id}/award-procedure/guarantee`, {
+          bankName: 'البنك التجريبي',
+          guaranteeNumber: `LG-DEMO-${RUN}`,
+          amount: guarantee.requiredAmount,
+          validUntil: iso(daysFromNow(200)),
+        }),
+      );
+    }
+    await step(
+      { who: 'tender.auditor', title: 'تتحقّق من خطاب الضمان النهائي ومبلغه — غيرُ من سجّله (فصل المهام)', screen: award },
+      () => as('tender.auditor').post(`/competitions/${id}/award-procedure/guarantee/verify`, { note: `تحقق تجريبي ${RUN}` }),
+    );
+  }
+
   if (!current.contractScenario) {
     await step(
       { who: 'contract.signer', title: 'مفوّض التوقيع يحدّد سيناريو توقيع العقد (عبر منصة اعتماد)', screen: scr },
       () => as('contract.signer').post(`/competitions/${id}/contract/scenario`, { scenario: 'etimad', documentReference: `CT-DEMO-${RUN}` }),
     );
   }
-  const signed = new Set((current.signatures ?? []).map((s) => s.party));
-  const parties = [
-    ['contractor', 'المتعاقد'],
-    ['legal', 'الشؤون القانونية'],
-    ['budget', 'الميزانية'],
-    ['cdm', 'إدارة العقود والمشتريات'],
-    ['higher_management', 'صاحب الصلاحية'],
-  ].filter(([party]) => !signed.has(party));
+
+  /* إعداد العقد: المسودة ← القانونية ← المراقب المالي ← إدارة العقود ← التسجيل في اعتماد. */
+  let prep = await as('contract.signer').get(`/competitions/${id}/contract/prep`);
+  if (!prep.draft) {
+    await step(
+      { who: 'contract.signer', title: 'يرفع مسودة العقد المُعدّة من الكراسة وقرار الترسية', screen: scr },
+      async () => {
+        const file = await uploadFile('contract.signer', `contract-draft-${RUN}.pdf`, demoPdf(`Contract draft - DEMO ${RUN}`));
+        return as('contract.signer').post(`/competitions/${id}/contract/prep/draft`, { fileId: file.id, note: `مسودة تجريبية ${RUN}` });
+      },
+    );
+  }
+  const reviews = [
+    ['legal', 'الشؤون القانونية تراجع المسودة وتجيزها', {}],
+    ['financial', 'المراقب المالي يؤكد الارتباط وتوفّر الاعتماد برقمه', { reference: `FC-DEMO-${RUN}` }],
+    ['cdm', 'مدير إدارة العقود يعتمد المسودة', {}],
+  ];
+  for (const [kind, title, extra] of reviews) {
+    prep = await as('contract.approver').get(`/competitions/${id}/contract/prep`);
+    if (prep.steps.find((s) => s.key === kind)?.status === 'done') continue;
+    await step(
+      { who: 'contract.approver', title, screen: scr },
+      () => as('contract.approver').post(`/competitions/${id}/contract/prep/review/${kind}`, { decision: 'cleared', remarks: `مراجعة تجريبية ${RUN}`, ...extra }),
+    );
+  }
+  prep = await as('contract.signer').get(`/competitions/${id}/contract/prep`);
+  if (!prep.registration || prep.registration.etimadStatus !== 'approved') {
+    await step(
+      { who: 'contract.signer', title: 'يسجّل رقم العقد في منصة اعتماد وحالته «معتمد» (التسجيل نفسه في اعتماد)', screen: scr },
+      () => as('contract.signer').post(`/competitions/${id}/contract/prep/registration`, {
+        etimadContractNumber: `ETM-DEMO-${RUN}`,
+        registeredAt: iso(new Date()),
+        etimadStatus: 'approved',
+      }),
+    );
+  }
+
+  /* التواقيع بالترتيب الذي تحدّده سياسة التوقيع. */
+  prep = await as('contract.signer').get(`/competitions/${id}/contract/prep`);
+  const labels = { contractor: 'المتعاقد', legal: 'الشؤون القانونية', budget: 'الميزانية', cdm: 'إدارة العقود والمشتريات', higher_management: 'صاحب الصلاحية' };
+  const signed = new Set((prep.signing.signed ?? []).map((s) => s.party));
+  const parties = prep.signing.order.filter((party) => !signed.has(party));
   if (parties.length > 0) {
     await step(
-      { who: 'contract.signer', title: `يسجّل توقيع أطراف العقد: ${parties.map(([, l]) => l).join('، ')}`, screen: scr },
+      { who: 'contract.signer', title: `يسجّل توقيع أطراف العقد بالترتيب: ${parties.map((p) => labels[p] ?? p).join(' ← ')}`, screen: scr },
       async () => {
-        for (const [party] of parties) await as('contract.signer').post(`/competitions/${id}/contract/sign`, { party });
+        for (const party of parties) await as('contract.signer').post(`/competitions/${id}/contract/sign`, { party });
       },
     );
   }
   current = await as('contract.signer').get(`/competitions/${id}`);
   if (current.status !== 'contracted') {
     current = await step(
-      { who: 'contract.signer', title: 'يُتمّ العقد ويسلّمه إلى وحدة العقود — يُنشأ سجلّ العقد', screen: scr },
+      { who: 'contract.signer', title: 'يُتمّ العقد ويسلّمه إلى وحدة العقود — يُنشأ سجلّ العقد ويعبر إليه خطاب الضمان النهائي', screen: scr },
       () => as('contract.signer').post(`/competitions/${id}/contract/finalize`),
     );
   }

@@ -301,6 +301,82 @@ subcontractor may not sub-subcontract (clause g).
 - **`FR-EX-013`** — end a subcontract through a reasoned request approved by the
   department manager; the subcontractor does not leave until the exit is approved.
 
+### 5.5 Statutory procedures — inquiries → contract, and cancellation (`FR-SP-001…013`)
+Added October 2026 to close the gaps between the main path and the Government Tenders
+and Procurement Law (GTPL) and its Implementing Regulation. Article ids refer to
+the verified index in `backend/src/modules/training/domain/regulation-references.ts`
+(`law-n` = Law article, `reg-n` = Regulation article). Etimad remains the source of
+truth (R‑08): Tanfeeth **records** what is done on Etimad (reference, date, status)
+and does not pretend to integrate.
+
+**Before offers are submitted — bidder inquiries (`reg-8` e, f)**
+- **`FR-SP-001`** — inquiry cycle: receive & register (portal or manual) → classify
+  (technical / financial / contractual / administrative) → assign to a specialist →
+  draft answer → review (answers the question, states the obligation, consistent with
+  the documents and earlier answers) → approve (approver ≠ answerer) → publish to **all**
+  bidders. Inquiries after the inquiries deadline need an override reason; answers
+  past their due date are flagged; unpublished inquiries block the opening session
+  (override with reason).
+- **`FR-SP-002`** — clarification ≠ change: an approved answer that changes the
+  requirements must be linked to a recorded **addendum** (what changed, which document
+  version) and may extend the submission deadline (new date + reason), which moves the
+  timeline.
+
+**Offers (`law-39`, `reg-67`, `reg-68`, `law-47`, `reg-83`)**
+- **`FR-SP-003`** — bid validity: 90 days from the opening date; an extension of up to
+  90 days is requested from all bidders with the committee's reasons; each bidder agrees
+  (and extends the bid guarantee) within two weeks or is treated as declining.
+- **`FR-SP-004`** — offer withdrawal: before the submission deadline the bid guarantee
+  is returned; during the validity period after opening it is not. Withdrawn offers
+  leave ranking and award.
+- **`FR-SP-005`** — negotiation: when the best price is clearly above market or above
+  the approved budget, the committee sets a target amount and negotiates in rank order;
+  the award goes to the first bidder who reaches it; if nobody does, the committee
+  recommends cancellation to the authority.
+
+**Award → contract (`law-53`, `reg-87`, `law-86`, `law-87`, `reg-153`, `law-61`, `reg-88`)**
+- **`FR-SP-006`** — award notices to the winner and to the other bidders as official
+  correspondence with a reference number (R‑09); the notice date starts the standstill
+  and the final-guarantee clock.
+- **`FR-SP-007`** — standstill (5–10 working days) and grievances: register, decide
+  within 15 working days (silence = deemed rejected), escalation to the committee with
+  the grievance guarantee. **Accepting a grievance requires a corrective action**: return
+  to evaluation, revise the award, or — if the violation cannot be corrected —
+  recommend cancellation. Award confirmation stays blocked until it is done.
+- **`FR-SP-008`** — final guarantee: 5% of the contract value within 15 working days of
+  the award notice, extendable once by an equal period; not required at or below
+  100,000 SAR; any other exemption needs a written basis and a second approver; the
+  amount is checked and verified by a different user; signing is blocked until the
+  guarantee is verified or exempt.
+- **`FR-SP-009`** — contract draft reviews before signing, in order: draft → legal review
+  → financial controller (commitment and reference) → CDM confirmation; returns carry a
+  mandatory reason and land with the drafter.
+- **`FR-SP-010`** — signing per a configurable policy (required parties and order per
+  scenario) and, in the Etimad scenario, the **Etimad contract registration** (contract
+  number, date, status) recorded before the contract is concluded.
+- **`FR-SP-011`** — failure to provide the guarantee or to sign: a signing date, a
+  warning, and after 15 days without signing the contracting is ended and the final
+  guarantee confiscated; the award moves to the next eligible bidder (back through
+  notice and standstill), or, if none remains, cancellation is recommended.
+
+**Cancellation (`law-51`, `law-52`, `reg-86`, `reg-83`)**
+- **`FR-SP-012`** — cancelling a competition is a gated request: a **statutory ground** (a
+  fixed list) + justification are required, and the authority approves (requester ≠
+  approver). The grounds are: fundamental document errors that cannot be corrected,
+  a procedure violation that cannot be corrected, indications of fraud/corruption/
+  collusion, all offers non-compliant (excluded), all offers withdrawn, offers expired
+  without award or extension, need ceased, public interest, price too high after
+  negotiation, an uncorrectable violation after an accepted grievance, and the winner
+  failing to sign with no other acceptable offer. The platform detects the grounds the
+  data already proves (e.g. all offers excluded) and suggests them. The bidders'
+  cancellation notice is recorded with a reference number, and whether document costs
+  and bid guarantees are refunded (`law-52`, `reg-86`) is shown.
+
+**Knowledge**
+- **`FR-SP-013`** — procurement glossary: a searchable list of procurement terms in
+  plain Arabic, linked to the articles that govern them; the assistant answers «what
+  does … mean» from it (`lookup_term`), not from guesswork.
+
 ---
 
 ## 6. Platform modules & features
@@ -532,6 +608,7 @@ draft ──announce──▶ announced ──(window: scheduled → open → cl
 | `FR-AI-017` | Tanfeeth addition (Sept 2026) | Training Center: autopilot lessons + Ask‑the‑trainer + trainer voice. |
 | `FR-V30-001…010` | Vision 2030 | Localization & Vision 2030. |
 | `FR-PL-001…014` | v2.0 — product decisions (August 2026) | Annual plan: announcement, window, department submissions, review, approval + notifications. |
+| `FR-SP-001…013` | GTPL & Implementing Regulation (October 2026) | Statutory procedures: inquiries & addenda, bid validity, withdrawal, negotiation, award notices, standstill & grievances, final guarantee, contract reviews, Etimad registration, failure to sign, cancellation grounds, glossary. |
 
 **Next steps (from the FRD):** per‑requirement traceability matrix, prototype
 specs, architecture document, security assessment, and **MVP vs later‑phase

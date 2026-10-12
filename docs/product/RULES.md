@@ -156,3 +156,21 @@ notifies every active user (in‑app + email). See `FR‑PL‑001…014`.
 (لا تُخزَّن ولا مجدول). تُنشأ الخطة للسنة الحالية وحتى خمس سنوات قادمة فقط — لا
 سنة ماضية. ولا يبت مدير في بند قدّمه بنفسه. الإعلان يبلّغ كل مستخدم نشط
 (إشعار + بريد). انظر `FR‑PL‑001…014`.
+
+### R‑19 — Statutory gates are cited, not guessed / البوابات النظامية بسندها لا بالتخمين
+**EN:** Procedures the Law fixes — bid validity, withdrawal, negotiation, award
+notices, standstill and grievances, final guarantee, failure to sign, and
+cancellation — are modelled as gated transitions with their statutory deadlines
+and a **cited article from the verified regulation index** (`law-n` / `reg-n` in
+`training/domain/regulation-references.ts`). A rule with no verified article shows
+no article; nobody invents one. Cancelling a competition always takes a ground from
+the fixed statutory list + a justification, and is approved by the authority, never
+by the requester. Accepting a grievance always requires a corrective action. Signing
+is blocked until the final guarantee is verified or exempt. See `FR‑SP‑001…013`.
+**AR:** الإجراءات التي يحدّدها النظام — سريان العروض، السحب، التفاوض، إشعارات
+الترسية، فترة التوقف والتظلمات، الضمان النهائي، الامتناع عن التوقيع، والإلغاء —
+تُبنى انتقالاتٍ لها بوابات بمددها النظامية و**سندٍ من فهرس المواد المتحقَّق منه**
+(`law-n` / `reg-n`). والقاعدة التي لا مادة متحقَّقًا منها لها لا تُعرض لها مادة، ولا
+يخترع أحدٌ رقمًا. وإلغاء المنافسة دائمًا بسببٍ من القائمة النظامية الثابتة ومبرّر،
+ويعتمده صاحب الصلاحية لا مقدّم الطلب. وقبول التظلم يستلزم دائمًا إجراءً تصحيحيًا.
+ولا توقيع قبل التحقق من الضمان النهائي أو ثبوت الإعفاء. انظر `FR‑SP‑001…013`.
