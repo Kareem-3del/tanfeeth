@@ -166,18 +166,23 @@ function tenderData({ title, entrantId, entrantName, boqMeta }) {
 
 /* ── المراحل ─────────────────────────────────────────────────────────────── */
 
-async function createProject({ planItemId }) {
-  const title = `تجريبي ${RUN} — توريد أجهزة حاسب لإدارة تقنية المعلومات`;
+export async function createProject({
+  planItemId,
+  title = `تجريبي ${RUN} — توريد أجهزة حاسب لإدارة تقنية المعلومات`,
+  description = 'مشروع تجريبي لعرض دورة المنافسة كاملة — بيانات غير حقيقية.',
+  procurementType = 'supply',
+  requestingDepartment = 'إدارة تقنية المعلومات (تجريبية)',
+}) {
   const competition = await step(
     { who: 'tender.entry', title: 'مدخل المنافسة ينشئ المشروع (طلب الطرح)', screen: '/portal/competitions/new' },
     () =>
       as('tender.entry').post('/competitions', {
         title,
-        description: 'مشروع تجريبي لعرض دورة المنافسة كاملة — بيانات غير حقيقية.',
-        procurementType: 'supply',
+        description,
+        procurementType,
         tenderType: 'منافسة عامة',
         year: new Date().getFullYear(),
-        requestingDepartment: 'إدارة تقنية المعلومات (تجريبية)',
+        requestingDepartment,
         ...(planItemId ? { planItemId, planClassification: 'in_plan' } : {}),
       }),
   );
@@ -226,8 +231,15 @@ async function fillBooklet(c) {
   note(`مدققة المنافسة ترى: مدخلة=${view.estimatedValue?.entered} · ظاهرة لها=${view.estimatedValue?.visible} · القيمة في الرد: ${'estimatedValue' in (view.data ?? {}) ? 'ظاهرة' : 'محجوبة'}`);
 }
 
-async function submitAndApprove(c) {
+export async function submitAndApprove(c, { budget } = {}) {
   const id = c.id;
+  if (budget) {
+    /* الميزانيةُ المعتمدة تُقيَّد قبل البتّ النهائي — وعليها يُحكم BR-01 (مظروفان فوق ٥ ملايين). */
+    await step(
+      { who: 'tender.auditor', title: `تُقيّد الميزانية المعتمدة للمشروع (${budget.toLocaleString('en')} ريال) — فوق ٥ ملايين يُقدَّم العرض في ملفين`, screen: screen(id, 'approvals') },
+      () => as('tender.auditor').post(`/competitions/${id}/budget`, { amount: budget }),
+    );
+  }
   await step(
     { who: 'tender.entry', title: 'يرسل الطلب لسلسلة الاعتماد', screen: screen(id, 'creation') },
     () => as('tender.entry').post(`/competitions/${id}/submit`),
@@ -247,7 +259,7 @@ async function submitAndApprove(c) {
   return current;
 }
 
-async function approveBooklet(c) {
+export async function approveBooklet(c) {
   const id = c.id;
   const me = await userId('tender.entry');
   await step(
@@ -431,7 +443,7 @@ async function pickClerk() {
   throw new Error('لا يوجد حسابٌ تجريبي يملك competitions.committee');
 }
 
-async function committeesContext() {
+export async function committeesContext() {
   const ctx = { whoById: new Map(), idOf: new Map(), bidderIndex: new Map() };
   for (const who of [...SEATS.open, ...SEATS.tech]) {
     const id = await userId(who);
@@ -455,7 +467,7 @@ async function committeesContext() {
   return ctx;
 }
 
-async function conflictDeclarations(ctx) {
+export async function conflictDeclarations(ctx) {
   for (const key of ['open', 'tech']) {
     const committee = ctx[key];
     for (const seat of committee.seats) {
@@ -485,7 +497,8 @@ const listOffers = async (id) => (await as('tender.entry').get(`/competitions/${
 
 const advance = (ctx, id, stage) => as(ctx.clerk).post(`/competitions/${id}/advance-stage`, { stage });
 
-async function announcementAndOffers(c, ctx) {
+/** التأهيل اللاحق ← الإعلان، ثم قيدُ نشر الإعلان برقمه في اعتماد. */
+export async function publishAnnouncement(c, ctx) {
   const id = c.id;
   if (c.stage === 'pre_qualification') {
     await step(
@@ -500,6 +513,12 @@ async function announcementAndOffers(c, ctx) {
       () => as(ctx.clerk).post(`/competitions/${id}/announcement`, { reference: `ETM-DEMO-${RUN}` }),
     );
   }
+  return as('tender.entry').get(`/competitions/${id}`);
+}
+
+async function announcementAndOffers(c, ctx) {
+  const id = c.id;
+  await publishAnnouncement(c, ctx);
   let offers = await listOffers(id);
   if (offers.length === 0) {
     await step(
