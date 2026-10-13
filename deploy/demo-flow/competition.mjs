@@ -237,7 +237,7 @@ export async function submitAndApprove(c, { budget } = {}) {
   if (budget) {
     /* الميزانيةُ المعتمدة تُقيَّد قبل البتّ النهائي — وعليها يُحكم BR-01 (مظروفان فوق ٥ ملايين). */
     await step(
-      { who: 'tender.auditor', title: `تُقيّد الميزانية المعتمدة للمشروع (${budget.toLocaleString('en')} ريال) — فوق ٥ ملايين يُقدَّم العرض في ملفين`, screen: screen(id, 'approvals') },
+      { who: 'tender.auditor', title: `تُقيّد الميزانية المعتمدة للمشروع (${budget.toLocaleString('en')} ريال)${budget > 5_000_000 ? ' — فوق ٥ ملايين يُقدَّم العرض في ملفين' : ''}`, screen: screen(id, 'approvals') },
       () => as('tender.auditor').post(`/competitions/${id}/budget`, { amount: budget }),
     );
   }

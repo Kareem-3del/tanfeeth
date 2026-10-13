@@ -55,11 +55,11 @@ async function planItem(booklet, budget) {
     plans.find((p) => ['approved', 'active'].includes(p.status) && p.year <= year && year <= (p.endYear ?? p.year));
   if (!plan) throw new Error(`لا خطة معتمدة تغطي ${year} — مرّر --plan`);
 
-  const title = `تشغيل وصيانة المباني الإدارية — تعاقد قائم على الأداء (${RUN})`;
+  const title = projectTitle(booklet);
   const amendment = await step(
     {
       who: 'plan.announcer',
-      title: `مسؤول التخطيط يطلب تعديل «${plan.title}» بإضافة بند «تشغيل وصيانة المباني الإدارية»`,
+      title: `مسؤول التخطيط يطلب تعديل «${plan.title}» بإضافة بند «${booklet.title ?? 'تشغيل وصيانة المباني الإدارية'}»`,
       screen: `/portal/plan/${plan.id}?phase=execution`,
     },
     () =>
@@ -68,13 +68,13 @@ async function planItem(booklet, budget) {
         payload: {
           title,
           description: booklet.purpose,
-          department: DEPARTMENT,
+          department: booklet.department ?? DEPARTMENT,
           estimatedBudget: budget,
           expectedQuarter: 4,
           planYear: year,
-          notes: 'نوع الطرح: منافسة عامة — تشغيل وصيانة قائم على الأداء (نموذج وزارة المالية).',
+          notes: booklet.planNotes ?? 'نوع الطرح: منافسة عامة — تشغيل وصيانة قائم على الأداء (نموذج وزارة المالية).',
         },
-        reason: 'انتهاء عقد التشغيل والصيانة الحالي للمباني الإدارية؛ يُطرح بديله بنموذج التعاقد القائم على الأداء.',
+        reason: booklet.planReason ?? 'انتهاء عقد التشغيل والصيانة الحالي للمباني الإدارية؛ يُطرح بديله بنموذج التعاقد القائم على الأداء.',
       }),
   );
   await step(
@@ -98,7 +98,7 @@ async function linkRow(row) {
     item = await who.post('/catalog/items', {
       name: row.item,
       unit: row.unit,
-      category: 'التشغيل والصيانة',
+      category: row.catalogCategory ?? 'التشغيل والصيانة',
       specification: row.specifications,
       ...(row.classificationCode ? { classificationCode: row.classificationCode } : {}),
     });
@@ -107,6 +107,10 @@ async function linkRow(row) {
 }
 
 /* ── بيانات الكراسة ──────────────────────────────────────────────────────── */
+
+/** عنوانُ المشروع — من الكراسة إن سمّته، وإلّا التشغيل والصيانة. */
+const projectTitle = (booklet) =>
+  `${booklet.title ?? 'تشغيل وصيانة المباني الإدارية — تعاقد قائم على الأداء'} (${RUN})`;
 
 const numbered = (list) => list.map((text, i) => `${i + 1}. ${text}`).join('\n');
 
@@ -255,6 +259,8 @@ function tenderData({ booklet, title, entrant, boq }) {
     technicalWeight: 60,
     financialWeight: 40,
     evaluationCriteria: booklet.evaluationCriteria,
+    /* ما يخصّ كراسةً بعينها (نوعُ المشروع، النشاط، الأوزان…) يغلب ما سبق. */
+    ...(booklet.overrides ?? {}),
   };
 }
 
@@ -270,13 +276,13 @@ export async function runOmCompetition() {
   const budget = Math.round(estimatedValue * 1.05);
   const planItemId = arg('--plan-item') ?? (await planItem(booklet, budget));
 
-  const title = `تشغيل وصيانة المباني الإدارية — تعاقد قائم على الأداء (${RUN})`;
+  const title = projectTitle(booklet);
   let c = await createProject({
     planItemId,
     title,
     description: booklet.purpose,
-    procurementType: 'maintenance',
-    requestingDepartment: DEPARTMENT,
+    procurementType: booklet.overrides?.procurementType ?? 'maintenance',
+    requestingDepartment: booklet.department ?? DEPARTMENT,
   });
   const id = c.id;
   note(`المشروع: ${id} · ${c.referenceNumber}`);
@@ -285,7 +291,7 @@ export async function runOmCompetition() {
   await step(
     {
       who: 'tender.entry',
-      title: 'يعبّئ الكراسة كاملة من نموذج عقد التشغيل والصيانة القائم على الأداء، وجدول الكميات مربوطًا بسجل المنتجات ودليل التصنيف',
+      title: 'يعبّئ الكراسة كاملة من نموذج وزارة المالية، وجدول الكميات مربوطًا بسجل المنتجات ودليل التصنيف',
       screen: `/portal/competitions/${id}/tender`,
     },
     async () => {
@@ -294,8 +300,8 @@ export async function runOmCompetition() {
       const boq = {
         mode: 'table',
         type: 'الخدمات والمخرجات',
-        name: 'جدول خدمات التشغيل والصيانة',
-        rows: booklet.boq.map(({ classificationCode, ...row }) => row),
+        name: booklet.boqTableName ?? 'جدول خدمات التشغيل والصيانة',
+        rows: booklet.boq.map(({ classificationCode, catalogCategory, ...row }) => row),
         rowMeta,
       };
       await as('tender.entry').patch(`/competitions/${id}/tender-data`, {
