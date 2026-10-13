@@ -496,7 +496,7 @@ const PRICES = [912_500, 884_000, 869_000];
 /** عروض المنافسة (`GET /offers` يرجع `{ offers, comparison, submission }`). */
 const listOffers = async (id) => (await as('tender.entry').get(`/competitions/${id}/offers`)).offers ?? [];
 
-const advance = (ctx, id, stage) => as(ctx.clerk).post(`/competitions/${id}/advance-stage`, { stage });
+export const advance = (ctx, id, stage) => as(ctx.clerk).post(`/competitions/${id}/advance-stage`, { stage });
 
 /** التأهيل اللاحق ← الإعلان، ثم قيدُ نشر الإعلان برقمه في اعتماد. */
 export async function publishAnnouncement(c, ctx) {
@@ -554,7 +554,7 @@ function rememberBidders(ctx, offers) {
 }
 
 /** جلسة فتح (فنية أو مالية): عقدُها، فقائمةُ التحقّق، فإخراجُ المحضر، فتوقيعُ الحاضرين. */
-async function openingSession(c, ctx, kind, { beforeRelease } = {}) {
+export async function openingSession(c, ctx, kind, { beforeRelease } = {}) {
   const id = c.id;
   const base = `/competitions/${id}/opening-sessions/${kind}`;
   const label = kind === 'technical' ? 'الفنية' : 'المالية';
@@ -579,7 +579,8 @@ async function openingSession(c, ctx, kind, { beforeRelease } = {}) {
       async () => {
         for (const entry of session.entries ?? []) {
           for (const row of entry.checklist ?? []) {
-            const result = row.key === 'bank_guarantee' ? 'not_required' : 'present';
+            /* الضمانُ «غير مطلوب» حين لا تطلبه الكراسة — وإلّا حاضرٌ كبقيّة الوثائق. */
+            const result = row.key === 'bank_guarantee' && ctx.guaranteeNotRequired !== false ? 'not_required' : 'present';
             if ((row.outcome?.result ?? row.result) === result) continue;
             await as(ctx.clerk).put(`${base}/offers/${entry.offerId}/checks`, { item: row.key, result, note: 'فُحص في الجلسة (تجريبي)' });
           }
