@@ -13,6 +13,7 @@ var TNF_UI = (function () {
     log: "tanfeethFillLog",
     settings: "tanfeethSettings",
     prefs: "tanfeethPrefs",
+    inquiries: "tanfeethInquirySync",
   };
   const DEFAULT_SETTINGS = { enabled: true, autoFill: true, showOverlay: true, fillCriteria: true };
   const MAX_AGE_MS = 2 * 60 * 60 * 1000;
@@ -29,6 +30,9 @@ var TNF_UI = (function () {
     refresh: ["M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", "M21 3v5h-5", "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", "M8 16H3v5"],
     alert: ["M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z", "M12 8v4", "M12 16h.01"],
     list: ["m3 17 2 2 4-4", "m3 7 2 2 4-4", "M13 6h8", "M13 12h8", "M13 18h8"],
+    messages: ["M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z", "M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"],
+    copy: ["M10 8h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2z", "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"],
+    pen: ["M12 20h9", "M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"],
   };
 
   function icon(name, size) {
@@ -129,8 +133,8 @@ var TNF_UI = (function () {
     ".icon-btn:hover{background:var(--mist);color:var(--ink)}",
   ].join("\n");
 
-  /** مضيف مغلق بجذر ظل — يرجع { host, root }. */
-  function createHost(name, css) {
+  /** مضيف مغلق بجذر ظل لم يُلحق بالصفحة بعد — المستدعي يضعه حيث يريد (بجانب عنصر في اعتماد). */
+  function createInlineHost(name, css) {
     injectFonts();
     const host = document.createElement("tanfeeth-" + name);
     host.setAttribute("data-tanfeeth", name);
@@ -138,8 +142,14 @@ var TNF_UI = (function () {
     const style = document.createElement("style");
     style.textContent = BASE_CSS + "\n" + (css || "");
     root.appendChild(style);
-    (document.body || document.documentElement).appendChild(host);
     return { host, root };
+  }
+
+  /** مضيف مغلق بجذر ظل في آخر الصفحة — يرجع { host, root }. */
+  function createHost(name, css) {
+    const made = createInlineHost(name, css);
+    (document.body || document.documentElement).appendChild(made.host);
+    return made;
   }
 
   function el(tag, cls, text) {
@@ -198,6 +208,39 @@ var TNF_UI = (function () {
     return Boolean(res && res.ok);
   }
 
+  // ─────────────────────────────────────────── أوضاع شريط تنفيذ ──
+  // شريط تنفيذ واحد في اعتماد (etimad-fill.js يرسمه). سكربت آخر يتولى محتواه في
+  // صفحات بعينها بتسجيل «وضع»: { id, matches() → bool, signedOutTitle?,
+  // render({ button }) → { title, sub, tone, actions[], progress } }.
+  // الشريط يضيف بعدها زر المساعد والتصغير كالعادة.
+  const barModes = [];
+  let barRerender = null;
+
+  function registerBarMode(mode) {
+    barModes.push(mode);
+    requestBarRender();
+  }
+
+  /** الوضع الذي يتولى هذه الصفحة، أو null (فيبقى شريط التعبئة كما هو). */
+  function activeBarMode() {
+    for (let i = 0; i < barModes.length; i++) {
+      try {
+        if (barModes[i].matches()) return barModes[i];
+      } catch (_e) {
+        /* وضع معطوب لا يكسر الشريط */
+      }
+    }
+    return null;
+  }
+
+  function onBarRender(fn) {
+    barRerender = fn;
+  }
+
+  function requestBarRender() {
+    if (barRerender) barRerender();
+  }
+
   return {
     KEYS,
     DEFAULT_SETTINGS,
@@ -205,11 +248,16 @@ var TNF_UI = (function () {
     icon,
     mark,
     createHost,
+    createInlineHost,
     el,
     storageGet,
     storageSet,
     send,
     authState,
     openPanel,
+    registerBarMode,
+    activeBarMode,
+    onBarRender,
+    requestBarRender,
   };
 })();

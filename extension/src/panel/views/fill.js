@@ -19,6 +19,25 @@ function shortValue(v) {
   return s.length > 120 ? s.slice(0, 120) + "…" : s;
 }
 
+/**
+ * آخر مزامنة استفسارات لمنافسة التبويب المفتوح في اعتماد (تفاصيل المنافسة أو صفحة الرد).
+ * المعرّف STenderId base64 — اعتماد يطبع «+» مسافة أحيانا (كما في etimad-inquiries-parse.js).
+ */
+function inquiryRecordFor(url, store) {
+  if (!store || !store.byRef || !url) return null;
+  const m = String(url).match(/[?&]STenderId=([^&#]*)/i) || String(url).match(/\/Enquiry\/SupplierEnquiriesOnTender\/([^/?#]+)/i);
+  if (!m) return null;
+  let id = m[1];
+  try {
+    id = decodeURIComponent(id);
+  } catch (_e) {
+    /* كما هو */
+  }
+  id = id.trim().replace(/ /g, "+");
+  const ref = (store.tenderRefs || {})[id];
+  return ref ? store.byRef[ref] || null : null;
+}
+
 // التبويب الداخلي والتصفية يبقيان بين التنقلات.
 const ui = { tab: "log", filter: "all", query: "" };
 
@@ -55,6 +74,36 @@ export function mountFill(container, app) {
   }
 
   // ────────────────────────────────────────────────────────── أجزاء ──
+
+  /** استفسارات الموردين — ملخص آخر مزامنة للمنافسة المفتوحة (للعرض فقط؛ الأزرار في شريط اعتماد). */
+  function inquiriesCard() {
+    if (app.state.ctx.site !== "etimad") return null;
+    const rec = inquiryRecordFor(app.state.ctx.url, app.state.inquiries);
+    if (!rec) return null;
+    const s = rec.summary || {};
+    const writes = Array.isArray(rec.writes) ? rec.writes.length : 0;
+    const tile = function (tone, value, label) {
+      return h("div", { class: "stat tone-" + tone }, h("b", null, String(value)), h("span", null, label));
+    };
+    const last = rec.lastWrite;
+    return h("section", { class: "card stats-wrap" },
+      h("span", { class: "overline" }, icon("listChecks", 14), "استفسارات الموردين"),
+      h("h2", { class: "ready-title" }, rec.competitionTitle || rec.tenderName || rec.reference),
+      h("p", { class: "ready-meta" },
+        icon("clock", 14),
+        h("span", null, "آخر مزامنة " + ago(rec.at)),
+        h("span", { class: "dot-sep" }),
+        h("span", { attrs: { dir: "ltr" } }, rec.reference)),
+      h("div", { class: "stats" },
+        tile("neutral", Number(s.seen || rec.seen || 0), "في اعتماد"),
+        tile("neutral", Number(s.created || 0), "جديد"),
+        tile(writes ? "success" : "neutral", writes, "جاهزة للكتابة")),
+      last
+        ? h("p", { class: "muted sm" }, "آخر كتابة " + ago(last.at) + ": " + last.filled + " مسودة · " + last.copyOnly + " للنسخ فقط" + (last.mismatch ? " · " + last.mismatch + " تغيّر نصها" : ""))
+        : writes
+          ? h("p", { class: "muted sm" }, "اضغط «اكتب الردود الجاهزة» في شريط تنفيذ أعلى صفحة اعتماد — الإرسال عليك.")
+          : null);
+  }
 
   function emptyState(expired) {
     return h("div", { class: "empty tall" },
@@ -204,6 +253,8 @@ export function mountFill(container, app) {
     const stored = app.state.record;
     const record = app.validRecord();
     const nodes = [];
+    const inq = inquiriesCard();
+    if (inq) nodes.push(inq);
     if (!record) {
       nodes.push(emptyState(Boolean(stored && stored.savedAt)));
       const entry = latestLog();
@@ -233,7 +284,7 @@ export function mountFill(container, app) {
   }
 
   const off = app.subscribe(function (keys) {
-    if (["record", "log", "ctx", "settings"].some(function (k) { return keys.indexOf(k) !== -1; })) render();
+    if (["record", "log", "ctx", "settings", "inquiries"].some(function (k) { return keys.indexOf(k) !== -1; })) render();
   });
   // عداد الصلاحية يتحدث كل دقيقة.
   const tick = setInterval(render, 60000);

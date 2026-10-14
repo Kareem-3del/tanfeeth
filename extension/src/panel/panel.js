@@ -32,6 +32,7 @@ const state = {
   settings: DEFAULT_SETTINGS,
   record: null, // الحمولة المخزنة كما هي (قد تكون منتهية)
   log: {},
+  inquiries: null, // آخر مزامنات الاستفسارات (سكربت اعتماد يكتبها)
   prefs: { theme: "system" },
   pendingPrompt: null,
 };
@@ -277,16 +278,21 @@ chrome.storage.onChanged.addListener(function (changes, area) {
     state.log = changes[KEYS.log].newValue || {};
     keys.push("log");
   }
+  if (changes[KEYS.inquiries]) {
+    state.inquiries = changes[KEYS.inquiries].newValue || null;
+    keys.push("inquiries");
+  }
   if (changes[KEYS.intent] && changes[KEYS.intent].newValue) applyIntent(changes[KEYS.intent].newValue);
   if (keys.length) emit(keys);
 });
 
 async function boot() {
-  const items = await chrome.storage.local.get([KEYS.settings, KEYS.fill, KEYS.log, KEYS.prefs, KEYS.intent]);
+  const items = await chrome.storage.local.get([KEYS.settings, KEYS.fill, KEYS.log, KEYS.prefs, KEYS.intent, KEYS.inquiries]);
   state.session = await getSession();
   state.settings = Object.assign({}, DEFAULT_SETTINGS, items[KEYS.settings] || {});
   state.record = items[KEYS.fill] || null;
   state.log = items[KEYS.log] || {};
+  state.inquiries = items[KEYS.inquiries] || null;
   state.prefs = Object.assign({ theme: "system" }, items[KEYS.prefs] || {});
   applyTheme();
   await readContext();

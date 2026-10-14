@@ -36,6 +36,7 @@ export const KEYS = {
   fill: "tanfeethEtimadFill",
   log: "tanfeethFillLog",
   settings: "tanfeethSettings",
+  inquiries: "tanfeethInquirySync",
 };
 
 export const DEFAULT_SETTINGS = {

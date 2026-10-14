@@ -181,6 +181,17 @@ export async function apiGet(path, signal) {
   return res.json();
 }
 
+export async function apiPost(path, body, signal) {
+  const res = await authFetch(path, {
+    method: "POST",
+    headers: { Accept: "application/json", "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+    signal,
+  });
+  if (!res.ok) throw await readError(res);
+  return res.json();
+}
+
 /** يحدث الملف والصلاحيات المخزنة (الاسم قد يتغير من البوابة). */
 export async function refreshProfile() {
   const user = await apiGet("/auth/me");

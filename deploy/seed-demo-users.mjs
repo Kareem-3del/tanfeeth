@@ -79,6 +79,9 @@ const CUSTOM_ROLES = [
   { name: 'طلب إلغاء المنافسة — تجريبي', description: 'رفع طلب إلغاء المنافسة بسببٍ نظامي ومبرّر.', permissionKeys: ['competitions.read', 'competitions.cancel.request'] },
   { name: 'اعتماد إلغاء المنافسة — تجريبي', description: 'البت في طلب إلغاء المنافسة بصفة صاحب الصلاحية.', permissionKeys: ['competitions.read', 'competitions.cancel.approve'] },
   { name: 'اعتماد ردود الاستفسارات — تجريبي', description: 'مراجعة ردود استفسارات المتنافسين واعتمادها والملاحق.', permissionKeys: ['competitions.read', 'competitions.inquiries.approve'] },
+  /* المراسلات (FR-SP-015/016): موظّف المشتريات يزامن اعتماد بالإضافة، والإدارة تردّ على ما أُسند إليها وحده. */
+  { name: 'مزامنة استفسارات اعتماد — تجريبي', description: 'سحب استفسارات الموردين من اعتماد بالإضافة وكتابة الردود المعتمدة في خاناتها.', permissionKeys: ['competitions.read', 'competitions.inquiries.sync'] },
+  { name: 'الردّ على استفسارات الإدارة — تجريبي', description: 'كتابة الردّ على استفسارات المتنافسين المسندة إلى إدارة المستخدم في مركز المراسلات.', permissionKeys: ['competitions.inquiries.answer'] },
   {
     name: 'طلبات تنفيذ العقد — تجريبي',
     description: 'تسجيل العقد وجانب الطلب في تنفيذه: الدفعات، أوامر التغيير والإيقاف، شهادة الإنجاز، تقييم المتعاقد، المحتوى المحلي، التعاقد من الباطن، الضمانات البنكية (تسجيل وطلبات).',
@@ -98,13 +101,13 @@ const CUSTOM_ROLES = [
 const USERS = [
   /* ١ — الخطة السنوية */
   { email: 'plan.announcer@example.com', fullName: 'سلمان المخطط', title: 'مسؤول التخطيط', roles: ['معلن الخطة السنوية', 'مسؤول التخطيط', 'تخطيط الخطة — تجريبي'] },
-  { email: 'it.employee@example.com', fullName: 'فيصل موظف الإدارة', title: 'أخصائي تقنية معلومات', roles: [], department: 'member' },
-  { email: 'it.manager@example.com', fullName: 'هند مديرة الإدارة', title: 'مديرة إدارة تقنية المعلومات', roles: [], department: 'manager' },
+  { email: 'it.employee@example.com', fullName: 'فيصل موظف الإدارة', title: 'أخصائي تقنية معلومات', roles: ['الردّ على استفسارات الإدارة — تجريبي'], department: 'member' },
+  { email: 'it.manager@example.com', fullName: 'هند مديرة الإدارة', title: 'مديرة إدارة تقنية المعلومات', roles: ['الردّ على استفسارات الإدارة — تجريبي'], department: 'manager' },
   { email: 'plan.reviewer@example.com', fullName: 'تركي مراجع الخطة', title: 'مراجع الميزانية والتخطيط', roles: ['مراجع الخطة السنوية'] },
   { email: 'plan.approver@example.com', fullName: 'عبدالله معتمد الخطة', title: 'وكيل الشؤون المالية', roles: ['معتمد الخطة السنوية'] },
 
   /* ٢ — المشروع (الطرح) */
-  { email: 'tender.entry@example.com', fullName: 'ياسر مدخل المنافسة', title: 'أخصائي مشتريات', roles: ['مدخل بيانات المنافسة', 'إدخال المنافسة — تجريبي', 'طلب إلغاء المنافسة — تجريبي'] },
+  { email: 'tender.entry@example.com', fullName: 'ياسر مدخل المنافسة', title: 'أخصائي مشتريات', roles: ['مدخل بيانات المنافسة', 'إدخال المنافسة — تجريبي', 'طلب إلغاء المنافسة — تجريبي', 'مزامنة استفسارات اعتماد — تجريبي'] },
   { email: 'tender.auditor@example.com', fullName: 'منيرة مدققة المنافسة', title: 'مدققة المشتريات', roles: ['مدقق بيانات المنافسة', 'تدقيق المنافسة — تجريبي', 'اعتماد ردود الاستفسارات — تجريبي'] },
   { email: 'estimate.entry@example.com', fullName: 'راشد مدخل القيمة', title: 'محلل تكاليف', roles: ['مدخل القيمة التقديرية', 'قراءة المنافسات — تجريبي'] },
 

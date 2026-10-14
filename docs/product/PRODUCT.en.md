@@ -377,6 +377,37 @@ and does not pretend to integrate.
   plain Arabic, linked to the articles that govern them; the assistant answers «what
   does … mean» from it (`lookup_term`), not from guesswork.
 
+**Communications — bidder inquiries and entity requests (`FR-SP-014…018`, design in
+[`COMMUNICATIONS-MODULE.md`](COMMUNICATIONS-MODULE.md))**
+- **`FR-SP-014`** — «اعتماد الطرح» with actual dates: when the project goes live on
+  Etimad the procurement officer records the Etimad reference number, the actual
+  bidding duration (days) and the actual offers-opening date/time (and the publish day).
+  They replace the proposed dates in the tender document (the countdown, inquiry
+  deadlines and reminders follow), the proposed values are kept for comparison, and the
+  requesting/supervising departments are notified that their project is live.
+- **`FR-SP-015`** — Etimad inquiry sync through the extension: the extension reads the
+  tender's inquiries page (Etimad's own inquiry number per row) and sends the rows; the
+  server de-duplicates by that number, or by a deterministic fingerprint when absent
+  (normalized text + asked day + bidder + ordinal), so pulling repeatedly only adds new
+  inquiries. Replies Etimad shows as «معتمد» are recorded as published (R-08).
+- **`FR-SP-016`** — routing and answering: new inquiries are assigned to the project's
+  supervising (else requesting) department, whose head gets one notice per sync; the
+  department answers in «مركز المراسلات» (sees only its own); identical questions are
+  linked and answered once; review/approval stays FR-SP-001 (approver ≠ answerer). The
+  extension writes approved answers into Etimad's reply boxes and never submits — a
+  person submits, and the next sync marks the inquiry published, or flags a mismatch.
+- **`FR-SP-017`** — entity clarification requests (after bid opening): a technical
+  committee member raises a request on one or more offers (technical clarification,
+  abnormally-low-price justification, re-pricing, workshop, site visit, other); the bid
+  examination committee consolidates and approves (approver ≠ raiser); an official letter
+  with a reference number (R-09) is emailed to each contractor. Price reduction and bid
+  validity extension stay on Etimad (FR-SP-003/005). The estimated value never appears in
+  a letter ([estimated-value seal]).
+- **`FR-SP-018`** — contractor replies by email are captured from the entity's own
+  mailbox (KSA-resident, R-10), matched to the request by thread token / In-Reply-To /
+  reference number, flagged when the sender is not the addressed contractor, and shown
+  on the request and the offer's evaluation page; unmatched mail goes to a triage list.
+
 ---
 
 ## 6. Platform modules & features
@@ -609,6 +640,7 @@ draft ──announce──▶ announced ──(window: scheduled → open → cl
 | `FR-V30-001…010` | Vision 2030 | Localization & Vision 2030. |
 | `FR-PL-001…014` | v2.0 — product decisions (August 2026) | Annual plan: announcement, window, department submissions, review, approval + notifications. |
 | `FR-SP-001…013` | GTPL & Implementing Regulation (October 2026) | Statutory procedures: inquiries & addenda, bid validity, withdrawal, negotiation, award notices, standstill & grievances, final guarantee, contract reviews, Etimad registration, failure to sign, cancellation grounds, glossary. |
+| `FR-SP-014…018` | Client brief (October 2026) | Communications: publishing actuals, Etimad inquiry sync via the extension, department routing & answering, entity clarification requests by email, inbound reply capture. |
 
 **Next steps (from the FRD):** per‑requirement traceability matrix, prototype
 specs, architecture document, security assessment, and **MVP vs later‑phase

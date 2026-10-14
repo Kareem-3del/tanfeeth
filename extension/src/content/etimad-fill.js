@@ -588,7 +588,9 @@
 
     const wrap = UI.el("div", "tnf");
     root.appendChild(wrap);
-    const controlled = view.auth.signedIn && view.record;
+    // صفحة يتولاها وضع آخر (استفسارات الموردين…) — لا تعبئة فيها ولا إطار.
+    const mode = UI.activeBarMode();
+    const controlled = view.auth.signedIn && view.record && !mode;
     if (controlled) wrap.appendChild(UI.el("div", "frame"));
 
     if (view.collapsed) {
@@ -617,11 +619,28 @@
     let title = "تنفيذ";
     let sub = "";
     let subTone = "";
+    let modeProgress = null;
 
     if (!view.auth.signedIn) {
-      title = "تنفيذ — التعبئة في اعتماد";
+      title = (mode && mode.signedOutTitle) || "تنفيذ — التعبئة في اعتماد";
       sub = "سجل الدخول بحساب تنفيذ لتفعيل التعبئة والمساعد";
       acts.appendChild(button("btn btn-primary", "login", "تسجيل الدخول", function () { openPanel("login"); }));
+    } else if (mode) {
+      let out = null;
+      try {
+        out = mode.render({ button: button });
+      } catch (err) {
+        console.warn("[Tanfeeth] bar mode:", err);
+      }
+      out = out || {};
+      title = out.title || "تنفيذ";
+      sub = out.sub || "";
+      subTone = out.tone || "";
+      modeProgress = typeof out.progress === "number" ? out.progress : null;
+      (out.actions || []).forEach(function (node) {
+        if (node) acts.appendChild(node);
+      });
+      acts.appendChild(button("icon-btn", "sparkles", "المساعد", function () { openPanel("chat"); }));
     } else if (!view.record) {
       title = "لا يوجد مشروع جاهز للتعبئة";
       sub = "اختر مشروعا من تنفيذ وسنملأ صفحات اعتماد عنك";
@@ -661,16 +680,19 @@
     }
 
     txt.appendChild(UI.el("span", "t", title));
-    txt.appendChild(UI.el("span", "s" + (subTone ? " " + subTone : ""), sub));
+    const subEl = UI.el("span", "s" + (subTone ? " " + subTone : ""), sub);
+    if (sub) subEl.title = sub; // السطر يُقص في الشريط — النص كاملا عند المرور
+    txt.appendChild(subEl);
     bar.appendChild(txt);
     acts.appendChild(UI.el("span", "sep"));
     acts.appendChild(button("icon-btn", "minus", "تصغير", function () { setCollapsed(true); }));
     bar.appendChild(acts);
 
-    if (view.phase === "filling") {
+    const shownProgress = mode ? modeProgress : view.phase === "filling" ? view.progress : null;
+    if (view.auth.signedIn && shownProgress != null) {
       const track = UI.el("div", "progress");
       const fillEl = document.createElement("i");
-      fillEl.style.width = Math.round(view.progress * 100) + "%";
+      fillEl.style.width = Math.round(shownProgress * 100) + "%";
       track.appendChild(fillEl);
       bar.appendChild(track);
     }
@@ -706,6 +728,7 @@
 
   function maybeAutoFill() {
     if (!settings.enabled || !settings.autoFill) return;
+    if (UI.activeBarMode()) return; // صفحة استفسارات لا نموذج
     if (!view.auth.signedIn || !view.record || alreadyFilled()) return;
     if (document.visibilityState !== "visible") {
       pendingAutoFill = true; // تبويبات اعتماد الخلفية تملأ حين يفتحها المستخدم
@@ -752,8 +775,15 @@
     lastSavedAt = view.record ? view.record.savedAt : null;
   }
 
+  let ready = false;
+  // وضع يُسجَّل أو يتغير حاله (مزامنة…) يطلب إعادة رسم الشريط — بعد تحميل الحال فقط.
+  UI.onBarRender(function () {
+    if (ready) render();
+  });
+
   async function init() {
     await loadState();
+    ready = true;
     render();
     maybeAutoFill();
   }
