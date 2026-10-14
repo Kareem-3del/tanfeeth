@@ -43,6 +43,9 @@
     meta: { reference: null, tenderName: null, tenderId: null },
     total: null, // عدد الاستفسارات في اعتماد إن عُرف
     record: null, // آخر مزامنة مخزنة لهذه المنافسة
+    // هل للمنافسة مشروعٌ في تنفيذ؟ checking | matched | none | unknown
+    // الاستفسارات تبعُ مشروعها: منافسةٌ لا مشروع لها في تنفيذ لا يُعرض لها سحب.
+    competition: { state: "checking", title: null },
     message: "",
     tone: "",
     // صفحة القائمة
@@ -535,8 +538,30 @@
     if (view.phase === "counting") setPhase("idle");
   }
 
+  /** يسأل تنفيذ: هل هذه المنافسة مسجّلة عندنا برقمها المرجعي؟ */
+  async function checkCompetition() {
+    if (!view.meta.reference) {
+      view.competition = { state: "unknown", title: null };
+      UI.requestBarRender();
+      return;
+    }
+    view.competition = { state: "checking", title: null };
+    UI.requestBarRender();
+    const res = await UI.send({ type: "TNF_INQ_MATCH", references: [view.meta.reference] });
+    if (!res || !res.ok) {
+      view.competition = { state: "unknown", title: null, message: failure(res) };
+    } else {
+      const hit = (res.data || []).find(function (m) {
+        return m.reference === view.meta.reference;
+      });
+      view.competition = hit ? { state: "matched", title: hit.title, counts: hit.counts } : { state: "none", title: null };
+    }
+    UI.requestBarRender();
+  }
+
   async function syncThisTender() {
     if (view.phase === "syncing" || view.phase === "writing") return;
+    if (view.competition.state !== "matched") return;
     if (!view.meta.reference) {
       setPhase("error", PAGE === "reply"
         ? "لا نعرف الرقم المرجعي لهذه المنافسة — افتح «تفاصيل المنافسة» أو «إستفسارات الموردين» مرة ثم عد"
@@ -600,7 +625,33 @@
         const b = kit.button;
         const actions = [];
         const writes = liveWrites(view.record);
-        const title = (view.record && view.record.competitionTitle) || view.meta.tenderName || "استفسارات المنافسة";
+        const title = view.competition.title || (view.record && view.record.competitionTitle) || view.meta.tenderName || "استفسارات المنافسة";
+
+        // لا سحبَ ولا كتابة إلا لمنافسةٍ لها مشروع في تنفيذ.
+        if (view.competition.state !== "matched") {
+          const recheck = b("icon-btn", "refresh", "تحقق من جديد", function () { checkCompetition(); });
+          if (view.competition.state === "checking") {
+            return { title, sub: "جار التحقق من وجود المنافسة في تنفيذ…", tone: "", actions: [] };
+          }
+          if (view.competition.state === "none") {
+            return {
+              title,
+              sub: "هذه المنافسة غير مسجّلة في تنفيذ — سجّل رقمها المرجعي " + view.meta.reference + " في خطوة «اعتماد الطرح» على مشروعها أولًا، ثم زامن",
+              tone: "warn",
+              actions: [recheck],
+            };
+          }
+          return {
+            title,
+            sub: !view.meta.reference
+              ? PAGE === "reply"
+                ? "لا نعرف الرقم المرجعي لهذه المنافسة — افتح «تفاصيل المنافسة» أو «إستفسارات الموردين» مرة ثم عد"
+                : "لم نجد «الرقم المرجعي» في هذه الصفحة"
+              : view.competition.message || "تعذر التحقق من المنافسة في تنفيذ",
+            tone: "warn",
+            actions: view.meta.reference ? [recheck] : [],
+          };
+        }
         let sub = "";
         let tone = view.tone;
         const countLabel = view.total != null ? "مزامنة الاستفسارات (" + view.total + ")" : "مزامنة الاستفسارات";
@@ -681,6 +732,9 @@
     }
     await loadRecord();
     UI.requestBarRender();
+    await checkCompetition();
+    // منافسةٌ لا مشروع لها في تنفيذ: لا عدّ ولا أزرار نسخ — لا شيء يُسحب منها.
+    if (view.competition.state !== "matched") return;
     watchInquiriesTab();
     const writes = liveWrites(view.record);
     if (writes.length) applyWrites(writes, false);
