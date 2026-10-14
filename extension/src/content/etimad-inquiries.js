@@ -554,7 +554,7 @@
       const hit = (res.data || []).find(function (m) {
         return m.reference === view.meta.reference;
       });
-      view.competition = hit ? { state: "matched", title: hit.title, counts: hit.counts } : { state: "none", title: null };
+      view.competition = hit ? { state: "matched", id: hit.competitionId, title: hit.title, counts: hit.counts } : { state: "none", title: null };
     }
     UI.requestBarRender();
   }
@@ -966,6 +966,80 @@
     });
     UI.requestBarRender();
   }
+
+  // ──────────────────────────────────────────── اللوحة الجانبية ──
+  // اللوحة تسأل عن حال الصفحة وتطلب الأفعال نفسها التي في الشريط — لا منطقٌ ثانٍ.
+
+  function panelStatus() {
+    const writes = liveWrites(view.record);
+    if (PAGE === "list") {
+      const matched = view.cards.filter(function (c) {
+        return c.match;
+      });
+      return {
+        page: PAGE,
+        started,
+        cards: view.cards.length,
+        matched: matched.map(function (c) {
+          return { reference: c.match.reference, title: c.match.title, counts: c.match.counts, phase: c.phase || "idle", message: c.message || "" };
+        }),
+        matching: view.matching,
+        bulk: view.bulk,
+        message: view.message,
+        tone: view.tone,
+      };
+    }
+    return {
+      page: PAGE,
+      started,
+      reference: view.meta.reference,
+      tenderName: view.meta.tenderName,
+      competition: view.competition,
+      total: view.total,
+      phase: view.phase,
+      message: view.message,
+      tone: view.tone,
+      writes: writes.length,
+      summary: view.record ? view.record.summary : null,
+      syncedAt: view.record ? view.record.at : null,
+    };
+  }
+
+  chrome.runtime.onMessage.addListener(function (message, _sender, sendResponse) {
+    if (!message) return false;
+    if (message.type === "TNF_INQ_STATUS") {
+      sendResponse(panelStatus());
+      return false;
+    }
+    if (message.type === "TNF_INQ_ACTION") {
+      const run =
+        message.action === "sync"
+          ? syncThisTender
+          : message.action === "write"
+            ? writeReady
+            : message.action === "syncAll"
+              ? syncAll
+              : message.action === "recheck"
+                ? checkCompetition
+                : null;
+      /* «مزامنة الكل» لصفحة القائمة وحدها، وبقية الأفعال لصفحة المنافسة. */
+      const fits = message.action === "syncAll" ? PAGE === "list" : PAGE !== "list";
+      if (!run || !started || !fits) {
+        sendResponse(panelStatus());
+        return false;
+      }
+      Promise.resolve(run()).then(
+        function () {
+          sendResponse(panelStatus());
+        },
+        function () {
+          sendResponse(panelStatus());
+        }
+      );
+      return true;
+    }
+    return false;
+  });
 
   // ─────────────────────────────────────────────────────── التشغيل ──
 

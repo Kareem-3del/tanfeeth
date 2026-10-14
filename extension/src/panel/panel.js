@@ -1,5 +1,5 @@
 // تنفيذ — اللوحة الجانبية: الغلاف، والحالة المشتركة، والتنقل بين الشاشات.
-// بدون جلسة لا يظهر إلا تسجيل الدخول. بعد الدخول: المساعد · المشاريع · التعبئة،
+// بدون جلسة لا يظهر إلا تسجيل الدخول. بعد الدخول: المساعد · المشاريع · التعبئة · الاستفسارات،
 // والإعدادات من صورة الحساب.
 
 import { ApiError, firstName, getSession, refreshProfile, setRefresher } from "../shared/api.js";
@@ -7,6 +7,7 @@ import { DEFAULT_SETTINGS, ETIMAD_ADD_TENDER_URL, ETIMAD_ORIGIN, KEYS, MAX_AGE_M
 import { clear, firstLetter, h, icon, mark } from "./dom.js";
 import { mountChat } from "./views/chat.js";
 import { mountFill } from "./views/fill.js";
+import { mountInquiries } from "./views/inquiries.js";
 import { mountLogin } from "./views/login.js";
 import { mountProjects } from "./views/projects.js";
 import { mountSettings } from "./views/settings.js";
@@ -23,6 +24,7 @@ const TABS = [
   { id: "chat", label: "المساعد", icon: "sparkles" },
   { id: "projects", label: "المشاريع", icon: "folder" },
   { id: "fill", label: "التعبئة", icon: "fill" },
+  { id: "inquiries", label: "الاستفسارات", icon: "messages" },
 ];
 
 const state = {
@@ -225,7 +227,7 @@ function renderShell() {
   root.appendChild(main);
   root.appendChild(h("div", { id: "snack", class: "snack" }));
 
-  const mounts = { chat: mountChat, projects: mountProjects, fill: mountFill, settings: mountSettings };
+  const mounts = { chat: mountChat, projects: mountProjects, fill: mountFill, inquiries: mountInquiries, settings: mountSettings };
   current = mounts[state.view](main, app);
 }
 
