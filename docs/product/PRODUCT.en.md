@@ -408,6 +408,23 @@ and does not pretend to integrate.
   reference number, flagged when the sender is not the addressed contractor, and shown
   on the request and the offer's evaluation page; unmatched mail goes to a triage list.
 
+**Offer intake from Etimad (`FR-SP-019`, stage 5 «العروض المسحوبة من اعتماد», FR-WF-013…017)**
+- **`FR-SP-019`** — pulling bids from Etimad through the extension: on «تقرير الموردين»
+  (or any bidder's «ملفات العرض») the opening-committee member opens the extension's
+  «العروض» tab; it reads the report (every page) and each offer's files with the user's own
+  Etimad session, and the server previews per bidder: registered here or new, and which
+  files go into which envelope. One click then creates each missing offer (source «اعتماد»,
+  matched by unified number — a name only matches an existing offer that has none — through
+  the same add-offer path, barred-list guard included; Etimad's SME flag carried to new
+  offers) and streams each file from Etimad straight into the offer's upload route (no disk,
+  no manual upload; archives unpacked and read as usual). The envelope comes from Etimad's
+  attachment type and the BR-01 gate decides: a combined file above the threshold, or a type
+  that names no envelope on a split competition, is refused with its reason, never guessed.
+  Re-pulling skips what is already attached (by name, sealed financial files included) and
+  completes what failed. Withdrawn offers are not pulled. The server never holds the Etimad
+  session — Etimad only serves files to the signed-in committee member — and the extension
+  clicks nothing on Etimad (`competitions.committee`).
+
 ---
 
 ## 6. Platform modules & features
@@ -641,6 +658,7 @@ draft ──announce──▶ announced ──(window: scheduled → open → cl
 | `FR-PL-001…014` | v2.0 — product decisions (August 2026) | Annual plan: announcement, window, department submissions, review, approval + notifications. |
 | `FR-SP-001…013` | GTPL & Implementing Regulation (October 2026) | Statutory procedures: inquiries & addenda, bid validity, withdrawal, negotiation, award notices, standstill & grievances, final guarantee, contract reviews, Etimad registration, failure to sign, cancellation grounds, glossary. |
 | `FR-SP-014…018` | Client brief (October 2026) | Communications: publishing actuals, Etimad inquiry sync via the extension, department routing & answering, entity clarification requests by email, inbound reply capture. |
+| `FR-SP-019` | Client brief (October 2026) | Offer intake: pulling bids and their files from Etimad into «استلام العروض» through the extension. |
 
 **Next steps (from the FRD):** per‑requirement traceability matrix, prototype
 specs, architecture document, security assessment, and **MVP vs later‑phase

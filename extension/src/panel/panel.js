@@ -1,5 +1,5 @@
 // تنفيذ — اللوحة الجانبية: الغلاف، والحالة المشتركة، والتنقل بين الشاشات.
-// بدون جلسة لا يظهر إلا تسجيل الدخول. بعد الدخول: المساعد · المشاريع · التعبئة · الاستفسارات،
+// بدون جلسة لا يظهر إلا تسجيل الدخول. بعد الدخول: المساعد · المشاريع · التعبئة · الاستفسارات · العروض،
 // والإعدادات من صورة الحساب.
 
 import { ApiError, firstName, getSession, refreshProfile, setRefresher } from "../shared/api.js";
@@ -8,6 +8,7 @@ import { clear, firstLetter, h, icon, mark } from "./dom.js";
 import { mountChat } from "./views/chat.js";
 import { mountFill } from "./views/fill.js";
 import { mountInquiries } from "./views/inquiries.js";
+import { mountOffers } from "./views/offers.js";
 import { mountLogin } from "./views/login.js";
 import { mountProjects } from "./views/projects.js";
 import { mountSettings } from "./views/settings.js";
@@ -25,6 +26,7 @@ const TABS = [
   { id: "projects", label: "المشاريع", icon: "folder" },
   { id: "fill", label: "التعبئة", icon: "fill" },
   { id: "inquiries", label: "الاستفسارات", icon: "messages" },
+  { id: "offers", label: "العروض", icon: "inbox" },
 ];
 
 const state = {
@@ -216,7 +218,7 @@ function renderShell() {
       return h("button", {
         class: "seg-btn" + (on ? " is-on" : ""),
         type: "button",
-        attrs: { role: "tab", "aria-selected": on ? "true" : "false" },
+        attrs: { role: "tab", "aria-selected": on ? "true" : "false", title: t.label, "aria-label": t.label },
         on: { click: function () { app.go(t.id); } },
       }, icon(t.icon, 16), h("span", null, t.label), t.id === "fill" && recordReady ? h("i", { class: "seg-dot", attrs: { "aria-label": "مشروع جاهز" } }) : null);
     }));
@@ -227,7 +229,7 @@ function renderShell() {
   root.appendChild(main);
   root.appendChild(h("div", { id: "snack", class: "snack" }));
 
-  const mounts = { chat: mountChat, projects: mountProjects, fill: mountFill, inquiries: mountInquiries, settings: mountSettings };
+  const mounts = { chat: mountChat, projects: mountProjects, fill: mountFill, inquiries: mountInquiries, offers: mountOffers, settings: mountSettings };
   current = mounts[state.view](main, app);
 }
 

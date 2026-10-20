@@ -192,6 +192,18 @@ export async function apiPost(path, body, signal) {
   return res.json();
 }
 
+/**
+ * رفع multipart (ملفات العرض) — بلا Content-Type: المتصفح يكتبه مع الحدّ.
+ * يُنادى من اللوحة لا من عامل الخلفية: الخادم يفكّ المضغوطات ويقرؤها قبل أن يرد،
+ * وعامل الخلفية لا يُبقي طلبًا ينتظر ردًّا طويلًا.
+ */
+export async function apiUpload(path, form, signal) {
+  const res = await authFetch(path, { method: "POST", headers: { Accept: "application/json" }, body: form, signal });
+  if (res.status === 413) throw new ApiError(413, "الملف أكبر مما يقبله الخادم.", "TOO_LARGE");
+  if (!res.ok) throw await readError(res);
+  return res.json();
+}
+
 /** يحدث الملف والصلاحيات المخزنة (الاسم قد يتغير من البوابة). */
 export async function refreshProfile() {
   const user = await apiGet("/auth/me");

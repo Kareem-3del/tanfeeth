@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "تنفيذ — المساعد والتعبئة في اعتماد",
   "short_name": "تنفيذ",
-  "description": "مساعد تنفيذ الذكي في لوحة جانبية، وتعبئة نموذج المنافسة في اعتماد من بيانات مشروعك، ومزامنة استفسارات الموردين وردودها. يتطلب تسجيل الدخول بحساب تنفيذ، ولا يرسل أو يحفظ شيئا نيابة عنك.",
-  "version": "0.3.1",
+  "description": "مساعد تنفيذ الذكي في لوحة جانبية، وتعبئة نموذج المنافسة في اعتماد من بيانات مشروعك، ومزامنة استفسارات الموردين وردودها، وسحب عروض المتنافسين وملفاتها من اعتماد إلى استلام العروض. يتطلب تسجيل الدخول بحساب تنفيذ، ولا يرسل أو يحفظ شيئا في اعتماد نيابة عنك.",
+  "version": "0.4.0",
   "minimum_chrome_version": "116",
   "icons": {
     "16": "icons/icon16.png",
@@ -59,7 +59,9 @@
         "src/content/etimad-criteria.js",
         "src/content/etimad-fill.js",
         "src/content/etimad-inquiries-parse.js",
-        "src/content/etimad-inquiries.js"
+        "src/content/etimad-inquiries.js",
+        "src/content/etimad-offers-parse.js",
+        "src/content/etimad-offers.js"
       ],
       "run_at": "document_idle"
     }
