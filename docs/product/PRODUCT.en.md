@@ -240,6 +240,20 @@ signs → Contractor (external) reviews/edits and signs.
 - *User story:* “As the **contractor**, I review the milestones and the contract,
   request edits if needed, and sign electronically.”
 - *Note:* an additional signing scenario is pending stakeholder discussion.
+- *Built — approved contract templates & generated draft (`FR-WF-029`):* the entity
+  keeps its **approved contract templates** («نماذج العقود المعتمدة», Entity
+  settings → Business rules, `entity.manage`): Word `.docx` files with merge fields
+  such as `{{contractor_name}}`, `{{contract_value}}`, `{{final_guarantee_number}}`,
+  optionally restricted to a project type (supply / maintenance / works / services),
+  one of them default; replaced files become a new version, archived ones leave the
+  generator. In «إعداد العقد» step 1 the drafter **generates the draft from the
+  template** — fields filled from the competition, awarded offer, final guarantee,
+  booklet and entity profile; anything missing is printed as a highlighted
+  «[غير متوفر: …]» gap, never left blank — or uploads a ready draft. Either way it
+  becomes the next draft version and runs the same legal → financial → CDM reviews
+  (HITL). Reviewers read the draft **inside the app** (Word laid out page by page with
+  gaps marked, PDF inline) with download kept. In‑app editing / track changes is not
+  built: edits are made in Word and uploaded as a new version.
 
 #### Stage 10 — Project Commencement (`FR-WF-034…039`) — BR‑02
 - **Supply projects:** Requester initiates the commencement request → CDM confirms
@@ -458,7 +472,8 @@ recording, summary).
 Department performance vs higher‑management objectives, contracts summary
 (active / nearing expiry with **color‑coded alerts** / pending / completed),
 contracts repository (advanced search & filter), **lifecycle tracker** (visual
-timeline), new contract from **dynamic templates + clause library**, configurable
+timeline), new contract from **dynamic templates + clause library** (templates
+built — see Stage 9 «approved contract templates»; clause library not yet), configurable
 **multi‑step approval flow** (delegate/escalate), **amendments with version control
 & diff**, renewal/termination automation, collaboration & audit trail,
 **reports & compliance** dashboard (highlights contracts missing mandatory clauses;
