@@ -174,3 +174,32 @@ is blocked until the final guarantee is verified or exempt. See `FR‑SP‑001�
 يخترع أحدٌ رقمًا. وإلغاء المنافسة دائمًا بسببٍ من القائمة النظامية الثابتة ومبرّر،
 ويعتمده صاحب الصلاحية لا مقدّم الطلب. وقبول التظلم يستلزم دائمًا إجراءً تصحيحيًا.
 ولا توقيع قبل التحقق من الضمان النهائي أو ثبوت الإعفاء. انظر `FR‑SP‑001…013`.
+
+### R‑20 — Two legal regimes, decided by the tender date / نظامان يحكمهما تاريخ الطرح
+**EN:** Every competition, contract, framework agreement and purchase order has
+one active **legal basis** (`legal_bases`): the law version, the tender date and
+its source, and the basis of application. The basis is fixed at tender and
+inherited by the contract. It is **never derived from a record's creation date**.
+The 1448 law is active only from a **recorded and second-person-verified
+effective date** (gazette publication + 120 days, not the decree date). After the
+earliest possible date (2026-12-08), an unclassified record is "undetermined" and
+its version-dependent actions are blocked. A rule the 1448 law leaves to its
+regulation is `pending_regulation`: it blocks the action that needs it, and **the
+1440 value is never reused in its place**. A regulation value is entered with its
+article and verified by another user, and a value fixed by the law itself cannot
+be entered. Legacy records are fixed only by a reviewable backfill (preview →
+commit of what the transition rules decide) or by a documented classification
+decided by another user. Every rule shown carries its version and article
+(`law1448-N`, `law-N`, `reg-N`). See `FR‑LAW‑001…065` and
+`docs/product/LAW-1448-IMPLEMENTATION.md`.
+**AR:** لكل منافسة وعقد واتفاقية إطارية وأمر شراء **سند نظامي** نافذ واحد
+(`legal_bases`): النسخة، وتاريخ الطرح ومصدره، وأساس التطبيق. يُثبَّت السند عند
+الطرح ويرثه العقد، **ولا يُشتق من تاريخ إنشاء السجل**. لا يُفعَّل نظام 1448 إلا
+بتاريخ نفاذ **مسجّل ومعتمد من مستخدم آخر** (النشر في الجريدة الرسمية + 120 يومًا،
+لا تاريخ المرسوم). وبعد أقرب تاريخ ممكن (2026-12-08) يبقى السجل غير المصنَّف «غير
+محدد»، وتتوقف إجراءاته المتوقفة على النسخة. والقاعدة التي أحالها نظام 1448 إلى
+لائحته معلّقة: تمنع الإجراء الذي يحتاجها، **ولا تُستعمل فيها قيمة 1440**. تُدخل
+قيمة اللائحة بمادتها ويعتمدها مستخدم آخر، ولا يُدخل ما ثبّته نص النظام. ولا
+يُثبَّت سند سجل قديم إلا بإسناد قابل للمراجعة (معاينة ثم تثبيت ما تحدده أحكام
+الانتقال)، أو بتصنيف موثق يقرره مستخدم آخر. وكل قاعدة تُعرض بنسختها ومادتها.
+انظر `FR‑LAW‑001…065`.

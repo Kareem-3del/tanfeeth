@@ -674,6 +674,15 @@ draft ──announce──▶ announced ──(window: scheduled → open → cl
 | `FR-SP-001…013` | GTPL & Implementing Regulation (October 2026) | Statutory procedures: inquiries & addenda, bid validity, withdrawal, negotiation, award notices, standstill & grievances, final guarantee, contract reviews, Etimad registration, failure to sign, cancellation grounds, glossary. |
 | `FR-SP-014…018` | Client brief (October 2026) | Communications: publishing actuals, Etimad inquiry sync via the extension, department routing & answering, entity clarification requests by email, inbound reply capture. |
 | `FR-SP-019` | Client brief (October 2026) | Offer intake: pulling bids and their files from Etimad into «استلام العروض» through the extension. |
+| `FR-LAW-001…065` | Government Tenders & Procurement Law 1448H + comparison guide (EXP-AN0-MN-000089) | Dual legal regime: a law version per competition and contract set by the tender date and the transition provisions, activation counted from gazette publication, a rule registry with second-person-verified regulation values, a reviewable backfill for legacy records, and the 1448 rules across preparation, award and execution. Item-by-item traceability in [`LAW-1448-IMPLEMENTATION.md`](LAW-1448-IMPLEMENTATION.md). |
+
+## 14. Governing law: 1440 and 1448 side by side (`FR-LAW-001…065`)
+
+- **Each record carries its version.** A competition follows the version it was tendered under, and its contract inherits it. 1440 and its regulation govern what was tendered before 1448 takes effect, until completion. 1448 governs what was tendered after. **A record's creation date never decides this.**
+- **Effective from publication.** The law takes effect 120 days after its publication in the Official Gazette. An administrator records the publication and effective dates with evidence, and another user verifies them. Anything tendered after the earliest possible effective day (2026-12-08) before that is recorded stays "version undetermined", and its version-dependent actions are blocked.
+- **Regulation values are never guessed.** A rule that 1448 leaves to its new regulation blocks the action that needs it, and 1440's value is not used in its place. The value is entered from the published regulation with its article, and another user verifies it.
+- **Legacy records.** A preview writes nothing. A commit fixes only what the transition provisions decide. The rest go through a documented classification request (version, reason, evidence) that another user decides.
+- **UI.** «إعدادات الجهة ← النظام الحاكم», a version badge on competitions and contracts, and every citation names its version ("نظام 1448 م50").
 
 **Next steps (from the FRD):** per‑requirement traceability matrix, prototype
 specs, architecture document, security assessment, and **MVP vs later‑phase
