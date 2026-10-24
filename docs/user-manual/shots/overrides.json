@@ -1,0 +1,377 @@
+{
+ "ch-00#1": {
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c"
+ },
+ "ch-02#2": {
+  "url": "/portal/plan/df833738-a504-4126-ba9a-daa9a8ff8fa4",
+  "clicks": [
+   "إعلان الخطة"
+  ]
+ },
+ "ch-02#3": {
+  "url": "/portal/plan/df833738-a504-4126-ba9a-daa9a8ff8fa4",
+  "clicks": [
+   "تقديم الإدارات"
+  ]
+ },
+ "ch-02#4": {
+  "url": "/portal/plan/df833738-a504-4126-ba9a-daa9a8ff8fa4",
+  "clicks": [
+   "تقديم الإدارات",
+   "إضافة مشروع"
+  ]
+ },
+ "ch-02#5": {
+  "url": "/portal/plan/9632d28b-1099-4f75-a6aa-428cf874dc6e",
+  "clicks": [
+   "اعتماد الإدارات"
+  ]
+ },
+ "ch-02#6": {
+  "url": "/portal/plan/9632d28b-1099-4f75-a6aa-428cf874dc6e",
+  "clicks": [
+   "المراجعة"
+  ]
+ },
+ "ch-02#7": {
+  "url": "/portal/plan/9632d28b-1099-4f75-a6aa-428cf874dc6e",
+  "clicks": [
+   "الاعتماد"
+  ]
+ },
+ "ch-02#8": {
+  "url": "/portal/plan/9632d28b-1099-4f75-a6aa-428cf874dc6e",
+  "clicks": [
+   "التنفيذ"
+  ]
+ },
+ "ch-02#9": {
+  "url": "/portal/plan/9632d28b-1099-4f75-a6aa-428cf874dc6e",
+  "clicks": [
+   "التنفيذ",
+   "طلب تعديل"
+  ]
+ },
+ "ch-02#10": {
+  "url": "/portal/plan/9632d28b-1099-4f75-a6aa-428cf874dc6e",
+  "clicks": [
+   "تحليل مدعوم بالذكاء الاصطناعي"
+  ]
+ },
+ "ch-08#11": {
+  "skip": true
+ },
+ "ch-09#1": {
+  "skip": true
+ },
+ "ch-09#3": {
+  "clicks": [
+   "لجنة التقييم الفني"
+  ]
+ },
+ "ch-09#4": {
+  "clicks": [
+   "لجنة التقييم الفني",
+   "إضافة عضو"
+  ]
+ },
+ "ch-09#7": {
+  "skip": true
+ },
+ "ch-09#8": {
+  "skip": true
+ },
+ "ch-09#9": {
+  "skip": true
+ },
+ "ch-11#2": {
+  "url": "/portal/competitions/f47d7dc7-e383-43f2-9dd4-26fb0b8edba7",
+  "clicks": [
+   "الطرح"
+  ]
+ },
+ "ch-11#5": {
+  "url": "/portal",
+  "viewport": {
+   "width": 390,
+   "height": 844,
+   "deviceScaleFactor": 2
+  },
+  "narrow": true
+ },
+ "ch-01#7": {
+  "url": "/portal",
+  "viewport": {
+   "width": 390,
+   "height": 844,
+   "deviceScaleFactor": 2
+  },
+  "narrow": true,
+  "clicks": []
+ },
+ "ch-01#8": {
+  "url": "/portal",
+  "viewport": {
+   "width": 390,
+   "height": 844,
+   "deviceScaleFactor": 2
+  },
+  "narrow": true,
+  "clicks": [
+   "المزيد"
+  ]
+ },
+ "ch-01#12": {
+  "skip": true
+ },
+ "ch-01#2": {
+  "skip": true
+ },
+ "ch-03#0": {},
+ "ch-03#1": {
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender",
+  "clicks": [
+   "الأساسيات"
+  ]
+ },
+ "ch-03#2": {
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender",
+  "clicks": [
+   "التصنيف والموقع"
+  ]
+ },
+ "ch-03#3": {
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender",
+  "clicks": [
+   "العناوين والمواعيد"
+  ]
+ },
+ "ch-03#4": {
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender",
+  "clicks": [
+   "مراجعة الهيئة"
+  ]
+ },
+ "ch-03#5": {
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender"
+ },
+ "ch-03#6": {
+  "skip": true
+ },
+ "ch-03#7": {
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender"
+ },
+ "ch-03#8": {
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender"
+ },
+ "ch-03#9": {
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender"
+ },
+ "ch-03#10": {
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/booklet"
+ },
+ "ch-03#11": {
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337",
+  "clicks": [
+   "إنشاء المشروع"
+  ]
+ },
+ "ch-04#1": {
+  "url": "/portal/competitions/c3191be0-30dd-49ba-ae7a-f37110e68fcf"
+ },
+ "ch-04#2": {
+  "url": "/portal/competitions/c3191be0-30dd-49ba-ae7a-f37110e68fcf",
+  "clicks": [
+   "الاعتمادات"
+  ]
+ },
+ "ch-04#3": {
+  "url": "/portal/competitions/c3191be0-30dd-49ba-ae7a-f37110e68fcf",
+  "clicks": [
+   "الاعتمادات",
+   "ابدأ اعتماد الطلب"
+  ]
+ },
+ "ch-04#4": {
+  "url": "/portal/competitions/f47d7dc7-e383-43f2-9dd4-26fb0b8edba7",
+  "clicks": [
+   "الطرح"
+  ]
+ },
+ "ch-04#5": {
+  "url": "/portal/competitions/f47d7dc7-e383-43f2-9dd4-26fb0b8edba7",
+  "clicks": [
+   "الطرح",
+   "انشر إعلان المنافسة"
+  ]
+ },
+ "ch-04#6": {
+  "url": "/portal/competitions/3342d2d1-2577-4c5d-b76e-c89e6586d5d5",
+  "clicks": [
+   "الطرح"
+  ]
+ },
+ "ch-04#7": {
+  "url": "/portal/competitions/3342d2d1-2577-4c5d-b76e-c89e6586d5d5",
+  "clicks": [
+   "الطرح",
+   "كتابة الرد"
+  ]
+ },
+ "ch-04#8": {
+  "url": "/portal/competitions/3342d2d1-2577-4c5d-b76e-c89e6586d5d5",
+  "clicks": [
+   "الطرح",
+   "تسجيل ملحق تعديل"
+  ]
+ },
+ "ch-04#9": {
+  "url": "/portal/competitions/3342d2d1-2577-4c5d-b76e-c89e6586d5d5",
+  "clicks": [
+   "إلغاء المنافسة"
+  ]
+ },
+ "ch-05#0": {
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c",
+  "clicks": [
+   "استلام العروض"
+  ]
+ },
+ "ch-05#1": {
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c",
+  "clicks": [
+   "رفع العروض"
+  ]
+ },
+ "ch-05#2": {
+  "url": "/portal/competitions/e85aba31-5952-4017-aa6f-3d7e2d915a45/qualification",
+  "clicks": [
+   "المعايير"
+  ]
+ },
+ "ch-05#3": {
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c/offers/33735232-8f76-4cb3-8779-d072d2670f34",
+  "clicks": [
+   "التقييم"
+  ]
+ },
+ "ch-05#4": {
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c/offers/33735232-8f76-4cb3-8779-d072d2670f34",
+  "clicks": [
+   "الملفات والتحليل"
+  ]
+ },
+ "ch-05#5": {
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c/offers/33735232-8f76-4cb3-8779-d072d2670f34",
+  "clicks": [
+   "تفاصيل أخرى"
+  ]
+ },
+ "ch-05#6": {
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c",
+  "clicks": [
+   "تقييم العروض"
+  ]
+ },
+ "ch-05#7": {
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c/offers/33735232-8f76-4cb3-8779-d072d2670f34",
+  "clicks": [
+   "التقييم",
+   "أشعر المتنافس بالنواقص"
+  ]
+ },
+ "ch-05#8": {
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c",
+  "clicks": [
+   "تقييم العروض"
+  ],
+  "scroll": 700
+ },
+ "ch-05#9": {
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c/offers/33735232-8f76-4cb3-8779-d072d2670f34",
+  "clicks": [
+   "التقييم"
+  ],
+  "scroll": 500
+ },
+ "ch-05#10": {
+  "url": "/portal/competitions/140616f0-4c9a-46a8-92f8-9094a11bd9a0",
+  "clicks": [
+   "تقييم العروض"
+  ],
+  "scroll": 700
+ },
+ "ch-05#11": {
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c",
+  "clicks": [
+   "تقييم العروض"
+  ],
+  "scroll": 1400
+ },
+ "ch-06#0": {
+  "url": "/portal/competitions/140616f0-4c9a-46a8-92f8-9094a11bd9a0"
+ },
+ "ch-06#1": {
+  "url": "/portal/competitions/140616f0-4c9a-46a8-92f8-9094a11bd9a0"
+ },
+ "ch-06#2": {
+  "url": "/portal/competitions/140616f0-4c9a-46a8-92f8-9094a11bd9a0"
+ },
+ "ch-06#3": {
+  "url": "/portal/competitions/140616f0-4c9a-46a8-92f8-9094a11bd9a0"
+ },
+ "ch-06#4": {
+  "url": "/portal/competitions/140616f0-4c9a-46a8-92f8-9094a11bd9a0"
+ },
+ "ch-06#5": {
+  "url": "/portal/competitions/140616f0-4c9a-46a8-92f8-9094a11bd9a0"
+ },
+ "ch-06#6": {
+  "url": "/portal/competitions/140616f0-4c9a-46a8-92f8-9094a11bd9a0"
+ },
+ "ch-06#7": {
+  "url": "/portal/competitions/140616f0-4c9a-46a8-92f8-9094a11bd9a0"
+ },
+ "ch-06#8": {
+  "url": "/portal/competitions/0a114cb7-c8b3-4cf9-b09e-af5f9081f754"
+ },
+ "ch-06#9": {
+  "url": "/portal/competitions/0a114cb7-c8b3-4cf9-b09e-af5f9081f754"
+ },
+ "ch-06#10": {
+  "url": "/portal/competitions/0a114cb7-c8b3-4cf9-b09e-af5f9081f754"
+ },
+ "ch-06#11": {
+  "url": "/portal/competitions/0a114cb7-c8b3-4cf9-b09e-af5f9081f754"
+ },
+ "ch-07#1": {
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464"
+ },
+ "ch-07#2": {
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464"
+ },
+ "ch-07#3": {
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464"
+ },
+ "ch-07#6": {
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464"
+ },
+ "ch-07#7": {
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464"
+ },
+ "ch-07#11": {
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464"
+ },
+ "ch-07#4": {
+  "skip": true
+ },
+ "ch-07#8": {
+  "skip": true
+ },
+ "ch-07#5": {
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464/evaluations/new"
+ },
+ "ch-07#9": {
+  "url": "/portal/guarantees/bda1ad9a-ec7a-48c7-b53c-75c3670b7948"
+ }
+}

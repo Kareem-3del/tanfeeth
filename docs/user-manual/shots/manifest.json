@@ -1,0 +1,507 @@
+{
+ "ch-00#0": {
+  "file": "shots/ch-00-0.jpg",
+  "url": "/portal",
+  "narrow": false
+ },
+ "ch-00#1": {
+  "file": "shots/ch-00-1.jpg",
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c",
+  "narrow": false
+ },
+ "ch-01#0": {
+  "file": "shots/ch-01-0.jpg",
+  "url": "/auth/login",
+  "narrow": false
+ },
+ "ch-01#1": {
+  "file": "shots/ch-01-1.jpg",
+  "url": "/auth/forgot-password",
+  "narrow": false
+ },
+ "ch-01#3": {
+  "file": "shots/ch-01-3.jpg",
+  "url": "/portal",
+  "narrow": false
+ },
+ "ch-01#4": {
+  "file": "shots/ch-01-4.jpg",
+  "url": "/portal",
+  "narrow": false
+ },
+ "ch-01#5": {
+  "file": "shots/ch-01-5.jpg",
+  "url": "/portal",
+  "narrow": false
+ },
+ "ch-01#6": {
+  "file": "shots/ch-01-6.jpg",
+  "url": "/portal",
+  "narrow": false
+ },
+ "ch-01#7": {
+  "file": "shots/ch-01-7.jpg",
+  "url": "/portal",
+  "narrow": true
+ },
+ "ch-01#8": {
+  "file": "shots/ch-01-8.jpg",
+  "url": "/portal",
+  "narrow": true
+ },
+ "ch-01#10": {
+  "file": "shots/ch-01-10.jpg",
+  "url": "/portal/appearance",
+  "narrow": false
+ },
+ "ch-01#11": {
+  "file": "shots/ch-01-11.jpg",
+  "url": "/portal/competitions/ae1663cc-5079-4ff9-aa94-64ba9aa8624e",
+  "narrow": false
+ },
+ "ch-02#0": {
+  "file": "shots/ch-02-0.jpg",
+  "url": "/portal/plan",
+  "narrow": false
+ },
+ "ch-02#1": {
+  "file": "shots/ch-02-1.jpg",
+  "url": "/portal/plan",
+  "narrow": false
+ },
+ "ch-02#2": {
+  "file": "shots/ch-02-2.jpg",
+  "url": "/portal/plan/df833738-a504-4126-ba9a-daa9a8ff8fa4",
+  "narrow": false
+ },
+ "ch-02#3": {
+  "file": "shots/ch-02-3.jpg",
+  "url": "/portal/plan/df833738-a504-4126-ba9a-daa9a8ff8fa4",
+  "narrow": false
+ },
+ "ch-02#5": {
+  "file": "shots/ch-02-5.jpg",
+  "url": "/portal/plan/9632d28b-1099-4f75-a6aa-428cf874dc6e",
+  "narrow": false
+ },
+ "ch-02#6": {
+  "file": "shots/ch-02-6.jpg",
+  "url": "/portal/plan/9632d28b-1099-4f75-a6aa-428cf874dc6e",
+  "narrow": false
+ },
+ "ch-02#7": {
+  "file": "shots/ch-02-7.jpg",
+  "url": "/portal/plan/9632d28b-1099-4f75-a6aa-428cf874dc6e",
+  "narrow": false
+ },
+ "ch-02#8": {
+  "file": "shots/ch-02-8.jpg",
+  "url": "/portal/plan/9632d28b-1099-4f75-a6aa-428cf874dc6e",
+  "narrow": false
+ },
+ "ch-02#9": {
+  "file": "shots/ch-02-9.jpg",
+  "url": "/portal/plan/9632d28b-1099-4f75-a6aa-428cf874dc6e",
+  "narrow": false
+ },
+ "ch-02#10": {
+  "file": "shots/ch-02-10.jpg",
+  "url": "/portal/plan/9632d28b-1099-4f75-a6aa-428cf874dc6e",
+  "narrow": false
+ },
+ "ch-02#11": {
+  "file": "shots/ch-02-11.jpg",
+  "url": "/portal/competitions/out-of-plan",
+  "narrow": false
+ },
+ "ch-03#0": {
+  "file": "shots/ch-03-0.jpg",
+  "url": "/portal/competitions/new",
+  "narrow": false
+ },
+ "ch-03#1": {
+  "file": "shots/ch-03-1.jpg",
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender",
+  "narrow": false
+ },
+ "ch-03#2": {
+  "file": "shots/ch-03-2.jpg",
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender",
+  "narrow": false
+ },
+ "ch-03#3": {
+  "file": "shots/ch-03-3.jpg",
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender",
+  "narrow": false
+ },
+ "ch-03#4": {
+  "file": "shots/ch-03-4.jpg",
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender",
+  "narrow": false
+ },
+ "ch-03#5": {
+  "file": "shots/ch-03-5.jpg",
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender",
+  "narrow": false
+ },
+ "ch-03#7": {
+  "file": "shots/ch-03-7.jpg",
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender",
+  "narrow": false
+ },
+ "ch-03#8": {
+  "file": "shots/ch-03-8.jpg",
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender",
+  "narrow": false
+ },
+ "ch-03#9": {
+  "file": "shots/ch-03-9.jpg",
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender",
+  "narrow": false
+ },
+ "ch-03#10": {
+  "file": "shots/ch-03-10.jpg",
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/booklet",
+  "narrow": false
+ },
+ "ch-03#11": {
+  "file": "shots/ch-03-11.jpg",
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337",
+  "narrow": false
+ },
+ "ch-04#0": {
+  "file": "shots/ch-04-0.jpg",
+  "url": "/portal/competitions",
+  "narrow": false
+ },
+ "ch-04#1": {
+  "file": "shots/ch-04-1.jpg",
+  "url": "/portal/competitions/c3191be0-30dd-49ba-ae7a-f37110e68fcf",
+  "narrow": false
+ },
+ "ch-04#2": {
+  "file": "shots/ch-04-2.jpg",
+  "url": "/portal/competitions/c3191be0-30dd-49ba-ae7a-f37110e68fcf",
+  "narrow": false
+ },
+ "ch-04#4": {
+  "file": "shots/ch-04-4.jpg",
+  "url": "/portal/competitions/f47d7dc7-e383-43f2-9dd4-26fb0b8edba7",
+  "narrow": false
+ },
+ "ch-04#6": {
+  "file": "shots/ch-04-6.jpg",
+  "url": "/portal/competitions/3342d2d1-2577-4c5d-b76e-c89e6586d5d5",
+  "narrow": false
+ },
+ "ch-04#10": {
+  "file": "shots/ch-04-10.jpg",
+  "url": "/portal/communications",
+  "narrow": false
+ },
+ "ch-04#11": {
+  "file": "shots/ch-04-11.jpg",
+  "url": "/portal/communications",
+  "narrow": false
+ },
+ "ch-05#0": {
+  "file": "shots/ch-05-0.jpg",
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c",
+  "narrow": false
+ },
+ "ch-05#1": {
+  "file": "shots/ch-05-1.jpg",
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c",
+  "narrow": false
+ },
+ "ch-05#3": {
+  "file": "shots/ch-05-3.jpg",
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c/offers/33735232-8f76-4cb3-8779-d072d2670f34",
+  "narrow": false
+ },
+ "ch-05#4": {
+  "file": "shots/ch-05-4.jpg",
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c/offers/33735232-8f76-4cb3-8779-d072d2670f34",
+  "narrow": false
+ },
+ "ch-05#5": {
+  "file": "shots/ch-05-5.jpg",
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c/offers/33735232-8f76-4cb3-8779-d072d2670f34",
+  "narrow": false
+ },
+ "ch-05#6": {
+  "file": "shots/ch-05-6.jpg",
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c",
+  "narrow": false
+ },
+ "ch-05#8": {
+  "file": "shots/ch-05-8.jpg",
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c",
+  "narrow": false
+ },
+ "ch-05#9": {
+  "file": "shots/ch-05-9.jpg",
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c/offers/33735232-8f76-4cb3-8779-d072d2670f34",
+  "narrow": false
+ },
+ "ch-05#10": {
+  "file": "shots/ch-05-10.jpg",
+  "url": "/portal/competitions/140616f0-4c9a-46a8-92f8-9094a11bd9a0",
+  "narrow": false
+ },
+ "ch-05#11": {
+  "file": "shots/ch-05-11.jpg",
+  "url": "/portal/competitions/92ecdbb5-f83e-4dfb-a85f-afa480bb669c",
+  "narrow": false
+ },
+ "ch-06#0": {
+  "file": "shots/ch-06-0.jpg",
+  "url": "/portal/competitions/140616f0-4c9a-46a8-92f8-9094a11bd9a0",
+  "narrow": false
+ },
+ "ch-06#1": {
+  "file": "shots/ch-06-1.jpg",
+  "url": "/portal/competitions/140616f0-4c9a-46a8-92f8-9094a11bd9a0",
+  "narrow": false
+ },
+ "ch-06#4": {
+  "file": "shots/ch-06-4.jpg",
+  "url": "/portal/competitions/140616f0-4c9a-46a8-92f8-9094a11bd9a0",
+  "narrow": false
+ },
+ "ch-06#5": {
+  "file": "shots/ch-06-5.jpg",
+  "url": "/portal/competitions/140616f0-4c9a-46a8-92f8-9094a11bd9a0",
+  "narrow": false
+ },
+ "ch-06#7": {
+  "file": "shots/ch-06-7.jpg",
+  "url": "/portal/competitions/140616f0-4c9a-46a8-92f8-9094a11bd9a0",
+  "narrow": false
+ },
+ "ch-06#8": {
+  "file": "shots/ch-06-8.jpg",
+  "url": "/portal/competitions/0a114cb7-c8b3-4cf9-b09e-af5f9081f754",
+  "narrow": false
+ },
+ "ch-06#11": {
+  "file": "shots/ch-06-11.jpg",
+  "url": "/portal/competitions/0a114cb7-c8b3-4cf9-b09e-af5f9081f754",
+  "narrow": false
+ },
+ "ch-07#0": {
+  "file": "shots/ch-07-0.jpg",
+  "url": "/portal/contracts",
+  "narrow": false
+ },
+ "ch-07#1": {
+  "file": "shots/ch-07-1.jpg",
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464",
+  "narrow": false
+ },
+ "ch-07#2": {
+  "file": "shots/ch-07-2.jpg",
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464",
+  "narrow": false
+ },
+ "ch-07#3": {
+  "file": "shots/ch-07-3.jpg",
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464",
+  "narrow": false
+ },
+ "ch-07#5": {
+  "file": "shots/ch-07-5.jpg",
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464/evaluations/new",
+  "narrow": false
+ },
+ "ch-07#6": {
+  "file": "shots/ch-07-6.jpg",
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464",
+  "narrow": false
+ },
+ "ch-07#7": {
+  "file": "shots/ch-07-7.jpg",
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464",
+  "narrow": false
+ },
+ "ch-07#9": {
+  "file": "shots/ch-07-9.jpg",
+  "url": "/portal/guarantees/bda1ad9a-ec7a-48c7-b53c-75c3670b7948",
+  "narrow": false
+ },
+ "ch-07#10": {
+  "file": "shots/ch-07-10.jpg",
+  "url": "/portal/guarantees",
+  "narrow": false
+ },
+ "ch-07#11": {
+  "file": "shots/ch-07-11.jpg",
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464",
+  "narrow": false
+ },
+ "ch-08#0": {
+  "file": "shots/ch-08-0.jpg",
+  "url": "/portal/contractors",
+  "narrow": false
+ },
+ "ch-08#1": {
+  "file": "shots/ch-08-1.jpg",
+  "url": "/portal/contractors/aa5e469b-ca90-4436-9db3-f22757f97475",
+  "narrow": false
+ },
+ "ch-08#2": {
+  "file": "shots/ch-08-2.jpg",
+  "url": "/portal/suppliers",
+  "narrow": false
+ },
+ "ch-08#3": {
+  "file": "shots/ch-08-3.jpg",
+  "url": "/portal/suppliers",
+  "narrow": false
+ },
+ "ch-08#4": {
+  "file": "shots/ch-08-4.jpg",
+  "url": "/portal/suppliers/ba46eaa1-f2a9-4af9-8858-e78cd012f988",
+  "narrow": false
+ },
+ "ch-08#5": {
+  "file": "shots/ch-08-5.jpg",
+  "url": "/portal/suppliers/lists",
+  "narrow": false
+ },
+ "ch-08#6": {
+  "file": "shots/ch-08-6.jpg",
+  "url": "/portal/suppliers/lists",
+  "narrow": false
+ },
+ "ch-08#7": {
+  "file": "shots/ch-08-7.jpg",
+  "url": "/portal/catalog",
+  "narrow": false
+ },
+ "ch-08#8": {
+  "file": "shots/ch-08-8.jpg",
+  "url": "/portal/catalog/2df6c47f-b7fa-4e9f-a364-c33ad6b8481d",
+  "narrow": false
+ },
+ "ch-08#9": {
+  "file": "shots/ch-08-9.jpg",
+  "url": "/portal/catalog",
+  "narrow": false
+ },
+ "ch-08#10": {
+  "file": "shots/ch-08-10.jpg",
+  "url": "/portal/catalog/classification",
+  "narrow": false
+ },
+ "ch-09#0": {
+  "file": "shots/ch-09-0.jpg",
+  "url": "/portal/tasks",
+  "narrow": false
+ },
+ "ch-09#2": {
+  "file": "shots/ch-09-2.jpg",
+  "url": "/portal/tasks",
+  "narrow": false
+ },
+ "ch-09#3": {
+  "file": "shots/ch-09-3.jpg",
+  "url": "/portal/committees",
+  "narrow": false
+ },
+ "ch-09#4": {
+  "file": "shots/ch-09-4.jpg",
+  "url": "/portal/committees",
+  "narrow": false
+ },
+ "ch-09#5": {
+  "file": "shots/ch-09-5.jpg",
+  "url": "/portal/reports",
+  "narrow": false
+ },
+ "ch-09#6": {
+  "file": "shots/ch-09-6.jpg",
+  "url": "/portal/reports",
+  "narrow": false
+ },
+ "ch-09#10": {
+  "file": "shots/ch-09-10.jpg",
+  "url": "/portal/guide/regulation-map",
+  "narrow": false
+ },
+ "ch-09#11": {
+  "file": "shots/ch-09-11.jpg",
+  "url": "/portal/guide/glossary",
+  "narrow": false
+ },
+ "ch-10#0": {
+  "file": "shots/ch-10-0.jpg",
+  "url": "/portal/organization",
+  "narrow": false
+ },
+ "ch-10#1": {
+  "file": "shots/ch-10-1.jpg",
+  "url": "/portal/organization/profile",
+  "narrow": false
+ },
+ "ch-10#2": {
+  "file": "shots/ch-10-2.jpg",
+  "url": "/portal/organization/users",
+  "narrow": false
+ },
+ "ch-10#3": {
+  "file": "shots/ch-10-3.jpg",
+  "url": "/portal/organization/users/6cb00256-e806-49eb-ab0c-c16a0569b180",
+  "narrow": false
+ },
+ "ch-10#4": {
+  "file": "shots/ch-10-4.jpg",
+  "url": "/portal/organization/departments",
+  "narrow": false
+ },
+ "ch-10#5": {
+  "file": "shots/ch-10-5.jpg",
+  "url": "/portal/organization/departments/f1230aa3-fce0-4e18-9f75-eb8a52e4d03f",
+  "narrow": false
+ },
+ "ch-10#6": {
+  "file": "shots/ch-10-6.jpg",
+  "url": "/portal/organization/roles",
+  "narrow": false
+ },
+ "ch-10#7": {
+  "file": "shots/ch-10-7.jpg",
+  "url": "/portal/organization/roles/f35f49d5-53e9-4bad-8462-7ddb5d1460a4",
+  "narrow": false
+ },
+ "ch-10#8": {
+  "file": "shots/ch-10-8.jpg",
+  "url": "/portal/organization/approval-chain",
+  "narrow": false
+ },
+ "ch-10#9": {
+  "file": "shots/ch-10-9.jpg",
+  "url": "/portal/organization/contract-templates",
+  "narrow": false
+ },
+ "ch-10#10": {
+  "file": "shots/ch-10-10.jpg",
+  "url": "/portal/organization/work-calendar",
+  "narrow": false
+ },
+ "ch-10#11": {
+  "file": "shots/ch-10-11.jpg",
+  "url": "/portal/organization/logs",
+  "narrow": false
+ },
+ "ch-11#2": {
+  "file": "shots/ch-11-2.jpg",
+  "url": "/portal/competitions/f47d7dc7-e383-43f2-9dd4-26fb0b8edba7",
+  "narrow": false
+ },
+ "ch-11#5": {
+  "file": "shots/ch-11-5.jpg",
+  "url": "/portal",
+  "narrow": true
+ }
+}
