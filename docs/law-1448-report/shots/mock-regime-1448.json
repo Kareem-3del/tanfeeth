@@ -1,0 +1,31 @@
+{
+ "regime": {
+  "status": "fixed",
+  "version": "gpl-1448",
+  "versionTitle": "نظام المنافسات والمشتريات الحكومية (1448هـ)",
+  "basis": "tendered_on_or_after_effective",
+  "basisLabel": "طُرحت في تاريخ العمل بنظام 1448هـ أو بعده (المادة 101)",
+  "undeterminedReason": null,
+  "undeterminedLabel": null,
+  "tenderedAt": "2027-01-10T08:00:00.000Z",
+  "exceptionRuleKeys": [],
+  "pendingRuleKeys": [
+   "bidValidityExtension",
+   "standstillExemptionCases",
+   "mofReviewScope",
+   "reservePct",
+   "negotiationResponsePeriod",
+   "unifiedProcurementReviewPeriod",
+   "unifiedProcurementExceptionPeriod",
+   "unifiedProcurementNoticeOnlyCeilingSar",
+   "documentSplitThresholdSar",
+   "subcontractingCaps",
+   "prequalificationCases",
+   "terminationCurePeriod"
+  ]
+ },
+ "appliedVersion": "gpl-1448",
+ "prospective": false,
+ "blocked": null,
+ "rules": []
+}

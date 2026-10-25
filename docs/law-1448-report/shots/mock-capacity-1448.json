@@ -1,0 +1,26 @@
+{
+ "lawVersion": "gpl-1448",
+ "limits": {
+  "model": "categorized",
+  "newItemsMaxPct": 10,
+  "increaseMaxPct": 20,
+  "increaseConsentAbovePct": 10,
+  "combinedIncreaseMaxPct": 20,
+  "decreaseMaxPct": 20,
+  "decreaseMayExceedWithConsent": true,
+  "appliesToFrameworkPurchaseOrders": true
+ },
+ "approvedNewItems": 0,
+ "pendingNewItems": 0,
+ "remainingNewItems": 760000,
+ "remainingCombined": 1520000,
+ "contractValue": 7600000,
+ "approvedIncrease": 0,
+ "approvedDecrease": 0,
+ "pendingIncrease": 0,
+ "pendingDecrease": 0,
+ "increasePct": 0,
+ "decreasePct": 0,
+ "remainingIncrease": 1520000,
+ "remainingDecrease": 1520000
+}

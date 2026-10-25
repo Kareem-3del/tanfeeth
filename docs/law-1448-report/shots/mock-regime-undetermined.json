@@ -1,0 +1,18 @@
+{
+ "regime": {
+  "status": "undetermined",
+  "version": null,
+  "versionTitle": null,
+  "basis": null,
+  "basisLabel": null,
+  "undeterminedReason": "effective_date_not_verified",
+  "undeterminedLabel": "طُرح بعد أبكر تاريخ ممكن للعمل بنظام 1448هـ، ولم يُثبَت تاريخ العمل بالنظام بعد في «تفعيل النظام الجديد»",
+  "tenderedAt": "2026-12-15T08:00:00.000Z",
+  "exceptionRuleKeys": [],
+  "pendingRuleKeys": []
+ },
+ "appliedVersion": null,
+ "prospective": false,
+ "blocked": "طُرح بعد أبكر تاريخ ممكن للعمل بنظام 1448هـ، ولم يُثبَت تاريخ العمل بالنظام بعد في «تفعيل النظام الجديد»",
+ "rules": []
+}

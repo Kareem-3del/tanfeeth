@@ -1,0 +1,133 @@
+{
+ "ch-01#1": {
+  "mock": {
+   "/legal-regime": "mock-regime-1448.json"
+  },
+  "viewport": {
+   "width": 1440,
+   "height": 470
+  }
+ },
+ "ch-01#2": {
+  "mock": {
+   "/legal-regime": "mock-regime-undetermined.json"
+  },
+  "viewport": {
+   "width": 1440,
+   "height": 470
+  }
+ },
+ "ch-02#0": {
+  "scrollTo": "قواعد العمل"
+ },
+ "ch-02#2": {
+  "scrollTo": "نفاذ نظام 1448"
+ },
+ "ch-02#4": {
+  "scrollTo": "سجل القواعد"
+ },
+ "ch-02#5": {
+  "clicks": [
+   "نظام 1448"
+  ],
+  "scrollTo": "سجل القواعد"
+ },
+ "ch-02#7": {
+  "scrollTo": "أسناد السجلات القديمة"
+ },
+ "ch-02#8": {
+  "clicks": [
+   "معاينة الإسناد"
+  ],
+  "scrollTo": "أسناد السجلات القديمة"
+ },
+ "ch-02#9": {
+  "scrollTo": "رئيس الجهة والتفويض"
+ },
+ "ch-03#0": {
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender",
+  "clicks": [
+   "الأساسيات"
+  ],
+  "mock": {
+   "/legal-regime": "mock-regime-1448.json"
+  },
+  "scrollTo": "متطلبات نظام 1448 قبل الاعتماد"
+ },
+ "ch-03#1": {
+  "url": "/portal/competitions/b9b0103c-2a9c-4073-a30b-b1c4ec87f337/tender",
+  "clicks": [
+   "الأساسيات"
+  ],
+  "mock": {
+   "/legal-regime": "mock-regime-1448.json"
+  },
+  "scrollTo": "الشراء الموحد (م15)"
+ },
+ "ch-05#0": {
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464",
+  "clicks": [
+   "أوامر التغيير"
+  ],
+  "scrollTo": "أمر تغيير جديد"
+ },
+ "ch-05#1": {
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464",
+  "clicks": [
+   "أوامر التغيير"
+  ],
+  "mock": {
+   "/legal-regime": "mock-regime-1448.json",
+   "/change-orders/capacity": "mock-capacity-1448.json"
+  },
+  "scrollTo": "أمر تغيير جديد"
+ },
+ "ch-05#2": {
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464",
+  "clicks": [
+   "أوامر التغيير",
+   "بنود جديدة"
+  ],
+  "mock": {
+   "/legal-regime": "mock-regime-1448.json",
+   "/change-orders/capacity": "mock-capacity-1448.json"
+  },
+  "scrollTo": "أمر تغيير جديد"
+ },
+ "ch-05#3": {
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464",
+  "clicks": [
+   "أوامر التغيير",
+   "أحكام غير مالية"
+  ],
+  "mock": {
+   "/legal-regime": "mock-regime-1448.json",
+   "/change-orders/capacity": "mock-capacity-1448.json"
+  },
+  "scrollTo": "أمر تغيير جديد"
+ },
+ "ch-05#4": {
+  "url": "/portal/contracts/904f36a0-1f82-4829-bf64-294f5b2b7464",
+  "clicks": [
+   "أوامر التغيير",
+   "تمديد مدة"
+  ],
+  "mock": {
+   "/legal-regime": "mock-regime-1448.json",
+   "/change-orders/capacity": "mock-capacity-1448.json"
+  },
+  "scrollTo": "أمر تغيير جديد"
+ },
+ "ch-01#0": {
+  "viewport": {
+   "width": 1440,
+   "height": 470
+  }
+ },
+ "ch-01#3": {
+  "viewport": {
+   "width": 1440,
+   "height": 470
+  }
+ }
+}

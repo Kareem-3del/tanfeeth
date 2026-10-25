@@ -3,18 +3,21 @@
  *
  *   MANUAL_EMAIL=… MANUAL_PASSWORD=… node docs/user-manual/shots.mjs            # كل الصور الناقصة
  *   node docs/user-manual/shots.mjs ch-03      # فصل واحد (يعيد التقاطه)
+ *   MANUAL_DIR=docs/law-1448-report node docs/user-manual/shots.mjs   # وثيقة أخرى بالأداة نفسها
  *
  * المسارات ذات المعرّف (:id) تُحلّ من shots/ids.json، وما يحتاج ضبطًا يدويًا
  * (تبويب أو زر أو مسار مختلف) يوضع في shots/overrides.json بمفتاح «ch-03#2».
  * الصفحة تقرأ بيانات تجريبية، فتُنظَّف أسماء السجلات التجريبية في الردود قبل العرض.
+ * و«mock» في overrides يستبدل ردّ قراءة بعينها (جزء من الرابط → ملف JSON في shots/)
+ * لعرض حالة لا توجد في البيئة التجريبية؛ ويُذكر ذلك في تعليق الصورة.
  */
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import puppeteer from "/Users/kareem.adel.zayed/tanfeth/backend/node_modules/puppeteer/lib/esm/puppeteer/puppeteer.js";
 
-const DIR = dirname(fileURLToPath(import.meta.url));
+const DIR = process.env.MANUAL_DIR ? resolve(process.env.MANUAL_DIR) : dirname(fileURLToPath(import.meta.url));
 const SHOTS = join(DIR, "shots");
 mkdirSync(SHOTS, { recursive: true });
 const BASE = "https://demo.tanfeeth.io";
@@ -84,8 +87,11 @@ const browser = await puppeteer.launch({ executablePath: CHROME, headless: true,
 const page = await browser.newPage();
 await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1.5 });
 await page.setRequestInterception(true);
+let mocks = {};
 page.on("request", async (req) => {
   if (!req.url().startsWith(`${BASE}/api/`) || req.method() !== "GET") return req.continue();
+  const mocked = Object.keys(mocks).find((part) => req.url().includes(part));
+  if (mocked) return req.respond({ status: 200, contentType: "application/json", body: readFileSync(join(SHOTS, mocks[mocked]), "utf8") });
   try {
     const res = await fetch(req.url(), { headers: req.headers() });
     const type = res.headers.get("content-type") || "";
@@ -145,6 +151,7 @@ for (const f of todo) {
   const kind = (KIND.find(([pre]) => url.startsWith(pre)) || [])[1];
   url = url.replace(/:([a-zA-Z]+)/g, (_, k) => (k === "id" && kind ? ids[kind] : ids[k]) || `:${k}`);
   if (url.includes(":")) { console.log("no id", f.key, url); continue; }
+  mocks = o.mock || {};
   try {
     if (o.viewport) await page.setViewport({ ...o.viewport, deviceScaleFactor: o.viewport.deviceScaleFactor ?? 1.5 });
     await page.goto(BASE + url, { waitUntil: "domcontentloaded", timeout: 60000 });
@@ -157,7 +164,7 @@ for (const f of todo) {
     }
     if (missed && !o.allowMiss) { console.log("drop", f.key); continue; }
     if (o.scroll) await page.evaluate((y) => window.scrollTo(0, y), o.scroll);
-    if (o.scrollTo) await page.evaluate((t) => { const e = [...document.querySelectorAll("h1,h2,h3,h4,h5,h6,p,span,div")].find((x) => x.children.length === 0 && x.textContent.trim() === t); e?.scrollIntoView({ block: "start" }); window.scrollBy(0, -90); }, o.scrollTo);
+    if (o.scrollTo) await page.evaluate((t) => { let e = [...document.querySelectorAll("h1,h2,h3,h4,h5,h6,p,span,div,legend,label")].find((x) => x.offsetParent !== null && x.textContent.trim() === t); while (e && [...e.children].some((c) => c.textContent.trim() === t)) e = [...e.children].find((c) => c.textContent.trim() === t); e?.scrollIntoView({ block: "start", behavior: "instant" }); window.scrollBy({ top: -90, behavior: "instant" }); }, o.scrollTo);
     await tidy();
     await new Promise((r) => setTimeout(r, 400));
     const file = `${f.key.replace("#", "-")}.jpg`;
