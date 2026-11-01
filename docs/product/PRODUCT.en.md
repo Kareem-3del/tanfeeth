@@ -488,7 +488,7 @@ analytics, scenario planning, award‑recommendation summaries), financial overs
 escalation management, **risk heatmap**, strategic planning (policy compliance,
 sustainability & local‑content indicators).
 
-#### 6.4.1 KPIs & scorecards (`FR-HM-011…018`) — built
+#### 6.4.1 KPIs & scorecards (`FR-HM-011…020`) — built
 Delivers the "customizable KPIs" and "department scorecards" above, on three levels: **entity**, **department**, **employee**.
 - `FR-HM-011` **KPI definition**: name, description, unit, direction (higher/lower is better), a **formula** over letter variables (A…H) parsed safely (four operations, brackets, min/max/abs/round — never code execution), a **target** with per-period overrides, optional baseline, **frequency** (monthly/quarterly/semi-annual/annual), start/end, entry window, weight, green (100%) and amber (80%) thresholds. Ready templates.
 - `FR-HM-012` **Variable sources**: entered each period, **computed from the platform** (17 metrics across tasks, projects, annual plan and contracts, registered by each module in a shared metric registry), or **rolled up from linked KPIs** (sum/avg/min/max of their actuals or achievements). No metric exposes the sealed estimated value.
@@ -498,6 +498,8 @@ Delivers the "customizable KPIs" and "department scorecards" above, on three lev
 - `FR-HM-016` **Visibility & permissions** (R-04): an employee sees only their own KPIs, never a colleague's; a department manager/deputy manages their department, its sub-departments and its employees' KPIs **by their seat in the department register** (CDM-style); department KPIs can be shared with the department or the entity, entity KPIs with department managers or everyone; `kpis.read` sees all, `kpis.manage` manages all incl. entity KPIs. What a reader can't see answers "not found".
 - `FR-HM-017` **Separation of duties**: nobody sets their own KPI, verifies a reading they entered, or verifies a reading of a KPI they are the subject of.
 - `FR-HM-018` **Scorecards & reports**: yearly scorecard for an employee (self, manager chain), a department (with its people and sub-departments) and the entity (department ranking — `kpis.read` only); KPI score = average of measured periods capped at 100%, card score = weighted average with coverage; **PDF and Excel** export.
+- `FR-HM-019` **Formula assistant** (section 2 of the KPI form, under HITL — R-03): describe the measure in your own words and it proposes the whole KPI — variables and sources, formula, unit and direction, target, frequency, start/end dates and entry window — and refines it on follow-ups; it knows every platform metric, template and lifecycle duration; proposals are vetted with the save rules and applied only by the user. Plus a visual formula builder: math rendering, Arabic reading, keypad, recipes, live checks and a sample-number test against the target.
+- `FR-HM-020` **Duration between two events**: a user-built variable source — days between two lifecycle events of a contract (published, envelopes opened, award report, letter of award, signed, commencement letter, commenced, start, planned end, preliminary/final acceptance) or a project (created → contracted), with average/median/max/min/count/count and % done within N days/over N, over the records that reached the second event in the period. E.g. "contract signing speed after award", "commencement speed after signing".
 
 ---
 
