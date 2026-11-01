@@ -488,6 +488,17 @@ analytics, scenario planning, award‑recommendation summaries), financial overs
 escalation management, **risk heatmap**, strategic planning (policy compliance,
 sustainability & local‑content indicators).
 
+#### 6.4.1 KPIs & scorecards (`FR-HM-011…018`) — built
+Delivers the "customizable KPIs" and "department scorecards" above, on three levels: **entity**, **department**, **employee**.
+- `FR-HM-011` **KPI definition**: name, description, unit, direction (higher/lower is better), a **formula** over letter variables (A…H) parsed safely (four operations, brackets, min/max/abs/round — never code execution), a **target** with per-period overrides, optional baseline, **frequency** (monthly/quarterly/semi-annual/annual), start/end, entry window, weight, green (100%) and amber (80%) thresholds. Ready templates.
+- `FR-HM-012` **Variable sources**: entered each period, **computed from the platform** (17 metrics across tasks, projects, annual plan and contracts, registered by each module in a shared metric registry), or **rolled up from linked KPIs** (sum/avg/min/max of their actuals or achievements). No metric exposes the sealed estimated value.
+- `FR-HM-013` **Cascade**: an employee KPI links up to its department's (or an ancestor's) KPI, a department KPI to a higher department's or an entity KPI — links only go up, so no cycles.
+- `FR-HM-014` **Readings**: after a period closes the **reporter** enters manual values (the rest are computed at save time), the **owner** (else department manager, deputy, then ancestors) verifies, returns with a reason (10+ chars) or reopens a verified one with a reason. Readings keep their values and period target. Platform-only KPIs are snapshotted after the entry window. System tasks for entry and verification (R-01/02).
+- `FR-HM-015` **Lock**: after the first reading the formula, variables, frequency, start, placement, unit and direction are locked — archive and create a new KPI; only a KPI with no readings or links can be deleted.
+- `FR-HM-016` **Visibility & permissions** (R-04): an employee sees only their own KPIs, never a colleague's; a department manager/deputy manages their department, its sub-departments and its employees' KPIs **by their seat in the department register** (CDM-style); department KPIs can be shared with the department or the entity, entity KPIs with department managers or everyone; `kpis.read` sees all, `kpis.manage` manages all incl. entity KPIs. What a reader can't see answers "not found".
+- `FR-HM-017` **Separation of duties**: nobody sets their own KPI, verifies a reading they entered, or verifies a reading of a KPI they are the subject of.
+- `FR-HM-018` **Scorecards & reports**: yearly scorecard for an employee (self, manager chain), a department (with its people and sub-departments) and the entity (department ranking — `kpis.read` only); KPI score = average of measured periods capped at 100%, card score = weighted average with coverage; **PDF and Excel** export.
+
 ---
 
 ## 7. AI layer (`FR-AI-001…017`) — under mandatory HITL
